@@ -1,6 +1,4 @@
-﻿import CampaignIcon from '@mui/icons-material/Campaign'
-
-export interface IRoute {
+﻿export interface IRoute {
   breadcrumbDisabled?: boolean,
   path: string
   absPath: string
