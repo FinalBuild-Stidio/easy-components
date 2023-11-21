@@ -1,11 +1,11 @@
 import * as React from 'react'
-import type { KeyType } from '@/components/Cache'
-import StyleContext from '@/components/StyleContext'
+import type { KeyType } from '@/Cache'
+import StyleContext from '@/StyleContext'
 import useCompatibleInsertionEffect from './useCompatibleInsertionEffect'
 import useEffectCleanupRegister from './useEffectCleanupRegister'
 import useHMR from './useHMR'
 
-export default function useGlobalCache<CacheType>(
+export function useGlobalCache<CacheType>(
   prefix: string,
   keyPath: KeyType[],
   cacheFn: () => CacheType,
@@ -100,3 +100,5 @@ export default function useGlobalCache<CacheType>(
 
   return cacheContent
 }
+
+export default useGlobalCache

@@ -1,11 +1,11 @@
 import { TinyColor } from '@ctrl/tinycolor'
 import { useContext } from 'react'
 
-import type { CSSInterpolation, CSSObject } from '@/components/StyleContext'
+import type { CSSInterpolation, CSSObject } from '@/StyleContext'
 import useStyleRegister from '@/hooks/cssinjs'
-import { ConfigContext } from '@/components/base/Config/ConfigContext'
-import { GlobalToken } from '@/components/base/theme/interface'
-import theme from '@/components/base/theme'
+import { ConfigContext } from '@/base/Config/ConfigContext'
+import { GlobalToken } from '@/base/theme/interface'
+import theme from '@/base/theme'
 import * as batToken from './token'
 
 import { ProProvider } from '../index'

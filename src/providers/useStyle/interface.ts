@@ -1,12 +1,12 @@
 import type * as React from 'react'
 
-import type { ColorPalettes, LegacyColorPalettes } from '@/components/base/theme/interface/presetColors'
-import type { SeedToken } from '@/components/base/theme/interface/seeds'
-import type { ColorMapToken } from '@/components/base/theme/interface/maps/colors'
-import type { FontMapToken } from '@/components/base/theme/interface/maps/font'
-import type { HeightMapToken, SizeMapToken } from '@/components/base/theme/interface/maps/size'
-import type { StyleMapToken } from '@/components/base/theme/interface/maps/style'
-import type { ComponentTokenMap } from '@/components/base/theme/interface/components'
+import type { ColorPalettes, LegacyColorPalettes } from '@/base/theme/interface/presetColors'
+import type { SeedToken } from '@/base/theme/interface/seeds'
+import type { ColorMapToken } from '@/base/theme/interface/maps/colors'
+import type { FontMapToken } from '@/base/theme/interface/maps/font'
+import type { HeightMapToken, SizeMapToken } from '@/base/theme/interface/maps/size'
+import type { StyleMapToken } from '@/base/theme/interface/maps/style'
+import type { ComponentTokenMap } from '@/base/theme/interface/components'
 
 export type { SeedToken }
 

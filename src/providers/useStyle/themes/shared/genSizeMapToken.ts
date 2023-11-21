@@ -1,4 +1,4 @@
-import type { SeedToken, SizeMapToken } from '@/components/base/theme/interface'
+import type { SeedToken, SizeMapToken } from '@/base/theme/interface'
 
 export default function genSizeMapToken(token: SeedToken): SizeMapToken {
   const { sizeUnit, sizeStep } = token

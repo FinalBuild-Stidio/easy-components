@@ -13,13 +13,13 @@ import type {
   Keyframes,
   HashPriority,
   Transformer,
-} from '@/components/StyleContext'
+} from '@/StyleContext'
 import StyleContext, {
   ATTR_CACHE_PATH,
   ATTR_MARK,
   ATTR_TOKEN,
   CSS_IN_JS_INSTANCE,
-} from '@/components/StyleContext'
+} from '@/StyleContext'
 
 import useGlobalCache from './useGlobalCache'
 import {
@@ -374,7 +374,7 @@ export const parseStyle = (
 /**
  * Register a style to the global style sheet.
  */
-export default function useStyleRegister(
+export function useStyleRegister(
   info: {
     theme: Theme<any, any>
     token: any
@@ -537,3 +537,5 @@ export default function useStyleRegister(
     )
   }
 }
+
+export default useStyleRegister

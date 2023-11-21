@@ -1,4 +1,4 @@
-import type { HeightMapToken, SeedToken } from '@/components/base/theme/interface'
+import type { HeightMapToken, SeedToken } from '@/base/theme/interface'
 
 const genControlHeight = (token: SeedToken): HeightMapToken => {
   const { controlHeight } = token

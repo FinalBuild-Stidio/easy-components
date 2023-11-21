@@ -1,4 +1,4 @@
-import type { ColorNeutralMapToken } from '@/components/base/theme/interface'
+import type { ColorNeutralMapToken } from '@/base/theme/interface'
 
 export interface ColorMap {
   1: string

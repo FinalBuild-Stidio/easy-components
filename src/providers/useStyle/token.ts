@@ -1,6 +1,6 @@
 import { createTheme } from '@/hooks/cssinjs/theme'
 
-import theme from '@/components/base/theme'
+import theme from '@/base/theme'
 import type { GlobalToken } from './interface'
 
 export const defaultToken = {

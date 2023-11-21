@@ -1,7 +1,7 @@
 import hash from '@emotion/hash'
 import * as React from 'react'
 import { useContext } from 'react'
-import StyleContext, { ATTR_TOKEN, CSS_IN_JS_INSTANCE } from '@/components/StyleContext'
+import StyleContext, { ATTR_TOKEN, CSS_IN_JS_INSTANCE } from '@/StyleContext'
 import type Theme from './cssinjs/theme/Theme'
 import { flattenToken, token2key } from './cssinjs/util'
 import useGlobalCache from './useGlobalCache'

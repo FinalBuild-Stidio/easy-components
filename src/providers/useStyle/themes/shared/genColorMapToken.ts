@@ -1,5 +1,5 @@
 import { TinyColor } from '@ctrl/tinycolor'
-import type { ColorMapToken, SeedToken } from '@/components/base/theme/interface'
+import type { ColorMapToken, SeedToken } from '@/base/theme/interface'
 import type { GenerateColorMap, GenerateNeutralColorMap } from '../ColorMap'
 
 interface PaletteGenerators {

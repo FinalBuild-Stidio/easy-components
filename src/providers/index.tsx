@@ -1,10 +1,10 @@
 import type { Theme } from '@/hooks/cssinjs/theme'
 import { useCacheToken } from '@/hooks/cssinjs/theme'
-import { omitUndefined } from '@/components/base/_util/omitUndefined'
-import ConfigProvider from '@/components/base/Config'
-import { merge } from '@/components/pro/utils/merge'
+import { omitUndefined } from '@/base/_util/omitUndefined'
+import ConfigProvider from '@/base/Config'
+import { merge } from '@/pro/utils/merge'
 
-import zh_TW from '@/components/base/locale/zh_TW'
+import zh_TW from '@/base/locale/zh_TW'
 import React, { useContext, useEffect, useMemo } from 'react'
 import type { IntlType } from './intl'
 import { findIntlKeyByLocaleKey, intlMap, zhTWIntl } from './intl'
@@ -21,9 +21,9 @@ import 'dayjs/locale/zh-tw'
 export * from './intl'
 export * from './useStyle'
 export { DeepPartial, ProTokenType }
-export type { GenerateStyle } from '@/components/base/theme/internal'
+export type { GenerateStyle } from '@/base/theme/internal'
 
-export { operationUnit, resetComponent, roundedArrow } from '@/components/base/style'
+export { operationUnit, resetComponent, roundedArrow } from '@/base/style'
 
 /**
  * 用於判斷當前是否需要開啟哈希（Hash）模式。
@@ -201,12 +201,6 @@ const ConfigProviderContainer: React.FC<{
   )
   const tokenContext = proTheme.useToken?.()
   const proProvide = useContext(ProConfigContext)
-
-  /**
-   * pro 的 類
-   * @type {string}
-   * @example .ant-pro
-   */
 
   const proComponentsCls = prefixCls
     ? `.${prefixCls}`

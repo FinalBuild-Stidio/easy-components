@@ -1,4 +1,4 @@
-import type { FontMapToken } from '@/components/base/theme/interface'
+import type { FontMapToken } from '@/base/theme/interface'
 import genFontSizes from './genFontSizes'
 
 const genFontMapToken = (fontSize: number): FontMapToken => {

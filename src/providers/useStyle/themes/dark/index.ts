@@ -6,7 +6,7 @@ import type {
   MapToken,
   PresetColorType,
   SeedToken,
-} from '@/components/base/theme/interface'
+} from '@/base/theme/interface'
 import { defaultPresetColors } from '../seed'
 import genColorMapToken from '../shared/genColorMapToken'
 import { generateColorPalettes, generateNeutralColorPalettes } from './colors'

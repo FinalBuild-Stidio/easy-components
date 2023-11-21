@@ -1,9 +1,9 @@
 import { createTheme, getComputedToken } from '@/hooks/cssinjs/theme'
-import type { ThemeConfig } from '@/components/base/Config/ConfigContext'
+import type { ThemeConfig } from '@/base/Config/ConfigContext'
 import type { AliasToken } from './interface'
 import defaultDerivative from './themes/default'
 import seedToken from './themes/seed'
-import formatToken from '@/components/base/theme/util/alias'
+import formatToken from '@/base/theme/util/alias'
 
 const getDesignToken = (config?: ThemeConfig): AliasToken => {
   const theme = config?.algorithm ? createTheme(config.algorithm) : createTheme(defaultDerivative)
