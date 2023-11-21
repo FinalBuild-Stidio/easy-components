@@ -5,19 +5,22 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.es.js"
+      "import": "./dist/main/index.js"
     },
     "./base": {
       "types": "./dist/base/index.d.ts",
-      "import": "./dist/base.es.js"
+      "import": "./dist/base/index.js"
     },
     "./pro": {
       "types": "./dist/pro/index.d.ts",
-      "import": "./dist/pro.es.js"
+      "import": "./dist/pro/index.js"
     },
-    "./test": {
-      "types": "./dist/test/index.d.ts",
-      "import": "./dist/test.es.js"
+    "./hooks": {
+      "types": "./dist/hooks/index.d.ts",
+      "import": "./dist/hooks/index.js"
+    },
+    "./config": {
+      "types": "./dist/config/index.d.ts"
     }
   },
   "scripts": {
