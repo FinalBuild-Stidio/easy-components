@@ -154,7 +154,6 @@ export const prepareComponentToken = (token: GlobalToken) => {
 export default genComponentStyleHook(
   'Status',
   (token) => {
-    console.log('Status token', token)
     const statusToken = prepareToken(token)
 
     return [genSharedStatusStyle(statusToken)]

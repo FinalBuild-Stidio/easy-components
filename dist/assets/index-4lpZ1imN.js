@@ -23486,7 +23486,6 @@ const prepareComponentToken = (token) => {
 const useStyle$6 = genComponentStyleHook(
   "Status",
   (token) => {
-    console.log("Status token", token);
     const statusToken = prepareToken(token);
     return [genSharedStatusStyle(statusToken)];
   },
