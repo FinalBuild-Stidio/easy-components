@@ -1,3 +1,4 @@
+import type { ButtonProps } from '@mui/material/Button';
 import type { FormInstance } from '../../../../base';
 import type { FormListFieldData, FormListOperation, FormListProps } from '../../../../base/form';
 import type { CSSProperties, ReactNode } from 'react';
@@ -75,6 +76,21 @@ export type FormListActionGuard = {
     beforeRemoveRow?: (...params: [...Parameters<FormListOperation['remove']>, number]) => boolean | Promise<boolean>;
 };
 export type ProFromListCommonProps = {
+    /**
+     * @name 新增按鈕的設定
+     * @example 設定新增按鈕在上面
+     * creatorButtonProps={{position:"top"}}
+     * @example 不顯示按鈕
+     * creatorButtonProps={false}
+     * @example 客製化新增按鈕的顯示文字
+     * creatorButtonProps={{creatorButtonText:"新增一行到底部"}}
+     * @example 設置新增按鈕的樣式
+     * creatorButtonProps={{type:"primary"}}
+     */
+    creatorButtonProps?: false | (ButtonProps & {
+        creatorButtonText?: ReactNode;
+        position?: 'top' | 'bottom';
+    });
     /**
      * @name 複製按鈕的設定
      * @description 可以自訂複製按鈕的文案，圖示，tooltip，設置為 false 就會消失
