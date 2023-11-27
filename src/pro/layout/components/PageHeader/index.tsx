@@ -233,7 +233,7 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
     layout,
   } = props
 
-  const breadcrumbItems = breadcrumbRender === false ? [] : getBreadcrumbItems(useAppData().clientRoutes)
+  const breadcrumbItems = breadcrumbRender === false ? [] : rawBreadcrumbItems ?? getBreadcrumbItems(useAppData().clientRoutes)
 
   const prefixCls = getPrefixCls('page-header', customizePrefixCls)
   const { wrapSSR, hashId } = useStyle(prefixCls)
