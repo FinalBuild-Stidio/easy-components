@@ -13,6 +13,7 @@ import { ProFormListItem } from './ListItem'
 const ProFormListContainer: React.FC<ProFormListItemProps> = (props) => {
   const intl = useIntl()
   const {
+    creatorButtonProps,
     prefixCls,
     children,
     creatorRecord,
@@ -98,12 +99,14 @@ const ProFormListContainer: React.FC<ProFormListItemProps> = (props) => {
   ])
 
   const creatorButton = useMemo(() => {
-    if (uuidFields.length === max) return null
-    const position = 'bottom'
-    const creatorButtonText = intl.formatMessage({
-      id: 'editableTable.action.add',
-      defaultMessage: '新增一行資料',
-    })
+    if (creatorButtonProps === false || uuidFields.length === max) return null
+    const {
+      position = 'bottom',
+      creatorButtonText = intl.formatMessage({
+        id: 'editableTable.action.add',
+        defaultMessage: '新增一行',
+      }),
+    } = creatorButtonProps || {}
     return (
       <LoadingButton
         className={`${prefixCls}-creator-button-${position} ${hashId || ''
@@ -122,6 +125,7 @@ const ProFormListContainer: React.FC<ProFormListItemProps> = (props) => {
       </LoadingButton>
     )
   }, [
+    creatorButtonProps,
     uuidFields.length,
     max,
     intl,
@@ -163,9 +167,14 @@ const ProFormListContainer: React.FC<ProFormListItemProps> = (props) => {
 
   return (
     <div style={defaultStyle} className={containerClassName}>
+      {creatorButtonProps !== false &&
+        creatorButtonProps?.position === 'top' &&
+        creatorButton}
       {itemList}
       {fieldExtraRender && fieldExtraRender(wrapperAction, meta)}
-      {creatorButton}
+      {creatorButtonProps !== false &&
+        creatorButtonProps?.position !== 'top' &&
+        creatorButton}
     </div>
   )
 }

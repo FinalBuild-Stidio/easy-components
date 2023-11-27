@@ -1,6 +1,7 @@
 ﻿import CircularProgress from '@mui/material/CircularProgress'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import DeleteIcon from '@mui/icons-material/Delete'
+import type { ButtonProps } from '@mui/material/Button'
 
 import { ProProvider } from '@/providers'
 import type { FormInstance } from '@/base'
@@ -111,6 +112,23 @@ export type FormListActionGuard = {
 }
 
 export type ProFromListCommonProps = {
+  /**
+   * @name 新增按鈕的設定
+   * @example 設定新增按鈕在上面
+   * creatorButtonProps={{position:"top"}}
+   * @example 不顯示按鈕
+   * creatorButtonProps={false}
+   * @example 客製化新增按鈕的顯示文字
+   * creatorButtonProps={{creatorButtonText:"新增一行到底部"}}
+   * @example 設置新增按鈕的樣式
+   * creatorButtonProps={{type:"primary"}}
+   */
+  creatorButtonProps?:
+  | false
+  | (ButtonProps & {
+    creatorButtonText?: ReactNode
+    position?: 'top' | 'bottom'
+  })
   /**
    * @name 複製按鈕的設定
    * @description 可以自訂複製按鈕的文案，圖示，tooltip，設置為 false 就會消失
@@ -256,6 +274,7 @@ const ProFormListItem: React.FC<
   }
 > = (props) => {
   const {
+    creatorButtonProps,
     deleteIconProps,
     copyIconProps,
     itemContainerRender,

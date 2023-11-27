@@ -129,6 +129,7 @@ function ProFormList<T>(props: ProFormListProps<T>) {
 
   const {
     actionRender,
+    creatorButtonProps,
     label,
     alwaysShowItemLabel,
     tooltip,
@@ -255,6 +256,7 @@ function ProFormList<T>(props: ProFormListProps<T>) {
                     itemContainerRender={itemContainerRender}
                     itemRender={itemRender}
                     fieldExtraRender={fieldExtraRender}
+                    creatorButtonProps={creatorButtonProps}
                     creatorRecord={creatorRecord}
                     actionRender={actionRender}
                     action={action}
