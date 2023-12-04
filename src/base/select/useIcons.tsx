@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react'
 import * as React from 'react'
 import CheckIcon from '@mui/icons-material/Check'
-import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import CloseIcon from '@mui/icons-material/Close'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -45,7 +44,7 @@ export default function useIcons({
   }
 
   // Clear Icon
-  const mergedClearIcon = clearIcon ?? <HighlightOffIcon />
+  const mergedClearIcon = clearIcon ?? <CloseIcon />
 
   // Validation Feedback Icon
   const getSuffixIconNode = (arrowIcon?: ReactNode) => {
