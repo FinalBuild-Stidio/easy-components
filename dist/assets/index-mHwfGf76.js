@@ -6245,9 +6245,9 @@ const genBaseStyle$7 = (token) => {
         insetInlineEnd: inputPaddingHorizontalBase,
         zIndex: 1,
         display: "inline-block",
-        width: token.fontSizeIcon,
-        height: token.fontSizeIcon,
-        marginTop: -token.fontSizeIcon / 2,
+        width: token.fontSizeIcon * 2,
+        height: token.fontSizeIcon * 2,
+        marginTop: -token.fontSizeIcon,
         color: token.colorTextQuaternary,
         fontSize: token.fontSizeIcon,
         fontStyle: "normal",
@@ -6452,7 +6452,7 @@ function useIcons({
   showArrow,
   componentName
 }) {
-  const mergedClearIcon = clearIcon ?? /* @__PURE__ */ jsx(HighlightOffIcon, {});
+  const mergedClearIcon = clearIcon ?? /* @__PURE__ */ jsx(CloseIcon, {});
   const getSuffixIconNode = (arrowIcon) => {
     if (suffixIcon === null && !hasFeedback && !showArrow) {
       return null;
