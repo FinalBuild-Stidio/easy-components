@@ -2,7 +2,7 @@ import React from 'react';
 import type { DescriptionsProps, FormProps } from '../../base';
 import type { LabelTooltipType } from '../../base/form/FormItemLabel';
 import type { RequestData } from './useFetchData';
-import type { ProCoreActionType, ProSchema, ProSchemaComponentTypes } from '../utils';
+import type { ProCoreActionType, ProFieldValueType, ProSchema, ProSchemaComponentTypes } from '../utils';
 import type { ProFieldFCMode } from '../../providers';
 export interface DescriptionsItemProps {
     prefixCls?: string;
@@ -70,6 +70,14 @@ export type ProDescriptionsProps<RecordType = Record<string, any>, ValueType = '
     /** 受控資料來源改變 */
     onDataSourceChange?: (value: RecordType) => void;
 };
+export declare const FieldRender: React.FC<ProDescriptionsItemProps<any> & {
+    text: any;
+    valueType: ProFieldValueType;
+    entity: any;
+    action: ProCoreActionType<any>;
+    index: number;
+    emptyText?: React.ReactNode;
+}>;
 declare const ProDescriptions: {
     <RecordType extends Record<string, any>, ValueType = "text">(props: ProDescriptionsProps<RecordType, ValueType>): React.JSX.Element;
     Item: React.FC<ProDescriptionsItemProps<Record<string, any>, "text">>;

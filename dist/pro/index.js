@@ -2,7 +2,7 @@ import { jsx, Fragment, jsxs } from 'react/jsx-runtime';
 import * as React from 'react';
 import React__default, { useContext, useMemo, useEffect, useRef, useImperativeHandle, useState, useCallback, createContext, createElement, Fragment as Fragment$1, memo } from 'react';
 import classNames from 'classnames';
-import { z as createTheme, y as theme, H as ConfigContext, J as useStyleRegister, e as ConfigProvider, K as useCacheToken, k as Result, F as Form, j as Popover, v as Tooltip, x as Typography, N as useIsomorphicLayoutEffect, l as Row, c as Col, O as Keyframes, o as Statistic$1, B as Badge, t as Tabs, Q as resetComponent, G as Grid, a as Card$1, m as Skeleton, n as CompoundedSpace, f as Descriptions, S as Select, I as Input, b as Checkbox, D as DatePicker, T as TypedInputNumber, R as Radio, r as Switch, u as TimePicker, g as Drawer, i as Modal, q as Steps, U as operationUnit, A as Affix, L as Layout, M as Menu, V as SiderContext, s as ForwardTable, w as Tree, W as roundedArrow } from '../assets/index-mHwfGf76.js';
+import { z as createTheme, y as theme, H as ConfigContext, J as useStyleRegister, e as ConfigProvider, K as useCacheToken, k as Result, F as Form, j as Popover, v as Tooltip, x as Typography, N as useIsomorphicLayoutEffect, l as Row, c as Col, O as Keyframes, o as Statistic$1, B as Badge, t as Tabs, Q as resetComponent, G as Grid, f as Descriptions, n as CompoundedSpace, S as Select, I as Input, b as Checkbox, D as DatePicker, T as TypedInputNumber, R as Radio, r as Switch, u as TimePicker, g as Drawer, i as Modal, q as Steps, U as operationUnit, A as Affix, L as Layout, m as Skeleton, M as Menu, V as SiderContext, a as Card$1, s as ForwardTable, w as Tree, W as roundedArrow } from '../assets/index-mHwfGf76.js';
 import { noteOnce } from 'rc-util/lib/warning';
 import 'rc-util/lib/Dom/canUseDom';
 import 'rc-util/lib/Dom/dynamicCSS';
@@ -33,7 +33,6 @@ import useMergedState from 'rc-util/lib/hooks/useMergedState';
 export { default as useMountMergeState } from 'rc-util/lib/hooks/useMergedState';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import toArray from 'rc-util/lib/Children/toArray';
-import Divider from '@mui/material/Divider';
 import Badge$1 from '@mui/material/Badge';
 import SearchIcon from '@mui/icons-material/Search';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
@@ -53,6 +52,7 @@ import AddIcon from '@mui/icons-material/Add';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { createPortal, unstable_batchedUpdates } from 'react-dom';
 import ResizeObserver from 'rc-resize-observer';
+import Divider from '@mui/material/Divider';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography$1 from '@mui/material/Typography';
 import MUILink from '@mui/material/Link';
@@ -4385,713 +4385,6 @@ ProCard.Divider = ProCardDivider;
 ProCard.TabPane = TabPane;
 ProCard.Group = Group$1;
 
-const Line = ({ padding }) => /* @__PURE__ */ jsx(
-  "div",
-  {
-    style: {
-      padding: padding || "0 24px"
-    },
-    children: /* @__PURE__ */ jsx(Divider, { style: { margin: 0 } })
-  }
-);
-const MediaQueryKeyEnum$1 = {
-  xs: 2,
-  sm: 2,
-  md: 4,
-  lg: 4,
-  xl: 6,
-  xxl: 6
-};
-const StatisticSkeleton = ({ size, active }) => {
-  const defaultCol = useMemo(
-    () => ({
-      lg: true,
-      md: true,
-      sm: false,
-      xl: false,
-      xs: false,
-      xxl: false
-    }),
-    []
-  );
-  const col = Grid.useBreakpoint() || defaultCol;
-  const colSize = Object.keys(col).filter((key) => col[key] === true)[0] || "md";
-  const arraySize = size === void 0 ? MediaQueryKeyEnum$1[colSize] || 6 : size;
-  const firstWidth = (index) => {
-    if (index === 0) {
-      return 0;
-    }
-    if (arraySize > 2) {
-      return 42;
-    }
-    return 16;
-  };
-  return /* @__PURE__ */ jsx(
-    Card$1,
-    {
-      bordered: false,
-      style: {
-        marginBlockEnd: 16
-      },
-      children: /* @__PURE__ */ jsx(
-        "div",
-        {
-          style: {
-            width: "100%",
-            justifyContent: "space-between",
-            display: "flex"
-          },
-          children: new Array(arraySize).fill(null).map((_, index) => /* @__PURE__ */ jsxs(
-            "div",
-            {
-              style: {
-                borderInlineStart: arraySize > 2 && index === 1 ? "1px solid rgba(0,0,0,0.06)" : void 0,
-                paddingInlineStart: firstWidth(index),
-                flex: 1,
-                marginInlineEnd: index === 0 ? 16 : 0
-              },
-              children: [
-                /* @__PURE__ */ jsx(
-                  Skeleton,
-                  {
-                    active,
-                    paragraph: false,
-                    title: {
-                      width: 100,
-                      style: { marginBlockStart: 0 }
-                    }
-                  }
-                ),
-                /* @__PURE__ */ jsx(
-                  Skeleton.Button,
-                  {
-                    active,
-                    style: {
-                      height: 48
-                    }
-                  }
-                )
-              ]
-            },
-            index
-          ))
-        }
-      )
-    }
-  );
-};
-const ListSkeletonItem = ({ active }) => /* @__PURE__ */ jsxs(Fragment, { children: [
-  /* @__PURE__ */ jsx(
-    Card$1,
-    {
-      bordered: false,
-      style: {
-        borderRadius: 0
-      },
-      bodyStyle: {
-        padding: 24
-      },
-      children: /* @__PURE__ */ jsxs(
-        "div",
-        {
-          style: {
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between"
-          },
-          children: [
-            /* @__PURE__ */ jsx(
-              "div",
-              {
-                style: {
-                  maxWidth: "100%",
-                  flex: 1
-                },
-                children: /* @__PURE__ */ jsx(
-                  Skeleton,
-                  {
-                    active,
-                    title: {
-                      width: 100,
-                      style: {
-                        marginBlockStart: 0
-                      }
-                    },
-                    paragraph: {
-                      rows: 1,
-                      style: {
-                        margin: 0
-                      }
-                    }
-                  }
-                )
-              }
-            ),
-            /* @__PURE__ */ jsx(
-              Skeleton.Button,
-              {
-                active,
-                size: "small",
-                style: { width: 165, marginBlockStart: 12 }
-              }
-            )
-          ]
-        }
-      )
-    }
-  ),
-  /* @__PURE__ */ jsx(Line, {})
-] });
-const ListSkeleton = ({ size, active = true, actionButton }) => /* @__PURE__ */ jsxs(
-  Card$1,
-  {
-    bordered: false,
-    bodyStyle: {
-      padding: 0
-    },
-    children: [
-      new Array(size).fill(null).map((_, index) => (
-        // eslint-disable-next-line react/no-array-index-key
-        /* @__PURE__ */ jsx(ListSkeletonItem, { active: !!active }, index)
-      )),
-      actionButton !== false && /* @__PURE__ */ jsx(
-        Card$1,
-        {
-          bordered: false,
-          style: {
-            borderStartEndRadius: 0,
-            borderTopLeftRadius: 0
-          },
-          bodyStyle: {
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center"
-          },
-          children: /* @__PURE__ */ jsx(
-            Skeleton.Button,
-            {
-              style: {
-                width: 102
-              },
-              active,
-              size: "small"
-            }
-          )
-        }
-      )
-    ]
-  }
-);
-const PageHeaderSkeleton = ({ active }) => /* @__PURE__ */ jsxs(
-  "div",
-  {
-    style: {
-      marginBlockEnd: 16
-    },
-    children: [
-      /* @__PURE__ */ jsx(
-        Skeleton,
-        {
-          paragraph: false,
-          title: {
-            width: 185
-          }
-        }
-      ),
-      /* @__PURE__ */ jsx(Skeleton.Button, { active, size: "small" })
-    ]
-  }
-);
-const ListToolbarSkeleton = ({ active }) => /* @__PURE__ */ jsx(
-  Card$1,
-  {
-    bordered: false,
-    style: {
-      borderBottomRightRadius: 0,
-      borderBottomLeftRadius: 0
-    },
-    bodyStyle: {
-      paddingBlockEnd: 8
-    },
-    children: /* @__PURE__ */ jsxs(
-      CompoundedSpace,
-      {
-        style: {
-          width: "100%",
-          justifyContent: "space-between"
-        },
-        children: [
-          /* @__PURE__ */ jsx(Skeleton.Button, { active, style: { width: 200 }, size: "small" }),
-          /* @__PURE__ */ jsxs(CompoundedSpace, { children: [
-            /* @__PURE__ */ jsx(Skeleton.Button, { active, size: "small", style: { width: 120 } }),
-            /* @__PURE__ */ jsx(Skeleton.Button, { active, size: "small", style: { width: 80 } })
-          ] })
-        ]
-      }
-    )
-  }
-);
-const ListPageSkeleton = ({
-  active = true,
-  statistic,
-  actionButton,
-  toolbar,
-  pageHeader,
-  list = 5
-}) => /* @__PURE__ */ jsxs(
-  "div",
-  {
-    style: {
-      width: "100%"
-    },
-    children: [
-      pageHeader !== false && /* @__PURE__ */ jsx(PageHeaderSkeleton, { active }),
-      statistic !== false && /* @__PURE__ */ jsx(StatisticSkeleton, { size: statistic, active }),
-      (toolbar !== false || list !== false) && /* @__PURE__ */ jsxs(
-        Card$1,
-        {
-          bordered: false,
-          bodyStyle: {
-            padding: 0
-          },
-          children: [
-            toolbar !== false && /* @__PURE__ */ jsx(ListToolbarSkeleton, { active }),
-            list !== false && /* @__PURE__ */ jsx(
-              ListSkeleton,
-              {
-                size: list,
-                active,
-                actionButton
-              }
-            )
-          ]
-        }
-      )
-    ]
-  }
-);
-
-const MediaQueryKeyEnum = {
-  xs: 1,
-  sm: 2,
-  md: 3,
-  lg: 3,
-  xl: 3,
-  xxl: 4
-};
-const DescriptionsLargeItemSkeleton = ({ active }) => /* @__PURE__ */ jsxs(
-  "div",
-  {
-    style: {
-      marginBlockStart: 32
-    },
-    children: [
-      /* @__PURE__ */ jsx(
-        Skeleton.Button,
-        {
-          active,
-          size: "small",
-          style: { width: 100, marginBlockEnd: 16 }
-        }
-      ),
-      /* @__PURE__ */ jsxs(
-        "div",
-        {
-          style: {
-            width: "100%",
-            justifyContent: "space-between",
-            display: "flex"
-          },
-          children: [
-            /* @__PURE__ */ jsxs(
-              "div",
-              {
-                style: {
-                  flex: 1,
-                  marginInlineEnd: 24,
-                  maxWidth: 300
-                },
-                children: [
-                  /* @__PURE__ */ jsx(
-                    Skeleton,
-                    {
-                      active,
-                      paragraph: false,
-                      title: {
-                        style: { marginBlockStart: 0 }
-                      }
-                    }
-                  ),
-                  /* @__PURE__ */ jsx(
-                    Skeleton,
-                    {
-                      active,
-                      paragraph: false,
-                      title: {
-                        style: { marginBlockStart: 8 }
-                      }
-                    }
-                  ),
-                  /* @__PURE__ */ jsx(
-                    Skeleton,
-                    {
-                      active,
-                      paragraph: false,
-                      title: {
-                        style: { marginBlockStart: 8 }
-                      }
-                    }
-                  )
-                ]
-              }
-            ),
-            /* @__PURE__ */ jsx(
-              "div",
-              {
-                style: {
-                  flex: 1,
-                  alignItems: "center",
-                  justifyContent: "center"
-                },
-                children: /* @__PURE__ */ jsxs(
-                  "div",
-                  {
-                    style: {
-                      maxWidth: 300,
-                      margin: "auto"
-                    },
-                    children: [
-                      /* @__PURE__ */ jsx(
-                        Skeleton,
-                        {
-                          active,
-                          paragraph: false,
-                          title: {
-                            style: { marginBlockStart: 0 }
-                          }
-                        }
-                      ),
-                      /* @__PURE__ */ jsx(
-                        Skeleton,
-                        {
-                          active,
-                          paragraph: false,
-                          title: {
-                            style: { marginBlockStart: 8 }
-                          }
-                        }
-                      )
-                    ]
-                  }
-                )
-              }
-            )
-          ]
-        }
-      )
-    ]
-  }
-);
-const DescriptionsItemSkeleton = ({ size, active }) => {
-  const defaultCol = useMemo(
-    () => ({
-      lg: true,
-      md: true,
-      sm: false,
-      xl: false,
-      xs: false,
-      xxl: false
-    }),
-    []
-  );
-  const col = Grid.useBreakpoint() || defaultCol;
-  const colSize = (
-    // @ts-ignore
-    Object.keys(col).filter((key) => col[key] === true)[0] || "md"
-  );
-  const arraySize = size === void 0 ? MediaQueryKeyEnum[colSize] || 3 : size;
-  return /* @__PURE__ */ jsx(
-    "div",
-    {
-      style: {
-        width: "100%",
-        justifyContent: "space-between",
-        display: "flex"
-      },
-      children: new Array(arraySize).fill(null).map((_, index) => /* @__PURE__ */ jsxs(
-        "div",
-        {
-          style: {
-            flex: 1,
-            paddingInlineStart: index === 0 ? 0 : 24,
-            paddingInlineEnd: index === arraySize - 1 ? 0 : 24
-          },
-          children: [
-            /* @__PURE__ */ jsx(
-              Skeleton,
-              {
-                active,
-                paragraph: false,
-                title: {
-                  style: { marginBlockStart: 0 }
-                }
-              }
-            ),
-            /* @__PURE__ */ jsx(
-              Skeleton,
-              {
-                active,
-                paragraph: false,
-                title: {
-                  style: { marginBlockStart: 8 }
-                }
-              }
-            ),
-            /* @__PURE__ */ jsx(
-              Skeleton,
-              {
-                active,
-                paragraph: false,
-                title: {
-                  style: { marginBlockStart: 8 }
-                }
-              }
-            )
-          ]
-        },
-        index
-      ))
-    }
-  );
-};
-const TableItemSkeleton = ({
-  active,
-  header = false
-}) => {
-  const defaultCol = useMemo(
-    () => ({
-      lg: true,
-      md: true,
-      sm: false,
-      xl: false,
-      xs: false,
-      xxl: false
-    }),
-    []
-  );
-  const col = Grid.useBreakpoint() || defaultCol;
-  const colSize = Object.keys(col).filter((key) => col[key] === true)[0] || "md";
-  const arraySize = MediaQueryKeyEnum[colSize] || 3;
-  return /* @__PURE__ */ jsxs(Fragment, { children: [
-    /* @__PURE__ */ jsxs(
-      "div",
-      {
-        style: {
-          display: "flex",
-          background: header ? "rgba(0,0,0,0.02)" : "none",
-          padding: "24px 8px"
-        },
-        children: [
-          new Array(arraySize).fill(null).map((_, index) => /* @__PURE__ */ jsx(
-            "div",
-            {
-              style: {
-                flex: 1,
-                paddingInlineStart: header && index === 0 ? 0 : 20,
-                paddingInlineEnd: 32
-              },
-              children: /* @__PURE__ */ jsx(
-                Skeleton,
-                {
-                  active,
-                  paragraph: false,
-                  title: {
-                    style: {
-                      margin: 0,
-                      height: 24,
-                      width: header ? "75px" : "100%"
-                    }
-                  }
-                }
-              )
-            },
-            index
-          )),
-          /* @__PURE__ */ jsx(
-            "div",
-            {
-              style: {
-                flex: 3,
-                paddingInlineStart: 32
-              },
-              children: /* @__PURE__ */ jsx(
-                Skeleton,
-                {
-                  active,
-                  paragraph: false,
-                  title: {
-                    style: { margin: 0, height: 24, width: header ? "75px" : "100%" }
-                  }
-                }
-              )
-            }
-          )
-        ]
-      }
-    ),
-    /* @__PURE__ */ jsx(Line, { padding: "0px 0px" })
-  ] });
-};
-const TableSkeleton = ({ active, size = 4 }) => /* @__PURE__ */ jsxs(Card$1, { bordered: false, children: [
-  /* @__PURE__ */ jsx(
-    Skeleton.Button,
-    {
-      active,
-      size: "small",
-      style: { width: 100, marginBlockEnd: 16 }
-    }
-  ),
-  /* @__PURE__ */ jsx(TableItemSkeleton, { header: true, active }),
-  new Array(size).fill(null).map((_, index) => (
-    // eslint-disable-next-line react/no-array-index-key
-    /* @__PURE__ */ jsx(TableItemSkeleton, { active }, index)
-  )),
-  /* @__PURE__ */ jsx(
-    "div",
-    {
-      style: {
-        display: "flex",
-        justifyContent: "flex-end",
-        paddingBlockStart: 16
-      },
-      children: /* @__PURE__ */ jsx(
-        Skeleton,
-        {
-          active,
-          paragraph: false,
-          title: {
-            style: {
-              margin: 0,
-              height: 32,
-              float: "right",
-              maxWidth: "630px"
-            }
-          }
-        }
-      )
-    }
-  )
-] });
-const DescriptionsSkeleton = ({ active }) => /* @__PURE__ */ jsxs(
-  Card$1,
-  {
-    bordered: false,
-    style: {
-      borderStartEndRadius: 0,
-      borderTopLeftRadius: 0
-    },
-    children: [
-      /* @__PURE__ */ jsx(
-        Skeleton.Button,
-        {
-          active,
-          size: "small",
-          style: { width: 100, marginBlockEnd: 16 }
-        }
-      ),
-      /* @__PURE__ */ jsx(DescriptionsItemSkeleton, { active }),
-      /* @__PURE__ */ jsx(DescriptionsLargeItemSkeleton, { active })
-    ]
-  }
-);
-const DescriptionsPageSkeleton = ({
-  active = true,
-  pageHeader,
-  list
-}) => /* @__PURE__ */ jsxs(
-  "div",
-  {
-    style: {
-      width: "100%"
-    },
-    children: [
-      pageHeader !== false && /* @__PURE__ */ jsx(PageHeaderSkeleton, { active }),
-      /* @__PURE__ */ jsx(DescriptionsSkeleton, { active }),
-      list !== false && /* @__PURE__ */ jsx(Line, {}),
-      list !== false && /* @__PURE__ */ jsx(TableSkeleton, { active, size: list })
-    ]
-  }
-);
-
-const ResultPageSkeleton = ({
-  active = true,
-  pageHeader
-}) => /* @__PURE__ */ jsxs(
-  "div",
-  {
-    style: {
-      width: "100%"
-    },
-    children: [
-      pageHeader !== false && /* @__PURE__ */ jsx(PageHeaderSkeleton, { active }),
-      /* @__PURE__ */ jsx(Card$1, { children: /* @__PURE__ */ jsxs(
-        "div",
-        {
-          style: {
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            padding: 128
-          },
-          children: [
-            /* @__PURE__ */ jsx(
-              Skeleton.Avatar,
-              {
-                size: 64,
-                style: {
-                  marginBlockEnd: 32
-                }
-              }
-            ),
-            /* @__PURE__ */ jsx(
-              Skeleton.Button,
-              {
-                active,
-                style: { width: 214, marginBlockEnd: 8 }
-              }
-            ),
-            /* @__PURE__ */ jsx(Skeleton.Button, { active, style: { width: 328 }, size: "small" }),
-            /* @__PURE__ */ jsxs(
-              CompoundedSpace,
-              {
-                style: {
-                  marginBlockStart: 24
-                },
-                children: [
-                  /* @__PURE__ */ jsx(Skeleton.Button, { active, style: { width: 116 } }),
-                  /* @__PURE__ */ jsx(Skeleton.Button, { active, style: { width: 116 } })
-                ]
-              }
-            )
-          ]
-        }
-      ) })
-    ]
-  }
-);
-
-const ProSkeleton = ({ type = "list", ...rest }) => {
-  if (type === "result") {
-    return /* @__PURE__ */ jsx(ResultPageSkeleton, { ...rest });
-  }
-  if (type === "descriptions") {
-    return /* @__PURE__ */ jsx(DescriptionsPageSkeleton, { ...rest });
-  }
-  return /* @__PURE__ */ jsx(ListPageSkeleton, { ...rest });
-};
-
 const useFetchData$1 = (getData, options) => {
   const {
     onRequestError,
@@ -5162,6 +4455,127 @@ const getDataFromConfig = (item, entity) => {
   }
   return item.children;
 };
+const FieldRender = (props) => {
+  const {
+    valueEnum,
+    action,
+    index,
+    text,
+    entity,
+    render,
+    valueType,
+    plain,
+    dataIndex,
+    request,
+    renderFormItem,
+    params
+  } = props;
+  const form = ProForm.useFormInstance();
+  const { token } = proTheme.useToken?.();
+  const fieldConfig = {
+    mode: "read",
+    text,
+    valueEnum,
+    proFieldProps: {
+      emptyText: props.emptyText,
+      render: render ? () => render?.(text, entity, index, action, {
+        ...props,
+        type: "descriptions"
+      }) : void 0
+    },
+    ignoreFormItem: true,
+    valueType,
+    request,
+    params,
+    plain
+  };
+  if (valueType === "option") {
+    const fieldProps = getFieldPropsOrFormItemProps(
+      props.fieldProps,
+      void 0,
+      {
+        ...props,
+        rowKey: dataIndex,
+        isEditable: false
+      }
+    );
+    return /* @__PURE__ */ jsx(ProFormField, { name: dataIndex, ...fieldConfig, fieldProps });
+  }
+  const renderDom = () => {
+    const formItemProps = getFieldPropsOrFormItemProps(
+      props.formItemProps,
+      form,
+      {
+        ...props,
+        rowKey: dataIndex,
+        isEditable: true
+      }
+    );
+    const fieldProps = getFieldPropsOrFormItemProps(
+      props.fieldProps,
+      form,
+      {
+        ...props,
+        rowKey: dataIndex,
+        isEditable: true
+      }
+    );
+    const dom = renderFormItem ? renderFormItem?.(
+      {
+        ...props,
+        type: "descriptions"
+      },
+      {
+        isEditable: true,
+        recordKey: dataIndex,
+        record: form.getFieldValue(
+          [dataIndex].flat(1)
+        ),
+        defaultRender: () => /* @__PURE__ */ jsx(ProFormField, { ...fieldConfig, fieldProps }),
+        type: "descriptions"
+      },
+      form
+    ) : void 0;
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        style: { display: "flex", gap: token.marginXS, alignItems: "center" },
+        children: /* @__PURE__ */ jsx(
+          InlineErrorFormItem,
+          {
+            name: dataIndex,
+            ...formItemProps,
+            style: {
+              margin: 0,
+              ...formItemProps?.style || {}
+            },
+            initialValue: text || formItemProps?.initialValue,
+            children: dom || /* @__PURE__ */ jsx(
+              ProFormField,
+              {
+                ...fieldConfig,
+                proFieldProps: { ...fieldConfig.proFieldProps },
+                fieldProps
+              }
+            )
+          }
+        )
+      }
+    );
+  };
+  return /* @__PURE__ */ jsx(
+    "div",
+    {
+      style: {
+        marginTop: -5,
+        marginBottom: -5,
+        marginLeft: 0,
+        marginRight: 0
+      },
+      children: renderDom()
+    }
+  );
+};
 const schemaToDescriptionsItem = (items, entity, action) => {
   const options = [];
   const children = items?.map?.((item, index) => {
@@ -5204,7 +4618,18 @@ const schemaToDescriptionsItem = (items, entity, action) => {
           }
         )
       },
-      /* @__PURE__ */ jsx(Component, { children: contentDom })
+      /* @__PURE__ */ jsx(Component, { children: /* @__PURE__ */ jsx(
+        FieldRender,
+        {
+          ...item,
+          dataIndex: item.dataIndex || index,
+          text: contentDom,
+          valueType,
+          entity,
+          index,
+          action
+        }
+      ) })
     );
     if (valueType === "option") {
       options.push(field);
@@ -18062,6 +17487,713 @@ const ProLayout = (props) => {
   ) });
 };
 
+const Line = ({ padding }) => /* @__PURE__ */ jsx(
+  "div",
+  {
+    style: {
+      padding: padding || "0 24px"
+    },
+    children: /* @__PURE__ */ jsx(Divider, { style: { margin: 0 } })
+  }
+);
+const MediaQueryKeyEnum$1 = {
+  xs: 2,
+  sm: 2,
+  md: 4,
+  lg: 4,
+  xl: 6,
+  xxl: 6
+};
+const StatisticSkeleton = ({ size, active }) => {
+  const defaultCol = useMemo(
+    () => ({
+      lg: true,
+      md: true,
+      sm: false,
+      xl: false,
+      xs: false,
+      xxl: false
+    }),
+    []
+  );
+  const col = Grid.useBreakpoint() || defaultCol;
+  const colSize = Object.keys(col).filter((key) => col[key] === true)[0] || "md";
+  const arraySize = size === void 0 ? MediaQueryKeyEnum$1[colSize] || 6 : size;
+  const firstWidth = (index) => {
+    if (index === 0) {
+      return 0;
+    }
+    if (arraySize > 2) {
+      return 42;
+    }
+    return 16;
+  };
+  return /* @__PURE__ */ jsx(
+    Card$1,
+    {
+      bordered: false,
+      style: {
+        marginBlockEnd: 16
+      },
+      children: /* @__PURE__ */ jsx(
+        "div",
+        {
+          style: {
+            width: "100%",
+            justifyContent: "space-between",
+            display: "flex"
+          },
+          children: new Array(arraySize).fill(null).map((_, index) => /* @__PURE__ */ jsxs(
+            "div",
+            {
+              style: {
+                borderInlineStart: arraySize > 2 && index === 1 ? "1px solid rgba(0,0,0,0.06)" : void 0,
+                paddingInlineStart: firstWidth(index),
+                flex: 1,
+                marginInlineEnd: index === 0 ? 16 : 0
+              },
+              children: [
+                /* @__PURE__ */ jsx(
+                  Skeleton,
+                  {
+                    active,
+                    paragraph: false,
+                    title: {
+                      width: 100,
+                      style: { marginBlockStart: 0 }
+                    }
+                  }
+                ),
+                /* @__PURE__ */ jsx(
+                  Skeleton.Button,
+                  {
+                    active,
+                    style: {
+                      height: 48
+                    }
+                  }
+                )
+              ]
+            },
+            index
+          ))
+        }
+      )
+    }
+  );
+};
+const ListSkeletonItem = ({ active }) => /* @__PURE__ */ jsxs(Fragment, { children: [
+  /* @__PURE__ */ jsx(
+    Card$1,
+    {
+      bordered: false,
+      style: {
+        borderRadius: 0
+      },
+      bodyStyle: {
+        padding: 24
+      },
+      children: /* @__PURE__ */ jsxs(
+        "div",
+        {
+          style: {
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between"
+          },
+          children: [
+            /* @__PURE__ */ jsx(
+              "div",
+              {
+                style: {
+                  maxWidth: "100%",
+                  flex: 1
+                },
+                children: /* @__PURE__ */ jsx(
+                  Skeleton,
+                  {
+                    active,
+                    title: {
+                      width: 100,
+                      style: {
+                        marginBlockStart: 0
+                      }
+                    },
+                    paragraph: {
+                      rows: 1,
+                      style: {
+                        margin: 0
+                      }
+                    }
+                  }
+                )
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              Skeleton.Button,
+              {
+                active,
+                size: "small",
+                style: { width: 165, marginBlockStart: 12 }
+              }
+            )
+          ]
+        }
+      )
+    }
+  ),
+  /* @__PURE__ */ jsx(Line, {})
+] });
+const ListSkeleton = ({ size, active = true, actionButton }) => /* @__PURE__ */ jsxs(
+  Card$1,
+  {
+    bordered: false,
+    bodyStyle: {
+      padding: 0
+    },
+    children: [
+      new Array(size).fill(null).map((_, index) => (
+        // eslint-disable-next-line react/no-array-index-key
+        /* @__PURE__ */ jsx(ListSkeletonItem, { active: !!active }, index)
+      )),
+      actionButton !== false && /* @__PURE__ */ jsx(
+        Card$1,
+        {
+          bordered: false,
+          style: {
+            borderStartEndRadius: 0,
+            borderTopLeftRadius: 0
+          },
+          bodyStyle: {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
+          },
+          children: /* @__PURE__ */ jsx(
+            Skeleton.Button,
+            {
+              style: {
+                width: 102
+              },
+              active,
+              size: "small"
+            }
+          )
+        }
+      )
+    ]
+  }
+);
+const PageHeaderSkeleton = ({ active }) => /* @__PURE__ */ jsxs(
+  "div",
+  {
+    style: {
+      marginBlockEnd: 16
+    },
+    children: [
+      /* @__PURE__ */ jsx(
+        Skeleton,
+        {
+          paragraph: false,
+          title: {
+            width: 185
+          }
+        }
+      ),
+      /* @__PURE__ */ jsx(Skeleton.Button, { active, size: "small" })
+    ]
+  }
+);
+const ListToolbarSkeleton = ({ active }) => /* @__PURE__ */ jsx(
+  Card$1,
+  {
+    bordered: false,
+    style: {
+      borderBottomRightRadius: 0,
+      borderBottomLeftRadius: 0
+    },
+    bodyStyle: {
+      paddingBlockEnd: 8
+    },
+    children: /* @__PURE__ */ jsxs(
+      CompoundedSpace,
+      {
+        style: {
+          width: "100%",
+          justifyContent: "space-between"
+        },
+        children: [
+          /* @__PURE__ */ jsx(Skeleton.Button, { active, style: { width: 200 }, size: "small" }),
+          /* @__PURE__ */ jsxs(CompoundedSpace, { children: [
+            /* @__PURE__ */ jsx(Skeleton.Button, { active, size: "small", style: { width: 120 } }),
+            /* @__PURE__ */ jsx(Skeleton.Button, { active, size: "small", style: { width: 80 } })
+          ] })
+        ]
+      }
+    )
+  }
+);
+const ListPageSkeleton = ({
+  active = true,
+  statistic,
+  actionButton,
+  toolbar,
+  pageHeader,
+  list = 5
+}) => /* @__PURE__ */ jsxs(
+  "div",
+  {
+    style: {
+      width: "100%"
+    },
+    children: [
+      pageHeader !== false && /* @__PURE__ */ jsx(PageHeaderSkeleton, { active }),
+      statistic !== false && /* @__PURE__ */ jsx(StatisticSkeleton, { size: statistic, active }),
+      (toolbar !== false || list !== false) && /* @__PURE__ */ jsxs(
+        Card$1,
+        {
+          bordered: false,
+          bodyStyle: {
+            padding: 0
+          },
+          children: [
+            toolbar !== false && /* @__PURE__ */ jsx(ListToolbarSkeleton, { active }),
+            list !== false && /* @__PURE__ */ jsx(
+              ListSkeleton,
+              {
+                size: list,
+                active,
+                actionButton
+              }
+            )
+          ]
+        }
+      )
+    ]
+  }
+);
+
+const MediaQueryKeyEnum = {
+  xs: 1,
+  sm: 2,
+  md: 3,
+  lg: 3,
+  xl: 3,
+  xxl: 4
+};
+const DescriptionsLargeItemSkeleton = ({ active }) => /* @__PURE__ */ jsxs(
+  "div",
+  {
+    style: {
+      marginBlockStart: 32
+    },
+    children: [
+      /* @__PURE__ */ jsx(
+        Skeleton.Button,
+        {
+          active,
+          size: "small",
+          style: { width: 100, marginBlockEnd: 16 }
+        }
+      ),
+      /* @__PURE__ */ jsxs(
+        "div",
+        {
+          style: {
+            width: "100%",
+            justifyContent: "space-between",
+            display: "flex"
+          },
+          children: [
+            /* @__PURE__ */ jsxs(
+              "div",
+              {
+                style: {
+                  flex: 1,
+                  marginInlineEnd: 24,
+                  maxWidth: 300
+                },
+                children: [
+                  /* @__PURE__ */ jsx(
+                    Skeleton,
+                    {
+                      active,
+                      paragraph: false,
+                      title: {
+                        style: { marginBlockStart: 0 }
+                      }
+                    }
+                  ),
+                  /* @__PURE__ */ jsx(
+                    Skeleton,
+                    {
+                      active,
+                      paragraph: false,
+                      title: {
+                        style: { marginBlockStart: 8 }
+                      }
+                    }
+                  ),
+                  /* @__PURE__ */ jsx(
+                    Skeleton,
+                    {
+                      active,
+                      paragraph: false,
+                      title: {
+                        style: { marginBlockStart: 8 }
+                      }
+                    }
+                  )
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              "div",
+              {
+                style: {
+                  flex: 1,
+                  alignItems: "center",
+                  justifyContent: "center"
+                },
+                children: /* @__PURE__ */ jsxs(
+                  "div",
+                  {
+                    style: {
+                      maxWidth: 300,
+                      margin: "auto"
+                    },
+                    children: [
+                      /* @__PURE__ */ jsx(
+                        Skeleton,
+                        {
+                          active,
+                          paragraph: false,
+                          title: {
+                            style: { marginBlockStart: 0 }
+                          }
+                        }
+                      ),
+                      /* @__PURE__ */ jsx(
+                        Skeleton,
+                        {
+                          active,
+                          paragraph: false,
+                          title: {
+                            style: { marginBlockStart: 8 }
+                          }
+                        }
+                      )
+                    ]
+                  }
+                )
+              }
+            )
+          ]
+        }
+      )
+    ]
+  }
+);
+const DescriptionsItemSkeleton = ({ size, active }) => {
+  const defaultCol = useMemo(
+    () => ({
+      lg: true,
+      md: true,
+      sm: false,
+      xl: false,
+      xs: false,
+      xxl: false
+    }),
+    []
+  );
+  const col = Grid.useBreakpoint() || defaultCol;
+  const colSize = (
+    // @ts-ignore
+    Object.keys(col).filter((key) => col[key] === true)[0] || "md"
+  );
+  const arraySize = size === void 0 ? MediaQueryKeyEnum[colSize] || 3 : size;
+  return /* @__PURE__ */ jsx(
+    "div",
+    {
+      style: {
+        width: "100%",
+        justifyContent: "space-between",
+        display: "flex"
+      },
+      children: new Array(arraySize).fill(null).map((_, index) => /* @__PURE__ */ jsxs(
+        "div",
+        {
+          style: {
+            flex: 1,
+            paddingInlineStart: index === 0 ? 0 : 24,
+            paddingInlineEnd: index === arraySize - 1 ? 0 : 24
+          },
+          children: [
+            /* @__PURE__ */ jsx(
+              Skeleton,
+              {
+                active,
+                paragraph: false,
+                title: {
+                  style: { marginBlockStart: 0 }
+                }
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              Skeleton,
+              {
+                active,
+                paragraph: false,
+                title: {
+                  style: { marginBlockStart: 8 }
+                }
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              Skeleton,
+              {
+                active,
+                paragraph: false,
+                title: {
+                  style: { marginBlockStart: 8 }
+                }
+              }
+            )
+          ]
+        },
+        index
+      ))
+    }
+  );
+};
+const TableItemSkeleton = ({
+  active,
+  header = false
+}) => {
+  const defaultCol = useMemo(
+    () => ({
+      lg: true,
+      md: true,
+      sm: false,
+      xl: false,
+      xs: false,
+      xxl: false
+    }),
+    []
+  );
+  const col = Grid.useBreakpoint() || defaultCol;
+  const colSize = Object.keys(col).filter((key) => col[key] === true)[0] || "md";
+  const arraySize = MediaQueryKeyEnum[colSize] || 3;
+  return /* @__PURE__ */ jsxs(Fragment, { children: [
+    /* @__PURE__ */ jsxs(
+      "div",
+      {
+        style: {
+          display: "flex",
+          background: header ? "rgba(0,0,0,0.02)" : "none",
+          padding: "24px 8px"
+        },
+        children: [
+          new Array(arraySize).fill(null).map((_, index) => /* @__PURE__ */ jsx(
+            "div",
+            {
+              style: {
+                flex: 1,
+                paddingInlineStart: header && index === 0 ? 0 : 20,
+                paddingInlineEnd: 32
+              },
+              children: /* @__PURE__ */ jsx(
+                Skeleton,
+                {
+                  active,
+                  paragraph: false,
+                  title: {
+                    style: {
+                      margin: 0,
+                      height: 24,
+                      width: header ? "75px" : "100%"
+                    }
+                  }
+                }
+              )
+            },
+            index
+          )),
+          /* @__PURE__ */ jsx(
+            "div",
+            {
+              style: {
+                flex: 3,
+                paddingInlineStart: 32
+              },
+              children: /* @__PURE__ */ jsx(
+                Skeleton,
+                {
+                  active,
+                  paragraph: false,
+                  title: {
+                    style: { margin: 0, height: 24, width: header ? "75px" : "100%" }
+                  }
+                }
+              )
+            }
+          )
+        ]
+      }
+    ),
+    /* @__PURE__ */ jsx(Line, { padding: "0px 0px" })
+  ] });
+};
+const TableSkeleton = ({ active, size = 4 }) => /* @__PURE__ */ jsxs(Card$1, { bordered: false, children: [
+  /* @__PURE__ */ jsx(
+    Skeleton.Button,
+    {
+      active,
+      size: "small",
+      style: { width: 100, marginBlockEnd: 16 }
+    }
+  ),
+  /* @__PURE__ */ jsx(TableItemSkeleton, { header: true, active }),
+  new Array(size).fill(null).map((_, index) => (
+    // eslint-disable-next-line react/no-array-index-key
+    /* @__PURE__ */ jsx(TableItemSkeleton, { active }, index)
+  )),
+  /* @__PURE__ */ jsx(
+    "div",
+    {
+      style: {
+        display: "flex",
+        justifyContent: "flex-end",
+        paddingBlockStart: 16
+      },
+      children: /* @__PURE__ */ jsx(
+        Skeleton,
+        {
+          active,
+          paragraph: false,
+          title: {
+            style: {
+              margin: 0,
+              height: 32,
+              float: "right",
+              maxWidth: "630px"
+            }
+          }
+        }
+      )
+    }
+  )
+] });
+const DescriptionsSkeleton = ({ active }) => /* @__PURE__ */ jsxs(
+  Card$1,
+  {
+    bordered: false,
+    style: {
+      borderStartEndRadius: 0,
+      borderTopLeftRadius: 0
+    },
+    children: [
+      /* @__PURE__ */ jsx(
+        Skeleton.Button,
+        {
+          active,
+          size: "small",
+          style: { width: 100, marginBlockEnd: 16 }
+        }
+      ),
+      /* @__PURE__ */ jsx(DescriptionsItemSkeleton, { active }),
+      /* @__PURE__ */ jsx(DescriptionsLargeItemSkeleton, { active })
+    ]
+  }
+);
+const DescriptionsPageSkeleton = ({
+  active = true,
+  pageHeader,
+  list
+}) => /* @__PURE__ */ jsxs(
+  "div",
+  {
+    style: {
+      width: "100%"
+    },
+    children: [
+      pageHeader !== false && /* @__PURE__ */ jsx(PageHeaderSkeleton, { active }),
+      /* @__PURE__ */ jsx(DescriptionsSkeleton, { active }),
+      list !== false && /* @__PURE__ */ jsx(Line, {}),
+      list !== false && /* @__PURE__ */ jsx(TableSkeleton, { active, size: list })
+    ]
+  }
+);
+
+const ResultPageSkeleton = ({
+  active = true,
+  pageHeader
+}) => /* @__PURE__ */ jsxs(
+  "div",
+  {
+    style: {
+      width: "100%"
+    },
+    children: [
+      pageHeader !== false && /* @__PURE__ */ jsx(PageHeaderSkeleton, { active }),
+      /* @__PURE__ */ jsx(Card$1, { children: /* @__PURE__ */ jsxs(
+        "div",
+        {
+          style: {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            padding: 128
+          },
+          children: [
+            /* @__PURE__ */ jsx(
+              Skeleton.Avatar,
+              {
+                size: 64,
+                style: {
+                  marginBlockEnd: 32
+                }
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              Skeleton.Button,
+              {
+                active,
+                style: { width: 214, marginBlockEnd: 8 }
+              }
+            ),
+            /* @__PURE__ */ jsx(Skeleton.Button, { active, style: { width: 328 }, size: "small" }),
+            /* @__PURE__ */ jsxs(
+              CompoundedSpace,
+              {
+                style: {
+                  marginBlockStart: 24
+                },
+                children: [
+                  /* @__PURE__ */ jsx(Skeleton.Button, { active, style: { width: 116 } }),
+                  /* @__PURE__ */ jsx(Skeleton.Button, { active, style: { width: 116 } })
+                ]
+              }
+            )
+          ]
+        }
+      ) })
+    ]
+  }
+);
+
+const ProSkeleton = ({ type = "list", ...rest }) => {
+  if (type === "result") {
+    return /* @__PURE__ */ jsx(ResultPageSkeleton, { ...rest });
+  }
+  if (type === "descriptions") {
+    return /* @__PURE__ */ jsx(DescriptionsPageSkeleton, { ...rest });
+  }
+  return /* @__PURE__ */ jsx(ListPageSkeleton, { ...rest });
+};
+
 function toLowerLine(str) {
   let temp = str.replace(/[A-Z]/g, (match) => {
     return `-${match.toLowerCase()}`;
@@ -21895,6 +22027,7 @@ const index = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   FieldMoney: FieldMoney$1,
   FieldPercent: FieldPercent$1,
   FieldRangePicker: FieldRangePicker$1,
+  FieldRender,
   FieldSelect: FieldSelect$1,
   FieldStatus: Status,
   FieldText: FieldText$1,
@@ -22031,4 +22164,4 @@ const index = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   zhTWIntl
 }, Symbol.toStringTag, { value: 'Module' }));
 
-export { BetaSchemaForm, CheckCard, ConfigConsumer, DefaultFooter, DefaultHeader, DescriptionsSkeleton, DragSortTable, DrawerForm, ErrorBoundary, FieldContext, FieldDatePicker$1 as FieldDatePicker, FieldIndexColumn, FieldLabel, FieldMoney$1 as FieldMoney, FieldPercent$1 as FieldPercent, FieldRangePicker$1 as FieldRangePicker, FieldSelect$1 as FieldSelect, Status as FieldStatus, FieldText$1 as FieldText, FieldTimePicker$1 as FieldTimePicker, FooterToolbar, FormItemProvide, FormListContext, GridContent, GridContext, Group, FieldIndexColumn as IndexColumn, InlineErrorFormItem, ConfigConsumer as IntlConsumer, LabelIconTip, ListPageSkeleton, ListSkeleton, ListSkeletonItem, ListToolBar, ListToolbarSkeleton, LoginForm, LoginFormPage, ModalForm, PageContainer, PageHeader, PageHeaderSkeleton, PageLoading, ProCard, ProConfigProvider, ProDescriptions, ProField, ProForm, WrappedProFormCheckbox as ProFormCheckbox, ProFormContext, DateMonthRangePicker as ProFormDateMonthRangePicker, ExportComponent as ProFormDatePicker, DateQuarterRangePicker as ProFormDateQuarterRangePicker, ProFormDateRangePicker, ProFormDateTimePicker, ProFormDateTimeRangePicker, DateWeekRangePicker as ProFormDateWeekRangePicker, DateYearRangePicker as ProFormDateYearRangePicker, ProFormDependency, ForwardRefProFormDigit as ProFormDigit, index$3 as ProFormDigitRange, ProFormField, ProFormFieldSet, ProFormGroup, ProFormItem, ProFormList, index$2 as ProFormMoney, WrappedProFormRadio as ProFormRadio, WrappedProFormSelect as ProFormSelect, ProFormSwitch, WrappedProFormText as ProFormText, index$1 as ProFormTextArea, WrappedProFormTimePicker as ProFormTimePicker, ProLayout, ProProvider, ProSkeleton, ProviderTableContainer as ProTable, QueryFilter, RouteContext, FormSearch as Search, Statistic, StatisticCard, StepsFormWarp as StepsForm, Submitter, TableDropdown, TableItemSkeleton, TableSkeleton, Status as TableStatus, TopNavHeader, compareVersions, conversionMomentValue, conversionMomentValue as conversionSubmitValue, convertMoment, coverToNewToken, createIntl, dateArrayFormatter, dateFormatterMap, defaultRenderText, defaultSettings, enUSIntl, findIntlKeyByLocaleKey, genCopyable, getFieldPropsOrFormItemProps, getMenuData, getPageTitle, index as i, intlMap$1 as intlMap, intlMapKeys, isBrowser, isDeepEqualReact, isDropdownValueType, isImg, isNeedOpenHash, isNil, isUrl$1 as isUrl, lighten, merge, nanoid, omitBoolean, omitUndefined, omitUndefinedAndEmptyArr, openVisibleCompatible, operationUnit, parseValueToDay, pickProFormItemProps, pickProProps, proFieldParsingText, proFieldParsingValueEnumToArray, proTheme, resetComponent, roundedArrow, runFunction, setAlpha, sha256, stringify, transformKeySubmitValue, useBreakpoint, useDebounceFn, useDebounceValue, useDeepCompareEffect, useDeepCompareEffectDebounce, useDeepCompareMemo, useFetchData$2 as useFetchData, useLatest, usePrevious, useReactiveRef, useRefCallback, useRefFunction, useStyle$A as useStyle, useToken, zhTWIntl };
+export { BetaSchemaForm, CheckCard, ConfigConsumer, DefaultFooter, DefaultHeader, DescriptionsSkeleton, DragSortTable, DrawerForm, ErrorBoundary, FieldContext, FieldDatePicker$1 as FieldDatePicker, FieldIndexColumn, FieldLabel, FieldMoney$1 as FieldMoney, FieldPercent$1 as FieldPercent, FieldRangePicker$1 as FieldRangePicker, FieldRender, FieldSelect$1 as FieldSelect, Status as FieldStatus, FieldText$1 as FieldText, FieldTimePicker$1 as FieldTimePicker, FooterToolbar, FormItemProvide, FormListContext, GridContent, GridContext, Group, FieldIndexColumn as IndexColumn, InlineErrorFormItem, ConfigConsumer as IntlConsumer, LabelIconTip, ListPageSkeleton, ListSkeleton, ListSkeletonItem, ListToolBar, ListToolbarSkeleton, LoginForm, LoginFormPage, ModalForm, PageContainer, PageHeader, PageHeaderSkeleton, PageLoading, ProCard, ProConfigProvider, ProDescriptions, ProField, ProForm, WrappedProFormCheckbox as ProFormCheckbox, ProFormContext, DateMonthRangePicker as ProFormDateMonthRangePicker, ExportComponent as ProFormDatePicker, DateQuarterRangePicker as ProFormDateQuarterRangePicker, ProFormDateRangePicker, ProFormDateTimePicker, ProFormDateTimeRangePicker, DateWeekRangePicker as ProFormDateWeekRangePicker, DateYearRangePicker as ProFormDateYearRangePicker, ProFormDependency, ForwardRefProFormDigit as ProFormDigit, index$3 as ProFormDigitRange, ProFormField, ProFormFieldSet, ProFormGroup, ProFormItem, ProFormList, index$2 as ProFormMoney, WrappedProFormRadio as ProFormRadio, WrappedProFormSelect as ProFormSelect, ProFormSwitch, WrappedProFormText as ProFormText, index$1 as ProFormTextArea, WrappedProFormTimePicker as ProFormTimePicker, ProLayout, ProProvider, ProSkeleton, ProviderTableContainer as ProTable, QueryFilter, RouteContext, FormSearch as Search, Statistic, StatisticCard, StepsFormWarp as StepsForm, Submitter, TableDropdown, TableItemSkeleton, TableSkeleton, Status as TableStatus, TopNavHeader, compareVersions, conversionMomentValue, conversionMomentValue as conversionSubmitValue, convertMoment, coverToNewToken, createIntl, dateArrayFormatter, dateFormatterMap, defaultRenderText, defaultSettings, enUSIntl, findIntlKeyByLocaleKey, genCopyable, getFieldPropsOrFormItemProps, getMenuData, getPageTitle, index as i, intlMap$1 as intlMap, intlMapKeys, isBrowser, isDeepEqualReact, isDropdownValueType, isImg, isNeedOpenHash, isNil, isUrl$1 as isUrl, lighten, merge, nanoid, omitBoolean, omitUndefined, omitUndefinedAndEmptyArr, openVisibleCompatible, operationUnit, parseValueToDay, pickProFormItemProps, pickProProps, proFieldParsingText, proFieldParsingValueEnumToArray, proTheme, resetComponent, roundedArrow, runFunction, setAlpha, sha256, stringify, transformKeySubmitValue, useBreakpoint, useDebounceFn, useDebounceValue, useDeepCompareEffect, useDeepCompareEffectDebounce, useDeepCompareMemo, useFetchData$2 as useFetchData, useLatest, usePrevious, useReactiveRef, useRefCallback, useRefFunction, useStyle$A as useStyle, useToken, zhTWIntl };
