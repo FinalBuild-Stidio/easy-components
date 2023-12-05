@@ -2,7 +2,11 @@ import React, { useContext, useEffect } from 'react'
 import toArray from 'rc-util/lib/Children/toArray'
 import get from 'rc-util/lib/utils/get'
 
-import ProSkeleton from '@/pro/skeleton'
+import {
+  ProSkeleton,
+  ProForm,
+  ProFormField,
+} from '@/pro'
 import type { DescriptionsProps, FormInstance, FormProps } from '@/base'
 import { ConfigProvider, Descriptions, Space } from '@/base'
 import type { LabelTooltipType } from '@/base/form/FormItemLabel'
@@ -19,8 +23,11 @@ import {
   genCopyable,
   LabelIconTip,
   stringify,
+  getFieldPropsOrFormItemProps,
+  InlineErrorFormItem,
 } from '../utils'
 
+import { proTheme } from '@/providers'
 import type { ProFieldFCMode } from '@/providers'
 
 // todo remove it
@@ -128,6 +135,149 @@ const getDataFromConfig = (item: ProDescriptionsItemProps, entity: any) => {
   return item.children as string
 }
 
+export const FieldRender: React.FC<
+  ProDescriptionsItemProps<any> & {
+    text: any
+    valueType: ProFieldValueType
+    entity: any
+    action: ProCoreActionType<any>
+    index: number
+    emptyText?: React.ReactNode
+  }
+> = (props) => {
+  const {
+    valueEnum,
+    action,
+    index,
+    text,
+    entity,
+    render,
+    valueType,
+    plain,
+    dataIndex,
+    request,
+    renderFormItem,
+    params,
+  } = props
+  const form = ProForm.useFormInstance()
+
+  const { token } = proTheme.useToken?.()
+
+  const fieldConfig = {
+    mode: 'read' as 'read',
+    text,
+    valueEnum,
+    proFieldProps: {
+      emptyText: props.emptyText,
+      render: render
+        ? () =>
+          render?.(text, entity, index, action, {
+            ...props,
+            type: 'descriptions',
+          })
+        : undefined,
+    },
+    ignoreFormItem: true,
+    valueType,
+    request,
+    params,
+    plain,
+  }
+
+  if (valueType === 'option') {
+    const fieldProps = getFieldPropsOrFormItemProps(
+      props.fieldProps,
+      undefined,
+      {
+        ...props,
+        rowKey: dataIndex,
+        isEditable: false,
+      },
+    )
+    return (
+      <ProFormField name={dataIndex} {...fieldConfig} fieldProps={fieldProps} />
+    )
+  }
+
+  const renderDom = () => {
+    const formItemProps = getFieldPropsOrFormItemProps(
+      props.formItemProps,
+      form as FormInstance<any>,
+      {
+        ...props,
+        rowKey: dataIndex,
+        isEditable: true,
+      },
+    )
+    const fieldProps = getFieldPropsOrFormItemProps(
+      props.fieldProps,
+      form as FormInstance<any>,
+      {
+        ...props,
+        rowKey: dataIndex,
+        isEditable: true,
+      },
+    )
+    const dom = renderFormItem
+      ? renderFormItem?.(
+        {
+          ...props,
+          type: 'descriptions',
+        },
+        {
+          isEditable: true,
+          recordKey: dataIndex,
+          record: form.getFieldValue(
+            [dataIndex].flat(1) as (string | number)[],
+          ),
+          defaultRender: () => (
+            <ProFormField {...fieldConfig} fieldProps={fieldProps} />
+          ),
+          type: 'descriptions',
+        },
+        form as FormInstance<any>,
+      )
+      : undefined
+    return (
+      <div
+        style={{ display: 'flex', gap: token.marginXS, alignItems: 'center' }}
+      >
+        <InlineErrorFormItem
+          name={dataIndex}
+          {...formItemProps}
+          style={{
+            margin: 0,
+            ...(formItemProps?.style || {}),
+          }}
+          initialValue={text || formItemProps?.initialValue}
+        >
+          {dom || (
+            <ProFormField
+              {...fieldConfig}
+              // @ts-ignore
+              proFieldProps={{ ...fieldConfig.proFieldProps }}
+              fieldProps={fieldProps}
+            />
+          )}
+        </InlineErrorFormItem>
+      </div>
+    ) as React.ReactNode
+  }
+
+  return (
+    <div
+      style={{
+        marginTop: -5,
+        marginBottom: -5,
+        marginLeft: 0,
+        marginRight: 0,
+      }}
+    >
+      {renderDom()}
+    </div>
+  )
+}
+
 const schemaToDescriptionsItem = (
   items: ProDescriptionsItemProps<any, any>[],
   entity: any,
@@ -196,7 +346,15 @@ const schemaToDescriptionsItem = (
           }
         >
           <Component>
-            {contentDom}
+            <FieldRender
+              {...item}
+              dataIndex={item.dataIndex || index}
+              text={contentDom}
+              valueType={valueType}
+              entity={entity}
+              index={index}
+              action={action}
+            />
           </Component>
         </Descriptions.Item>
       )
