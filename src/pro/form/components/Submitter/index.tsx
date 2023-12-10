@@ -23,9 +23,9 @@ export type SubmitterProps<T = Record<string, any>> = {
   /** @name 搜索的設定，一般用來設定文本 */
   searchConfig?: SearchConfig
   /** @name 提交按鈕的 props */
-  submitButtonProps?: false | (LoadingButtonProps & { preventDefault?: boolean })
+  submitButtonProps?: false | (LoadingButtonProps & { preventDefault?: boolean } & { text?: string })
   /** @name 重設按鈕的 props */
-  resetButtonProps?: false | (LoadingButtonProps & { preventDefault?: boolean })
+  resetButtonProps?: false | (LoadingButtonProps & { preventDefault?: boolean } & { text?: string })
   /** @name 自訂操作的渲染 */
   render?:
   | ((
@@ -92,7 +92,7 @@ const Submitter: React.FC<SubmitterProps> = (props) => {
           )
         }}
       >
-        {resetText}
+        {resetButtonProps?.text ? resetButtonProps.text : resetText}
       </LoadingButton>,
     )
   }
@@ -109,7 +109,7 @@ const Submitter: React.FC<SubmitterProps> = (props) => {
           )
         }}
       >
-        {submitText}
+        {submitButtonProps?.text ? submitButtonProps.text : submitText}
       </LoadingButton>,
     )
   }
