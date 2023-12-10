@@ -36,17 +36,17 @@ export interface ComponentToken {
    */
   cardPaddingLG: string
   /**
-   * @desc 標齊頁標題文本大小
+   * @desc 標齊頁標題文字大小
    * @descEN Font size of title
    */
   titleFontSize: number
   /**
-   * @desc 大號標籤頁標題文本大小
+   * @desc 大號標籤頁標題文字大小
    * @descEN Font size of large title
    */
   titleFontSizeLG: number
   /**
-   * @desc 小號標籤頁標題文本大小
+   * @desc 小號標籤頁標題文字大小
    * @descEN Font size of small title
    */
   titleFontSizeSM: number
@@ -101,22 +101,22 @@ export interface ComponentToken {
    */
   verticalItemMargin: string
   /**
-   * @desc 標籤文本顏色
+   * @desc 標籤文字顏色
    * @descEN Text color of tab
    */
   itemColor: string
   /**
-   * @desc 標籤激活態文本顏色
+   * @desc 標籤激活態文字顏色
    * @descEN Text color of active tab
    */
   itemActiveColor: string
   /**
-   * @desc 標籤懸浮態文本顏色
+   * @desc 標籤懸浮態文字顏色
    * @descEN Text color of hover tab
    */
   itemHoverColor: string
   /**
-   * @desc 標籤選中態文本顏色
+   * @desc 標籤選中態文字顏色
    * @descEN Text color of selected tab
    */
   itemSelectedColor: string

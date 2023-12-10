@@ -568,7 +568,7 @@ function BaseForm<T = Record<string, any>, U = Record<string, any>>(
               // 減少了 form 的 padding
               maxWidth: 'calc(93vw - 48px)',
             },
-            // 適用於短數字，短文本或者選項
+            // 適用於短數字，短文字或者選項
             '&-xs': {
               width: 104,
             },
@@ -593,7 +593,7 @@ function BaseForm<T = Record<string, any>, U = Record<string, any>>(
             '&-lg': {
               width: 440,
             },
-            // 適用於長文本輸入，如長連結、描述、備註等，通常搭配自適應多行輸入框或定高文本域使用。
+            // 適用於長文字輸入，如長連結、描述、備註等，通常搭配自適應多行輸入框或定高文字域使用。
             '&-xl': {
               width: 552,
             },

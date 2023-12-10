@@ -10,7 +10,7 @@ import type { RequiredMark } from '../form/Form'
 import ValidateMessagesContext from '../form/validateMessagesContext'
 import type { InputProps } from '../input'
 import type { Locale } from '../locale'
-import LocaleProvider, { ANT_MARK } from '../locale'
+import LocaleProvider, { MARK } from '../locale'
 import type { LocaleContextProps } from '../locale/context'
 import LocaleContext from '../locale/context'
 import defaultLocale from '../locale/en_US'
@@ -458,7 +458,7 @@ const ProviderChildren: React.FC<ProviderChildrenProps> = (props) => {
 
   if (locale) {
     childNode = (
-      <LocaleProvider locale={locale} _IPASS_MARK__={ANT_MARK}>
+      <LocaleProvider locale={locale} _IPASS_MARK__={MARK}>
         {childNode}
       </LocaleProvider>
     )
@@ -543,8 +543,8 @@ const ConfigProvider: React.FC<ConfigProviderProps> & {
   useConfig: typeof useConfig
 } = (props) => {
   const context = React.useContext<ConfigConsumerProps>(ConfigContext)
-  const antLocale = React.useContext<LocaleContextProps | undefined>(LocaleContext)
-  return <ProviderChildren parentContext={context} legacyLocale={antLocale!} {...props} />
+  const locale = React.useContext<LocaleContextProps | undefined>(LocaleContext)
+  return <ProviderChildren parentContext={context} legacyLocale={locale!} {...props} />
 }
 
 ConfigProvider.ConfigContext = ConfigContext

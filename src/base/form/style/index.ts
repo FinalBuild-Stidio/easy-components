@@ -292,7 +292,7 @@ const genFormItemStyle: GenerateStyle<FormToken> = (token) => {
       // =                            Input                           =
       // ==============================================================
       [`${formItemCls}-control`]: {
-        ['--ant-display' as any]: 'flex',
+        ['--ipass-display' as any]: 'flex',
         flexDirection: 'column',
         flexGrow: 1,
 

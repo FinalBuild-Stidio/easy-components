@@ -2,16 +2,16 @@ import React, { useContext } from 'react'
 import classNames from 'classnames'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
-import type { BadgeProps, StatisticProps as AntdStatisticProps } from '@/base'
+import type { BadgeProps, StatisticProps as IpassStatisticProps } from '@/base'
 import {
   Badge,
   ConfigProvider,
-  Statistic as AntdStatistic,
+  Statistic as IpassStatistic,
   Tooltip,
 } from '@/base'
 import { useStyle } from './style'
 
-export interface StatisticProps extends AntdStatisticProps {
+export interface StatisticProps extends IpassStatisticProps {
   /**
    * 樣式
    *
@@ -96,7 +96,7 @@ const Statistic: React.FC<StatisticProps> = (props) => {
       <div className={wrapperClass}>
         {statusDom}
         <div className={contentClass}>
-          <AntdStatistic
+          <IpassStatistic
             title={
               (title || tipDom) && (
                 <>

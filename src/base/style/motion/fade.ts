@@ -4,7 +4,7 @@ import type { AliasToken } from '../../theme/internal'
 import type { TokenWithCommonCls } from '../../theme/util/genComponentStyleHook'
 import { initMotion } from './motion'
 
-export const fadeIn = new Keyframes('antFadeIn', {
+export const fadeIn = new Keyframes('ipassFadeIn', {
   '0%': {
     opacity: 0,
   },
@@ -13,7 +13,7 @@ export const fadeIn = new Keyframes('antFadeIn', {
   },
 })
 
-export const fadeOut = new Keyframes('antFadeOut', {
+export const fadeOut = new Keyframes('ipassFadeOut', {
   '0%': {
     opacity: 1,
   },

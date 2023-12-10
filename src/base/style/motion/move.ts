@@ -4,7 +4,7 @@ import type { AliasToken } from '../../theme/internal'
 import type { TokenWithCommonCls } from '../../theme/util/genComponentStyleHook'
 import { initMotion } from './motion'
 
-export const moveDownIn = new Keyframes('antMoveDownIn', {
+export const moveDownIn = new Keyframes('ipassMoveDownIn', {
   '0%': {
     transform: 'translate3d(0, 100%, 0)',
     transformOrigin: '0 0',
@@ -18,7 +18,7 @@ export const moveDownIn = new Keyframes('antMoveDownIn', {
   },
 })
 
-export const moveDownOut = new Keyframes('antMoveDownOut', {
+export const moveDownOut = new Keyframes('ipassMoveDownOut', {
   '0%': {
     transform: 'translate3d(0, 0, 0)',
     transformOrigin: '0 0',
@@ -32,7 +32,7 @@ export const moveDownOut = new Keyframes('antMoveDownOut', {
   },
 })
 
-export const moveLeftIn = new Keyframes('antMoveLeftIn', {
+export const moveLeftIn = new Keyframes('ipassMoveLeftIn', {
   '0%': {
     transform: 'translate3d(-100%, 0, 0)',
     transformOrigin: '0 0',
@@ -46,7 +46,7 @@ export const moveLeftIn = new Keyframes('antMoveLeftIn', {
   },
 })
 
-export const moveLeftOut = new Keyframes('antMoveLeftOut', {
+export const moveLeftOut = new Keyframes('ipassMoveLeftOut', {
   '0%': {
     transform: 'translate3d(0, 0, 0)',
     transformOrigin: '0 0',
@@ -60,7 +60,7 @@ export const moveLeftOut = new Keyframes('antMoveLeftOut', {
   },
 })
 
-export const moveRightIn = new Keyframes('antMoveRightIn', {
+export const moveRightIn = new Keyframes('ipassMoveRightIn', {
   '0%': {
     transform: 'translate3d(100%, 0, 0)',
     transformOrigin: '0 0',
@@ -74,7 +74,7 @@ export const moveRightIn = new Keyframes('antMoveRightIn', {
   },
 })
 
-export const moveRightOut = new Keyframes('antMoveRightOut', {
+export const moveRightOut = new Keyframes('ipassMoveRightOut', {
   '0%': {
     transform: 'translate3d(0, 0, 0)',
     transformOrigin: '0 0',
@@ -88,7 +88,7 @@ export const moveRightOut = new Keyframes('antMoveRightOut', {
   },
 })
 
-export const moveUpIn = new Keyframes('antMoveUpIn', {
+export const moveUpIn = new Keyframes('ipassMoveUpIn', {
   '0%': {
     transform: 'translate3d(0, -100%, 0)',
     transformOrigin: '0 0',
@@ -102,7 +102,7 @@ export const moveUpIn = new Keyframes('antMoveUpIn', {
   },
 })
 
-export const moveUpOut = new Keyframes('antMoveUpOut', {
+export const moveUpOut = new Keyframes('ipassMoveUpOut', {
   '0%': {
     transform: 'translate3d(0, 0, 0)',
     transformOrigin: '0 0',

@@ -152,7 +152,7 @@ const CellRenderFromItem = <T,>(props: CellRenderFromItemProps<T>) => {
     }
     formItemProps.messageVariables = {
       label: (columnProps?.title as string) || '此項',
-      type: (columnProps?.valueType as string) || '文本',
+      type: (columnProps?.valueType as string) || '文字',
       ...formItemProps?.messageVariables,
     }
 

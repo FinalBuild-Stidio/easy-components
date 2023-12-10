@@ -6,7 +6,7 @@ import ProField from '../Field'
 
 const valueType = 'text' as const
 /**
- * 文本元件
+ * 文字元件
  *
  * @param
  */

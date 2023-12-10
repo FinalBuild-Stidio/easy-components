@@ -12,31 +12,31 @@ export interface ColorNeutralMapToken {
   // ----------   Text   ---------- //
 
   /**
-   * @nameZH 一級文本色
+   * @nameZH 一級文字色
    * @nameEN Text Color
-   * @desc 最深的文本色。為了符合W3C標準，預設的文本顏色使用了該色，同時這個顏色也是最深的中性色。
+   * @desc 最深的文字色。為了符合W3C標準，預設的文字顏色使用了該色，同時這個顏色也是最深的中性色。
    * @descEN Default text color which comply with W3C standards, and this color is also the darkest neutral color.
    */
   colorText: string
 
   /**
-   * @nameZH 二級文本色
+   * @nameZH 二級文字色
    * @nameEN Secondary Text Color
-   * @desc 作為第二梯度的文本色，一般用在不那麼需要強化文本顏色的場景，例如 Label 文本、Menu 的文本選中態等場景。
+   * @desc 作為第二變化的文字色，一般用在不那麼需要強化文字顏色的場景，例如 Label 文字、Menu 的文字選中態等場景。
    * @descEN The second level of text color is generally used in scenarios where text color is not emphasized, such as label text, menu text selection state, etc.
    */
   colorTextSecondary: string
 
   /**
-   * @nameZH 三級文本色
-   * @desc 第三級文本色一般用於描述性文本，例如表單的中的補充說明文本、列表的描述性文本等場景。
+   * @nameZH 三級文字色
+   * @desc 第三級文字色一般用於描述性文字，例如表單的中的補充說明文字、列表的描述性文字等場景。
    * @descEN The third level of text color is generally used for descriptive text, such as form supplementary explanation text, list descriptive text, etc.
    */
   colorTextTertiary: string
 
   /**
-   * @nameZH 四級文本色
-   * @desc 第四級文本色是最淺的文本色，例如表單的輸入提示文本、禁用色文本等。
+   * @nameZH 四級文字色
+   * @desc 第四級文字色是最淺的文字色，例如表單的輸入提示文字、禁用色文字等。
    * @descEN The fourth level of text color is the lightest text color, such as form input prompt text, disabled color text, etc.
    */
   colorTextQuaternary: string
@@ -122,13 +122,13 @@ export interface ColorNeutralMapToken {
 }
 
 /**
- * 品牌色梯度變數
+ * 品牌色變化變數
  */
 interface ColorPrimaryMapToken {
   /**
    * @nameZH 品牌主色
    * @nameEN Primary color of the brand
-   * @desc 品牌色是體現產品特性和傳播理念最直觀的視覺元素之一，用於產品的主色調、主按鈕、主圖示、主文本等
+   * @desc 品牌色是體現產品特性和傳播理念最直觀的視覺元素之一，用於產品的主色調、主按鈕、主圖示、主文字等
    * @descEN The brand color is one of the most intuitive visual elements that reflects product characteristics and communication concepts, and is used for the main color tone, main buttons, main icons, main text, etc. of the product.
    */
   colorPrimary: string // 6
@@ -152,7 +152,7 @@ interface ColorPrimaryMapToken {
   /**
    * @nameZH 主色描邊色
    * @nameEN Border color of primary color
-   * @desc 主色梯度下的描邊用色，用在 Slider 等元件的描邊上。
+   * @desc 主色變化下的描邊用色，用在 Slider 等元件的描邊上。
    * @descEN The stroke color under the main color gradient, used on the stroke of components such as Slider.
    */
   colorPrimaryBorder: string // 3
@@ -160,7 +160,7 @@ interface ColorPrimaryMapToken {
   /**
    * @nameZH 主色描邊色懸浮態
    * @nameEN Hover state of border color of primary color
-   * @desc 主色梯度下的描邊用色的懸浮態，Slider 、Button 等元件的描邊 Hover 時會使用。
+   * @desc 主色變化下的描邊用色的懸浮態，Slider 、Button 等元件的描邊 Hover 時會使用。
    * @descEN The hover state of the stroke color under the main color gradient, which will be used when the stroke Hover of components such as Slider and Button.
    */
   colorPrimaryBorderHover: string // 4
@@ -168,7 +168,7 @@ interface ColorPrimaryMapToken {
   /**
    * @nameZH 主色懸浮態
    * @nameEN Hover state of primary color
-   * @desc 主色梯度下的懸浮態。
+   * @desc 主色變化下的懸浮態。
    * @descEN Hover state under the main color gradient.
    */
   colorPrimaryHover: string // 5
@@ -176,31 +176,31 @@ interface ColorPrimaryMapToken {
   /**
    * @nameZH 主色啟用態
    * @nameEN Active state of primary color
-   * @desc 主色梯度下的深色啟用態。
+   * @desc 主色變化下的深色啟用態。
    * @descEN Dark active state under the main color gradient.
    */
   colorPrimaryActive: string // 7
 
   /**
-   * @nameZH 主色文本懸浮態
+   * @nameZH 主色文字懸浮態
    * @nameEN Hover state of text color of primary color
-   * @desc 主色梯度下的文本懸浮態。
+   * @desc 主色變化下的文字懸浮態。
    * @descEN Hover state of text color under the main color gradient.
    */
   colorPrimaryTextHover: string // 8
 
   /**
-   * @nameZH 主色文本
+   * @nameZH 主色文字
    * @nameEN Text color of primary color
-   * @desc 主色梯度下的文本顏色。
+   * @desc 主色變化下的文字顏色。
    * @descEN Text color under the main color gradient.
    */
   colorPrimaryText: string // 9
 
   /**
-   * @nameZH 主色文本啟用態
+   * @nameZH 主色文字啟用態
    * @nameEN Active state of text color of primary color
-   * @desc 主色梯度下的文本啟用態。
+   * @desc 主色變化下的文字啟用態。
    * @descEN Active state of text color under the main color gradient.
    */
   colorPrimaryTextActive: string // 10
@@ -264,25 +264,25 @@ interface ColorSuccessMapToken {
   colorSuccessActive: string // 7
 
   /**
-   * @nameZH 成功色的文本懸浮態
+   * @nameZH 成功色的文字懸浮態
    * @nameEN Hover State Color of Success Text
-   * @desc 成功色的文本懸浮態
+   * @desc 成功色的文字懸浮態
    * @descEN Hover state color of success color text
    */
   colorSuccessTextHover: string // 8
 
   /**
-   * @nameZH 成功色的文本預設態
+   * @nameZH 成功色的文字預設態
    * @nameEN Default State Color of Success Text
-   * @desc 成功色的文本預設態
+   * @desc 成功色的文字預設態
    * @descEN Default state color of success color text
    */
   colorSuccessText: string // 9
 
   /**
-   * @nameZH 成功色的文本啟用態
+   * @nameZH 成功色的文字啟用態
    * @nameEN Active State Color of Success Text
-   * @desc 成功色的文本啟用態
+   * @desc 成功色的文字啟用態
    * @descEN Active state color of success color text
    */
   colorSuccessTextActive: string // 10
@@ -346,25 +346,25 @@ interface ColorWarningMapToken {
   colorWarningActive: string // 7
 
   /**
-   * @nameZH 警戒色的文本懸浮態
+   * @nameZH 警戒色的文字懸浮態
    * @nameEN Warning text hover state
-   * @desc 警戒色的文本懸浮態
+   * @desc 警戒色的文字懸浮態
    * @descEN The hover state of the text in the warning color.
    */
   colorWarningTextHover: string // 8
 
   /**
-   * @nameZH 警戒色的文本預設態
+   * @nameZH 警戒色的文字預設態
    * @nameEN Warning text default state
-   * @desc 警戒色的文本預設態
+   * @desc 警戒色的文字預設態
    * @descEN The default state of the text in the warning color.
    */
   colorWarningText: string // 9
 
   /**
-   * @nameZH 警戒色的文本啟用態
+   * @nameZH 警戒色的文字啟用態
    * @nameEN Warning text active state
-   * @desc 警戒色的文本啟用態
+   * @desc 警戒色的文字啟用態
    * @descEN The active state of the text in the warning color.
    */
   colorWarningTextActive: string // 10
@@ -428,25 +428,25 @@ interface ColorInfoMapToken {
   colorInfoActive: string // 7
 
   /**
-   * @nameZH 資訊色的文本懸浮態
+   * @nameZH 資訊色的文字懸浮態
    * @nameEN Hover state of text color of information color
-   * @desc 資訊色的文本懸浮態。
+   * @desc 資訊色的文字懸浮態。
    * @descEN Hover state of text color of information color.
    */
   colorInfoTextHover: string // 8
 
   /**
-   * @nameZH 資訊色的文本預設態
+   * @nameZH 資訊色的文字預設態
    * @nameEN Default state of text color of information color
-   * @desc 資訊色的文本預設態。
+   * @desc 資訊色的文字預設態。
    * @descEN Default state of text color of information color.
    */
   colorInfoText: string // 9
 
   /**
-   * @nameZH 資訊色的文本啟用態
+   * @nameZH 資訊色的文字啟用態
    * @nameEN Active state of text color of information color
-   * @desc 資訊色的文本啟用態。
+   * @desc 資訊色的文字啟用態。
    * @descEN Active state of text color of information color.
    */
   colorInfoTextActive: string // 10
@@ -510,25 +510,25 @@ interface ColorErrorMapToken {
   colorErrorActive: string // 7
 
   /**
-   * @nameZH 錯誤色的文本懸浮態
+   * @nameZH 錯誤色的文字懸浮態
    * @nameEN Error text hover state
-   * @desc 錯誤色的文本懸浮態
+   * @desc 錯誤色的文字懸浮態
    * @descEN The hover state of the text in the error color.
    */
   colorErrorTextHover: string // 8
 
   /**
-   * @nameZH 錯誤色的文本預設態
+   * @nameZH 錯誤色的文字預設態
    * @nameEN Error text default state
-   * @desc 錯誤色的文本預設態
+   * @desc 錯誤色的文字預設態
    * @descEN The default state of the text in the error color.
    */
   colorErrorText: string // 9
 
   /**
-   * @nameZH 錯誤色的文本啟用態
+   * @nameZH 錯誤色的文字啟用態
    * @nameEN Error text active state
-   * @desc 錯誤色的文本啟用態
+   * @desc 錯誤色的文字啟用態
    * @descEN The active state of the text in the error color.
    */
   colorErrorTextActive: string // 10

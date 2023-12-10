@@ -69,7 +69,6 @@ export type IconConfig = {
   tooltipText?: string
 }
 
-/** Antd 自帶的toArray 不支援方法，所以需要自己搞一個 */
 const listToArray = (children?: ReactNode | ReactNode[]) => {
   if (Array.isArray(children)) {
     return children

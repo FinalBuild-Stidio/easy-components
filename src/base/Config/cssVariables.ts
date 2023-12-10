@@ -7,7 +7,7 @@ import { updateCSS } from 'rc-util/lib/Dom/dynamicCSS'
 import warning from '../_util/warning'
 import type { Theme } from './ConfigContext'
 
-const dynamicStyleMark = `-ant-${Date.now()}-${Math.random()}`
+const dynamicStyleMark = `-ipass-${Date.now()}-${Math.random()}`
 
 export function getStyle(globalPrefixCls: string, theme: Theme) {
   const variables: Record<string, string> = {}

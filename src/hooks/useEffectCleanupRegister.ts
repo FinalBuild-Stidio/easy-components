@@ -15,7 +15,7 @@ const useCleanupRegister = (deps?: React.DependencyList) => {
       if (process.env.NODE_ENV !== 'production') {
         warning(
           false,
-          '[Ant Design CSS-in-JS] You are registering a cleanup function after unmount, which will not have any effect.',
+          'You are registering a cleanup function after unmount, which will not have any effect.',
         )
       }
       return

@@ -1,7 +1,7 @@
 import canUseDom from 'rc-util/lib/Dom/canUseDom'
 import { ATTR_MARK } from '@/StyleContext'
 
-export const ATTR_CACHE_MAP = 'data-ant-cssinjs-cache-path'
+export const ATTR_CACHE_MAP = 'data-ipass-cssinjs-cache-path'
 
 /**
  * This marks style from the css file.

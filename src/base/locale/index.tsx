@@ -13,7 +13,7 @@ import LocaleContext from './context'
 
 export { default as useLocale } from './useLocale'
 
-export const ANT_MARK = 'internalMark'
+export const MARK = 'internalMark'
 
 export interface Locale {
   locale: string
@@ -64,7 +64,7 @@ const LocaleProvider: React.FC<LocaleProviderProps> = (props) => {
     const warning = devUseWarning('LocaleProvider')
 
     warning(
-      _IPASS_MARK__ === ANT_MARK,
+      _IPASS_MARK__ === MARK,
       'deprecated',
       '`LocaleProvider` is deprecated. Please use `locale` with `ConfigProvider`.',
     )

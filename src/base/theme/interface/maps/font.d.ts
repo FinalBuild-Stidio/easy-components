@@ -64,17 +64,17 @@ export interface FontMapToken {
 
   // LineHeight
   /**
-   * @desc 文本行高
+   * @desc 文字行高
    * @descEN Line height of text.
    */
   lineHeight: number
   /**
-   * @desc 大型文本行高
+   * @desc 大型文字行高
    * @descEN Line height of large text.
    */
   lineHeightLG: number
   /**
-   * @desc 小型文本行高
+   * @desc 小型文字行高
    * @descEN Line height of small text.
    */
   lineHeightSM: number

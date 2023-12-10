@@ -9,9 +9,9 @@ import { Form } from '@/base'
 
 /** @name 用於設定操作欄 */
 export type SearchConfig = {
-  /** @name 重設按鈕的文本 */
+  /** @name 重設按鈕的文字 */
   resetText?: React.ReactNode
-  /** @name 提交按鈕的文本 */
+  /** @name 提交按鈕的文字 */
   submitText?: React.ReactNode
 }
 
@@ -20,7 +20,7 @@ export type SubmitterProps<T = Record<string, any>> = {
   onSubmit?: (value?: T) => void
   /** @name 重設方法 */
   onReset?: (value?: T) => void
-  /** @name 搜索的設定，一般用來設定文本 */
+  /** @name 搜索的設定，一般用來設定文字 */
   searchConfig?: SearchConfig
   /** @name 提交按鈕的 props */
   submitButtonProps?: false | (LoadingButtonProps & { preventDefault?: boolean } & { text?: string })

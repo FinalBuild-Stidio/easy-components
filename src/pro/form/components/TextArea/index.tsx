@@ -6,7 +6,7 @@ import type { ProFormFieldItemProps } from '../../typing'
 import ProField from '../Field'
 
 /**
- * 文本選擇元件
+ * 文字選擇元件
  *
  * @param
  */

@@ -31,17 +31,17 @@ export interface ComponentToken {
    */
   dotSize: number
   /**
-   * @desc Badge文本尺寸
+   * @desc Badge文字尺寸
    * @descEN Font size of badge text
    */
   textFontSize: number
   /**
-   * @desc 小號Badge文本尺寸
+   * @desc 小號Badge文字尺寸
    * @descEN Font size of small badge text
    */
   textFontSizeSM: number
   /**
-   * @desc Badge文本粗細
+   * @desc Badge文字粗細
    * @descEN Font weight of badge text
    */
   textFontWeight: number | string

@@ -6,7 +6,7 @@ export interface SiderMenuToken extends ProAliasToken {
   proLayoutCollapsedWidth: number
 }
 
-export const proLayoutTitleHide = new Keyframes('antBadgeLoadingCircle', {
+export const proLayoutTitleHide = new Keyframes('ipassBadgeLoadingCircle', {
   '0%': { display: 'none', opacity: 0, overflow: 'hidden' },
   '80%': {
     overflow: 'hidden',

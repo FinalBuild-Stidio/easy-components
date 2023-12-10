@@ -45,16 +45,13 @@ const FieldCheckbox: ProFieldFC<GroupProps> = (
           },
         },
         '&-vertical': {
-          //ant design 5
           [`&${token.ipassCls}-checkbox-group`]: {
             display: 'inline-block',
           },
-          //ant design 5
           [`${token.ipassCls}-checkbox-wrapper+${token.ipassCls}-checkbox-wrapper`]:
           {
             'margin-inline-start': '0  !important',
           },
-          //ant design 4
           [`${token.ipassCls}-checkbox-group-item`]: {
             display: 'flex',
             marginInlineEnd: 0,

@@ -47,7 +47,7 @@ export interface DescriptionsItemProps {
  * @typedef {Object} ProDescriptionsItemProps
  * @property {ProSchema} schema - 用於生成表格項的 schema 配置對象
  * @property {boolean} [hide] - 是否隱藏該列，可用於權限控制
- * @property {boolean} [plain] - 是否只展示文本，不展示標籤
+ * @property {boolean} [plain] - 是否只展示文字，不展示標籤
  * @property {boolean} [copyable] - 是否可以拷貝該列的內容
  * @property {boolean | { showTitle?: boolean }} [ellipsis] - 是否展示省略號，如果是一個對象，可以設置滑鼠懸浮時是否展示完整的內容
  * @property {ProFieldFCMode} [mode] - ProField 組件的模式

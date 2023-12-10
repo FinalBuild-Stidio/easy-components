@@ -9,7 +9,7 @@ const version = '5.1.7'
 
 const getVersion = () => {
   if (typeof process === 'undefined') return version
-  return process?.env?.ANTD_VERSION || version
+  return process?.env?.VERSION || version
 }
 
 /**

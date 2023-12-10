@@ -137,11 +137,11 @@ export type ProFormFieldItemProps<T = Record<string, any>, K = any> = {
   disabled?: boolean
   /**
    * @type auto 使用元件預設的寬度
-   * @type xs=104px 適用於短數字、短文本或選項。
+   * @type xs=104px 適用於短數字、短文字或選項。
    * @type sm=216px 適用於較短欄位輸入、如姓名、電話、ID 等。
    * @type md=328px 標準寬度，適用於大部分欄位長度。
    * @type lg=440px 適用於較長欄位輸入，如長網址、標籤組、文件路徑等。
-   * @type xl=552px 適用於長文本輸入，如長連結、描述、備註等，通常搭配自適應多行輸入框或定高文本域使用。
+   * @type xl=552px 適用於長文字輸入，如長連結、描述、備註等，通常搭配自適應多行輸入框或定高文字域使用。
    */
   width?: number | 'sm' | 'md' | 'xl' | 'xs' | 'lg'
   /**

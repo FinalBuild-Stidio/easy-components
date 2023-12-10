@@ -25,7 +25,7 @@ interface TooltipToken extends FullToken<'Tooltip'> {
 
 const genTooltipStyle: GenerateStyle<TooltipToken> = (token) => {
   const {
-    componentCls, // ant-tooltip
+    componentCls, // ipass-tooltip
     tooltipMaxWidth,
     tooltipColor,
     tooltipBg,

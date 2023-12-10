@@ -71,7 +71,7 @@ const getSpanConfig = (
     : BREAKPOINTS[layout || 'default']
 
   const breakPoint = (spanConfig || BREAKPOINTS.default).find(
-    (item: [number, number, FormProps['layout']]) => width < item[0] + 16, // 16 = 2 * (ant-row -8px margin)
+    (item: [number, number, FormProps['layout']]) => width < item[0] + 16, // 16 = 2 * (row -8px margin)
   )
   return {
     span: 24 / breakPoint[1],
@@ -136,11 +136,11 @@ export type BaseQueryFilterProps = Omit<
   span?: SpanConfig
 
   /**
-   * @name 查詢按鈕的文本
+   * @name 查詢按鈕的文字
    *  */
   searchText?: string
   /**
-   * @name 重設按鈕的文本
+   * @name 重設按鈕的文字
    */
   resetText?: string
   /**

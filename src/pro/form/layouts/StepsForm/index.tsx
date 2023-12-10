@@ -288,8 +288,8 @@ function StepsForm<T = Record<string, any>>(
   )
 
   const stepsDom = useMemo(() => {
-    const isNewAntd = compareVersions(version, '4.24.0') > -1
-    const itemsProps = isNewAntd
+    const isNew = compareVersions(version, '4.24.0') > -1
+    const itemsProps = isNew
       ? {
         items: formArray.map((item) => {
           const itemProps = formMapRef.current.get(item)
@@ -315,7 +315,7 @@ function StepsForm<T = Record<string, any>>(
           current={step}
           onChange={undefined}
         >
-          {!isNewAntd &&
+          {!isNew &&
             formArray.map((item) => {
               const itemProps = formMapRef.current.get(item)
               return (

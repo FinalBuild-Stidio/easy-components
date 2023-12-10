@@ -81,16 +81,16 @@ export interface AliasToken extends MapToken {
    */
   colorBgContainerDisabled: string
   /**
-   * @nameZH 文本懸停態背景色
+   * @nameZH 文字懸停態背景色
    * @nameEN Text hover background color
-   * @desc 控制文本在懸停狀態下的背景色。
+   * @desc 控制文字在懸停狀態下的背景色。
    * @descEN Control the background color of text in hover state.
    */
   colorBgTextHover: string
   /**
-   * @nameZH 文本active態背景色
+   * @nameZH 文字active態背景色
    * @nameEN Text active background color
-   * @desc 控制文本在active狀態下的背景色。
+   * @desc 控制文字在active狀態下的背景色。
    * @descEN Control the background color of text in active state.
    */
   colorBgTextActive: string
@@ -113,9 +113,9 @@ export interface AliasToken extends MapToken {
 
   // Text
   /**
-   * @nameZH 占位文本顏色
+   * @nameZH 占位文字顏色
    * @nameEN Placeholder Text Color
-   * @desc 控制占位文本的顏色。
+   * @desc 控制占位文字的顏色。
    * @descEN Control the color of placeholder text.
    */
   colorTextPlaceholder: string
@@ -134,23 +134,23 @@ export interface AliasToken extends MapToken {
    */
   colorTextHeading: string
   /**
-   * @nameZH 文本標籤字體顏色
+   * @nameZH 文字標籤字體顏色
    * @nameEN Text label font color
-   * @desc 控制文本標籤字體顏色。
+   * @desc 控制文字標籤字體顏色。
    * @descEN Control the font color of text label.
    */
   colorTextLabel: string
   /**
-   * @nameZH 文本描述字體顏色
+   * @nameZH 文字描述字體顏色
    * @nameEN Text description font color
-   * @desc 控制文本描述字體顏色。
+   * @desc 控制文字描述字體顏色。
    * @descEN Control the font color of text description.
    */
   colorTextDescription: string
   /**
-   * @nameZH 固定文本高亮顏色
+   * @nameZH 固定文字高亮顏色
    * @nameEN Fixed text highlight color
-   * @desc 控制帶背景色的文本，例如 Primary Button 元件中的文本高亮顏色。
+   * @desc 控制帶背景色的文字，例如 Primary Button 元件中的文字高亮顏色。
    * @descEN Control the highlight color of text with background color, such as the text in Primary Button components.
    */
   colorTextLightSolid: string
@@ -466,23 +466,23 @@ export interface AliasToken extends MapToken {
   boxShadowTertiary: string
 
   /**
-   * @nameZH 連結文本裝飾
+   * @nameZH 連結文字裝飾
    * @nameEN Link text decoration
-   * @desc 控制連結文本的裝飾 style 。
+   * @desc 控制連結文字的裝飾 style 。
    * @descEN Control the text decoration style of a link.
    */
   linkDecoration: React.CSSProperties['textDecoration']
   /**
-   * @nameZH 連結滑鼠懸浮時文本裝飾
+   * @nameZH 連結滑鼠懸浮時文字裝飾
    * @nameEN Link text decoration on mouse hover
-   * @desc 控制連結滑鼠懸浮時文本的裝飾 style 。
+   * @desc 控制連結滑鼠懸浮時文字的裝飾 style 。
    * @descEN Control the text decoration style of a link on mouse hover.
    */
   linkHoverDecoration: React.CSSProperties['textDecoration']
   /**
-   * @nameZH 連結聚焦時文本裝飾
+   * @nameZH 連結聚焦時文字裝飾
    * @nameEN Link text decoration on focus
-   * @desc 控制連結聚焦時文本的裝飾 style 。
+   * @desc 控制連結聚焦時文字的裝飾 style 。
    * @descEN Control the text decoration style of a link on focus.
    */
   linkFocusDecoration: React.CSSProperties['textDecoration']

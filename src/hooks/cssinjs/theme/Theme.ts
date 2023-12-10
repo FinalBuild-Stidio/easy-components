@@ -25,7 +25,7 @@ export default class Theme<
     if (derivatives.length === 0) {
       warning(
         derivatives.length > 0,
-        '[Ant Design CSS-in-JS] Theme should have at least one derivative function.',
+        'Theme should have at least one derivative function.',
       )
     }
 

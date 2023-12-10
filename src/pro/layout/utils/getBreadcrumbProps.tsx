@@ -198,7 +198,6 @@ export const getBreadcrumbProps = (
   if ((items && items.length < minLength) || breadcrumbRender === false) {
     items = undefined
   }
-  // 如果當前 ant design 包的版本大於等於5.3.0，則返回一個對象{items,itemRender},否則返回一個對象{routes:item,itemRender}
   return {
     items,
     itemRender,

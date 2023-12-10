@@ -15,12 +15,12 @@ export interface ComponentToken {
    */
   zIndexPopup: number
   /**
-   * @desc 選項選中時文本顏色
+   * @desc 選項選中時文字顏色
    * @descEN Text color when option is selected
    */
   optionSelectedColor: string
   /**
-   * @desc 選項選中時文本字重
+   * @desc 選項選中時文字字重
    * @descEN Font weight when option is selected
    */
   optionSelectedFontWeight: CSSProperties['fontWeight']
@@ -95,7 +95,7 @@ export interface ComponentToken {
    */
   multipleSelectorBgDisabled: string
   /**
-   * @desc 多選標籤禁用文本顏色
+   * @desc 多選標籤禁用文字顏色
    * @descEN Text color of multiple tag when disabled
    */
   multipleItemColorDisabled: string

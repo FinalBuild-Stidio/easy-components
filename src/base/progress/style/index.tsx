@@ -26,7 +26,7 @@ export interface ComponentToken {
    */
   lineBorderRadius: number
   /**
-   * @desc 圓形進度條文本大小
+   * @desc 圓形進度條文字大小
    * @descEN Text size of circular progress bar
    */
   circleTextFontSize: string

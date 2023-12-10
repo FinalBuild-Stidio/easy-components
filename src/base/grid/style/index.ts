@@ -118,12 +118,12 @@ const genLoopGridColumnsStyle = (token: GridColToken, sizeCls: string): CSSObjec
       gridColumnsStyle[`${componentCls}${sizeCls}-${i}`] = [        // Form set `display: flex` on Col which will override `display: block`.
         // Let's get it from css variable to support override.
         {
-          ['--ant-display' as any]: 'block',
+          ['--ipass-display' as any]: 'block',
           // Fallback to display if variable not support
           display: 'block',
         },
         {
-          display: 'var(--ant-display)',
+          display: 'var(--ipass-display)',
           flex: `0 0 ${(i / gridColumns) * 100}%`,
           maxWidth: `${(i / gridColumns) * 100}%`,
         },
