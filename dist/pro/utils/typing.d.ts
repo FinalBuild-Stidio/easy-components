@@ -98,7 +98,7 @@ export type ProFormBaseGroupProps = {
  * 欄位值類型與 ProFieldProps 的映射關係
  */
 export type ProFieldValueTypeWithFieldProps = {
-    /** 文本輸入框 */
+    /** 文字輸入框 */
     text: InputProps;
     /** 密碼輸入框 */
     password: PasswordProps;
@@ -110,7 +110,7 @@ export type ProFieldValueTypeWithFieldProps = {
     indexBorder: Record<string, any>;
     /** 下拉選擇 */
     option: Record<string, any>;
-    /** 多行文本 */
+    /** 多行文字 */
     textarea: TextAreaProps;
     /** 日期選擇器 */
     date: DatePickerProps;
@@ -174,7 +174,7 @@ export type ProFieldValueTypeWithFieldProps = {
     dependency: FormItemProps;
 };
 /**
- * @param textarea 文本框
+ * @param textarea 文字框
  * @param Password Password
  * @param money 金額 option 操作 需要返回一個數組
  * @param date 日期 YYYY-MM-DD
@@ -260,7 +260,7 @@ export type ProFieldValueObject<Type> = Type extends 'progress' | 'money' | 'per
  * - ValueType：泛型類型，表示欄位的值類型，預設為字串類型。
  *
  * 該類型的主要作用是用於定義 ProTable 元件的列屬性 ProColumns 中的欄位屬性，包括欄位的類型（valueType）和自訂屬性（fieldProps）。其中：
- * - valueType 屬性可以是字串類型，也可以是 ProFieldValueType 枚舉類型，也可以是一個對象類型 ProFieldValueObject，或者是一個返回值為這些類型之一的函數。它表示欄位的類型，如文本、數字、日期等；
+ * - valueType 屬性可以是字串類型，也可以是 ProFieldValueType 枚舉類型，也可以是一個對象類型 ProFieldValueObject，或者是一個返回值為這些類型之一的函數。它表示欄位的類型，如文字、數字、日期等；
  * - fieldProps 屬性是一個泛型類型 FieldPropsTypeBase，它表示該欄位對應的元件的屬性，用於訂製元件的顯示形式、校驗規則、事件等等。根據欄位類型的不同，其屬性值也會有所不同。
  */
 type ValueTypeWithFieldPropsBase<Entity = Record<string, any>, ComponentsType = 'form', ExtraProps = Record<string, any>, ValueType = 'text'> = {
@@ -290,7 +290,7 @@ export type PageInfo = {
 };
 export type RequestOptionsType = {
     /**
-     * 選項的文本內容，可以是一個 React 元件。
+     * 選項的文字內容，可以是一個 React 元件。
      */
     label?: React.ReactNode;
     /**
@@ -501,7 +501,7 @@ export interface ProFieldProps {
      */
     light?: boolean;
     /**
-     * 空文本占位符
+     * 空文字占位符
      */
     emptyText?: ReactNode;
     /**

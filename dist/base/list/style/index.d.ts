@@ -31,7 +31,7 @@ export interface ComponentToken {
      */
     footerBg: string;
     /**
-     * @desc 空文本內邊距
+     * @desc 空文字內邊距
      * @descEN Padding of empty text
      */
     emptyTextPadding: CSSProperties['padding'];

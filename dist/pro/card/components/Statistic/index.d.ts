@@ -1,6 +1,6 @@
 import React from 'react';
-import type { BadgeProps, StatisticProps as AntdStatisticProps } from '../../../../base';
-export interface StatisticProps extends AntdStatisticProps {
+import type { BadgeProps, StatisticProps as IpassStatisticProps } from '../../../../base';
+export interface StatisticProps extends IpassStatisticProps {
     /**
      * 樣式
      *

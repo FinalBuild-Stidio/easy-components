@@ -1,4 +1,4 @@
-export declare const ATTR_CACHE_MAP = "data-ant-cssinjs-cache-path";
+export declare const ATTR_CACHE_MAP = "data-ipass-cssinjs-cache-path";
 /**
  * This marks style from the css file.
  * Which means not exist in `<style />` tag.

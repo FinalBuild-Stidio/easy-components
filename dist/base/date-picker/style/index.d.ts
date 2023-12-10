@@ -54,7 +54,7 @@ export interface PanelComponentToken {
      */
     cellWidth: number;
     /**
-     * @desc 单元格文本高度
+     * @desc 单元格文字高度
      * @descEN Height of cell text
      */
     textHeight: number;

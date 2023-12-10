@@ -390,7 +390,7 @@ function useGlobalCache(prefix, keyPath, cacheFn, onCacheRemove, onCacheEffect) 
   return cacheContent;
 }
 
-const ATTR_CACHE_MAP = "data-ant-cssinjs-cache-path";
+const ATTR_CACHE_MAP = "data-ipass-cssinjs-cache-path";
 const CSS_FILE_STYLE = "_FILE_STYLE__";
 let cachePathMap;
 let fromCSSFile = true;
@@ -556,7 +556,7 @@ class Theme {
     if (derivatives.length === 0) {
       warning(
         derivatives.length > 0,
-        "[Ant Design CSS-in-JS] Theme should have at least one derivative function."
+        "Theme should have at least one derivative function."
       );
     }
     uuid$1 += 1;
@@ -2494,7 +2494,7 @@ const useLocale = (componentName, defaultLocale) => {
   return [getLocale, getLocaleCode];
 };
 
-const ANT_MARK = "internalMark";
+const MARK = "internalMark";
 const LocaleProvider = (props) => {
   const { locale = {}, children, _IPASS_MARK__ } = props;
   React.useEffect(() => {
@@ -2633,7 +2633,7 @@ function generate(color, opts = {}) {
   return patterns;
 }
 
-const dynamicStyleMark = `-ant-${Date.now()}-${Math.random()}`;
+const dynamicStyleMark = `-ipass-${Date.now()}-${Math.random()}`;
 function getStyle$2(globalPrefixCls, theme) {
   const variables = {};
   const formatColor = (color, updater) => {
@@ -3009,7 +3009,7 @@ const ProviderChildren = (props) => {
     childNode = /* @__PURE__ */ jsx(ValidateMessagesContext.Provider, { value: validateMessages, children: childNode });
   }
   if (locale) {
-    childNode = /* @__PURE__ */ jsx(LocaleProvider, { locale, _IPASS_MARK__: ANT_MARK, children: childNode });
+    childNode = /* @__PURE__ */ jsx(LocaleProvider, { locale, _IPASS_MARK__: MARK, children: childNode });
   }
   if (componentSize) {
     childNode = /* @__PURE__ */ jsx(SizeContextProvider, { size: componentSize, children: childNode });
@@ -3053,8 +3053,8 @@ const ProviderChildren = (props) => {
 };
 const ConfigProvider = (props) => {
   const context = React.useContext(ConfigContext);
-  const antLocale = React.useContext(LocaleContext);
-  return /* @__PURE__ */ jsx(ProviderChildren, { parentContext: context, legacyLocale: antLocale, ...props });
+  const locale = React.useContext(LocaleContext);
+  return /* @__PURE__ */ jsx(ProviderChildren, { parentContext: context, legacyLocale: locale, ...props });
 };
 ConfigProvider.ConfigContext = ConfigContext;
 ConfigProvider.SizeContext = SizeContext;
@@ -5106,7 +5106,7 @@ const initMotion = (motionCls, inKeyframes, outKeyframes, duration, sameLevel = 
   };
 };
 
-const fadeIn = new Keyframes("antFadeIn", {
+const fadeIn = new Keyframes("ipassFadeIn", {
   "0%": {
     opacity: 0
   },
@@ -5114,7 +5114,7 @@ const fadeIn = new Keyframes("antFadeIn", {
     opacity: 1
   }
 });
-const fadeOut = new Keyframes("antFadeOut", {
+const fadeOut = new Keyframes("ipassFadeOut", {
   "0%": {
     opacity: 1
   },
@@ -5143,7 +5143,7 @@ const initFadeMotion = (token, sameLevel = false) => {
   ];
 };
 
-const moveDownIn = new Keyframes("antMoveDownIn", {
+const moveDownIn = new Keyframes("ipassMoveDownIn", {
   "0%": {
     transform: "translate3d(0, 100%, 0)",
     transformOrigin: "0 0",
@@ -5155,7 +5155,7 @@ const moveDownIn = new Keyframes("antMoveDownIn", {
     opacity: 1
   }
 });
-const moveDownOut = new Keyframes("antMoveDownOut", {
+const moveDownOut = new Keyframes("ipassMoveDownOut", {
   "0%": {
     transform: "translate3d(0, 0, 0)",
     transformOrigin: "0 0",
@@ -5167,7 +5167,7 @@ const moveDownOut = new Keyframes("antMoveDownOut", {
     opacity: 0
   }
 });
-const moveLeftIn = new Keyframes("antMoveLeftIn", {
+const moveLeftIn = new Keyframes("ipassMoveLeftIn", {
   "0%": {
     transform: "translate3d(-100%, 0, 0)",
     transformOrigin: "0 0",
@@ -5179,7 +5179,7 @@ const moveLeftIn = new Keyframes("antMoveLeftIn", {
     opacity: 1
   }
 });
-const moveLeftOut = new Keyframes("antMoveLeftOut", {
+const moveLeftOut = new Keyframes("ipassMoveLeftOut", {
   "0%": {
     transform: "translate3d(0, 0, 0)",
     transformOrigin: "0 0",
@@ -5191,7 +5191,7 @@ const moveLeftOut = new Keyframes("antMoveLeftOut", {
     opacity: 0
   }
 });
-const moveRightIn = new Keyframes("antMoveRightIn", {
+const moveRightIn = new Keyframes("ipassMoveRightIn", {
   "0%": {
     transform: "translate3d(100%, 0, 0)",
     transformOrigin: "0 0",
@@ -5203,7 +5203,7 @@ const moveRightIn = new Keyframes("antMoveRightIn", {
     opacity: 1
   }
 });
-const moveRightOut = new Keyframes("antMoveRightOut", {
+const moveRightOut = new Keyframes("ipassMoveRightOut", {
   "0%": {
     transform: "translate3d(0, 0, 0)",
     transformOrigin: "0 0",
@@ -5215,7 +5215,7 @@ const moveRightOut = new Keyframes("antMoveRightOut", {
     opacity: 0
   }
 });
-const moveUpIn = new Keyframes("antMoveUpIn", {
+const moveUpIn = new Keyframes("ipassMoveUpIn", {
   "0%": {
     transform: "translate3d(0, -100%, 0)",
     transformOrigin: "0 0",
@@ -5227,7 +5227,7 @@ const moveUpIn = new Keyframes("antMoveUpIn", {
     opacity: 1
   }
 });
-const moveUpOut = new Keyframes("antMoveUpOut", {
+const moveUpOut = new Keyframes("ipassMoveUpOut", {
   "0%": {
     transform: "translate3d(0, 0, 0)",
     transformOrigin: "0 0",
@@ -5278,7 +5278,7 @@ const initMoveMotion = (token, motionName) => {
   ];
 };
 
-const slideUpIn = new Keyframes("antSlideUpIn", {
+const slideUpIn = new Keyframes("ipassSlideUpIn", {
   "0%": {
     transform: "scaleY(0.8)",
     transformOrigin: "0% 0%",
@@ -5290,7 +5290,7 @@ const slideUpIn = new Keyframes("antSlideUpIn", {
     opacity: 1
   }
 });
-const slideUpOut = new Keyframes("antSlideUpOut", {
+const slideUpOut = new Keyframes("ipassSlideUpOut", {
   "0%": {
     transform: "scaleY(1)",
     transformOrigin: "0% 0%",
@@ -5302,7 +5302,7 @@ const slideUpOut = new Keyframes("antSlideUpOut", {
     opacity: 0
   }
 });
-const slideDownIn = new Keyframes("antSlideDownIn", {
+const slideDownIn = new Keyframes("ipassSlideDownIn", {
   "0%": {
     transform: "scaleY(0.8)",
     transformOrigin: "100% 100%",
@@ -5314,7 +5314,7 @@ const slideDownIn = new Keyframes("antSlideDownIn", {
     opacity: 1
   }
 });
-const slideDownOut = new Keyframes("antSlideDownOut", {
+const slideDownOut = new Keyframes("ipassSlideDownOut", {
   "0%": {
     transform: "scaleY(1)",
     transformOrigin: "100% 100%",
@@ -5326,7 +5326,7 @@ const slideDownOut = new Keyframes("antSlideDownOut", {
     opacity: 0
   }
 });
-const slideLeftIn = new Keyframes("antSlideLeftIn", {
+const slideLeftIn = new Keyframes("ipassSlideLeftIn", {
   "0%": {
     transform: "scaleX(0.8)",
     transformOrigin: "0% 0%",
@@ -5338,7 +5338,7 @@ const slideLeftIn = new Keyframes("antSlideLeftIn", {
     opacity: 1
   }
 });
-const slideLeftOut = new Keyframes("antSlideLeftOut", {
+const slideLeftOut = new Keyframes("ipassSlideLeftOut", {
   "0%": {
     transform: "scaleX(1)",
     transformOrigin: "0% 0%",
@@ -5350,7 +5350,7 @@ const slideLeftOut = new Keyframes("antSlideLeftOut", {
     opacity: 0
   }
 });
-const slideRightIn = new Keyframes("antSlideRightIn", {
+const slideRightIn = new Keyframes("ipassSlideRightIn", {
   "0%": {
     transform: "scaleX(0.8)",
     transformOrigin: "100% 0%",
@@ -5362,7 +5362,7 @@ const slideRightIn = new Keyframes("antSlideRightIn", {
     opacity: 1
   }
 });
-const slideRightOut = new Keyframes("antSlideRightOut", {
+const slideRightOut = new Keyframes("ipassSlideRightOut", {
   "0%": {
     transform: "scaleX(1)",
     transformOrigin: "100% 0%",
@@ -5418,7 +5418,7 @@ const initSlideMotion = (token, motionName) => {
   ];
 };
 
-const zoomIn = new Keyframes("antZoomIn", {
+const zoomIn = new Keyframes("ipassZoomIn", {
   "0%": {
     transform: "scale(0.2)",
     opacity: 0
@@ -5428,7 +5428,7 @@ const zoomIn = new Keyframes("antZoomIn", {
     opacity: 1
   }
 });
-const zoomOut = new Keyframes("antZoomOut", {
+const zoomOut = new Keyframes("ipassZoomOut", {
   "0%": {
     transform: "scale(1)"
   },
@@ -5437,7 +5437,7 @@ const zoomOut = new Keyframes("antZoomOut", {
     opacity: 0
   }
 });
-const zoomBigIn = new Keyframes("antZoomBigIn", {
+const zoomBigIn = new Keyframes("ipassZoomBigIn", {
   "0%": {
     transform: "scale(0.8)",
     opacity: 0
@@ -5447,7 +5447,7 @@ const zoomBigIn = new Keyframes("antZoomBigIn", {
     opacity: 1
   }
 });
-const zoomBigOut = new Keyframes("antZoomBigOut", {
+const zoomBigOut = new Keyframes("ipassZoomBigOut", {
   "0%": {
     transform: "scale(1)"
   },
@@ -5456,7 +5456,7 @@ const zoomBigOut = new Keyframes("antZoomBigOut", {
     opacity: 0
   }
 });
-const zoomUpIn = new Keyframes("antZoomUpIn", {
+const zoomUpIn = new Keyframes("ipassZoomUpIn", {
   "0%": {
     transform: "scale(0.8)",
     transformOrigin: "50% 0%",
@@ -5467,7 +5467,7 @@ const zoomUpIn = new Keyframes("antZoomUpIn", {
     transformOrigin: "50% 0%"
   }
 });
-const zoomUpOut = new Keyframes("antZoomUpOut", {
+const zoomUpOut = new Keyframes("ipassZoomUpOut", {
   "0%": {
     transform: "scale(1)",
     transformOrigin: "50% 0%"
@@ -5478,7 +5478,7 @@ const zoomUpOut = new Keyframes("antZoomUpOut", {
     opacity: 0
   }
 });
-const zoomLeftIn = new Keyframes("antZoomLeftIn", {
+const zoomLeftIn = new Keyframes("ipassZoomLeftIn", {
   "0%": {
     transform: "scale(0.8)",
     transformOrigin: "0% 50%",
@@ -5489,7 +5489,7 @@ const zoomLeftIn = new Keyframes("antZoomLeftIn", {
     transformOrigin: "0% 50%"
   }
 });
-const zoomLeftOut = new Keyframes("antZoomLeftOut", {
+const zoomLeftOut = new Keyframes("ipassZoomLeftOut", {
   "0%": {
     transform: "scale(1)",
     transformOrigin: "0% 50%"
@@ -5500,7 +5500,7 @@ const zoomLeftOut = new Keyframes("antZoomLeftOut", {
     opacity: 0
   }
 });
-const zoomRightIn = new Keyframes("antZoomRightIn", {
+const zoomRightIn = new Keyframes("ipassZoomRightIn", {
   "0%": {
     transform: "scale(0.8)",
     transformOrigin: "100% 50%",
@@ -5511,7 +5511,7 @@ const zoomRightIn = new Keyframes("antZoomRightIn", {
     transformOrigin: "100% 50%"
   }
 });
-const zoomRightOut = new Keyframes("antZoomRightOut", {
+const zoomRightOut = new Keyframes("ipassZoomRightOut", {
   "0%": {
     transform: "scale(1)",
     transformOrigin: "100% 50%"
@@ -5522,7 +5522,7 @@ const zoomRightOut = new Keyframes("antZoomRightOut", {
     opacity: 0
   }
 });
-const zoomDownIn = new Keyframes("antZoomDownIn", {
+const zoomDownIn = new Keyframes("ipassZoomDownIn", {
   "0%": {
     transform: "scale(0.8)",
     transformOrigin: "50% 100%",
@@ -5533,7 +5533,7 @@ const zoomDownIn = new Keyframes("antZoomDownIn", {
     transformOrigin: "50% 100%"
   }
 });
-const zoomDownOut = new Keyframes("antZoomDownOut", {
+const zoomDownOut = new Keyframes("ipassZoomDownOut", {
   "0%": {
     transform: "scale(1)",
     transformOrigin: "50% 100%"
@@ -11732,12 +11732,12 @@ const genLoopGridColumnsStyle = (token, sizeCls) => {
         // Form set `display: flex` on Col which will override `display: block`.
         // Let's get it from css variable to support override.
         {
-          ["--ant-display"]: "block",
+          ["--ipass-display"]: "block",
           // Fallback to display if variable not support
           display: "block"
         },
         {
-          display: "var(--ant-display)",
+          display: "var(--ipass-display)",
           flex: `0 0 ${i / gridColumns * 100}%`,
           maxWidth: `${i / gridColumns * 100}%`
         }
@@ -14099,7 +14099,7 @@ const genFormItemStyle = (token) => {
       // =                            Input                           =
       // ==============================================================
       [`${formItemCls}-control`]: {
-        ["--ant-display"]: "flex",
+        ["--ipass-display"]: "flex",
         flexDirection: "column",
         flexGrow: 1,
         [`&:first-child:not([class^="'${rootPrefixCls}-col-'"]):not([class*="' ${rootPrefixCls}-col-'"])`]: {
@@ -18368,7 +18368,7 @@ function getPlacements(config) {
 const genTooltipStyle = (token) => {
   const {
     componentCls,
-    // ant-tooltip
+    // ipass-tooltip
     tooltipMaxWidth,
     tooltipColor,
     tooltipBg,

@@ -6,7 +6,7 @@ import type { ModalLocale } from '../modal/locale';
 import type { PaginationLocale } from '../pagination/Pagination';
 import type { TableLocale } from '../table/interface';
 export { default as useLocale } from './useLocale';
-export declare const ANT_MARK = "internalMark";
+export declare const MARK = "internalMark";
 export interface Locale {
     locale: string;
     Pagination?: PaginationLocale;

@@ -52,11 +52,11 @@ export type BaseQueryFilterProps = Omit<ActionsProps, 'submitter' | 'setCollapse
      * */
     span?: SpanConfig;
     /**
-     * @name 查詢按鈕的文本
+     * @name 查詢按鈕的文字
      *  */
     searchText?: string;
     /**
-     * @name 重設按鈕的文本
+     * @name 重設按鈕的文字
      */
     resetText?: string;
     /**

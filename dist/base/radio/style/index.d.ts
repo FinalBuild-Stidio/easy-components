@@ -25,7 +25,7 @@ export interface ComponentToken {
      */
     buttonCheckedBg: string;
     /**
-     * @desc 單選框按鈕文本顏色
+     * @desc 單選框按鈕文字顏色
      * @descEN Color of Radio button text
      */
     buttonColor: string;
@@ -40,12 +40,12 @@ export interface ComponentToken {
      */
     buttonCheckedBgDisabled: string;
     /**
-     * @desc 單選框按鈕選中並禁用時的文本顏色
+     * @desc 單選框按鈕選中並禁用時的文字顏色
      * @descEN Color of checked and disabled Radio button text
      */
     buttonCheckedColorDisabled: string;
     /**
-     * @desc 單選框實色按鈕選中時的文本顏色
+     * @desc 單選框實色按鈕選中時的文字顏色
      * @descEN Color of checked solid Radio button text
      */
     buttonSolidCheckedColor: string;

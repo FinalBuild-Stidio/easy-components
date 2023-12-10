@@ -3,7 +3,7 @@ import type { InputRef, PasswordProps } from '../../../../base/input';
 import React from 'react';
 import type { ProFormFieldItemProps } from '../../typing';
 /**
- * 文本元件
+ * 文字元件
  *
  * @param
  */

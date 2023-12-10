@@ -2,7 +2,7 @@ import { jsx, Fragment, jsxs } from 'react/jsx-runtime';
 import * as React from 'react';
 import React__default, { useContext, useMemo, useEffect, useRef, useImperativeHandle, useState, useCallback, createContext, createElement, Fragment as Fragment$1, memo } from 'react';
 import classNames from 'classnames';
-import { z as createTheme, y as theme, H as ConfigContext, J as useStyleRegister, e as ConfigProvider, K as useCacheToken, k as Result, F as Form, j as Popover, v as Tooltip, x as Typography, N as useIsomorphicLayoutEffect, l as Row, c as Col, O as Keyframes, o as Statistic$1, B as Badge, t as Tabs, Q as resetComponent, G as Grid, f as Descriptions, n as CompoundedSpace, S as Select, I as Input, b as Checkbox, D as DatePicker, T as TypedInputNumber, R as Radio, r as Switch, u as TimePicker, g as Drawer, i as Modal, q as Steps, U as operationUnit, A as Affix, L as Layout, m as Skeleton, M as Menu, V as SiderContext, a as Card$1, s as ForwardTable, w as Tree, W as roundedArrow } from '../assets/index-mHwfGf76.js';
+import { z as createTheme, y as theme, H as ConfigContext, J as useStyleRegister, e as ConfigProvider, K as useCacheToken, k as Result, F as Form, j as Popover, v as Tooltip, x as Typography, N as useIsomorphicLayoutEffect, l as Row, c as Col, O as Keyframes, o as Statistic$1, B as Badge, t as Tabs, Q as resetComponent, G as Grid, f as Descriptions, n as CompoundedSpace, S as Select, I as Input, b as Checkbox, D as DatePicker, T as TypedInputNumber, R as Radio, r as Switch, u as TimePicker, g as Drawer, i as Modal, q as Steps, U as operationUnit, A as Affix, L as Layout, m as Skeleton, M as Menu, V as SiderContext, a as Card$1, s as ForwardTable, w as Tree, W as roundedArrow } from '../assets/index-FvIgTgEq.js';
 import { noteOnce } from 'rc-util/lib/warning';
 import 'rc-util/lib/Dom/canUseDom';
 import 'rc-util/lib/Dom/dynamicCSS';
@@ -5583,15 +5583,12 @@ const FieldCheckbox = ({ layout = "horizontal", renderFormItem, mode, render, ..
           }
         },
         "&-vertical": {
-          //ant design 5
           [`&${token2.ipassCls}-checkbox-group`]: {
             display: "inline-block"
           },
-          //ant design 5
           [`${token2.ipassCls}-checkbox-wrapper+${token2.ipassCls}-checkbox-wrapper`]: {
             "margin-inline-start": "0  !important"
           },
-          //ant design 4
           [`${token2.ipassCls}-checkbox-group-item`]: {
             display: "flex",
             marginInlineEnd: 0
@@ -7492,7 +7489,7 @@ const useGridHelpers = (props) => {
 };
 
 const WIDTH_SIZE_ENUM = {
-  // 適用於短數字，短文本或者選項
+  // 適用於短數字，短文字或者選項
   xs: 104,
   s: 216,
   // 適用於較短欄位輸入、如姓名、電話、ID 等。
@@ -7503,7 +7500,7 @@ const WIDTH_SIZE_ENUM = {
   l: 440,
   // 適用於較長欄位輸入，如長網址、標籤組、文件路徑等。
   lg: 440,
-  // 適用於長文本輸入，如長連結、描述、備註等，通常搭配自適應多行輸入框或定高文本域使用。
+  // 適用於長文字輸入，如長連結、描述、備註等，通常搭配自適應多行輸入框或定高文字域使用。
   xl: 552
 };
 const ignoreWidthValueType = ["switch", "radioButton", "radio", "rate"];
@@ -10122,7 +10119,7 @@ const getSpanConfig = (layout, width, span) => {
   ]) : BREAKPOINTS[layout || "default"];
   const breakPoint = (spanConfig || BREAKPOINTS.default).find(
     (item) => width < item[0] + 16
-    // 16 = 2 * (ant-row -8px margin)
+    // 16 = 2 * (row -8px margin)
   );
   return {
     span: 24 / breakPoint[1],
@@ -10677,8 +10674,8 @@ function StepsForm$1(props) {
     [lastStep, onFinish, setLoading, setStep]
   );
   const stepsDom = useMemo(() => {
-    const isNewAntd = compareVersions(version$2, "4.24.0") > -1;
-    const itemsProps = isNewAntd ? {
+    const isNew = compareVersions(version$2, "4.24.0") > -1;
+    const itemsProps = isNew ? {
       items: formArray.map((item) => {
         const itemProps = formMapRef.current.get(item);
         return {
@@ -10702,7 +10699,7 @@ function StepsForm$1(props) {
             ...itemsProps,
             current: step,
             onChange: void 0,
-            children: !isNewAntd && formArray.map((item) => {
+            children: !isNew && formArray.map((item) => {
               const itemProps = formMapRef.current.get(item);
               return /* @__PURE__ */ jsx(
                 Steps.Step,
@@ -11894,7 +11891,7 @@ function BaseForm(props) {
               // 減少了 form 的 padding
               maxWidth: "calc(93vw - 48px)"
             },
-            // 適用於短數字，短文本或者選項
+            // 適用於短數字，短文字或者選項
             "&-xs": {
               width: 104
             },
@@ -11919,7 +11916,7 @@ function BaseForm(props) {
             "&-lg": {
               width: 440
             },
-            // 適用於長文本輸入，如長連結、描述、備註等，通常搭配自適應多行輸入框或定高文本域使用。
+            // 適用於長文字輸入，如長連結、描述、備註等，通常搭配自適應多行輸入框或定高文字域使用。
             "&-xl": {
               width: 552
             }
@@ -16279,7 +16276,7 @@ const getMatchMenu = (pathname, menuData, fullKeys, exact) => {
   }).flat(1);
 };
 
-const proLayoutTitleHide = new Keyframes("antBadgeLoadingCircle", {
+const proLayoutTitleHide = new Keyframes("ipassBadgeLoadingCircle", {
   "0%": { display: "none", opacity: 0, overflow: "hidden" },
   "80%": {
     overflow: "hidden"
@@ -16565,7 +16562,7 @@ const version = "5.1.7";
 const getVersion = () => {
   if (typeof process === "undefined")
     return version;
-  return process?.env?.ANTD_VERSION || version;
+  return process?.env?.VERSION || version;
 };
 const compatibleStyle = (token) => {
   if (getVersion()?.startsWith("5")) {
@@ -20672,7 +20669,7 @@ const CellRenderFromItem = (props) => {
     };
     formItemProps.messageVariables = {
       label: columnProps?.title || "此項",
-      type: columnProps?.valueType || "文本",
+      type: columnProps?.valueType || "文字",
       ...formItemProps?.messageVariables
     };
     formItemProps.initialValue = (prefixName ? null : text) ?? formItemProps?.initialValue ?? columnProps?.initialValue;
