@@ -11421,7 +11421,7 @@ const Submitter = (props) => {
             );
           }
         },
-        resetText
+        resetButtonProps?.text ? resetButtonProps.text : resetText
       )
     );
   }
@@ -11441,7 +11441,7 @@ const Submitter = (props) => {
             );
           }
         },
-        submitText
+        submitButtonProps?.text ? submitButtonProps.text : submitText
       )
     );
   }

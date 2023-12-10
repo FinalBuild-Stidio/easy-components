@@ -17,10 +17,14 @@ export type SubmitterProps<T = Record<string, any>> = {
     /** @name 提交按鈕的 props */
     submitButtonProps?: false | (LoadingButtonProps & {
         preventDefault?: boolean;
+    } & {
+        text?: string;
     });
     /** @name 重設按鈕的 props */
     resetButtonProps?: false | (LoadingButtonProps & {
         preventDefault?: boolean;
+    } & {
+        text?: string;
     });
     /** @name 自訂操作的渲染 */
     render?: ((props: SubmitterProps & T & {
