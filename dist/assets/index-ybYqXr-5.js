@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import ResizeObserver$1 from 'rc-resize-observer';
 import omit from 'rc-util/lib/omit';
 import raf from 'rc-util/lib/raf';
-import { warning } from 'rc-util/lib/warning';
+import warning$1, { warning } from 'rc-util/lib/warning';
 import canUseDom from 'rc-util/lib/Dom/canUseDom';
 import { updateCSS, removeCSS } from 'rc-util/lib/Dom/dynamicCSS';
 import { inputToRGB, rgbToHsv, rgbToHex, TinyColor } from '@ctrl/tinycolor';
@@ -23,7 +23,9 @@ import RcTabs from 'rc-tabs';
 import toArray$2 from 'rc-util/lib/Children/toArray';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import RcCollapse from 'rc-collapse';
-import RcDrawer from 'rc-drawer';
+import Portal from '@rc-component/portal';
+import useLayoutEffect$1 from 'rc-util/lib/hooks/useLayoutEffect';
+import KeyCode from 'rc-util/lib/KeyCode';
 import FieldForm, { FormProvider as FormProvider$1, useForm as useForm$1, FieldContext, ListContext as ListContext$1, Field, List as List$1, useWatch } from 'rc-field-form';
 import scrollIntoView from 'scroll-into-view-if-needed';
 import useState from 'rc-util/lib/hooks/useState';
@@ -64,7 +66,6 @@ import Backdrop from '@mui/material/Backdrop';
 import RcPagination from 'rc-pagination';
 import Pagination$1 from 'rc-pagination/lib/locale/en_US';
 import RcSelect, { Option, OptGroup } from 'rc-select';
-import KeyCode from 'rc-util/lib/KeyCode';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import EventNoteIcon from '@mui/icons-material/EventNote';
@@ -13351,6 +13352,9 @@ const Descriptions = (props) => {
 };
 Descriptions.Item = DescriptionsItem;
 
+const DrawerContext = React.createContext(null);
+const RefContext = React.createContext({});
+
 function useInnerClosable(closable, closeIcon, defaultClosable) {
   if (typeof closable === "boolean") {
     return closable;
@@ -13428,6 +13432,372 @@ const DrawerPanel = (props) => {
     /* @__PURE__ */ jsx("div", { className: `${prefixCls}-body`, style: bodyStyle, children }),
     footerNode
   ] });
+};
+
+function parseWidthHeight(value) {
+  if (typeof value === "string" && String(Number(value)) === value) {
+    warning$1(
+      false,
+      "Invalid value type of `width` or `height` which should be number type instead."
+    );
+    return Number(value);
+  }
+  return value;
+}
+
+const sentinelStyle = {
+  width: 0,
+  height: 0,
+  overflow: "hidden",
+  outline: "none",
+  position: "absolute"
+};
+function DrawerPopup(props, ref) {
+  const {
+    prefixCls,
+    open,
+    placement,
+    inline,
+    push,
+    forceRender,
+    autoFocus,
+    keyboard,
+    // classNames
+    classNames: drawerClassNames,
+    // Root
+    rootClassName,
+    rootStyle,
+    zIndex,
+    // Drawer
+    className,
+    id,
+    style,
+    motion,
+    width,
+    height,
+    children,
+    contentWrapperStyle,
+    // Mask
+    mask,
+    maskClosable,
+    maskMotion,
+    maskClassName,
+    maskStyle,
+    // Events
+    afterOpenChange,
+    onClose,
+    onMouseEnter,
+    onMouseOver,
+    onMouseLeave,
+    onClick,
+    onKeyDown,
+    onKeyUp,
+    styles
+  } = props;
+  const panelRef = React.createRef();
+  const sentinelStartRef = React.createRef();
+  const sentinelEndRef = React.createRef();
+  React.useImperativeHandle(ref, () => panelRef.current);
+  const onPanelKeyDown = (event) => {
+    const { keyCode, shiftKey } = event;
+    switch (keyCode) {
+      case KeyCode.TAB: {
+        if (keyCode === KeyCode.TAB) {
+          if (!shiftKey && document.activeElement === sentinelEndRef.current) {
+            sentinelStartRef.current?.focus({ preventScroll: true });
+          } else if (shiftKey && document.activeElement === sentinelStartRef.current) {
+            sentinelEndRef.current?.focus({ preventScroll: true });
+          }
+        }
+        break;
+      }
+      case KeyCode.ESC: {
+        if (onClose && keyboard) {
+          event.stopPropagation();
+          onClose(event);
+        }
+        break;
+      }
+    }
+  };
+  React.useEffect(() => {
+    if (open && autoFocus) {
+      panelRef.current?.focus({ preventScroll: true });
+    }
+  }, [open]);
+  const [pushed, setPushed] = React.useState(false);
+  const parentContext = React.useContext(DrawerContext);
+  let pushConfig;
+  if (push === false) {
+    pushConfig = {
+      distance: 0
+    };
+  } else if (push === true) {
+    pushConfig = {};
+  } else {
+    pushConfig = push || {};
+  }
+  const pushDistance = pushConfig?.distance ?? parentContext?.pushDistance ?? 180;
+  const mergedContext = React.useMemo(
+    () => ({
+      pushDistance,
+      push: () => {
+        setPushed(true);
+      },
+      pull: () => {
+        setPushed(false);
+      }
+    }),
+    [pushDistance]
+  );
+  React.useEffect(() => {
+    if (open) {
+      parentContext?.push?.();
+    } else {
+      parentContext?.pull?.();
+    }
+  }, [open]);
+  React.useEffect(
+    () => () => {
+      parentContext?.pull?.();
+    },
+    []
+  );
+  const maskNode = mask && /* @__PURE__ */ jsx(CSSMotion, { ...maskMotion, visible: open, children: ({ className: motionMaskClassName, style: motionMaskStyle }, maskRef) => {
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        className: classNames(
+          `${prefixCls}-mask`,
+          motionMaskClassName,
+          drawerClassNames?.mask,
+          maskClassName
+        ),
+        style: {
+          ...motionMaskStyle,
+          ...maskStyle,
+          ...styles?.mask
+        },
+        onClick: maskClosable && open ? onClose : void 0,
+        ref: maskRef
+      }
+    );
+  } }, "mask");
+  const motionProps = typeof motion === "function" ? motion(placement ?? "left") : motion;
+  const wrapperStyle = {};
+  if (pushed && pushDistance) {
+    switch (placement) {
+      case "top":
+        wrapperStyle.transform = `translateY(${pushDistance}px)`;
+        break;
+      case "bottom":
+        wrapperStyle.transform = `translateY(${-pushDistance}px)`;
+        break;
+      case "left":
+        wrapperStyle.transform = `translateX(${pushDistance}px)`;
+        break;
+      default:
+        wrapperStyle.transform = `translateX(${-pushDistance}px)`;
+        break;
+    }
+  }
+  if (placement === "left" || placement === "right") {
+    wrapperStyle.width = parseWidthHeight(width);
+  } else {
+    wrapperStyle.height = parseWidthHeight(height);
+  }
+  const eventHandlers = {
+    onMouseEnter,
+    onMouseOver,
+    onMouseLeave,
+    onClick,
+    onKeyDown,
+    onKeyUp
+  };
+  const panelNode = /* @__PURE__ */ jsx(
+    CSSMotion,
+    {
+      ...motionProps,
+      visible: open,
+      forceRender,
+      onVisibleChanged: (nextVisible) => {
+        afterOpenChange?.(nextVisible);
+      },
+      removeOnLeave: false,
+      leavedClassName: `${prefixCls}-content-wrapper-hidden`,
+      children: ({ className: motionClassName, style: motionStyle }, motionRef) => {
+        return /* @__PURE__ */ jsx(
+          "div",
+          {
+            className: classNames(
+              `${prefixCls}-content-wrapper`,
+              drawerClassNames?.wrapper,
+              motionClassName
+            ),
+            style: {
+              ...wrapperStyle,
+              ...motionStyle,
+              ...contentWrapperStyle,
+              ...styles?.wrapper
+            },
+            ...pickAttrs(props, { data: true }),
+            children: /* @__PURE__ */ jsx(
+              DrawerPanel,
+              {
+                id,
+                containerRef: motionRef,
+                prefixCls,
+                className: classNames(className, drawerClassNames?.content),
+                style: {
+                  ...style,
+                  ...styles?.content
+                },
+                ...eventHandlers,
+                children
+              }
+            )
+          }
+        );
+      }
+    },
+    "panel"
+  );
+  const containerStyle = {
+    ...rootStyle
+  };
+  if (zIndex) {
+    containerStyle.zIndex = zIndex;
+  }
+  return /* @__PURE__ */ jsx(DrawerContext.Provider, { value: mergedContext, children: /* @__PURE__ */ jsxs(
+    "div",
+    {
+      className: classNames(
+        prefixCls,
+        `${prefixCls}-${placement}`,
+        rootClassName,
+        {
+          [`${prefixCls}-open`]: open,
+          [`${prefixCls}-inline`]: inline
+        }
+      ),
+      style: containerStyle,
+      tabIndex: -1,
+      ref: panelRef,
+      onKeyDown: onPanelKeyDown,
+      children: [
+        maskNode,
+        /* @__PURE__ */ jsx(
+          "div",
+          {
+            tabIndex: 0,
+            ref: sentinelStartRef,
+            style: sentinelStyle,
+            "aria-hidden": "true",
+            "data-sentinel": "start"
+          }
+        ),
+        panelNode,
+        /* @__PURE__ */ jsx(
+          "div",
+          {
+            tabIndex: 0,
+            ref: sentinelEndRef,
+            style: sentinelStyle,
+            "aria-hidden": "true",
+            "data-sentinel": "end"
+          }
+        )
+      ]
+    }
+  ) });
+}
+const RefDrawerPopup = React.forwardRef(DrawerPopup);
+
+const Drawer$1 = (props) => {
+  const {
+    open = false,
+    prefixCls = "rc-drawer",
+    placement = "right",
+    autoFocus = true,
+    keyboard = true,
+    width = 378,
+    mask = true,
+    maskClosable = true,
+    getContainer,
+    forceRender,
+    afterOpenChange,
+    destroyOnClose,
+    onMouseEnter,
+    onMouseOver,
+    onMouseLeave,
+    onClick,
+    onKeyDown,
+    onKeyUp,
+    // Refs
+    panelRef
+  } = props;
+  const [animatedVisible, setAnimatedVisible] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
+  useLayoutEffect$1(() => {
+    setMounted(true);
+  }, []);
+  const mergedOpen = mounted ? open : false;
+  const popupRef = React.useRef();
+  const lastActiveRef = React.useRef();
+  useLayoutEffect$1(() => {
+    if (mergedOpen) {
+      lastActiveRef.current = document.activeElement;
+    }
+  }, [mergedOpen]);
+  const internalAfterOpenChange = (nextVisible) => {
+    setAnimatedVisible(nextVisible);
+    afterOpenChange?.(nextVisible);
+    if (!nextVisible && lastActiveRef.current && !popupRef.current?.contains(lastActiveRef.current)) {
+      lastActiveRef.current?.focus({ preventScroll: true });
+    }
+  };
+  const refContext = React.useMemo(
+    () => ({
+      panel: panelRef
+    }),
+    [panelRef]
+  );
+  if (!forceRender && !animatedVisible && !mergedOpen && destroyOnClose) {
+    return null;
+  }
+  const eventHandlers = {
+    onMouseEnter,
+    onMouseOver,
+    onMouseLeave,
+    onClick,
+    onKeyDown,
+    onKeyUp
+  };
+  const drawerPopupProps = {
+    ...props,
+    open: mergedOpen,
+    prefixCls,
+    placement,
+    autoFocus,
+    keyboard,
+    width,
+    mask,
+    maskClosable,
+    inline: getContainer === false,
+    afterOpenChange: internalAfterOpenChange,
+    ref: popupRef,
+    ...eventHandlers
+  };
+  return /* @__PURE__ */ jsx(RefContext.Provider, { value: refContext, children: /* @__PURE__ */ jsx(
+    Portal,
+    {
+      open: mergedOpen || forceRender || animatedVisible,
+      autoDestroy: false,
+      getContainer,
+      autoLock: mask && (mergedOpen || animatedVisible),
+      children: /* @__PURE__ */ jsx(RefDrawerPopup, { ...drawerPopupProps })
+    }
+  ) });
 };
 
 const genMotionStyle = (token) => {
@@ -13800,7 +14170,7 @@ const Drawer = (props) => {
   });
   return wrapSSR(
     /* @__PURE__ */ jsx(NoCompactStyle, { children: /* @__PURE__ */ jsx(NoFormStyle, { status: true, override: true, children: /* @__PURE__ */ jsx(
-      RcDrawer,
+      Drawer$1,
       {
         prefixCls,
         onClose,

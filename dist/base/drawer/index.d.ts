@@ -1,6 +1,5 @@
 import * as React from 'react';
-import type { DrawerProps as RcDrawerProps } from 'rc-drawer';
-import type { Placement } from 'rc-drawer/lib/Drawer';
+import type { DrawerProps as RcDrawerProps, Placement } from './Drawer';
 import type { DrawerPanelProps } from './DrawerPanel';
 declare const SizeTypes: readonly ["default", "large"];
 type sizeType = typeof SizeTypes[number];
