@@ -1,8 +1,7 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import type { DrawerProps as RcDrawerProps } from 'rc-drawer'
-import RcDrawer from 'rc-drawer'
-import type { Placement } from 'rc-drawer/lib/Drawer'
+import type { DrawerProps as RcDrawerProps, Placement } from './Drawer'
+import RcDrawer from './Drawer'
 import type { CSSMotionProps } from 'rc-motion'
 
 import { getTransitionName } from '../_util/motion'
