@@ -1,6 +1,6 @@
 import { Key } from 'react';
 import type React from 'react';
-import type { IntlShape } from 'react-intl';
+import type { IntlShape } from '@ipasstw/react-intl';
 import type { TablePaginationConfig } from '../../../base';
 import type { SortOrder } from '../../../base/table/interface';
 import type { ActionType, Bordered, BorderedType, ProColumns, UseFetchDataAction } from '../typing';

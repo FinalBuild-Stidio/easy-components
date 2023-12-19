@@ -17,7 +17,7 @@ import CalendarLocale from 'rc-picker/lib/locale/zh_TW';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-tw';
 import omit from 'omit.js';
-import { useIntl, IntlProvider } from 'react-intl';
+import { useIntl, IntlProvider } from '@ipasstw/react-intl';
 import CloseIcon from '@mui/icons-material/Close';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import get$1 from 'rc-util/lib/utils/get';

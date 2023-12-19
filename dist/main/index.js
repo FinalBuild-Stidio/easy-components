@@ -99,7 +99,7 @@ import 'rc-picker/lib/locale/zh_TW';
 import 'dayjs';
 import 'dayjs/locale/zh-tw';
 import 'omit.js';
-import 'react-intl';
+import '@ipasstw/react-intl';
 import 'rc-util/lib/utils/get';
 import 'dayjs/plugin/quarterOfYear';
 import 'swr';
