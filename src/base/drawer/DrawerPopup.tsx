@@ -1,17 +1,31 @@
 import classNames from 'classnames'
 import type { CSSMotionProps } from 'rc-motion'
 import CSSMotion from 'rc-motion'
+import { useComposeRef } from 'rc-util'
 import KeyCode from 'rc-util/lib/KeyCode'
 import pickAttrs from 'rc-util/lib/pickAttrs'
 import * as React from 'react'
 import type { DrawerContextProps } from './context'
 import DrawerContext from './context'
-import type { DrawerPanelEvents } from './DrawerPanel'
-import DrawerPanel from './DrawerPanel'
 import { parseWidthHeight } from './util'
 import type { DrawerClassNames, DrawerStyles } from './types'
 
-export interface DrawerPopupProps extends DrawerPanelEvents {
+interface RefContextProps {
+  panel?: React.Ref<HTMLDivElement>
+}
+
+const RefContext = React.createContext<RefContextProps>({})
+
+export interface PanelEvents {
+  onMouseEnter?: React.MouseEventHandler<HTMLDivElement>
+  onMouseOver?: React.MouseEventHandler<HTMLDivElement>
+  onMouseLeave?: React.MouseEventHandler<HTMLDivElement>
+  onClick?: React.MouseEventHandler<HTMLDivElement>
+  onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>
+  onKeyUp?: React.KeyboardEventHandler<HTMLDivElement>
+}
+
+export interface DrawerPopupProps extends PanelEvents {
   prefixCls: string
   open?: boolean
   inline?: boolean
@@ -72,7 +86,63 @@ export interface PushConfig {
   distance?: number | string
 }
 
-export interface DrawerPopupProps extends DrawerPanelEvents {
+export interface PanelProps extends PanelEvents {
+  prefixCls: string
+  className?: string
+  id?: string
+  style?: React.CSSProperties
+  children?: React.ReactNode
+  containerRef?: React.Ref<HTMLDivElement>
+}
+
+const Panel = (props: PanelProps) => {
+  const {
+    prefixCls,
+    className,
+    style,
+    children,
+    containerRef,
+    id,
+    onMouseEnter,
+    onMouseOver,
+    onMouseLeave,
+    onClick,
+    onKeyDown,
+    onKeyUp,
+  } = props
+
+  const eventHandlers = {
+    onMouseEnter,
+    onMouseOver,
+    onMouseLeave,
+    onClick,
+    onKeyDown,
+    onKeyUp,
+  }
+
+  const { panel: panelRef } = React.useContext(RefContext)
+
+  const mergedRef = useComposeRef(panelRef!, containerRef!)
+
+  return (
+    <>
+      <div
+        id={id}
+        className={classNames(`${prefixCls}-content`, className)}
+        style={{
+          ...style,
+        }}
+        aria-modal="true"
+        role="dialog"
+        ref={mergedRef}
+        {...eventHandlers}
+      >
+        {children}
+      </div>
+    </>
+  )
+}
+export interface DrawerPopupProps extends PanelEvents {
   prefixCls: string
   open?: boolean
   inline?: boolean
@@ -356,7 +426,7 @@ function DrawerPopup(props: DrawerPopupProps, ref: React.Ref<HTMLDivElement>) {
             }}
             {...pickAttrs(props, { data: true })}
           >
-            <DrawerPanel
+            <Panel
               id={id}
               containerRef={motionRef}
               prefixCls={prefixCls}
@@ -368,7 +438,7 @@ function DrawerPopup(props: DrawerPopupProps, ref: React.Ref<HTMLDivElement>) {
               {...eventHandlers}
             >
               {children}
-            </DrawerPanel>
+            </Panel>
           </div>
         )
       }}

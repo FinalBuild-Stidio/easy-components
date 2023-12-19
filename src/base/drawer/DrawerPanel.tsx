@@ -3,28 +3,6 @@ import type { DrawerProps as RCDrawerProps } from './Drawer'
 import * as React from 'react'
 import useClosable from '../_util/hooks/useClosable'
 
-export interface DrawerPanelRef {
-  focus: VoidFunction
-}
-
-export interface DrawerPanelEvents {
-  onMouseEnter?: React.MouseEventHandler<HTMLDivElement>
-  onMouseOver?: React.MouseEventHandler<HTMLDivElement>
-  onMouseLeave?: React.MouseEventHandler<HTMLDivElement>
-  onClick?: React.MouseEventHandler<HTMLDivElement>
-  onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>
-  onKeyUp?: React.KeyboardEventHandler<HTMLDivElement>
-}
-
-export interface DrawerPanelProps extends DrawerPanelEvents {
-  prefixCls: string
-  className?: string
-  id?: string
-  style?: React.CSSProperties
-  children?: React.ReactNode
-  containerRef?: React.Ref<HTMLDivElement>
-}
-
 export interface DrawerPanelProps {
   prefixCls: string
 

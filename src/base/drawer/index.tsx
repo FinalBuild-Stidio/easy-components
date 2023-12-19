@@ -70,7 +70,6 @@ const Drawer: React.FC<DrawerProps> & {
   const [wrapSSR, hashId] = useStyle(prefixCls)
 
   const getContainer =
-    // 有可能为 false，所以不能直接判断
     customizeGetContainer === undefined && getPopupContainer
       ? () => getPopupContainer(document.body)
       : customizeGetContainer
