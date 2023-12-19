@@ -1,10 +1,9 @@
 import type { PortalProps } from '@rc-component/portal';
 import * as React from 'react';
-import type { DrawerPanelEvents } from './DrawerPanel';
-import type { DrawerPopupProps } from './DrawerPopup';
+import type { DrawerPopupProps, PanelEvents } from './DrawerPopup';
 import type { DrawerClassNames, DrawerStyles } from './types';
 export type Placement = 'left' | 'top' | 'right' | 'bottom';
-export interface DrawerProps extends Omit<DrawerPopupProps, 'prefixCls' | 'inline' | 'scrollLocker'>, DrawerPanelEvents {
+export interface DrawerProps extends Omit<DrawerPopupProps, 'prefixCls' | 'inline' | 'scrollLocker'>, PanelEvents {
     prefixCls?: string;
     open?: boolean;
     onClose?: (e: React.MouseEvent | React.KeyboardEvent) => void;

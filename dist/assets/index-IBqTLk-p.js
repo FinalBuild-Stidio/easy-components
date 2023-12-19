@@ -25,12 +25,12 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import RcCollapse from 'rc-collapse';
 import Portal from '@rc-component/portal';
 import useLayoutEffect$1 from 'rc-util/lib/hooks/useLayoutEffect';
+import { useEvent, useComposeRef, supportNodeRef } from 'rc-util';
 import KeyCode from 'rc-util/lib/KeyCode';
 import FieldForm, { FormProvider as FormProvider$1, useForm as useForm$1, FieldContext, ListContext as ListContext$1, Field, List as List$1, useWatch } from 'rc-field-form';
 import scrollIntoView from 'scroll-into-view-if-needed';
 import useState from 'rc-util/lib/hooks/useState';
 import isVisible from 'rc-util/lib/Dom/isVisible';
-import { useEvent, supportNodeRef, useComposeRef } from 'rc-util';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import Tooltip$1 from '@mui/material/Tooltip';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -48,7 +48,7 @@ import ListIcon from '@mui/icons-material/List';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { render, unmount } from 'rc-util/lib/React/render';
 import InfoIcon from '@mui/icons-material/Info';
-import Dialog, { Panel } from 'rc-dialog';
+import Dialog, { Panel as Panel$1 } from 'rc-dialog';
 import { isStyleSupport } from 'rc-util/lib/Dom/styleChecker';
 import Button$1 from '@mui/material/Button';
 import RcTooltip, { Popup } from 'rc-tooltip';
@@ -13353,86 +13353,7 @@ const Descriptions = (props) => {
 Descriptions.Item = DescriptionsItem;
 
 const DrawerContext = React.createContext(null);
-const RefContext = React.createContext({});
-
-function useInnerClosable(closable, closeIcon, defaultClosable) {
-  if (typeof closable === "boolean") {
-    return closable;
-  }
-  if (closeIcon === void 0) {
-    return !!defaultClosable;
-  }
-  return closeIcon !== false && closeIcon !== null;
-}
-function useClosable(closable, closeIcon, customCloseIconRender, defaultCloseIcon = /* @__PURE__ */ jsx(CloseIcon, {}), defaultClosable = false) {
-  const mergedClosable = useInnerClosable(closable, closeIcon, defaultClosable);
-  if (!mergedClosable) {
-    return [false, null];
-  }
-  const mergedCloseIcon = typeof closeIcon === "boolean" || closeIcon === void 0 || closeIcon === null ? defaultCloseIcon : closeIcon;
-  return [true, customCloseIconRender ? customCloseIconRender(mergedCloseIcon) : mergedCloseIcon];
-}
-
-const DrawerPanel = (props) => {
-  const {
-    prefixCls,
-    title,
-    footer,
-    extra,
-    closeIcon,
-    closable,
-    onClose,
-    headerStyle,
-    drawerStyle,
-    bodyStyle,
-    footerStyle,
-    children
-  } = props;
-  const customCloseIconRender = React.useCallback(
-    (icon) => /* @__PURE__ */ jsx("button", { type: "button", onClick: onClose, "aria-label": "Close", className: `${prefixCls}-close`, children: icon }),
-    [onClose]
-  );
-  const [mergedClosable, mergedCloseIcon] = useClosable(
-    closable,
-    closeIcon,
-    customCloseIconRender,
-    void 0,
-    true
-  );
-  const headerNode = React.useMemo(() => {
-    if (!title && !mergedClosable) {
-      return null;
-    }
-    return /* @__PURE__ */ jsxs(
-      "div",
-      {
-        style: headerStyle,
-        className: classNames(`${prefixCls}-header`, {
-          [`${prefixCls}-header-close-only`]: mergedClosable && !title && !extra
-        }),
-        children: [
-          /* @__PURE__ */ jsxs("div", { className: `${prefixCls}-header-title`, children: [
-            mergedCloseIcon,
-            title && /* @__PURE__ */ jsx("div", { className: `${prefixCls}-title`, children: title })
-          ] }),
-          extra && /* @__PURE__ */ jsx("div", { className: `${prefixCls}-extra`, children: extra })
-        ]
-      }
-    );
-  }, [mergedClosable, mergedCloseIcon, extra, headerStyle, prefixCls, title]);
-  const footerNode = React.useMemo(() => {
-    if (!footer) {
-      return null;
-    }
-    const footerClassName = `${prefixCls}-footer`;
-    return /* @__PURE__ */ jsx("div", { className: footerClassName, style: footerStyle, children: footer });
-  }, [footer, footerStyle, prefixCls]);
-  return /* @__PURE__ */ jsxs("div", { className: `${prefixCls}-wrapper-body`, style: drawerStyle, children: [
-    headerNode,
-    /* @__PURE__ */ jsx("div", { className: `${prefixCls}-body`, style: bodyStyle, children }),
-    footerNode
-  ] });
-};
+const RefContext$1 = React.createContext({});
 
 function parseWidthHeight(value) {
   if (typeof value === "string" && String(Number(value)) === value) {
@@ -13445,12 +13366,54 @@ function parseWidthHeight(value) {
   return value;
 }
 
+const RefContext = React.createContext({});
 const sentinelStyle = {
   width: 0,
   height: 0,
   overflow: "hidden",
   outline: "none",
   position: "absolute"
+};
+const Panel = (props) => {
+  const {
+    prefixCls,
+    className,
+    style,
+    children,
+    containerRef,
+    id,
+    onMouseEnter,
+    onMouseOver,
+    onMouseLeave,
+    onClick,
+    onKeyDown,
+    onKeyUp
+  } = props;
+  const eventHandlers = {
+    onMouseEnter,
+    onMouseOver,
+    onMouseLeave,
+    onClick,
+    onKeyDown,
+    onKeyUp
+  };
+  const { panel: panelRef } = React.useContext(RefContext);
+  const mergedRef = useComposeRef(panelRef, containerRef);
+  return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx(
+    "div",
+    {
+      id,
+      className: classNames(`${prefixCls}-content`, className),
+      style: {
+        ...style
+      },
+      "aria-modal": "true",
+      role: "dialog",
+      ref: mergedRef,
+      ...eventHandlers,
+      children
+    }
+  ) });
 };
 function DrawerPopup(props, ref) {
   const {
@@ -13642,7 +13605,7 @@ function DrawerPopup(props, ref) {
             },
             ...pickAttrs(props, { data: true }),
             children: /* @__PURE__ */ jsx(
-              DrawerPanel,
+              Panel,
               {
                 id,
                 containerRef: motionRef,
@@ -13788,7 +13751,7 @@ const Drawer$1 = (props) => {
     ref: popupRef,
     ...eventHandlers
   };
-  return /* @__PURE__ */ jsx(RefContext.Provider, { value: refContext, children: /* @__PURE__ */ jsx(
+  return /* @__PURE__ */ jsx(RefContext$1.Provider, { value: refContext, children: /* @__PURE__ */ jsx(
     Portal,
     {
       open: mergedOpen || forceRender || animatedVisible,
@@ -13798,6 +13761,85 @@ const Drawer$1 = (props) => {
       children: /* @__PURE__ */ jsx(RefDrawerPopup, { ...drawerPopupProps })
     }
   ) });
+};
+
+function useInnerClosable(closable, closeIcon, defaultClosable) {
+  if (typeof closable === "boolean") {
+    return closable;
+  }
+  if (closeIcon === void 0) {
+    return !!defaultClosable;
+  }
+  return closeIcon !== false && closeIcon !== null;
+}
+function useClosable(closable, closeIcon, customCloseIconRender, defaultCloseIcon = /* @__PURE__ */ jsx(CloseIcon, {}), defaultClosable = false) {
+  const mergedClosable = useInnerClosable(closable, closeIcon, defaultClosable);
+  if (!mergedClosable) {
+    return [false, null];
+  }
+  const mergedCloseIcon = typeof closeIcon === "boolean" || closeIcon === void 0 || closeIcon === null ? defaultCloseIcon : closeIcon;
+  return [true, customCloseIconRender ? customCloseIconRender(mergedCloseIcon) : mergedCloseIcon];
+}
+
+const DrawerPanel = (props) => {
+  const {
+    prefixCls,
+    title,
+    footer,
+    extra,
+    closeIcon,
+    closable,
+    onClose,
+    headerStyle,
+    drawerStyle,
+    bodyStyle,
+    footerStyle,
+    children
+  } = props;
+  const customCloseIconRender = React.useCallback(
+    (icon) => /* @__PURE__ */ jsx("button", { type: "button", onClick: onClose, "aria-label": "Close", className: `${prefixCls}-close`, children: icon }),
+    [onClose]
+  );
+  const [mergedClosable, mergedCloseIcon] = useClosable(
+    closable,
+    closeIcon,
+    customCloseIconRender,
+    void 0,
+    true
+  );
+  const headerNode = React.useMemo(() => {
+    if (!title && !mergedClosable) {
+      return null;
+    }
+    return /* @__PURE__ */ jsxs(
+      "div",
+      {
+        style: headerStyle,
+        className: classNames(`${prefixCls}-header`, {
+          [`${prefixCls}-header-close-only`]: mergedClosable && !title && !extra
+        }),
+        children: [
+          /* @__PURE__ */ jsxs("div", { className: `${prefixCls}-header-title`, children: [
+            mergedCloseIcon,
+            title && /* @__PURE__ */ jsx("div", { className: `${prefixCls}-title`, children: title })
+          ] }),
+          extra && /* @__PURE__ */ jsx("div", { className: `${prefixCls}-extra`, children: extra })
+        ]
+      }
+    );
+  }, [mergedClosable, mergedCloseIcon, extra, headerStyle, prefixCls, title]);
+  const footerNode = React.useMemo(() => {
+    if (!footer) {
+      return null;
+    }
+    const footerClassName = `${prefixCls}-footer`;
+    return /* @__PURE__ */ jsx("div", { className: footerClassName, style: footerStyle, children: footer });
+  }, [footer, footerStyle, prefixCls]);
+  return /* @__PURE__ */ jsxs("div", { className: `${prefixCls}-wrapper-body`, style: drawerStyle, children: [
+    headerNode,
+    /* @__PURE__ */ jsx("div", { className: `${prefixCls}-body`, style: bodyStyle, children }),
+    footerNode
+  ] });
 };
 
 const genMotionStyle = (token) => {
@@ -14135,10 +14177,7 @@ const Drawer = (props) => {
   const { getPopupContainer, getPrefixCls, drawer } = React.useContext(ConfigContext);
   const prefixCls = getPrefixCls("drawer", customizePrefixCls);
   const [wrapSSR, hashId] = useStyle$i(prefixCls);
-  const getContainer = (
-    // 有可能为 false，所以不能直接判断
-    customizeGetContainer === void 0 && getPopupContainer ? () => getPopupContainer(document.body) : customizeGetContainer
-  );
+  const getContainer = customizeGetContainer === void 0 && getPopupContainer ? () => getPopupContainer(document.body) : customizeGetContainer;
   const drawerClassName = classNames(
     {
       "no-mask": !mask
@@ -21374,7 +21413,7 @@ const PurePanel$2 = (props) => {
     };
   }
   return /* @__PURE__ */ jsx(
-    Panel,
+    Panel$1,
     {
       prefixCls,
       className: classNames(

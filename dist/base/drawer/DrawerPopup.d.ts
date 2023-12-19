@@ -1,8 +1,15 @@
 import type { CSSMotionProps } from 'rc-motion';
 import * as React from 'react';
-import type { DrawerPanelEvents } from './DrawerPanel';
 import type { DrawerClassNames, DrawerStyles } from './types';
-export interface DrawerPopupProps extends DrawerPanelEvents {
+export interface PanelEvents {
+    onMouseEnter?: React.MouseEventHandler<HTMLDivElement>;
+    onMouseOver?: React.MouseEventHandler<HTMLDivElement>;
+    onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
+    onClick?: React.MouseEventHandler<HTMLDivElement>;
+    onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
+    onKeyUp?: React.KeyboardEventHandler<HTMLDivElement>;
+}
+export interface DrawerPopupProps extends PanelEvents {
     prefixCls: string;
     open?: boolean;
     inline?: boolean;
@@ -36,7 +43,15 @@ export type Placement = 'left' | 'right' | 'top' | 'bottom';
 export interface PushConfig {
     distance?: number | string;
 }
-export interface DrawerPopupProps extends DrawerPanelEvents {
+export interface PanelProps extends PanelEvents {
+    prefixCls: string;
+    className?: string;
+    id?: string;
+    style?: React.CSSProperties;
+    children?: React.ReactNode;
+    containerRef?: React.Ref<HTMLDivElement>;
+}
+export interface DrawerPopupProps extends PanelEvents {
     prefixCls: string;
     open?: boolean;
     inline?: boolean;
