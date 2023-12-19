@@ -1,4 +1,4 @@
-import type { IntlShape } from 'react-intl'
+import type { IntlShape } from '@ipasstw/react-intl'
 
 import { FieldIndexColumn, FieldStatus } from '@/pro/field'
 import {

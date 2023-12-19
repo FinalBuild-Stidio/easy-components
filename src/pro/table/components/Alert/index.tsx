@@ -1,6 +1,6 @@
 import React, { Key, useContext } from 'react'
-import { useIntl } from 'react-intl'
-import type { IntlShape } from 'react-intl'
+import { useIntl } from '@ipasstw/react-intl'
+import type { IntlShape } from '@ipasstw/react-intl'
 import { ConfigProvider, Space } from '@/base'
 import { useStyle } from './style'
 

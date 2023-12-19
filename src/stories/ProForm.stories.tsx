@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { ProForm } from '@/pro/form'
+import {
+  ProForm,
+  ProFormRadio,
+} from '@/pro'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -33,6 +36,32 @@ export const Basic: Story = {
       <ProForm.Item name="age" label="年齡" rules={[{ required: true }]} >
         <input />
       </ProForm.Item>
+    </ProForm>
+  ),
+}
+
+export const ProFormRadio_Group: Story = {
+  args: {
+  },
+  render: (args) => (
+    <ProForm>
+      <ProFormRadio.Group
+        label="類別"
+        radioType="button"
+        labelCol={{ span: 4 }}
+        options={[
+          {
+            label: '一卡通',
+            value: 'ipass',
+          },
+          {
+            label: '客戶',
+            value: 'client',
+          },
+        ]}
+        name="clientType"
+        initialValue="ipass"
+      />
     </ProForm>
   ),
 }

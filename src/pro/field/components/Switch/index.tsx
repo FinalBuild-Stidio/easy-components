@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { useIntl } from 'react-intl'
+import { useIntl } from '@ipasstw/react-intl'
 import type { SwitchProps } from '@/base'
 import { Switch } from '@/base'
 import Omit from 'omit.js'

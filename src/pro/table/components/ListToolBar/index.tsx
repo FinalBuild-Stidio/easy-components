@@ -1,4 +1,4 @@
-import { useIntl } from 'react-intl'
+import { useIntl } from '@ipasstw/react-intl'
 import React, { useContext, useMemo, useState } from 'react'
 import classNames from 'classnames'
 import ResizeObserver from 'rc-resize-observer'

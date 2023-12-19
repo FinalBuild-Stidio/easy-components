@@ -1,4 +1,4 @@
-import { useIntl } from 'react-intl'
+import { useIntl } from '@ipasstw/react-intl'
 import { ConfigContext } from '@/base/Config'
 import classNames from 'classnames'
 import React, { useContext, useMemo } from 'react'

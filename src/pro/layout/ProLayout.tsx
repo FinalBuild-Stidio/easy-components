@@ -5,8 +5,8 @@ import React, {
   useState,
 } from 'react'
 import type { CSSProperties } from 'react'
-import { useIntl, IntlProvider } from 'react-intl'
-import type { IntlConfig } from 'react-intl'
+import { useIntl, IntlProvider } from '@ipasstw/react-intl'
+import type { IntlConfig } from '@ipasstw/react-intl'
 import classNames from 'classnames'
 import Omit from 'omit.js'
 import useMergedState from 'rc-util/lib/hooks/useMergedState.js'

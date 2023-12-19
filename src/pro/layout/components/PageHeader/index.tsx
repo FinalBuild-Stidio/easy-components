@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useIntl } from 'react-intl'
+import { useIntl } from '@ipasstw/react-intl'
 import classNames from 'classnames'
 import ResizeObserver from 'rc-resize-observer'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'

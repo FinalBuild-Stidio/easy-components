@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useMemo } from 'react'
-import { useIntl } from 'react-intl'
-import type { IntlShape } from 'react-intl'
+import { useIntl } from '@ipasstw/react-intl'
+import type { IntlShape } from '@ipasstw/react-intl'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import IconButton from '@mui/material/IconButton'
 

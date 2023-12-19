@@ -1,6 +1,6 @@
 import useMergedState from 'rc-util/lib/hooks/useMergedState'
 import React from 'react'
-import { useIntl } from 'react-intl'
+import { useIntl } from '@ipasstw/react-intl'
 
 import { proTheme } from '@/providers'
 import { Input, InputNumber, Space } from '@/base'

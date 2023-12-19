@@ -1,5 +1,5 @@
 import React from 'react'
-import { useIntl } from 'react-intl'
+import { useIntl } from '@ipasstw/react-intl'
 
 import { Input } from '@/base'
 import type { ProFieldFC } from '../../index'

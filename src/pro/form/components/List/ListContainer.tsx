@@ -1,6 +1,6 @@
 ﻿import type { CSSProperties } from 'react'
 import { useContext, useMemo, useRef, useState } from 'react'
-import { useIntl } from 'react-intl'
+import { useIntl } from '@ipasstw/react-intl'
 import AddIcon from '@mui/icons-material/Add'
 import LoadingButton from '@mui/lab/LoadingButton'
 

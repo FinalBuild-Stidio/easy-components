@@ -7,7 +7,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { useIntl } from 'react-intl'
+import { useIntl } from '@ipasstw/react-intl'
 import useSWR from 'swr'
 import CircularProgress from '@mui/material/CircularProgress'
 import type { BadgeProps } from '@mui/material/Badge'

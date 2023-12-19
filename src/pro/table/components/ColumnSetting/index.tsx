@@ -1,4 +1,4 @@
-import { useIntl } from 'react-intl'
+import { useIntl } from '@ipasstw/react-intl'
 import SettingsIcon from '@mui/icons-material/Settings'
 import VerticalAlignBottomIcon from '@mui/icons-material/VerticalAlignBottom'
 import VerticalAlignCenter from '@mui/icons-material/VerticalAlignCenter'

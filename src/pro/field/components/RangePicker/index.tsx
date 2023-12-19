@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { useIntl } from 'react-intl'
+import { useIntl } from '@ipasstw/react-intl'
 import dayjs from 'dayjs'
 
 import type { DatePickerProps } from '@/base'

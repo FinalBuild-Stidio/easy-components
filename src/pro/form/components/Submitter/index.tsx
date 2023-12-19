@@ -1,5 +1,5 @@
 import React from 'react'
-import { useIntl } from 'react-intl'
+import { useIntl } from '@ipasstw/react-intl'
 import omit from 'omit.js'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { LoadingButtonProps } from '@mui/lab/LoadingButton'

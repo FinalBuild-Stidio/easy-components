@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useIntl } from 'react-intl'
+import { useIntl } from '@ipasstw/react-intl'
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit'
 import FullscreenIcon from '@mui/icons-material/Fullscreen'
 
