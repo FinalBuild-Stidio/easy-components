@@ -1,6 +1,6 @@
 import React from 'react';
 import type { CSSProperties } from 'react';
-import type { IntlConfig } from '@ipasstw/react-intl';
+import type { IntlConfig } from '@caps.dev/react-intl';
 import type { ThemeProviderProps } from '@mui/material/styles/ThemeProvider';
 import type { GenerateStyle, ProTokenType } from '../../providers';
 import type { HeaderViewProps } from './components/Header';

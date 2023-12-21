@@ -1,4 +1,4 @@
-import type { IntlShape } from '@ipasstw/react-intl';
+import type { IntlShape } from '@caps.dev/react-intl';
 import { FieldIndexColumn, FieldStatus } from '../../pro/field';
 import { ConfigConsumer, createIntl, enUSIntl, zhTWIntl } from '../../providers';
 import type { ProFieldValueType } from '../utils';

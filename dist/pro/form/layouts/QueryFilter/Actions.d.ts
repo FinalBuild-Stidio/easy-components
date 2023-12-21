@@ -1,4 +1,4 @@
-import type { IntlShape } from '@ipasstw/react-intl';
+import type { IntlShape } from '@caps.dev/react-intl';
 import React from 'react';
 export type ActionsProps = {
     submitter: React.ReactNode;

@@ -1,5 +1,5 @@
 import React, { Key } from 'react';
-import type { IntlShape } from '@ipasstw/react-intl';
+import type { IntlShape } from '@caps.dev/react-intl';
 export type AlertRenderType<T> = ((props: {
     intl: IntlShape;
     selectedRowKeys: (number | string | Key)[];
