@@ -1,4 +1,4 @@
-import { useIntl } from '@ipasstw/react-intl'
+import { useIntl } from '@caps.dev/react-intl'
 import React, { useCallback, useMemo } from 'react'
 import useMergedState from 'rc-util/lib/hooks/useMergedState'
 import omit from 'omit.js'

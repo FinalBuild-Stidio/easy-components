@@ -1,7 +1,7 @@
 import { Key } from 'react'
 import type React from 'react'
-import { useIntl } from '@ipasstw/react-intl'
-import type { IntlShape } from '@ipasstw/react-intl'
+import { useIntl } from '@caps.dev/react-intl'
+import type { IntlShape } from '@caps.dev/react-intl'
 
 import type { TablePaginationConfig } from '@/base'
 import type { SortOrder } from '@/base/table/interface'

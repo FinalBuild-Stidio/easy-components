@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { useIntl } from '@ipasstw/react-intl'
+import { useIntl } from '@caps.dev/react-intl'
 import omit from 'omit.js'
 
 import { isNil } from '../../../utils'

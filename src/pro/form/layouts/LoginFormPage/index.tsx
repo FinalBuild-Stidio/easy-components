@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react'
-import { useIntl } from '@ipasstw/react-intl'
+import { useIntl } from '@caps.dev/react-intl'
 import classNames from 'classnames'
 
 import { ConfigProvider } from '@/base'

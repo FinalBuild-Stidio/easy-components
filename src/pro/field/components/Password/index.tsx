@@ -1,5 +1,5 @@
 import React from 'react'
-import { useIntl } from '@ipasstw/react-intl'
+import { useIntl } from '@caps.dev/react-intl'
 import useMergedState from 'rc-util/lib/hooks/useMergedState'
 
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useIntl } from '@ipasstw/react-intl'
+import { useIntl } from '@caps.dev/react-intl'
 
 import { InputNumber } from '@/base'
 

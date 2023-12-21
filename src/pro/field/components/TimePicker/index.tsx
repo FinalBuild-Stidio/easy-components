@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useIntl } from '@ipasstw/react-intl'
+import { useIntl } from '@caps.dev/react-intl'
 import dayjs from 'dayjs'
 
 import { DatePicker, TimePicker } from '@/base'

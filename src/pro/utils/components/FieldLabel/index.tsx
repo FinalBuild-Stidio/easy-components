@@ -1,5 +1,5 @@
 import React, { useContext, useImperativeHandle, useRef } from 'react'
-import { useIntl } from '@ipasstw/react-intl'
+import { useIntl } from '@caps.dev/react-intl'
 import classNames from 'classnames'
 import CloseIcon from '@mui/icons-material/Close'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'

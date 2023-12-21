@@ -1,4 +1,4 @@
-import { useIntl } from '@ipasstw/react-intl'
+import { useIntl } from '@caps.dev/react-intl'
 
 import ProCard from '@/pro/card'
 import { GridContext } from '@/pro/form'

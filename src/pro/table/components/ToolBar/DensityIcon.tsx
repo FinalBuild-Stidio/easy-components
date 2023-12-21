@@ -1,4 +1,4 @@
-import { useIntl } from '@ipasstw/react-intl'
+import { useIntl } from '@caps.dev/react-intl'
 import React, { useContext } from 'react'
 
 import HeightIcon from '@mui/icons-material/Height'

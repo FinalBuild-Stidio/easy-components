@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, useRef } from 'react'
-import { useIntl } from '@ipasstw/react-intl'
+import { useIntl } from '@caps.dev/react-intl'
 
 import { Input } from '@/base'
 import type { ProFieldFC } from '../../index'

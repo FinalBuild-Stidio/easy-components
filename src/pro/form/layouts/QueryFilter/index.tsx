@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react'
 import type { ReactElement } from 'react'
-import { useIntl } from '@ipasstw/react-intl'
+import { useIntl } from '@caps.dev/react-intl'
 import classNames from 'classnames'
 import RcResizeObserver from 'rc-resize-observer'
 import useMergedState from 'rc-util/lib/hooks/useMergedState'

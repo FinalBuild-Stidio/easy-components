@@ -1,5 +1,5 @@
-import { useIntl } from '@ipasstw/react-intl'
-import type { IntlShape } from '@ipasstw/react-intl'
+import { useIntl } from '@caps.dev/react-intl'
+import type { IntlShape } from '@caps.dev/react-intl'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 import { ProProvider } from '@/providers'

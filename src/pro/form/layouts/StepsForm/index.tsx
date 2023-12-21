@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { useIntl } from '@ipasstw/react-intl'
+import { useIntl } from '@caps.dev/react-intl'
 import classNames from 'classnames'
 import toArray from 'rc-util/lib/Children/toArray'
 import useMergedState from 'rc-util/lib/hooks/useMergedState'

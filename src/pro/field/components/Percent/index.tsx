@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import React, { Fragment, useMemo } from 'react'
-import { useIntl } from '@ipasstw/react-intl'
+import { useIntl } from '@caps.dev/react-intl'
 import toNumber from 'lodash.tonumber'
 
 import { InputNumber } from '@/base'
