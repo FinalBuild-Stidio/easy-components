@@ -51,6 +51,6 @@ export default defineConfig({
         },
       },
     },
-    target: 'esnext',
+    target: 'es2015',
   },
 })

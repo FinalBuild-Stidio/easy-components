@@ -1,151 +1,202 @@
-import { jsx, Fragment, jsxs } from 'react/jsx-runtime';
-import * as React from 'react';
-import React__default, { useContext, useMemo, useEffect, useRef, useImperativeHandle, useState, useCallback, createContext, createElement, Fragment as Fragment$1, memo } from 'react';
-import classNames from 'classnames';
-import { z as createTheme, y as theme, H as ConfigContext, J as useStyleRegister, e as ConfigProvider, K as useCacheToken, k as Result, F as Form, j as Popover, v as Tooltip, x as Typography, N as useIsomorphicLayoutEffect, l as Row, c as Col, O as Keyframes, o as Statistic$1, B as Badge, t as Tabs, Q as resetComponent, G as Grid, f as Descriptions, n as CompoundedSpace, S as Select, I as Input, b as Checkbox, D as DatePicker, T as TypedInputNumber, R as Radio, r as Switch, u as TimePicker, g as Drawer, i as Modal, q as Steps, U as operationUnit, A as Affix, L as Layout, m as Skeleton, M as Menu, V as SiderContext, a as Card$1, s as ForwardTable, w as Tree, W as roundedArrow } from '../assets/index-IBqTLk-p.js';
-import { noteOnce } from 'rc-util/lib/warning';
-import 'rc-util/lib/Dom/canUseDom';
-import 'rc-util/lib/Dom/dynamicCSS';
-import { TinyColor } from '@ctrl/tinycolor';
-import 'rc-util';
-import 'rc-pagination/lib/locale/en_US';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import 'rc-pagination';
-import Pagination from 'rc-pagination/lib/locale/zh_TW';
-import CalendarLocale from 'rc-picker/lib/locale/zh_TW';
-import dayjs from 'dayjs';
-import 'dayjs/locale/zh-tw';
-import omit from 'omit.js';
-import { useIntl, IntlProvider } from '@caps.dev/react-intl';
-import CloseIcon from '@mui/icons-material/Close';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import get$1 from 'rc-util/lib/utils/get';
-import CircularProgress from '@mui/material/CircularProgress';
-import InfoIcon from '@mui/icons-material/Info';
-import quarterOfYear from 'dayjs/plugin/quarterOfYear';
-import useSWR, { useSWRConfig } from 'swr';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-import { configure } from 'safe-stable-stringify';
-import merge$1 from 'lodash.merge';
-import set from 'rc-util/lib/utils/set';
-import useMergedState from 'rc-util/lib/hooks/useMergedState';
-export { default as useMountMergeState } from 'rc-util/lib/hooks/useMergedState';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import toArray from 'rc-util/lib/Children/toArray';
-import Badge$1 from '@mui/material/Badge';
-import SearchIcon from '@mui/icons-material/Search';
-import weekOfYear from 'dayjs/plugin/weekOfYear';
-import relativeTime from 'dayjs/plugin/relativeTime';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import toNumber from 'lodash.tonumber';
-import advancedFormat from 'dayjs/plugin/advancedFormat';
-import isoWeek from 'dayjs/plugin/isoWeek';
-import localeData from 'dayjs/plugin/localeData';
-import weekday from 'dayjs/plugin/weekday';
-import { useUrlSearchParams } from '@umijs/use-params';
-import { FieldContext as FieldContext$1 } from 'rc-field-form';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import DeleteIcon from '@mui/icons-material/Delete';
-import AddIcon from '@mui/icons-material/Add';
-import LoadingButton from '@mui/lab/LoadingButton';
-import { createPortal, unstable_batchedUpdates } from 'react-dom';
-import ResizeObserver from 'rc-resize-observer';
-import Divider from '@mui/material/Divider';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Typography$1 from '@mui/material/Typography';
-import MUILink from '@mui/material/Link';
-import Link from 'next/link';
-import { u as useAppData } from '../assets/useAppContext-SmQ_dW_N.js';
-import { usePathname } from 'next/navigation';
-import CopyrightIcon from '@mui/icons-material/Copyright';
-import MenuIcon from '@mui/icons-material/Menu';
-import Icon from '@mui/material/Icon';
-import { pathToRegexp } from 'path-to-regexp';
-import useMergedState$1 from 'rc-util/lib/hooks/useMergedState.js';
-import warning from 'rc-util/lib/warning.js';
-import { ThemeProvider } from '@mui/material/styles';
-import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
-import RefreshIcon from '@mui/icons-material/Refresh';
-import IconButton from '@mui/material/IconButton';
-import SettingsIcon from '@mui/icons-material/Settings';
-import VerticalAlignBottomIcon from '@mui/icons-material/VerticalAlignBottom';
-import VerticalAlignCenter from '@mui/icons-material/VerticalAlignCenter';
-import VerticalAlignTop from '@mui/icons-material/VerticalAlignTop';
-import Menu$1 from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import HeightIcon from '@mui/icons-material/Height';
-import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
-import FullscreenIcon from '@mui/icons-material/Fullscreen';
-import { useSensors, useSensor, PointerSensor, MouseSensor, DndContext, closestCenter } from '@dnd-kit/core';
-import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
-import { arrayMove, SortableContext, verticalListSortingStrategy, useSortable } from '@dnd-kit/sortable';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import Button from '@mui/material/Button';
-import 'rc-util/lib/omit';
-import 'rc-util/lib/raf';
-import 'rc-motion';
-import 'rc-picker/lib/generate/dayjs';
-import 'rc-picker';
-import 'rc-util/lib/pickAttrs';
-import 'rc-checkbox';
-import 'rc-util/lib/ref';
-import 'rc-tabs';
-import 'rc-collapse';
-import '@rc-component/portal';
-import 'rc-util/lib/hooks/useLayoutEffect';
-import 'rc-util/lib/KeyCode';
-import 'scroll-into-view-if-needed';
-import 'rc-util/lib/hooks/useState';
-import 'rc-util/lib/Dom/isVisible';
-import '@mui/material/Tooltip';
-import '@mui/icons-material/CheckCircleOutline';
-import '@mui/icons-material/ErrorOutline';
-import '@mui/lab';
-import '@mui/icons-material/ExpandLess';
-import 'rc-input-number';
-import 'rc-menu';
-import '@mui/icons-material/List';
-import 'rc-util/lib/React/render';
-import 'rc-dialog';
-import 'rc-util/lib/Dom/styleChecker';
-import 'rc-tooltip';
-import '@mui/icons-material/HighlightOff';
-import '@mui/icons-material/WarningAmber';
-import '@mui/icons-material/AutoGraph';
-import '@mui/icons-material/Check';
-import 'rc-steps';
-import '@mui/icons-material/TaskAlt';
-import 'rc-progress';
-import 'rc-switch';
-import 'rc-table';
-import 'rc-table/lib/hooks/useColumns/index.js';
-import '@mui/material/Backdrop';
-import 'rc-select';
-import '@mui/icons-material/ArrowDropDown';
-import '@mui/icons-material/ArrowDropUp';
-import '@mui/icons-material/EventNote';
-import '@mui/icons-material/Schedule';
-import '@mui/icons-material/TrendingFlat';
-import 'rc-tree';
-import 'rc-tree/lib/util';
-import 'rc-tree/lib/utils/treeUtil';
-import '@mui/icons-material/Article';
-import '@mui/icons-material/FolderOpen';
-import '@mui/icons-material/Folder';
-import 'rc-util/lib/hooks/useMemo';
-import 'rc-util/lib/isEqual';
-import '@mui/icons-material/IndeterminateCheckBox';
-import '@mui/icons-material/CheckBox';
-import 'copy-to-clipboard';
-import '@mui/icons-material/Edit';
-import 'rc-picker/lib/locale/en_US';
-import 'stylis';
-import '@mui/icons-material/Input';
-import 'rc-textarea';
-import 'rc-input';
-
+var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+var __objRest = (source, exclude) => {
+  var target = {};
+  for (var prop in source)
+    if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
+      target[prop] = source[prop];
+  if (source != null && __getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(source)) {
+      if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
+        target[prop] = source[prop];
+    }
+  return target;
+};
+var __async = (__this, __arguments, generator) => {
+  return new Promise((resolve, reject) => {
+    var fulfilled = (value) => {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var rejected = (value) => {
+      try {
+        step(generator.throw(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+    step((generator = generator.apply(__this, __arguments)).next());
+  });
+};
+var _a, _b, _c, _ka;
+import { jsx, Fragment, jsxs } from "react/jsx-runtime";
+import * as React from "react";
+import React__default, { useContext, useMemo, useEffect, useRef, useImperativeHandle, useState, useCallback, createContext, createElement, Fragment as Fragment$1, memo } from "react";
+import classNames from "classnames";
+import { z as createTheme, y as theme, H as ConfigContext, J as useStyleRegister, e as ConfigProvider, K as useCacheToken, k as Result, F as Form, j as Popover, v as Tooltip, x as Typography, N as useIsomorphicLayoutEffect, l as Row, c as Col, O as Keyframes, o as Statistic$1, B as Badge, t as Tabs, Q as resetComponent, G as Grid, f as Descriptions, n as CompoundedSpace, S as Select, I as Input, b as Checkbox, D as DatePicker, T as TypedInputNumber, R as Radio, r as Switch, u as TimePicker, g as Drawer, i as Modal, q as Steps, U as operationUnit, A as Affix, L as Layout, m as Skeleton, M as Menu, V as SiderContext, a as Card$1, s as ForwardTable, w as Tree, W as roundedArrow } from "../assets/index-2t4RjtX9.js";
+import { noteOnce } from "rc-util/lib/warning";
+import "rc-util/lib/Dom/canUseDom";
+import "rc-util/lib/Dom/dynamicCSS";
+import { TinyColor } from "@ctrl/tinycolor";
+import "rc-util";
+import "rc-pagination/lib/locale/en_US";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import "rc-pagination";
+import Pagination from "rc-pagination/lib/locale/zh_TW";
+import CalendarLocale from "rc-picker/lib/locale/zh_TW";
+import dayjs from "dayjs";
+import "dayjs/locale/zh-tw";
+import omit from "omit.js";
+import { useIntl, IntlProvider } from "@caps.dev/react-intl";
+import CloseIcon from "@mui/icons-material/Close";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import get$1 from "rc-util/lib/utils/get";
+import CircularProgress from "@mui/material/CircularProgress";
+import InfoIcon from "@mui/icons-material/Info";
+import quarterOfYear from "dayjs/plugin/quarterOfYear";
+import useSWR, { useSWRConfig } from "swr";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import { configure } from "safe-stable-stringify";
+import merge$1 from "lodash.merge";
+import set from "rc-util/lib/utils/set";
+import useMergedState from "rc-util/lib/hooks/useMergedState";
+import { default as default2 } from "rc-util/lib/hooks/useMergedState";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import toArray from "rc-util/lib/Children/toArray";
+import Badge$1 from "@mui/material/Badge";
+import SearchIcon from "@mui/icons-material/Search";
+import weekOfYear from "dayjs/plugin/weekOfYear";
+import relativeTime from "dayjs/plugin/relativeTime";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import toNumber from "lodash.tonumber";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+import isoWeek from "dayjs/plugin/isoWeek";
+import localeData from "dayjs/plugin/localeData";
+import weekday from "dayjs/plugin/weekday";
+import { useUrlSearchParams } from "@umijs/use-params";
+import { FieldContext as FieldContext$1 } from "rc-field-form";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AddIcon from "@mui/icons-material/Add";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { createPortal, unstable_batchedUpdates } from "react-dom";
+import ResizeObserver from "rc-resize-observer";
+import Divider from "@mui/material/Divider";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Typography$1 from "@mui/material/Typography";
+import MUILink from "@mui/material/Link";
+import Link from "next/link";
+import { u as useAppData } from "../assets/useAppContext-bX6FQ-Qa.js";
+import { usePathname } from "next/navigation";
+import CopyrightIcon from "@mui/icons-material/Copyright";
+import MenuIcon from "@mui/icons-material/Menu";
+import Icon from "@mui/material/Icon";
+import { pathToRegexp } from "path-to-regexp";
+import useMergedState$1 from "rc-util/lib/hooks/useMergedState.js";
+import warning from "rc-util/lib/warning.js";
+import { ThemeProvider } from "@mui/material/styles";
+import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import IconButton from "@mui/material/IconButton";
+import SettingsIcon from "@mui/icons-material/Settings";
+import VerticalAlignBottomIcon from "@mui/icons-material/VerticalAlignBottom";
+import VerticalAlignCenter from "@mui/icons-material/VerticalAlignCenter";
+import VerticalAlignTop from "@mui/icons-material/VerticalAlignTop";
+import Menu$1 from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import HeightIcon from "@mui/icons-material/Height";
+import FullscreenExitIcon from "@mui/icons-material/FullscreenExit";
+import FullscreenIcon from "@mui/icons-material/Fullscreen";
+import { useSensors, useSensor, PointerSensor, MouseSensor, DndContext, closestCenter } from "@dnd-kit/core";
+import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
+import { arrayMove, SortableContext, verticalListSortingStrategy, useSortable } from "@dnd-kit/sortable";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import Button from "@mui/material/Button";
+import "rc-util/lib/omit";
+import "rc-util/lib/raf";
+import "rc-motion";
+import "rc-picker/lib/generate/dayjs";
+import "rc-picker";
+import "rc-util/lib/pickAttrs";
+import "rc-checkbox";
+import "rc-util/lib/ref";
+import "rc-tabs";
+import "rc-collapse";
+import "@rc-component/portal";
+import "rc-util/lib/hooks/useLayoutEffect";
+import "rc-util/lib/KeyCode";
+import "scroll-into-view-if-needed";
+import "rc-util/lib/hooks/useState";
+import "rc-util/lib/Dom/isVisible";
+import "@mui/material/Tooltip";
+import "@mui/icons-material/CheckCircleOutline";
+import "@mui/icons-material/ErrorOutline";
+import "@mui/lab";
+import "@mui/icons-material/ExpandLess";
+import "rc-input-number";
+import "rc-menu";
+import "@mui/icons-material/List";
+import "rc-util/lib/React/render";
+import "rc-dialog";
+import "rc-util/lib/Dom/styleChecker";
+import "rc-tooltip";
+import "@mui/icons-material/HighlightOff";
+import "@mui/icons-material/WarningAmber";
+import "@mui/icons-material/AutoGraph";
+import "@mui/icons-material/Check";
+import "rc-steps";
+import "@mui/icons-material/TaskAlt";
+import "rc-progress";
+import "rc-switch";
+import "rc-table";
+import "rc-table/lib/hooks/useColumns/index.js";
+import "@mui/material/Backdrop";
+import "rc-select";
+import "@mui/icons-material/ArrowDropDown";
+import "@mui/icons-material/ArrowDropUp";
+import "@mui/icons-material/EventNote";
+import "@mui/icons-material/Schedule";
+import "@mui/icons-material/TrendingFlat";
+import "rc-tree";
+import "rc-tree/lib/util";
+import "rc-tree/lib/utils/treeUtil";
+import "@mui/icons-material/Article";
+import "@mui/icons-material/FolderOpen";
+import "@mui/icons-material/Folder";
+import "rc-util/lib/hooks/useMemo";
+import "rc-util/lib/isEqual";
+import "@mui/icons-material/IndeterminateCheckBox";
+import "@mui/icons-material/CheckBox";
+import "copy-to-clipboard";
+import "@mui/icons-material/Edit";
+import "rc-picker/lib/locale/en_US";
+import "stylis";
+import "@mui/icons-material/Input";
+import "rc-textarea";
+import "rc-input";
 const omitUndefined$1 = (obj) => {
   const newObj = {};
   Object.keys(obj || {}).forEach((key) => {
@@ -158,7 +209,6 @@ const omitUndefined$1 = (obj) => {
   }
   return newObj;
 };
-
 const merge = (...rest) => {
   const obj = {};
   const il = rest.length;
@@ -174,11 +224,7 @@ const merge = (...rest) => {
           obj[key] !== null && // @ts-ignore
           !Array.isArray(obj[key]) && !Array.isArray(rest[i][key])
         ) {
-          obj[key] = {
-            // @ts-ignore
-            ...obj[key],
-            ...rest[i][key]
-          };
+          obj[key] = __spreadValues(__spreadValues({}, obj[key]), rest[i][key]);
         } else {
           obj[key] = rest[i][key];
         }
@@ -187,13 +233,11 @@ const merge = (...rest) => {
   }
   return obj;
 };
-
 const locale$1 = {
   placeholder: "請選擇時間"
 };
-
 const locale = {
-  lang: {
+  lang: __spreadValues({
     placeholder: "請選擇日期",
     yearPlaceholder: "請選擇年份",
     quarterPlaceholder: "請選擇季度",
@@ -203,15 +247,11 @@ const locale = {
     rangeYearPlaceholder: ["開始年份", "結束年份"],
     rangeMonthPlaceholder: ["開始月份", "結束月份"],
     rangeQuarterPlaceholder: ["開始季度", "結束季度"],
-    rangeWeekPlaceholder: ["開始周", "結束周"],
-    ...CalendarLocale
-  },
-  timePickerLocale: {
-    ...locale$1
-  }
+    rangeWeekPlaceholder: ["開始周", "結束周"]
+  }, CalendarLocale),
+  timePickerLocale: __spreadValues({}, locale$1)
 };
 locale.lang.ok = "確 定";
-
 const typeTemplate = "${label}不是一個有效的${type}";
 const localeValues = {
   locale: "zh-tw",
@@ -308,7 +348,6 @@ const localeValues = {
     preview: "預覽"
   }
 };
-
 const enUS = {
   moneySymbol: "$",
   deleteThisLine: "Delete this line",
@@ -383,7 +422,6 @@ const enUS = {
     close: "close"
   }
 };
-
 const zhTW = {
   moneySymbol: "NT$",
   deleteThisLine: "刪除此项",
@@ -458,7 +496,6 @@ const zhTW = {
     close: "關閉"
   }
 };
-
 function get(source, path, defaultValue) {
   const paths = path.replace(/\[(\d+)\]/g, ".$1").split(".");
   let result = source;
@@ -472,9 +509,9 @@ function get(source, path, defaultValue) {
   }
   return message;
 }
-const createIntl = (locale, localeMap) => ({
+const createIntl = (locale2, localeMap) => ({
   getMessage: (id, defaultMessage) => get(localeMap, id, defaultMessage) || defaultMessage,
-  locale
+  locale: locale2
 });
 const enUSIntl = createIntl("en_US", enUS);
 const zhTWIntl = createIntl("zh_TW", zhTW);
@@ -490,7 +527,6 @@ const findIntlKeyByLocaleKey = (localeKey) => {
     return LowerCaseKey.includes(localeName);
   });
 };
-
 const defaultToken = {
   blue: "#1677ff",
   purple: "#722ED1",
@@ -880,23 +916,18 @@ const hashCode = (str, seed = 1) => {
 const emptyTheme = createTheme((token2) => token2);
 const token = {
   theme: emptyTheme,
-  token: {
-    ...defaultToken,
-    ...theme?.defaultAlgorithm?.(theme?.defaultSeed)
-  },
+  token: __spreadValues(__spreadValues({}, defaultToken), (_c = (_a = theme) == null ? void 0 : _a.defaultAlgorithm) == null ? void 0 : _c.call(_a, (_b = theme) == null ? void 0 : _b.defaultSeed)),
   hashId: `pro-${hashCode(JSON.stringify(defaultToken))}`
 };
 const useToken$1 = () => token;
-
-const batToken = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+const batToken = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   defaultToken,
   emptyTheme,
   hashCode,
   token,
   useToken: useToken$1
-}, Symbol.toStringTag, { value: 'Module' }));
-
+}, Symbol.toStringTag, { value: "Module" }));
 const setAlpha = (baseColor, alpha) => new TinyColor(baseColor).setAlpha(alpha).toRgbString();
 const lighten = (baseColor, brightness) => {
   const instance = new TinyColor(baseColor);
@@ -910,45 +941,46 @@ const genTheme = () => {
 const proTheme = genTheme();
 const useToken = proTheme.useToken;
 function useStyle$A(componentName, styleFn) {
-  let { token = {} } = useContext(ProProvider);
+  var _a2;
+  let { token: token2 = {} } = useContext(ProProvider);
   const { hashId = "", theme: provideTheme } = useContext(ProProvider);
   const { token: ipassToken } = useToken();
   const { getPrefixCls } = useContext(ConfigContext);
-  if (!token.layout) {
-    token = { ...ipassToken };
+  if (!token2.layout) {
+    token2 = __spreadValues({}, ipassToken);
   }
-  token.proComponentsCls = token.proComponentsCls ?? `.${getPrefixCls("pro")}`;
-  token.ipassCls = `.${getPrefixCls()}`;
+  token2.proComponentsCls = (_a2 = token2.proComponentsCls) != null ? _a2 : `.${getPrefixCls("pro")}`;
+  token2.ipassCls = `.${getPrefixCls()}`;
   return {
     wrapSSR: useStyleRegister(
       {
         theme: provideTheme,
-        token,
+        token: token2,
         hashId,
         path: [componentName]
       },
-      () => styleFn(token)
+      () => styleFn(token2)
     ),
     hashId
   };
 }
-
 const getLayoutDesignToken = (designTokens, ipassToken) => {
-  const finalDesignTokens = { ...designTokens };
-  return {
+  var _a2, _b2, _c2, _d, _e;
+  const finalDesignTokens = __spreadValues({}, designTokens);
+  return __spreadProps(__spreadValues({
     bgLayout: `linear-gradient(${ipassToken.colorBgContainer}, ${ipassToken.colorBgLayout} 28%)`,
     colorTextAppListIcon: ipassToken.colorTextSecondary,
-    appListIconHoverBgColor: finalDesignTokens?.sider?.colorBgMenuItemSelected,
+    appListIconHoverBgColor: (_a2 = finalDesignTokens == null ? void 0 : finalDesignTokens.sider) == null ? void 0 : _a2.colorBgMenuItemSelected,
     colorBgAppListIconHover: setAlpha(ipassToken.colorTextBase, 0.04),
-    colorTextAppListIconHover: ipassToken.colorTextBase,
-    ...finalDesignTokens,
-    header: {
+    colorTextAppListIconHover: ipassToken.colorTextBase
+  }, finalDesignTokens), {
+    header: __spreadValues({
       colorBgHeader: setAlpha(ipassToken.colorBgElevated, 0.6),
       colorBgScrollHeader: setAlpha(ipassToken.colorBgElevated, 0.8),
       colorHeaderTitle: ipassToken.colorText,
       colorBgMenuItemHover: setAlpha(ipassToken.colorTextBase, 0.03),
       colorBgMenuItemSelected: "transparent",
-      colorBgMenuElevated: finalDesignTokens?.header?.colorBgHeader !== "rgba(255, 255, 255, 0.6)" ? finalDesignTokens.header?.colorBgHeader : ipassToken.colorBgElevated,
+      colorBgMenuElevated: ((_b2 = finalDesignTokens == null ? void 0 : finalDesignTokens.header) == null ? void 0 : _b2.colorBgHeader) !== "rgba(255, 255, 255, 0.6)" ? (_c2 = finalDesignTokens.header) == null ? void 0 : _c2.colorBgHeader : ipassToken.colorBgElevated,
       colorTextMenuSelected: setAlpha(ipassToken.colorTextBase, 0.95),
       colorBgRightActionsItemHover: setAlpha(ipassToken.colorTextBase, 0.03),
       colorTextRightActionsItem: ipassToken.colorTextTertiary,
@@ -956,10 +988,9 @@ const getLayoutDesignToken = (designTokens, ipassToken) => {
       colorTextMenu: ipassToken.colorTextSecondary,
       colorTextMenuSecondary: ipassToken.colorTextTertiary,
       colorTextMenuTitle: ipassToken.colorText,
-      colorTextMenuActive: ipassToken.colorText,
-      ...finalDesignTokens.header
-    },
-    sider: {
+      colorTextMenuActive: ipassToken.colorText
+    }, finalDesignTokens.header),
+    sider: __spreadValues({
       paddingInlineLayoutMenu: 8,
       paddingBlockLayoutMenu: 0,
       colorBgCollapsedButton: ipassToken.colorBgElevated,
@@ -975,30 +1006,26 @@ const getLayoutDesignToken = (designTokens, ipassToken) => {
       colorTextMenu: ipassToken.colorTextSecondary,
       colorTextMenuSecondary: ipassToken.colorTextTertiary,
       colorTextMenuTitle: ipassToken.colorText,
-      colorTextSubMenuSelected: setAlpha(ipassToken.colorTextBase, 0.95),
-      ...finalDesignTokens.sider
-    },
-    pageContainer: {
+      colorTextSubMenuSelected: setAlpha(ipassToken.colorTextBase, 0.95)
+    }, finalDesignTokens.sider),
+    pageContainer: __spreadValues({
       colorBgPageContainer: "transparent",
-      paddingInlinePageContainerContent: finalDesignTokens.pageContainer?.marginInlinePageContainerContent || 40,
-      paddingBlockPageContainerContent: finalDesignTokens.pageContainer?.marginBlockPageContainerContent || 32,
-      colorBgPageContainerFixed: ipassToken.colorBgElevated,
-      ...finalDesignTokens.pageContainer
-    }
-  };
+      paddingInlinePageContainerContent: ((_d = finalDesignTokens.pageContainer) == null ? void 0 : _d.marginInlinePageContainerContent) || 40,
+      paddingBlockPageContainerContent: ((_e = finalDesignTokens.pageContainer) == null ? void 0 : _e.marginBlockPageContainerContent) || 32,
+      colorBgPageContainerFixed: ipassToken.colorBgElevated
+    }, finalDesignTokens.pageContainer)
+  });
 };
-
 const isNeedOpenHash = () => {
-  if (typeof process !== "undefined" && ("production"?.toUpperCase() === "TEST" || "production"?.toUpperCase() === "DEV")) {
+  if (typeof process !== "undefined" && (("production" == null ? void 0 : "production".toUpperCase()) === "TEST" || ("production" == null ? void 0 : "production".toUpperCase()) === "DEV")) {
     return false;
   }
   return true;
 };
 const ProConfigContext = React__default.createContext({
-  intl: {
-    ...zhTWIntl,
+  intl: __spreadProps(__spreadValues({}, zhTWIntl), {
     locale: "default"
-  },
+  }),
   valueTypeMap: {},
   theme: emptyTheme,
   hashed: true,
@@ -1007,6 +1034,7 @@ const ProConfigContext = React__default.createContext({
 });
 const { Consumer: ConfigConsumer } = ProConfigContext;
 const ConfigProviderContainer = (props) => {
+  var _b2;
   const {
     children,
     dark,
@@ -1015,10 +1043,10 @@ const ConfigProviderContainer = (props) => {
     token: propsToken,
     prefixCls
   } = props;
-  const { locale, getPrefixCls, ...restConfig } = useContext(
+  const _a2 = useContext(
     ConfigProvider.ConfigContext
-  );
-  const tokenContext = proTheme.useToken?.();
+  ), { locale: locale2, getPrefixCls } = _a2, restConfig = __objRest(_a2, ["locale", "getPrefixCls"]);
+  const tokenContext = (_b2 = proTheme.useToken) == null ? void 0 : _b2.call(proTheme);
   const proProvide = useContext(ProConfigContext);
   const proComponentsCls = prefixCls ? `.${prefixCls}` : `.${getPrefixCls()}-pro`;
   const ipassCls = "." + getPrefixCls();
@@ -1030,12 +1058,12 @@ const ConfigProviderContainer = (props) => {
     );
   }, [propsToken, tokenContext.token]);
   const proProvideValue = useMemo(() => {
-    const localeName = locale?.locale;
+    var _a3;
+    const localeName = locale2 == null ? void 0 : locale2.locale;
     const key = findIntlKeyByLocaleKey(localeName);
-    const intl = localeName && proProvide.intl?.locale === "default" ? intlMap$1[key] : proProvide.intl || intlMap$1[key];
-    return {
-      ...proProvide,
-      dark: dark ?? proProvide.dark,
+    const intl = localeName && ((_a3 = proProvide.intl) == null ? void 0 : _a3.locale) === "default" ? intlMap$1[key] : proProvide.intl || intlMap$1[key];
+    return __spreadProps(__spreadValues({}, proProvide), {
+      dark: dark != null ? dark : proProvide.dark,
       token: merge(proProvide.token, tokenContext.token, {
         proComponentsCls,
         ipassCls,
@@ -1043,9 +1071,9 @@ const ConfigProviderContainer = (props) => {
         layout: proLayoutTokenMerge
       }),
       intl: intl || zhTWIntl
-    };
+    });
   }, [
-    locale?.locale,
+    locale2 == null ? void 0 : locale2.locale,
     proProvide,
     dark,
     tokenContext.token,
@@ -1054,13 +1082,12 @@ const ConfigProviderContainer = (props) => {
     ipassCls,
     proLayoutTokenMerge
   ]);
-  const finalToken = {
-    ...proProvideValue.token || {},
+  const finalToken = __spreadProps(__spreadValues({}, proProvideValue.token || {}), {
     proComponentsCls
-  };
-  const [token, nativeHashId] = useCacheToken(
+  });
+  const [token2, nativeHashId] = useCacheToken(
     tokenContext.theme,
-    [tokenContext.token, finalToken ?? {}],
+    [tokenContext.token, finalToken != null ? finalToken : {}],
     {
       salt,
       override: finalToken
@@ -1087,74 +1114,69 @@ const ConfigProviderContainer = (props) => {
     }
   }, [nativeHashId, proProvide.hashed, props.hashed]);
   useEffect(() => {
-    dayjs.locale(locale?.locale || "zh-tw");
-  }, [locale?.locale]);
+    dayjs.locale((locale2 == null ? void 0 : locale2.locale) || "zh-tw");
+  }, [locale2 == null ? void 0 : locale2.locale]);
   const configProviderDom = useMemo(() => {
-    const themeConfig = {
-      ...restConfig.theme,
+    const themeConfig = __spreadProps(__spreadValues({}, restConfig.theme), {
       hashId,
       hashed: hashed && isNeedOpenHash()
-    };
-    return /* @__PURE__ */ jsx(ConfigProvider, { ...restConfig, theme: { ...themeConfig }, children: /* @__PURE__ */ jsx(
+    });
+    return /* @__PURE__ */ jsx(ConfigProvider, __spreadProps(__spreadValues({}, restConfig), { theme: __spreadValues({}, themeConfig), children: /* @__PURE__ */ jsx(
       ProConfigContext.Provider,
       {
-        value: {
-          ...proProvideValue,
-          valueTypeMap: valueTypeMap || proProvideValue?.valueTypeMap,
-          token,
+        value: __spreadProps(__spreadValues({}, proProvideValue), {
+          valueTypeMap: valueTypeMap || (proProvideValue == null ? void 0 : proProvideValue.valueTypeMap),
+          token: token2,
           theme: tokenContext.theme,
           hashed,
           hashId
-        },
+        }),
         children: /* @__PURE__ */ jsx(Fragment, { children })
       }
-    ) });
+    ) }));
   }, [
     children,
     getPrefixCls,
     hashId,
-    locale,
+    locale2,
     proProvideValue,
-    token
+    token2
   ]);
   return configProviderDom;
 };
 const ProConfigProvider = (props) => {
-  const { needDeps, dark, token } = props;
+  const { needDeps, dark, token: token2 } = props;
   const proProvide = useContext(ProConfigContext);
-  const { locale, theme, ...rest } = useContext(
+  const _a2 = useContext(
     ConfigProvider.ConfigContext
-  );
+  ), { locale: locale2, theme: theme2 } = _a2, rest = __objRest(_a2, ["locale", "theme"]);
   const isNullProvide = needDeps && proProvide.hashId !== void 0 && Object.keys(props).sort().join("-") === "children-needDeps";
   if (isNullProvide)
     return /* @__PURE__ */ jsx(Fragment, { children: props.children });
   const mergeAlgorithm = () => {
-    const isDark = dark ?? proProvide.dark;
-    if (isDark && !Array.isArray(theme?.algorithm)) {
-      return [proTheme.darkAlgorithm, theme?.algorithm].filter(Boolean);
+    const isDark = dark != null ? dark : proProvide.dark;
+    if (isDark && !Array.isArray(theme2 == null ? void 0 : theme2.algorithm)) {
+      return [proTheme.darkAlgorithm, theme2 == null ? void 0 : theme2.algorithm].filter(Boolean);
     }
-    if (isDark && Array.isArray(theme?.algorithm)) {
-      return [proTheme.darkAlgorithm, ...theme?.algorithm || []].filter(
+    if (isDark && Array.isArray(theme2 == null ? void 0 : theme2.algorithm)) {
+      return [proTheme.darkAlgorithm, ...(theme2 == null ? void 0 : theme2.algorithm) || []].filter(
         Boolean
       );
     }
-    return theme?.algorithm;
+    return theme2 == null ? void 0 : theme2.algorithm;
   };
-  const configProvider = {
-    ...rest,
-    locale: locale || localeValues,
-    theme: omitUndefined$1({
-      ...theme,
+  const configProvider = __spreadProps(__spreadValues({}, rest), {
+    locale: locale2 || localeValues,
+    theme: omitUndefined$1(__spreadProps(__spreadValues({}, theme2), {
       algorithm: mergeAlgorithm()
-    })
-  };
-  return /* @__PURE__ */ jsx(ConfigProvider, { ...configProvider, children: /* @__PURE__ */ jsx(ConfigProviderContainer, { ...props, token }) });
+    }))
+  });
+  return /* @__PURE__ */ jsx(ConfigProvider, __spreadProps(__spreadValues({}, configProvider), { children: /* @__PURE__ */ jsx(ConfigProviderContainer, __spreadProps(__spreadValues({}, props), { token: token2 })) }));
 };
 ProConfigContext.displayName = "ProProvider";
 const ProProvider = ProConfigContext;
-
-const genActionsStyle = (token) => {
-  const { componentCls, ipassCls } = token;
+const genActionsStyle = (token2) => {
+  const { componentCls, ipassCls } = token2;
   return {
     [`${componentCls}-actions`]: {
       marginBlock: 0,
@@ -1163,9 +1185,9 @@ const genActionsStyle = (token) => {
       paddingInline: 0,
       listStyle: "none",
       display: "flex",
-      gap: token.marginXS,
-      background: token.colorBgContainer,
-      borderBlockStart: `${token.lineWidth}px ${token.lineType} ${token.colorSplit}`,
+      gap: token2.marginXS,
+      background: token2.colorBgContainer,
+      borderBlockStart: `${token2.lineWidth}px ${token2.lineType} ${token2.colorSplit}`,
       minHeight: 42,
       [`& > *`]: {
         alignItems: "center",
@@ -1173,77 +1195,75 @@ const genActionsStyle = (token) => {
         flex: 1,
         display: "flex",
         cursor: "pointer",
-        color: token.colorTextSecondary,
+        color: token2.colorTextSecondary,
         transition: "color 0.3s",
         "&:hover": {
-          color: token.colorPrimaryHover
+          color: token2.colorPrimaryHover
         }
       },
       [`& > li > div`]: {
         flex: 1,
         width: "100%",
-        marginBlock: token.marginSM,
+        marginBlock: token2.marginSM,
         marginInline: 0,
-        color: token.colorTextSecondary,
+        color: token2.colorTextSecondary,
         textAlign: "center",
         a: {
-          color: token.colorTextSecondary,
+          color: token2.colorTextSecondary,
           transition: "color 0.3s",
           "&:hover": {
-            color: token.colorPrimaryHover
+            color: token2.colorPrimaryHover
           }
         },
         div: {
           position: "relative",
           display: "block",
           minWidth: 32,
-          fontSize: token.fontSize,
-          lineHeight: token.lineHeight,
+          fontSize: token2.fontSize,
+          lineHeight: token2.lineHeight,
           cursor: "pointer",
           "&:hover": {
-            color: token.colorPrimaryHover,
+            color: token2.colorPrimaryHover,
             transition: "color 0.3s"
           },
           [`a:not(${ipassCls}-btn),
             > .muiicon`]: {
             display: "inline-block",
             width: "100%",
-            color: token.colorTextSecondary,
+            color: token2.colorTextSecondary,
             lineHeight: "22px",
             transition: "color 0.3s",
             "&:hover": {
-              color: token.colorPrimaryHover
+              color: token2.colorPrimaryHover
             }
           },
           ".muiicon": {
-            fontSize: token.cardActionIconSize,
+            fontSize: token2.cardActionIconSize,
             lineHeight: "22px"
           }
         },
         "&:not(:last-child)": {
-          borderInlineEnd: `${token.lineWidth}px ${token.lineType} ${token.colorSplit}`
+          borderInlineEnd: `${token2.lineWidth}px ${token2.lineType} ${token2.colorSplit}`
         }
       }
     }
   };
 };
 function useStyle$z(prefixCls) {
-  return useStyle$A("ProCardActions", (token) => {
-    const proCardActionsToken = {
-      ...token,
+  return useStyle$A("ProCardActions", (token2) => {
+    const proCardActionsToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`,
       cardActionIconSize: 16
-    };
+    });
     return [genActionsStyle(proCardActionsToken)];
   });
 }
-
 const ProCardActions = (props) => {
   const { actions, prefixCls } = props;
   const { wrapSSR, hashId } = useStyle$z(prefixCls);
-  if (Array.isArray(actions) && actions?.length) {
+  if (Array.isArray(actions) && (actions == null ? void 0 : actions.length)) {
     return wrapSSR(
-      /* @__PURE__ */ jsx("ul", { className: classNames(`${prefixCls}-actions`, hashId), children: actions.map((action, index) => (
+      /* @__PURE__ */ jsx("ul", { className: classNames(`${prefixCls}-actions`, hashId), children: actions.map((action, index2) => (
         // eslint-disable-next-line react/no-array-index-key
         /* @__PURE__ */ jsx(
           "li",
@@ -1252,7 +1272,7 @@ const ProCardActions = (props) => {
             className: classNames(`${prefixCls}-actions-item`, hashId),
             children: action
           },
-          `action-${index}`
+          `action-${index2}`
         )
       )) })
     );
@@ -1261,7 +1281,6 @@ const ProCardActions = (props) => {
     /* @__PURE__ */ jsx("ul", { className: classNames(`${prefixCls}-actions`, hashId), children: actions })
   );
 };
-
 class ErrorBoundary extends React__default.Component {
   constructor() {
     super(...arguments);
@@ -1287,85 +1306,84 @@ class ErrorBoundary extends React__default.Component {
     return this.props.children;
   }
 }
-
-const genProStyle$b = (token) => {
+const genProStyle$b = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       display: "inline-flex",
-      gap: token.marginXXS,
+      gap: token2.marginXXS,
       alignItems: "center",
       height: "30px",
       paddingBlock: 0,
       paddingInline: 8,
-      fontSize: token.fontSize,
+      fontSize: token2.fontSize,
       lineHeight: "30px",
       borderRadius: "2px",
       cursor: "pointer",
       "&:hover": {
-        backgroundColor: token.colorBgTextHover
+        backgroundColor: token2.colorBgTextHover
       },
       "&-active": {
         paddingBlock: 0,
         paddingInline: 8,
-        backgroundColor: token.colorBgTextHover,
-        [`&${token.componentCls}-allow-clear:hover:not(${token.componentCls}-disabled)`]: {
-          [`${token.componentCls}-arrow`]: {
+        backgroundColor: token2.colorBgTextHover,
+        [`&${token2.componentCls}-allow-clear:hover:not(${token2.componentCls}-disabled)`]: {
+          [`${token2.componentCls}-arrow`]: {
             display: "none"
           },
-          [`${token.componentCls}-close`]: {
+          [`${token2.componentCls}-close`]: {
             display: "inline-flex"
           }
         }
       },
-      [`${token.ipassCls}-select`]: {
-        [`${token.ipassCls}-select-clear`]: {
+      [`${token2.ipassCls}-select`]: {
+        [`${token2.ipassCls}-select-clear`]: {
           borderRadius: "50%"
         }
       },
-      [`${token.ipassCls}-picker`]: {
-        [`${token.ipassCls}-picker-clear`]: {
+      [`${token2.ipassCls}-picker`]: {
+        [`${token2.ipassCls}-picker-clear`]: {
           borderRadius: "50%"
         }
       },
       "&-icon": {
-        color: token.colorIcon,
+        color: token2.colorIcon,
         transition: "color 0.3s",
         fontSize: 12,
         verticalAlign: "middle",
-        [`&${token.componentCls}-close`]: {
+        [`&${token2.componentCls}-close`]: {
           display: "none",
           fontSize: 12,
           alignItems: "center",
           justifyContent: "center",
-          color: token.colorTextPlaceholder,
+          color: token2.colorTextPlaceholder,
           borderRadius: "50%"
         },
         "&:hover": {
-          color: token.colorIconHover
+          color: token2.colorIconHover
         }
       },
       "&-disabled": {
-        color: token.colorTextPlaceholder,
+        color: token2.colorTextPlaceholder,
         cursor: "not-allowed",
-        [`${token.componentCls}-icon`]: {
-          color: token.colorTextPlaceholder
+        [`${token2.componentCls}-icon`]: {
+          color: token2.colorTextPlaceholder
         }
       },
       "&-small": {
         height: "24px",
         paddingBlock: 0,
         paddingInline: 4,
-        fontSize: token.fontSizeSM,
+        fontSize: token2.fontSizeSM,
         lineHeight: "24px",
-        [`&${token.componentCls}-active`]: {
+        [`&${token2.componentCls}-active`]: {
           paddingBlock: 0,
           paddingInline: 8
         },
-        [`${token.componentCls}-icon`]: {
+        [`${token2.componentCls}-icon`]: {
           paddingBlock: 0,
           paddingInline: 0
         },
-        [`${token.componentCls}-close`]: {
+        [`${token2.componentCls}-close`]: {
           marginBlockStart: "-2px",
           paddingBlock: 4,
           paddingInline: 4,
@@ -1376,7 +1394,7 @@ const genProStyle$b = (token) => {
         height: "32px",
         paddingBlock: 0,
         paddingInline: 8,
-        border: `${token.lineWidth}px solid ${token.colorBorder}`,
+        border: `${token2.lineWidth}px solid ${token2.colorBorder}`,
         borderRadius: "@border-radius-base"
       },
       "&-bordered&-small": {
@@ -1385,22 +1403,21 @@ const genProStyle$b = (token) => {
         paddingInline: 8
       },
       "&-bordered&-active": {
-        backgroundColor: token.colorBgContainer
+        backgroundColor: token2.colorBgContainer
       }
     }
   };
 };
 function useStyle$y(prefixCls) {
-  return useStyle$A("FieldLabel", (token) => {
-    const proToken = {
-      ...token,
+  return useStyle$A("FieldLabel", (token2) => {
+    const proToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProStyle$b(proToken)];
   });
 }
-
 const FieldLabelFunction = (props, ref) => {
+  var _a2, _b2, _c2, _d;
   const {
     label,
     onClear,
@@ -1410,13 +1427,13 @@ const FieldLabelFunction = (props, ref) => {
     ellipsis,
     placeholder,
     className,
-    formatter,
+    formatter: formatter2,
     bordered,
     style,
     downIcon,
     allowClear = true
   } = props;
-  const { componentSize } = ConfigProvider?.useConfig?.() || {
+  const { componentSize } = ((_b2 = (_a2 = ConfigProvider) == null ? void 0 : _a2.useConfig) == null ? void 0 : _b2.call(_a2)) || {
     componentSize: "middle"
   };
   const size = componentSize;
@@ -1433,33 +1450,34 @@ const FieldLabelFunction = (props, ref) => {
   const wrapElements = (array) => {
     if (array.every((item) => typeof item === "string"))
       return array.join(",");
-    return array.map((item, index) => {
-      const comma = index === array.length - 1 ? "" : ",";
+    return array.map((item, index2) => {
+      const comma = index2 === array.length - 1 ? "" : ",";
       if (typeof item === "string") {
         return /* @__PURE__ */ jsxs("span", { children: [
           item,
           comma
-        ] }, index);
+        ] }, index2);
       }
       return /* @__PURE__ */ jsxs("span", { style: { display: "flex" }, children: [
         item,
         comma
-      ] }, index);
+      ] }, index2);
     });
   };
   const formatterText = (aValue) => {
-    if (formatter) {
-      return formatter(aValue);
+    if (formatter2) {
+      return formatter2(aValue);
     }
     return Array.isArray(aValue) ? wrapElements(aValue) : aValue;
   };
   const getTextByValue = (aLabel, aValue) => {
+    var _a3, _b3;
     if (aValue !== void 0 && aValue !== null && aValue !== "" && (!Array.isArray(aValue) || aValue.length)) {
       const prefix = aLabel ? /* @__PURE__ */ jsxs(
         "span",
         {
           onClick: () => {
-            onLabelClick?.();
+            onLabelClick == null ? void 0 : onLabelClick();
           },
           className: `${prefixCls}-text`,
           children: [
@@ -1504,7 +1522,7 @@ const FieldLabelFunction = (props, ref) => {
           },
           children: [
             prefix,
-            /* @__PURE__ */ jsx("span", { style: { paddingInlineStart: 4, display: "flex" }, children: typeof str === "string" ? str?.toString()?.substr?.(0, VALUE_MAX_LENGTH) : str }),
+            /* @__PURE__ */ jsx("span", { style: { paddingInlineStart: 4, display: "flex" }, children: typeof str === "string" ? (_b3 = (_a3 = str == null ? void 0 : str.toString()) == null ? void 0 : _a3.substr) == null ? void 0 : _b3.call(_a3, 0, VALUE_MAX_LENGTH) : str }),
             tail
           ]
         }
@@ -1519,7 +1537,7 @@ const FieldLabelFunction = (props, ref) => {
         className: classNames(
           prefixCls,
           hashId,
-          `${prefixCls}-${props.size ?? size ?? "middle"}`,
+          `${prefixCls}-${(_d = (_c2 = props.size) != null ? _c2 : size) != null ? _d : "middle"}`,
           {
             [`${prefixCls}-active`]: !!value || value === 0,
             [`${prefixCls}-disabled`]: disabled,
@@ -1531,7 +1549,8 @@ const FieldLabelFunction = (props, ref) => {
         style,
         ref: labelRef,
         onClick: () => {
-          props?.onClick?.();
+          var _a3;
+          (_a3 = props == null ? void 0 : props.onClick) == null ? void 0 : _a3.call(props);
         },
         children: [
           getTextByValue(label, value),
@@ -1546,13 +1565,13 @@ const FieldLabelFunction = (props, ref) => {
               ),
               onClick: (e) => {
                 if (!disabled)
-                  onClear?.();
+                  onClear == null ? void 0 : onClear();
                 e.stopPropagation();
               },
               ref: clearRef
             }
           ),
-          downIcon !== false ? downIcon ?? /* @__PURE__ */ jsx(
+          downIcon !== false ? downIcon != null ? downIcon : /* @__PURE__ */ jsx(
             ExpandMoreIcon,
             {
               className: classNames(
@@ -1568,7 +1587,6 @@ const FieldLabelFunction = (props, ref) => {
   );
 };
 const FieldLabel = React__default.forwardRef(FieldLabelFunction);
-
 const omitUndefined = (obj) => {
   const newObj = {};
   Object.keys(obj || {}).forEach((key) => {
@@ -1581,7 +1599,6 @@ const omitUndefined = (obj) => {
   }
   return newObj;
 };
-
 const semver = /^[v^~<>=]*?(\d+)(?:\.([x*]|\d+)(?:\.([x*]|\d+)(?:\.([x*]|\d+))?(?:-([\da-z\-]+(?:\.[\da-z\-]+)*))?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?)?)?$/i;
 const isWildcard = (s) => s === "*" || s === "x" || s === "X";
 const tryParse = (v) => {
@@ -1607,9 +1624,10 @@ const compareSegments = (a, b) => {
   }
   return 0;
 };
-const validateAndParse = (version) => {
-  const match = version.match(semver);
-  match?.shift?.();
+const validateAndParse = (version2) => {
+  var _a2;
+  const match = version2.match(semver);
+  (_a2 = match == null ? void 0 : match.shift) == null ? void 0 : _a2.call(match);
   return match;
 };
 const compareVersions = (v1, v2) => {
@@ -1625,12 +1643,12 @@ const compareVersions = (v1, v2) => {
   }
   return 0;
 };
-
 const version$3 = "5.1.7";
 const getVersion$1 = () => {
+  var _a2;
   if (typeof process === "undefined")
     return version$3;
-  return process?.env?.VERSION || version$3;
+  return ((_a2 = process == null ? void 0 : process.env) == null ? void 0 : _a2.VERSION) || version$3;
 };
 const openVisibleCompatible = (open, onOpenChange) => {
   const props = compareVersions(getVersion$1(), "4.23.0") > -1 ? {
@@ -1642,11 +1660,10 @@ const openVisibleCompatible = (open, onOpenChange) => {
   };
   return omitUndefined(props);
 };
-
-const genProStyle$a = (token) => {
-  const progressBgCls = `${token.ipassCls}-progress-bg`;
+const genProStyle$a = (token2) => {
+  const progressBgCls = `${token2.ipassCls}-progress-bg`;
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       "&-multiple": {
         paddingBlockStart: 6,
         paddingBlockEnd: 12,
@@ -1655,17 +1672,17 @@ const genProStyle$a = (token) => {
       "&-progress": {
         "&-success": {
           [progressBgCls]: {
-            backgroundColor: token.colorSuccess
+            backgroundColor: token2.colorSuccess
           }
         },
         "&-error": {
           [progressBgCls]: {
-            backgroundColor: token.colorError
+            backgroundColor: token2.colorError
           }
         },
         "&-warning": {
           [progressBgCls]: {
-            backgroundColor: token.colorWarning
+            backgroundColor: token2.colorWarning
           }
         }
       },
@@ -1682,35 +1699,33 @@ const genProStyle$a = (token) => {
             "&-circle": {
               width: "6px",
               height: "6px",
-              backgroundColor: token.colorTextSecondary,
+              backgroundColor: token2.colorTextSecondary,
               borderRadius: "4px"
             }
           },
           "&-loading": {
-            color: token.colorPrimary
+            color: token2.colorPrimary
           },
-          "&-error": { color: token.colorError },
+          "&-error": { color: token2.colorError },
           "&-success": {
-            color: token.colorSuccess
+            color: token2.colorSuccess
           }
         },
         "&-text": {
-          color: token.colorText
+          color: token2.colorText
         }
       }
     }
   };
 };
 function useStyle$x(prefixCls) {
-  return useStyle$A("InlineErrorFormItem", (token) => {
-    const proToken = {
-      ...token,
+  return useStyle$A("InlineErrorFormItem", (token2) => {
+    const proToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProStyle$a(proToken)];
   });
 }
-
 const FIX_INLINE_STYLE = {
   marginBlockStart: -5,
   marginBlockEnd: -5,
@@ -1722,7 +1737,7 @@ const InlineErrorFormItemPopover = ({ inputProps, input, extra, errorList, popov
   const [errorStringList, setErrorList] = useState([]);
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const prefixCls = getPrefixCls();
-  const token = useToken();
+  const token2 = useToken();
   const { wrapSSR, hashId } = useStyle$x(`${prefixCls}-form-item-with-help`);
   useEffect(() => {
     if (inputProps.validateStatus !== "validating") {
@@ -1740,17 +1755,17 @@ const InlineErrorFormItemPopover = ({ inputProps, input, extra, errorList, popov
   const loading = inputProps.validateStatus === "validating";
   return /* @__PURE__ */ jsx(
     Popover,
-    {
-      trigger: popoverProps?.trigger || ["click"],
-      placement: popoverProps?.placement || "topLeft",
-      ...popoverOpenProps,
-      getPopupContainer: popoverProps?.getPopupContainer,
-      getTooltipContainer: popoverProps?.getTooltipContainer,
+    __spreadProps(__spreadValues(__spreadProps(__spreadValues({
+      trigger: (popoverProps == null ? void 0 : popoverProps.trigger) || ["click"],
+      placement: (popoverProps == null ? void 0 : popoverProps.placement) || "topLeft"
+    }, popoverOpenProps), {
+      getPopupContainer: popoverProps == null ? void 0 : popoverProps.getPopupContainer,
+      getTooltipContainer: popoverProps == null ? void 0 : popoverProps.getTooltipContainer,
       content: wrapSSR(
         /* @__PURE__ */ jsx(
           "div",
           {
-            className: `${prefixCls}-form-item ${hashId} ${token.hashId}`.trim(),
+            className: `${prefixCls}-form-item ${hashId} ${token2.hashId}`.trim(),
             style: {
               margin: 0,
               padding: 0
@@ -1758,7 +1773,7 @@ const InlineErrorFormItemPopover = ({ inputProps, input, extra, errorList, popov
             children: /* @__PURE__ */ jsxs(
               "div",
               {
-                className: `${prefixCls}-form-item-with-help ${hashId} ${token.hashId}`.trim(),
+                className: `${prefixCls}-form-item-with-help ${hashId} ${token2.hashId}`.trim(),
                 children: [
                   loading ? /* @__PURE__ */ jsx(CircularProgress, {}) : null,
                   errorList
@@ -1767,26 +1782,31 @@ const InlineErrorFormItemPopover = ({ inputProps, input, extra, errorList, popov
             )
           }
         )
-      ),
-      ...popoverProps,
+      )
+    }), popoverProps), {
       children: /* @__PURE__ */ jsxs(Fragment, { children: [
         input,
         extra
       ] })
-    },
+    }),
     "popover"
   );
 };
-const InternalFormItemFunction = ({
-  rules,
-  name,
-  children,
-  popoverProps,
-  ...rest
-}) => {
+const InternalFormItemFunction = (_d) => {
+  var _e = _d, {
+    rules,
+    name,
+    children,
+    popoverProps
+  } = _e, rest = __objRest(_e, [
+    "rules",
+    "name",
+    "children",
+    "popoverProps"
+  ]);
   return /* @__PURE__ */ jsx(
     Form.Item,
-    {
+    __spreadProps(__spreadValues({
       name,
       rules,
       hasFeedback: false,
@@ -1807,39 +1827,35 @@ const InternalFormItemFunction = ({
         mark: "pro_table_render",
         render: (inputProps, doms) => /* @__PURE__ */ jsx(
           InlineErrorFormItemPopover,
-          {
+          __spreadValues({
             inputProps,
-            popoverProps,
-            ...doms
-          }
+            popoverProps
+          }, doms)
         )
-      },
-      ...rest,
-      style: {
-        ...FIX_INLINE_STYLE,
-        ...rest?.style
-      },
+      }
+    }, rest), {
+      style: __spreadValues(__spreadValues({}, FIX_INLINE_STYLE), rest == null ? void 0 : rest.style),
       children
-    }
+    })
   );
 };
 const InlineErrorFormItem = (props) => {
-  const { errorType, rules, name, popoverProps, children, ...rest } = props;
-  if (name && rules?.length && errorType === "popover") {
+  const _a2 = props, { errorType, rules, name, popoverProps, children } = _a2, rest = __objRest(_a2, ["errorType", "rules", "name", "popoverProps", "children"]);
+  if (name && (rules == null ? void 0 : rules.length) && errorType === "popover") {
     return /* @__PURE__ */ jsx(
       InternalFormItemFunction,
-      {
+      __spreadProps(__spreadValues({
         name,
         rules,
-        popoverProps,
-        ...rest,
+        popoverProps
+      }, rest), {
         children
-      }
+      })
     );
   }
   return /* @__PURE__ */ jsx(
     Form.Item,
-    {
+    __spreadProps(__spreadValues({
       rules,
       shouldUpdate: name ? (prev, next) => {
         if (prev === next)
@@ -1853,18 +1869,17 @@ const InlineErrorFormItem = (props) => {
         } catch (error) {
           return true;
         }
-      } : void 0,
-      ...rest,
-      style: { ...FIX_INLINE_STYLE, ...rest.style },
+      } : void 0
+    }, rest), {
+      style: __spreadValues(__spreadValues({}, FIX_INLINE_STYLE), rest.style),
       name,
       children
-    }
+    })
   );
 };
-
-const genProStyle$9 = (token) => {
+const genProStyle$9 = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       display: "inline-flex",
       alignItems: "center",
       maxWidth: "100%",
@@ -1873,15 +1888,15 @@ const genProStyle$9 = (token) => {
         marginInlineStart: "4px",
         cursor: "pointer",
         "&:hover": {
-          color: token.colorPrimary
+          color: token2.colorPrimary
         }
       },
       "&-title": { display: "inline-flex", flex: "1" },
       "&-subtitle ": {
         marginInlineStart: 8,
-        color: token.colorTextSecondary,
+        color: token2.colorTextSecondary,
         fontWeight: "normal",
-        fontSize: token.fontSize,
+        fontSize: token2.fontSize,
         whiteSpace: "nowrap"
       },
       "&-title-ellipsis": {
@@ -1894,15 +1909,13 @@ const genProStyle$9 = (token) => {
   };
 };
 function useStyle$w(prefixCls) {
-  return useStyle$A("LabelIconTip", (token) => {
-    const proToken = {
-      ...token,
+  return useStyle$A("LabelIconTip", (token2) => {
+    const proToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProStyle$9(proToken)];
   });
 }
-
 const LabelIconTip = React__default.memo((props) => {
   const { label, tooltip, ellipsis, subTitle } = props;
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
@@ -1912,7 +1925,7 @@ const LabelIconTip = React__default.memo((props) => {
     return /* @__PURE__ */ jsx(Fragment, { children: label });
   }
   const tooltipProps = typeof tooltip === "string" || React__default.isValidElement(tooltip) ? { title: tooltip } : tooltip;
-  const icon = tooltipProps?.icon || /* @__PURE__ */ jsx(InfoIcon, {});
+  const icon = (tooltipProps == null ? void 0 : tooltipProps.icon) || /* @__PURE__ */ jsx(InfoIcon, {});
   return wrapSSR(
     /* @__PURE__ */ jsxs(
       "div",
@@ -1932,17 +1945,14 @@ const LabelIconTip = React__default.memo((props) => {
             }
           ),
           subTitle && /* @__PURE__ */ jsx("div", { className: `${className}-subtitle ${hashId}`.trim(), children: subTitle }),
-          tooltip && /* @__PURE__ */ jsx(Tooltip, { ...tooltipProps, children: /* @__PURE__ */ jsx("span", { className: `${className}-icon ${hashId}`.trim(), children: icon }) })
+          tooltip && /* @__PURE__ */ jsx(Tooltip, __spreadProps(__spreadValues({}, tooltipProps), { children: /* @__PURE__ */ jsx("span", { className: `${className}-icon ${hashId}`.trim(), children: icon }) }))
         ]
       }
     )
   );
 });
-
 const ProFormContext = React__default.createContext({});
-
 const isNil = (value) => value === null || value === void 0;
-
 dayjs.extend(quarterOfYear);
 const dateFormatterMap = {
   time: "HH:mm:ss",
@@ -1973,8 +1983,8 @@ function isPlainObject(o) {
   }
   return true;
 }
-const isMoment$1 = (value) => !!value?._isAMomentObject;
-const convertMoment = (value, dateFormatter, valueType) => {
+const isMoment$1 = (value) => !!(value == null ? void 0 : value._isAMomentObject);
+const convertMoment = (value, dateFormatter, valueType2) => {
   if (!dateFormatter) {
     return value;
   }
@@ -1983,13 +1993,13 @@ const convertMoment = (value, dateFormatter, valueType) => {
       return value.valueOf();
     }
     if (dateFormatter === "string") {
-      return value.format(dateFormatterMap[valueType] || "YYYY-MM-DD HH:mm:ss");
+      return value.format(dateFormatterMap[valueType2] || "YYYY-MM-DD HH:mm:ss");
     }
     if (typeof dateFormatter === "string" && dateFormatter !== "string") {
       return value.format(dateFormatter);
     }
     if (typeof dateFormatter === "function") {
-      return dateFormatter(value, valueType);
+      return dateFormatter(value, valueType2);
     }
   }
   return value;
@@ -2004,12 +2014,12 @@ const conversionMomentValue = (value, dateFormatter, valueTypeMap, omitNil, pare
   Object.keys(value).forEach((valueKey) => {
     const namePath = parentKey ? [parentKey, valueKey].flat(1) : [valueKey];
     const valueFormatMap = get$1(valueTypeMap, namePath) || "text";
-    let valueType = "text";
+    let valueType2 = "text";
     let dateFormat;
     if (typeof valueFormatMap === "string") {
-      valueType = valueFormatMap;
+      valueType2 = valueFormatMap;
     } else if (valueFormatMap) {
-      valueType = valueFormatMap.valueType;
+      valueType2 = valueFormatMap.valueType;
       dateFormat = valueFormatMap.dateFormat;
     }
     const itemValue = value[valueKey];
@@ -2030,12 +2040,12 @@ const conversionMomentValue = (value, dateFormatter, valueTypeMap, omitNil, pare
       return;
     }
     if (Array.isArray(itemValue)) {
-      tmpValue[valueKey] = itemValue.map((arrayValue, index) => {
+      tmpValue[valueKey] = itemValue.map((arrayValue, index2) => {
         if (dayjs.isDayjs(arrayValue) || isMoment$1(arrayValue)) {
           return convertMoment(
             arrayValue,
             dateFormat || dateFormatter,
-            valueType
+            valueType2
           );
         }
         return conversionMomentValue(
@@ -2043,7 +2053,7 @@ const conversionMomentValue = (value, dateFormatter, valueTypeMap, omitNil, pare
           dateFormatter,
           valueTypeMap,
           omitNil,
-          [valueKey, `${index}`].flat(1)
+          [valueKey, `${index2}`].flat(1)
         );
       });
       return;
@@ -2051,12 +2061,11 @@ const conversionMomentValue = (value, dateFormatter, valueTypeMap, omitNil, pare
     tmpValue[valueKey] = convertMoment(
       itemValue,
       dateFormat || dateFormatter,
-      valueType
+      valueType2
     );
   });
   return tmpValue;
 };
-
 const formatString = (endText, format) => {
   if (typeof format === "function") {
     return format(dayjs(endText));
@@ -2079,18 +2088,19 @@ const dateArrayFormatter = (value, format) => {
   const valueStr = parsedStartText && parsedEndText ? `${parsedStartText} ~ ${parsedEndText}` : "";
   return valueStr;
 };
-
 const isNeedTranText = (item) => {
-  if (item?.valueType?.toString().startsWith("date")) {
+  var _a2;
+  if ((_a2 = item == null ? void 0 : item.valueType) == null ? void 0 : _a2.toString().startsWith("date")) {
     return true;
   }
-  if (item?.valueType === "select" || item?.valueEnum) {
+  if ((item == null ? void 0 : item.valueType) === "select" || (item == null ? void 0 : item.valueEnum)) {
     return true;
   }
   return false;
 };
 const getEllipsis = (item) => {
-  if (item.ellipsis?.showTitle === false) {
+  var _a2;
+  if (((_a2 = item.ellipsis) == null ? void 0 : _a2.showTitle) === false) {
     return false;
   }
   return item.ellipsis;
@@ -2105,7 +2115,7 @@ const genCopyable = (dom, item, text) => {
     const ellipsis = getEllipsis(item) && text ? {
       tooltip: (
         // 支援一下 tooltip 的關閉
-        item?.tooltip !== false && needTranText ? /* @__PURE__ */ jsx("div", { className: "pro-table-tooltip-text", children: dom }) : text
+        (item == null ? void 0 : item.tooltip) !== false && needTranText ? /* @__PURE__ */ jsx("div", { className: "pro-table-tooltip-text", children: dom }) : text
       )
     } : false;
     return /* @__PURE__ */ jsx(
@@ -2125,24 +2135,21 @@ const genCopyable = (dom, item, text) => {
   }
   return dom;
 };
-
 function runFunction(valueEnum, ...rest) {
   if (typeof valueEnum === "function") {
     return valueEnum(...rest);
   }
   return valueEnum;
 }
-
 const getFieldPropsOrFormItemProps = (fieldProps, form, extraProps) => {
   if (form === void 0) {
     return fieldProps;
   }
   return runFunction(fieldProps, form, extraProps);
 };
-
-function coverToNewToken(token) {
+function coverToNewToken(token2) {
   if (compareVersions(getVersion$1(), "5.6.0") < 0)
-    return token;
+    return token2;
   const deprecatedTokens = {
     colorGroupTitle: "groupTitleColor",
     radiusItem: "itemBorderRadius",
@@ -2168,7 +2175,7 @@ function coverToNewToken(token) {
     colorActiveBarHeight: "activeBarHeight",
     colorActiveBarBorderSize: "activeBarBorderWidth"
   };
-  const newToken = { ...token };
+  const newToken = __spreadValues({}, token2);
   Object.keys(deprecatedTokens).forEach((key) => {
     if (newToken[key] !== void 0) {
       newToken[deprecatedTokens[key]] = newToken[key];
@@ -2177,15 +2184,14 @@ function coverToNewToken(token) {
   });
   return newToken;
 }
-
 const useRefFunction = (reFunction) => {
   const ref = useRef(null);
   ref.current = reFunction;
   return useCallback((...rest) => {
-    return ref.current?.(...rest);
+    var _a2;
+    return (_a2 = ref.current) == null ? void 0 : _a2.call(ref, ...rest);
   }, []);
 };
-
 function useDebounceFn(fn, wait) {
   const callback = useRefFunction(fn);
   const timer = useRef();
@@ -2196,18 +2202,18 @@ function useDebounceFn(fn, wait) {
     }
   }, []);
   const run = useCallback(
-    async (...args) => {
+    (...args) => __async(this, null, function* () {
       if (wait === 0 || wait === void 0) {
         return callback(...args);
       }
       cancel();
       return new Promise((resolve) => {
-        timer.current = setTimeout(async () => {
-          resolve(await callback(...args));
+        timer.current = setTimeout(() => __async(this, null, function* () {
+          resolve(yield callback(...args));
           return;
-        }, wait);
+        }), wait);
       });
-    },
+    }),
     [callback, cancel, wait]
   );
   useEffect(() => {
@@ -2218,13 +2224,11 @@ function useDebounceFn(fn, wait) {
     cancel
   };
 }
-
 const useLatest = (value) => {
   const ref = useRef(value);
   ref.current = value;
   return ref;
 };
-
 function useDebounceValue(value, delay = 100, deps) {
   const [debouncedValue, setDebouncedValue] = useState(value);
   const valueRef = useLatest(value);
@@ -2240,7 +2244,6 @@ function useDebounceValue(value, delay = 100, deps) {
   );
   return debouncedValue;
 }
-
 function isDeepEqualReact(a, b, ignoreKeys, debug) {
   if (a === b)
     return true;
@@ -2302,7 +2305,7 @@ function isDeepEqualReact(a, b, ignoreKeys, debug) {
         return false;
     for (i = length; i-- !== 0; ) {
       const key = keys[i];
-      if (ignoreKeys?.includes(key))
+      if (ignoreKeys == null ? void 0 : ignoreKeys.includes(key))
         continue;
       if (key === "_owner" && a.$$typeof) {
         continue;
@@ -2318,7 +2321,6 @@ function isDeepEqualReact(a, b, ignoreKeys, debug) {
   }
   return a !== a && b !== b;
 }
-
 const isDeepEqual = (a, b, ignoreKeys) => isDeepEqualReact(a, b, ignoreKeys);
 function useDeepCompareMemoize(value, ignoreKeys) {
   const ref = useRef();
@@ -2331,18 +2333,16 @@ function useDeepCompareEffect(effect, dependencies, ignoreKeys) {
   useEffect(effect, useDeepCompareMemoize(dependencies || [], ignoreKeys));
 }
 function useDeepCompareEffectDebounce(effect, dependencies, ignoreKeys, waitTime) {
-  const effectDn = useDebounceFn(async () => {
+  const effectDn = useDebounceFn(() => __async(this, null, function* () {
     effect();
-  }, waitTime || 16);
+  }), waitTime || 16);
   useEffect(() => {
     effectDn.run();
   }, useDeepCompareMemoize(dependencies || [], ignoreKeys));
 }
-
 function useDeepCompareMemo(factory, dependencies) {
   return React__default.useMemo(factory, useDeepCompareMemoize(dependencies));
 }
-
 let testId = 0;
 function useFetchData$2(props) {
   const abortRef = useRef(null);
@@ -2354,20 +2354,22 @@ function useFetchData$2(props) {
     return testId.toString();
   });
   const proFieldKeyRef = useRef(cacheKey);
-  const fetchData = async () => {
-    abortRef.current?.abort();
+  const fetchData = () => __async(this, null, function* () {
+    var _a2, _b2;
+    (_a2 = abortRef.current) == null ? void 0 : _a2.abort();
     const abort = new AbortController();
     abortRef.current = abort;
-    const loadData = await Promise.race([
-      props.request?.(props.params, props),
+    const loadData = yield Promise.race([
+      (_b2 = props.request) == null ? void 0 : _b2.call(props, props.params, props),
       new Promise((_, reject) => {
-        abortRef.current?.signal?.addEventListener("abort", () => {
+        var _a3, _b3;
+        (_b3 = (_a3 = abortRef.current) == null ? void 0 : _a3.signal) == null ? void 0 : _b3.addEventListener("abort", () => {
           reject(new Error("aborted"));
         });
       })
     ]);
     return loadData;
-  };
+  });
   useEffect(() => {
     return () => {
       testId += 1;
@@ -2384,7 +2386,6 @@ function useFetchData$2(props) {
   );
   return [data || error];
 }
-
 const usePrevious = (state) => {
   const ref = useRef();
   useEffect(() => {
@@ -2392,13 +2393,11 @@ const usePrevious = (state) => {
   });
   return ref.current;
 };
-
 function useForceRender() {
   const [, setValue] = useState(true);
   const updateValue = useCallback(() => setValue((oldValue) => !oldValue), []);
   return updateValue;
 }
-
 function useRefCallback(callback, initialValue) {
   const ref = useMemo(() => {
     const defaultValue = {
@@ -2416,13 +2415,11 @@ function useRefCallback(callback, initialValue) {
   }, []);
   return ref;
 }
-
 function useReactiveRef(initialValue) {
   const forceRender = useForceRender();
   const ref = useRefCallback(forceRender, initialValue);
   return ref;
 }
-
 const isNode = typeof process !== "undefined" && process.versions != null && process.versions.node != null;
 const isBrowser = () => {
   if (typeof process !== "undefined" && false) {
@@ -2430,19 +2427,16 @@ const isBrowser = () => {
   }
   return typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.matchMedia !== "undefined" && !isNode;
 };
-
-const isDropdownValueType = (valueType) => {
+const isDropdownValueType = (valueType2) => {
   let isDropdown = false;
-  if (typeof valueType === "string" && valueType.startsWith("date") && !valueType.endsWith("Range") || valueType === "select" || valueType === "time") {
+  if (typeof valueType2 === "string" && valueType2.startsWith("date") && !valueType2.endsWith("Range") || valueType2 === "select" || valueType2 === "time") {
     isDropdown = true;
   }
   return isDropdown;
 };
-
 function isImg(path) {
   return /\w.(png|jpg|jpeg|svg|webp|gif|bmp)$/i.test(path);
 }
-
 const isUrl$1 = (path) => {
   if (!path)
     return false;
@@ -2456,7 +2450,6 @@ const isUrl$1 = (path) => {
     return false;
   }
 };
-
 let index$4 = 0;
 let genNanoid = (t = 21) => {
   if (typeof window === "undefined")
@@ -2478,18 +2471,17 @@ const nanoid = () => {
   }
   return genNanoid();
 };
-
 const omitBoolean = (obj) => {
   if (obj && obj !== true) {
     return obj;
   }
   return void 0;
 };
-
 const omitUndefinedAndEmptyArr = (obj) => {
   const newObj = {};
   Object.keys(obj || {}).forEach((key) => {
-    if (Array.isArray(obj[key]) && obj[key]?.length === 0) {
+    var _a2;
+    if (Array.isArray(obj[key]) && ((_a2 = obj[key]) == null ? void 0 : _a2.length) === 0) {
       return;
     }
     if (obj[key] === void 0) {
@@ -2499,10 +2491,9 @@ const omitUndefinedAndEmptyArr = (obj) => {
   });
   return newObj;
 };
-
 dayjs.extend(customParseFormat);
-const isMoment = (value) => !!value?._isAMomentObject;
-const parseValueToDay = (value, formatter) => {
+const isMoment = (value) => !!(value == null ? void 0 : value._isAMomentObject);
+const parseValueToDay = (value, formatter2) => {
   if (isNil(value) || dayjs.isDayjs(value) || isMoment(value)) {
     if (isMoment(value)) {
       return dayjs(value);
@@ -2511,14 +2502,13 @@ const parseValueToDay = (value, formatter) => {
   }
   if (Array.isArray(value)) {
     return value.map(
-      (v) => parseValueToDay(v, formatter)
+      (v) => parseValueToDay(v, formatter2)
     );
   }
   if (typeof value === "number")
     return dayjs(value);
-  return dayjs(value, formatter);
+  return dayjs(value, formatter2);
 };
-
 const ipassFormItemPropsList = [
   "colon",
   "dependencies",
@@ -2559,7 +2549,6 @@ function pickProFormItemProps(props) {
   });
   return attrs;
 }
-
 const proFieldProps = `valueType request plain renderFormItem render text formItemProps valueEnum`;
 const proFormProps = `fieldProps isDefaultDom groupProps contentRender submitterProps submitter`;
 function pickProProps(props) {
@@ -2573,7 +2562,6 @@ function pickProProps(props) {
   });
   return attrs;
 }
-
 const stringify = configure({
   bigint: true,
   circularValue: "Magic circle!",
@@ -2581,7 +2569,6 @@ const stringify = configure({
   maximumDepth: 4
   //   maximumBreadth: 4,
 });
-
 function isPlainObj(itemValue) {
   if (typeof itemValue !== "object")
     return false;
@@ -2605,7 +2592,7 @@ function isPlainObj(itemValue) {
     return false;
   return true;
 }
-const transformKeySubmitValue = (values, dataFormatMapRaw, omit = true) => {
+const transformKeySubmitValue = (values, dataFormatMapRaw, omit2 = true) => {
   const dataFormatMap = Object.keys(dataFormatMapRaw).reduce((ret, key) => {
     const value = dataFormatMapRaw[key];
     if (!isNil(value)) {
@@ -2636,7 +2623,7 @@ const transformKeySubmitValue = (values, dataFormatMapRaw, omit = true) => {
           (transform2, idx) => {
             if (!transform2)
               return;
-            const subTransformItem = subItemValue?.[idx];
+            const subTransformItem = subItemValue == null ? void 0 : subItemValue[idx];
             if (typeof transform2 === "function") {
               subItemValue[idx] = transform2(
                 subItemValue,
@@ -2646,7 +2633,7 @@ const transformKeySubmitValue = (values, dataFormatMapRaw, omit = true) => {
             }
             if (typeof transform2 === "object" && !Array.isArray(transform2)) {
               Object.keys(transform2).forEach((transformArrayItem) => {
-                const subTransformItemValue = subTransformItem?.[transformArrayItem];
+                const subTransformItemValue = subTransformItem == null ? void 0 : subTransformItem[transformArrayItem];
                 if (typeof transform2[transformArrayItem] === "function" && subTransformItemValue) {
                   const res = transform2[transformArrayItem](
                     subTransformItem[transformArrayItem],
@@ -2675,7 +2662,7 @@ const transformKeySubmitValue = (values, dataFormatMapRaw, omit = true) => {
       const transform = () => {
         let tempKey, transformedResult, isTransformedResultPrimitive = false;
         if (typeof transformFunction === "function") {
-          transformedResult = transformFunction?.(
+          transformedResult = transformFunction == null ? void 0 : transformFunction(
             itemValue,
             entityKey,
             tempValues
@@ -2697,7 +2684,7 @@ const transformKeySubmitValue = (values, dataFormatMapRaw, omit = true) => {
         if (typeof tempKey === "object" && !Array.isArray(finalValues)) {
           finalValues = merge$1(finalValues, tempKey);
         } else if (typeof tempKey === "object" && Array.isArray(finalValues)) {
-          result = { ...result, ...tempKey };
+          result = __spreadValues(__spreadValues({}, result), tempKey);
         } else if (tempKey !== null || tempKey !== void 0) {
           result = set(
             result,
@@ -2721,12 +2708,11 @@ const transformKeySubmitValue = (values, dataFormatMapRaw, omit = true) => {
       }
       transform();
     });
-    return omit ? result : tempValues;
+    return omit2 ? result : tempValues;
   };
   finalValues = Array.isArray(values) && Array.isArray(finalValues) ? [...gen(values)] : merge({}, gen(values), finalValues);
   return finalValues;
 };
-
 function useMediaQuery(mediaQuery) {
   const isSsr = typeof window === "undefined";
   const [matches, setMatches] = useState(
@@ -2743,7 +2729,6 @@ function useMediaQuery(mediaQuery) {
   }, [mediaQuery]);
   return matches;
 }
-
 const MediaQueryEnum = {
   xs: {
     maxWidth: 575,
@@ -2830,103 +2815,65 @@ const useBreakpoint = () => {
   }, [isMd, isLg, isXxl, isXl, isSm, isXs]);
   return colSpan;
 };
-
-const sha256 = function sha256(ascii) {
+const sha256 = function sha2562(ascii) {
   function rightRotate(value, amount) {
-    return (value >>> amount) | (value << (32 - amount))
+    return value >>> amount | value << 32 - amount;
   }
-
   const mathPow = Math.pow;
   const maxWord = mathPow(2, 32);
-  const lengthProperty = 'length';
-  let i, j; // Used as a counter across the whole file
-  let result = '';
-
+  const lengthProperty = "length";
+  let i, j;
+  let result = "";
   const words = [];
   const asciiBitLength = ascii[lengthProperty] * 8;
-
-  //* caching results is optional - remove/add slash from front of this line to toggle
-  // Initial hash value: first 32 bits of the fractional parts of the square roots of the first 8 primes
-  // (we actually calculate the first 64, but extra values are just ignored)
-  let hash = sha256.h = sha256.h || [];
-  // Round constants: first 32 bits of the fractional parts of the cube roots of the first 64 primes
-  const k = sha256.k = sha256.k || [];
+  let hash = sha2562.h = sha2562.h || [];
+  const k = sha2562.k = sha2562.k || [];
   let primeCounter = k[lengthProperty];
-  /*/
-  const hash = [], k = [];
-  const primeCounter = 0;
-  //*/
-
   const isComposite = {};
   for (let candidate = 2; primeCounter < 64; candidate++) {
     if (!isComposite[candidate]) {
       for (i = 0; i < 313; i += candidate) {
         isComposite[i] = candidate;
       }
-      hash[primeCounter] = (mathPow(candidate, .5) * maxWord) | 0;
-      k[primeCounter++] = (mathPow(candidate, 1 / 3) * maxWord) | 0;
+      hash[primeCounter] = mathPow(candidate, 0.5) * maxWord | 0;
+      k[primeCounter++] = mathPow(candidate, 1 / 3) * maxWord | 0;
     }
   }
-
-  ascii += '\x80'; // Append Ƈ' bit (plus zero padding)
-  while (ascii[lengthProperty] % 64 - 56) ascii += '\x00'; // More zero padding
+  ascii += "";
+  while (ascii[lengthProperty] % 64 - 56)
+    ascii += "\0";
   for (i = 0; i < ascii[lengthProperty]; i++) {
     j = ascii.charCodeAt(i);
-    if (j >> 8) return // ASCII check: only accept characters in range 0-255
-    words[i >> 2] |= j << ((3 - i) % 4) * 8;
+    if (j >> 8)
+      return;
+    words[i >> 2] |= j << (3 - i) % 4 * 8;
   }
-  words[words[lengthProperty]] = ((asciiBitLength / maxWord) | 0);
-  words[words[lengthProperty]] = (asciiBitLength);
-
-  // process each chunk
-  for (j = 0; j < words[lengthProperty];) {
-    const w = words.slice(j, j += 16); // The message is expanded into 64 words as part of the iteration
+  words[words[lengthProperty]] = asciiBitLength / maxWord | 0;
+  words[words[lengthProperty]] = asciiBitLength;
+  for (j = 0; j < words[lengthProperty]; ) {
+    const w = words.slice(j, j += 16);
     const oldHash = hash;
-    // This is now the undefinedworking hash", often labelled as constiables a...g
-    // (we have to truncate as well, otherwise extra entries at the end accumulate
     hash = hash.slice(0, 8);
-
     for (i = 0; i < 64; i++) {
-      // Expand the message into 64 words
-      // Used below if 
       const w15 = w[i - 15], w2 = w[i - 2];
-
-      // Iterate
       const a = hash[0], e = hash[4];
-      const temp1 = hash[7]
-        + (rightRotate(e, 6) ^ rightRotate(e, 11) ^ rightRotate(e, 25)) // S1
-        + ((e & hash[5]) ^ ((~e) & hash[6])) // ch
-        + k[i]
-        // Expand the message schedule if needed
-        + (w[i] = (i < 16) ? w[i] : (
-          w[i - 16]
-          + (rightRotate(w15, 7) ^ rightRotate(w15, 18) ^ (w15 >>> 3)) // s0
-          + w[i - 7]
-          + (rightRotate(w2, 17) ^ rightRotate(w2, 19) ^ (w2 >>> 10)) // s1
-        ) | 0
-        );
-      // This is only used once, so *could* be moved below, but it only saves 4 bytes and makes things unreadble
-      const temp2 = (rightRotate(a, 2) ^ rightRotate(a, 13) ^ rightRotate(a, 22)) // S0
-        + ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2])); // maj
-
-      hash = [(temp1 + temp2) | 0].concat(hash); // We don't bother trimming off the extra ones, they're harmless as long as we're truncating when we do the slice()
-      hash[4] = (hash[4] + temp1) | 0;
+      const temp1 = hash[7] + (rightRotate(e, 6) ^ rightRotate(e, 11) ^ rightRotate(e, 25)) + (e & hash[5] ^ ~e & hash[6]) + k[i] + (w[i] = i < 16 ? w[i] : w[i - 16] + (rightRotate(w15, 7) ^ rightRotate(w15, 18) ^ w15 >>> 3) + w[i - 7] + (rightRotate(w2, 17) ^ rightRotate(w2, 19) ^ w2 >>> 10) | 0);
+      const temp2 = (rightRotate(a, 2) ^ rightRotate(a, 13) ^ rightRotate(a, 22)) + (a & hash[1] ^ a & hash[2] ^ hash[1] & hash[2]);
+      hash = [temp1 + temp2 | 0].concat(hash);
+      hash[4] = hash[4] + temp1 | 0;
     }
-
     for (i = 0; i < 8; i++) {
-      hash[i] = (hash[i] + oldHash[i]) | 0;
+      hash[i] = hash[i] + oldHash[i] | 0;
     }
   }
-
   for (i = 0; i < 8; i++) {
     for (j = 3; j + 1; j--) {
-      const b = (hash[i] >> (j * 8)) & 255;
-      result += ((b < 16) ? 0 : '') + b.toString(16);
+      const b = hash[i] >> j * 8 & 255;
+      result += (b < 16 ? 0 : "") + b.toString(16);
     }
   }
-  return result
+  return result;
 };
-
 const CardLoading = ({ prefixCls }) => {
   const loadingBlockClass = `${prefixCls}-loading-block`;
   return /* @__PURE__ */ jsxs("div", { className: `${prefixCls}-loading-content`, children: [
@@ -2963,7 +2910,7 @@ const CardLoading = ({ prefixCls }) => {
 };
 const CheckCardGroupConnext = createContext(null);
 const CheckCardGroup = (props) => {
-  const {
+  const _a2 = props, {
     prefixCls: customizePrefixCls,
     className,
     style,
@@ -2971,12 +2918,20 @@ const CheckCardGroup = (props) => {
     loading = false,
     multiple = false,
     bordered = true,
-    onChange,
-    ...restProps
-  } = props;
+    onChange
+  } = _a2, restProps = __objRest(_a2, [
+    "prefixCls",
+    "className",
+    "style",
+    "options",
+    "loading",
+    "multiple",
+    "bordered",
+    "onChange"
+  ]);
   const configContext = useContext(ConfigProvider.ConfigContext);
   const getOptions = useCallback(() => {
-    return options?.map((option) => {
+    return options == null ? void 0 : options.map((option) => {
       if (typeof option === "string") {
         return {
           title: option,
@@ -3004,12 +2959,15 @@ const CheckCardGroup = (props) => {
   });
   const registerValueMap = useRef(/* @__PURE__ */ new Map());
   const registerValue = (value) => {
-    registerValueMap.current?.set(value, true);
+    var _a3;
+    (_a3 = registerValueMap.current) == null ? void 0 : _a3.set(value, true);
   };
   const cancelValue = (value) => {
-    registerValueMap.current?.delete(value);
+    var _a3;
+    (_a3 = registerValueMap.current) == null ? void 0 : _a3.delete(value);
   };
   const toggleOption = (option) => {
+    var _a3;
     if (!multiple) {
       let changeValue;
       changeValue = stateValue;
@@ -3018,12 +2976,12 @@ const CheckCardGroup = (props) => {
       } else {
         changeValue = option.value;
       }
-      setStateValue?.(changeValue);
+      setStateValue == null ? void 0 : setStateValue(changeValue);
     }
     if (multiple) {
       let changeValue = [];
       const stateValues = stateValue;
-      const hasOption = stateValues?.includes(option.value);
+      const hasOption = stateValues == null ? void 0 : stateValues.includes(option.value);
       changeValue = [...stateValues || []];
       if (!hasOption) {
         changeValue.push(option.value);
@@ -3034,7 +2992,7 @@ const CheckCardGroup = (props) => {
         );
       }
       const newOptions = getOptions();
-      const newValue = changeValue?.filter((val) => registerValueMap.current.has(val))?.sort((a, b) => {
+      const newValue = (_a3 = changeValue == null ? void 0 : changeValue.filter((val) => registerValueMap.current.has(val))) == null ? void 0 : _a3.sort((a, b) => {
         const indexA = newOptions.findIndex((opt) => opt.value === a);
         const indexB = newOptions.findIndex((opt) => opt.value === b);
         return indexA - indexB;
@@ -3046,25 +3004,28 @@ const CheckCardGroup = (props) => {
     if (loading) {
       return new Array(
         options.length || React__default.Children.toArray(props.children).length || 1
-      ).fill(0).map((_, index) => /* @__PURE__ */ jsx(CheckCard, { loading: true }, index));
+      ).fill(0).map((_, index2) => /* @__PURE__ */ jsx(CheckCard, { loading: true }, index2));
     }
     if (options && options.length > 0) {
       const optionValue = stateValue;
-      return getOptions().map((option) => /* @__PURE__ */ jsx(
-        CheckCard,
-        {
-          disabled: option.disabled,
-          size: option.size ?? props.size,
-          value: option.value,
-          checked: multiple ? optionValue?.includes(option.value) : optionValue === option.value,
-          onChange: option.onChange,
-          title: option.title,
-          avatar: option.avatar,
-          description: option.description,
-          cover: option.cover
-        },
-        option.value.toString()
-      ));
+      return getOptions().map((option) => {
+        var _a3;
+        return /* @__PURE__ */ jsx(
+          CheckCard,
+          {
+            disabled: option.disabled,
+            size: (_a3 = option.size) != null ? _a3 : props.size,
+            value: option.value,
+            checked: multiple ? optionValue == null ? void 0 : optionValue.includes(option.value) : optionValue === option.value,
+            onChange: option.onChange,
+            title: option.title,
+            avatar: option.avatar,
+            description: option.description,
+            cover: option.cover
+          },
+          option.value.toString()
+        );
+      });
     }
     return props.children;
   }, [
@@ -3091,23 +3052,22 @@ const CheckCardGroup = (props) => {
         registerValue,
         cancelValue
       },
-      children: /* @__PURE__ */ jsx("div", { className: classString, style, ...domProps, children })
+      children: /* @__PURE__ */ jsx("div", __spreadProps(__spreadValues({ className: classString, style }, domProps), { children }))
     }
   );
 };
-
-const proCheckCardActive = (token) => ({
-  backgroundColor: token.colorPrimaryBg,
-  borderColor: token.colorPrimary
+const proCheckCardActive = (token2) => ({
+  backgroundColor: token2.colorPrimaryBg,
+  borderColor: token2.colorPrimary
 });
-const proCheckCardDisabled = (token) => ({
-  backgroundColor: token.colorBgContainerDisabled,
-  borderColor: token.colorBorder,
+const proCheckCardDisabled = (token2) => ({
+  backgroundColor: token2.colorBgContainerDisabled,
+  borderColor: token2.colorBorder,
   cursor: "not-allowed",
-  [token.componentCls]: {
-    "&-description": { color: token.colorTextDisabled },
+  [token2.componentCls]: {
+    "&-description": { color: token2.colorTextDisabled },
     "&-title": {
-      color: token.colorTextDisabled
+      color: token2.colorTextDisabled
     },
     "&-avatar": {
       opacity: "0.25"
@@ -3119,20 +3079,20 @@ const cardLoading$1 = new Keyframes("card-loading", {
   "50%": { backgroundPosition: "100% 50%" },
   "100%": { backgroundPosition: "0 50%" }
 });
-const genProStyle$8 = (token) => {
+const genProStyle$8 = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       position: "relative",
       display: "inline-block",
       width: "320px",
       marginInlineEnd: "16px",
       marginBlockEnd: "16px",
-      color: token.colorText,
-      fontSize: token.fontSize,
-      lineHeight: token.lineHeight,
+      color: token2.colorText,
+      fontSize: token2.fontSize,
+      lineHeight: token2.lineHeight,
       verticalAlign: "top",
-      backgroundColor: token.colorBgContainer,
-      borderRadius: token.borderRadius,
+      backgroundColor: token2.colorBgContainer,
+      borderRadius: token2.borderRadius,
       cursor: "pointer",
       transition: `all 0.3s`,
       "&:last-child": {
@@ -3142,22 +3102,22 @@ const genProStyle$8 = (token) => {
         marginInlineStart: "0 !important"
       },
       "&-bordered": {
-        border: `${token.lineWidth}px solid ${token.colorBorder}`
+        border: `${token2.lineWidth}px solid ${token2.colorBorder}`
       },
       "&-group": {
         display: "inline-block"
       },
-      [`${token.componentCls}-loading`]: {
+      [`${token2.componentCls}-loading`]: {
         overflow: "hidden",
         userSelect: "none",
         "&-content": {
-          paddingInline: token.padding,
-          paddingBlock: token.paddingSM,
+          paddingInline: token2.padding,
+          paddingBlock: token2.paddingSM,
           p: {
             marginBlock: 0,
             marginInline: 0
           },
-          [`${token.componentCls}-loading-block`]: {
+          [`${token2.componentCls}-loading-block`]: {
             height: "14px",
             marginBlock: "4px",
             background: `linear-gradient(90deg, rgba(54, 61, 64, 0.2), rgba(54, 61, 64, 0.4), rgba(54, 61, 64, 0.2))`,
@@ -3168,24 +3128,23 @@ const genProStyle$8 = (token) => {
           }
         }
       },
-      "&:focus": proCheckCardActive(token),
-      "&-checked": {
-        ...proCheckCardActive(token),
+      "&:focus": proCheckCardActive(token2),
+      "&-checked": __spreadProps(__spreadValues({}, proCheckCardActive(token2)), {
         "&:after": {
           position: "absolute",
           insetBlockStart: 2,
           insetInlineEnd: 2,
           width: 0,
           height: 0,
-          border: `${token.borderRadius + 4}px solid ${token.colorPrimary}`,
-          borderBlockEnd: `${token.borderRadius + 4}px  solid transparent`,
-          borderInlineStart: `${token.borderRadius + 4}px  solid transparent`,
-          borderStartEndRadius: `${token.borderRadius}px`,
+          border: `${token2.borderRadius + 4}px solid ${token2.colorPrimary}`,
+          borderBlockEnd: `${token2.borderRadius + 4}px  solid transparent`,
+          borderInlineStart: `${token2.borderRadius + 4}px  solid transparent`,
+          borderStartEndRadius: `${token2.borderRadius}px`,
           content: "''"
         }
-      },
-      "&-disabled": proCheckCardDisabled(token),
-      "&[disabled]": proCheckCardDisabled(token),
+      }),
+      "&-disabled": proCheckCardDisabled(token2),
+      "&[disabled]": proCheckCardDisabled(token2),
       "&-checked&-disabled": {
         "&:after": {
           position: "absolute",
@@ -3193,10 +3152,10 @@ const genProStyle$8 = (token) => {
           insetInlineEnd: 2,
           width: 0,
           height: 0,
-          border: `${token.borderRadius + 4}px solid ${token.colorTextDisabled}`,
-          borderBlockEnd: `${token.borderRadius + 4}px  solid transparent`,
-          borderInlineStart: `${token.borderRadius + 4}px  solid transparent`,
-          borderStartEndRadius: `${token.borderRadius}px`,
+          border: `${token2.borderRadius + 4}px solid ${token2.colorTextDisabled}`,
+          borderBlockEnd: `${token2.borderRadius + 4}px  solid transparent`,
+          borderInlineStart: `${token2.borderRadius + 4}px  solid transparent`,
+          borderStartEndRadius: `${token2.borderRadius}px`,
           content: "''"
         }
       },
@@ -3207,23 +3166,23 @@ const genProStyle$8 = (token) => {
         width: 212
       },
       "&-cover": {
-        paddingInline: token.paddingXXS,
-        paddingBlock: token.paddingXXS,
+        paddingInline: token2.paddingXXS,
+        paddingBlock: token2.paddingXXS,
         img: {
           width: "100%",
           height: "100%",
           overflow: "hidden",
-          borderRadius: token.borderRadius
+          borderRadius: token2.borderRadius
         }
       },
       "&-content": {
         display: "flex",
-        paddingInline: token.paddingSM,
-        paddingBlock: token.padding
+        paddingInline: token2.paddingSM,
+        paddingBlock: token2.padding
       },
       "&-body": {
-        paddingInline: token.paddingSM,
-        paddingBlock: token.padding
+        paddingInline: token2.paddingSM,
+        paddingBlock: token2.padding
       },
       "&-avatar-header": { display: "flex", alignItems: "center" },
       "&-avatar": { paddingInlineEnd: 8 },
@@ -3238,18 +3197,18 @@ const genProStyle$8 = (token) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        lineHeight: token.lineHeight,
+        lineHeight: token2.lineHeight,
         "&-left": {
           display: "flex",
           alignItems: "center",
-          gap: token.sizeSM
+          gap: token2.sizeSM
         }
       },
       "&-title": {
         overflow: "hidden",
-        color: token.colorTextHeading,
+        color: token2.colorTextHeading,
         fontWeight: "500",
-        fontSize: token.fontSize,
+        fontSize: token2.fontSize,
         whiteSpace: "nowrap",
         textOverflow: "ellipsis",
         display: "flex",
@@ -3257,27 +3216,26 @@ const genProStyle$8 = (token) => {
         justifyContent: "space-between"
       },
       "&-description": {
-        color: token.colorTextSecondary
+        color: token2.colorTextSecondary
       },
-      [`&:not(${token.componentCls}-disabled)`]: {
+      [`&:not(${token2.componentCls}-disabled)`]: {
         "&:hover": {
-          borderColor: token.colorPrimary
+          borderColor: token2.colorPrimary
         }
       }
     }
   };
 };
 function useStyle$v(prefixCls) {
-  return useStyle$A("CheckCard", (token) => {
-    const proListToken = {
-      ...token,
+  return useStyle$A("CheckCard", (token2) => {
+    const proListToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProStyle$8(proListToken)];
   });
 }
-
 const CheckCard = (props) => {
+  var _b2;
   const [stateChecked, setStateChecked] = useMergedState(
     props.defaultChecked || false,
     {
@@ -3288,10 +3246,11 @@ const CheckCard = (props) => {
   const checkCardGroup = useContext(CheckCardGroupConnext);
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const handleClick = (e) => {
-    props?.onClick?.(e);
+    var _a3, _b3;
+    (_a3 = props == null ? void 0 : props.onClick) == null ? void 0 : _a3.call(props, e);
     const newChecked = !stateChecked;
-    checkCardGroup?.toggleOption?.({ value: props.value });
-    setStateChecked?.(newChecked, e);
+    (_b3 = checkCardGroup == null ? void 0 : checkCardGroup.toggleOption) == null ? void 0 : _b3.call(checkCardGroup, { value: props.value });
+    setStateChecked == null ? void 0 : setStateChecked(newChecked, e);
   };
   const getSizeCls = (size2) => {
     if (size2 === "large")
@@ -3301,13 +3260,17 @@ const CheckCard = (props) => {
     return "";
   };
   useEffect(() => {
-    checkCardGroup?.registerValue?.(props.value);
-    return () => checkCardGroup?.cancelValue?.(props.value);
+    var _a3;
+    (_a3 = checkCardGroup == null ? void 0 : checkCardGroup.registerValue) == null ? void 0 : _a3.call(checkCardGroup, props.value);
+    return () => {
+      var _a4;
+      return (_a4 = checkCardGroup == null ? void 0 : checkCardGroup.cancelValue) == null ? void 0 : _a4.call(checkCardGroup, props.value);
+    };
   }, [props.value]);
   const renderCover = (prefixCls2, cover2) => {
     return /* @__PURE__ */ jsx("div", { className: `${prefixCls2}-cover`, children: typeof cover2 === "string" ? /* @__PURE__ */ jsx("img", { src: cover2, alt: "checkcard" }) : cover2 });
   };
-  const {
+  const _a2 = props, {
     prefixCls: customizePrefixCls,
     className,
     avatar,
@@ -3315,10 +3278,18 @@ const CheckCard = (props) => {
     description,
     cover,
     extra,
-    style = {},
-    ...others
-  } = props;
-  const checkCardProps = { ...others };
+    style = {}
+  } = _a2, others = __objRest(_a2, [
+    "prefixCls",
+    "className",
+    "avatar",
+    "title",
+    "description",
+    "cover",
+    "extra",
+    "style"
+  ]);
+  const checkCardProps = __spreadValues({}, others);
   const prefixCls = getPrefixCls("pro-checkcard", customizePrefixCls);
   const { wrapSSR, hashId } = useStyle$v(prefixCls);
   checkCardProps.checked = stateChecked;
@@ -3328,20 +3299,20 @@ const CheckCard = (props) => {
     checkCardProps.loading = props.loading || checkCardGroup.loading;
     checkCardProps.bordered = props.bordered || checkCardGroup.bordered;
     multiple = checkCardGroup.multiple;
-    const isChecked = checkCardGroup.multiple ? checkCardGroup.value?.includes(props.value) : checkCardGroup.value === props.value;
+    const isChecked = checkCardGroup.multiple ? (_b2 = checkCardGroup.value) == null ? void 0 : _b2.includes(props.value) : checkCardGroup.value === props.value;
     checkCardProps.checked = checkCardProps.loading ? false : isChecked;
     checkCardProps.size = props.size || checkCardGroup.size;
   }
   const {
     disabled = false,
     size,
-    loading: cardLoading,
+    loading: cardLoading2,
     bordered = true,
     checked
   } = checkCardProps;
   const sizeCls = getSizeCls(size);
   const classString = classNames(prefixCls, className, hashId, {
-    [`${prefixCls}-loading`]: cardLoading,
+    [`${prefixCls}-loading`]: cardLoading2,
     [`${prefixCls}-${sizeCls}`]: sizeCls,
     [`${prefixCls}-checked`]: checked,
     [`${prefixCls}-multiple`]: multiple,
@@ -3350,13 +3321,13 @@ const CheckCard = (props) => {
     [`${prefixCls}-ghost`]: props.ghost
   });
   const metaDom = useMemo(() => {
-    if (cardLoading) {
+    if (cardLoading2) {
       return /* @__PURE__ */ jsx(CardLoading, { prefixCls: prefixCls || "" });
     }
     if (cover) {
       return renderCover(prefixCls || "", cover);
     }
-    const headerDom = (title ?? extra) != null && /* @__PURE__ */ jsxs("div", { className: `${prefixCls}-header ${hashId}`.trim(), children: [
+    const headerDom = (title != null ? title : extra) != null && /* @__PURE__ */ jsxs("div", { className: `${prefixCls}-header ${hashId}`.trim(), children: [
       /* @__PURE__ */ jsxs("div", { className: `${prefixCls}-header-left ${hashId}`.trim(), children: [
         /* @__PURE__ */ jsx("div", { className: `${prefixCls}-title ${hashId}`.trim(), children: title }),
         props.subTitle ? /* @__PURE__ */ jsx("div", { className: `${prefixCls}-subTitle ${hashId}`.trim(), children: props.subTitle }) : null
@@ -3373,7 +3344,7 @@ const CheckCard = (props) => {
     ] }) : null });
   }, [
     avatar,
-    cardLoading,
+    cardLoading2,
     cover,
     description,
     extra,
@@ -3389,7 +3360,7 @@ const CheckCard = (props) => {
         className: classString,
         style,
         onClick: (e) => {
-          if (!cardLoading && !disabled) {
+          if (!cardLoading2 && !disabled) {
             handleClick(e);
           }
         },
@@ -3411,12 +3382,11 @@ const CheckCard = (props) => {
   );
 };
 CheckCard.Group = CheckCardGroup;
-
-const genProStyle$7 = (token) => {
+const genProStyle$7 = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       display: "flex",
-      fontSize: token.fontSize,
+      fontSize: token2.fontSize,
       "& + &": {
         marginBlockStart: 4
       },
@@ -3426,7 +3396,7 @@ const genProStyle$7 = (token) => {
       "&-wrapper": {
         display: "flex",
         width: "100%",
-        [`${token.componentCls}-status`]: {
+        [`${token2.componentCls}-status`]: {
           width: "14px"
         }
       },
@@ -3444,30 +3414,30 @@ const genProStyle$7 = (token) => {
       },
       "&-content": {
         width: "100%",
-        [`${token.ipassCls}-statistic-content`]: {
+        [`${token2.ipassCls}-statistic-content`]: {
           "&-value-int": {
-            fontSize: token.fontSizeHeading3
+            fontSize: token2.fontSizeHeading3
           }
         }
       },
       "&-description": {
         width: "100%"
       },
-      [`${token.ipassCls}-statistic-title`]: {
-        color: token.colorText
+      [`${token2.ipassCls}-statistic-title`]: {
+        color: token2.colorText
       },
       "&-trend-up": {
-        [`${token.ipassCls}-statistic-content`]: {
+        [`${token2.ipassCls}-statistic-content`]: {
           color: "#f5222d",
-          [`${token.componentCls}-trend-icon`]: {
+          [`${token2.componentCls}-trend-icon`]: {
             borderBlockEndColor: "#f5222d"
           }
         }
       },
       "&-trend-down": {
-        [`${token.ipassCls}-statistic-content`]: {
+        [`${token2.ipassCls}-statistic-content`]: {
           color: "#389e0d",
-          [`${token.componentCls}-trend-icon`]: {
+          [`${token2.componentCls}-trend-icon`]: {
             borderBlockEndColor: "#52c41a"
           }
         }
@@ -3475,45 +3445,43 @@ const genProStyle$7 = (token) => {
       "& &-layout-horizontal": {
         display: "flex",
         justifyContent: "space-between",
-        [`${token.ipassCls}-statistic-title`]: {
+        [`${token2.ipassCls}-statistic-title`]: {
           marginBlockEnd: 0
         },
-        [`${token.ipassCls}-statistic-content-value`]: {
+        [`${token2.ipassCls}-statistic-content-value`]: {
           fontWeight: 500
         },
-        [`${token.ipassCls}-statistic-title,${token.ipassCls}-statistic-content,${token.ipassCls}-statistic-content-suffix,${token.ipassCls}-statistic-content-prefix,${token.ipassCls}-statistic-content-value-decimal`]: {
-          fontSize: token.fontSize
+        [`${token2.ipassCls}-statistic-title,${token2.ipassCls}-statistic-content,${token2.ipassCls}-statistic-content-suffix,${token2.ipassCls}-statistic-content-prefix,${token2.ipassCls}-statistic-content-value-decimal`]: {
+          fontSize: token2.fontSize
         }
       },
       "& &-layout-inline": {
         display: "inline-flex",
-        color: token.colorTextSecondary,
-        [`${token.ipassCls}-statistic-title`]: {
+        color: token2.colorTextSecondary,
+        [`${token2.ipassCls}-statistic-title`]: {
           marginInlineEnd: "6px",
           marginBlockEnd: 0
         },
-        [`${token.ipassCls}-statistic-content`]: {
-          color: token.colorTextSecondary
+        [`${token2.ipassCls}-statistic-content`]: {
+          color: token2.colorTextSecondary
         },
-        [`${token.ipassCls}-statistic-title,${token.ipassCls}-statistic-content,${token.ipassCls}-statistic-content-suffix,${token.ipassCls}-statistic-content-prefix,${token.ipassCls}-statistic-content-value-decimal`]: {
-          fontSize: token.fontSizeSM
+        [`${token2.ipassCls}-statistic-title,${token2.ipassCls}-statistic-content,${token2.ipassCls}-statistic-content-suffix,${token2.ipassCls}-statistic-content-prefix,${token2.ipassCls}-statistic-content-value-decimal`]: {
+          fontSize: token2.fontSizeSM
         }
       }
     }
   };
 };
 function useStyle$u(prefixCls) {
-  return useStyle$A("Statistic", (token) => {
-    const proListToken = {
-      ...token,
+  return useStyle$A("Statistic", (token2) => {
+    const proListToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProStyle$7(proListToken)];
   });
 }
-
 const Statistic = (props) => {
-  const {
+  const _a2 = props, {
     className,
     layout = "inline",
     style = {},
@@ -3524,9 +3492,20 @@ const Statistic = (props) => {
     status,
     trend,
     prefix,
-    icon,
-    ...others
-  } = props;
+    icon
+  } = _a2, others = __objRest(_a2, [
+    "className",
+    "layout",
+    "style",
+    "description",
+    "children",
+    "title",
+    "tip",
+    "status",
+    "trend",
+    "prefix",
+    "icon"
+  ]);
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const prefixCls = getPrefixCls("pro-card-statistic");
   const { wrapSSR, hashId } = useStyle$u(prefixCls);
@@ -3554,7 +3533,7 @@ const Statistic = (props) => {
         /* @__PURE__ */ jsxs("div", { className: contentClass, children: [
           /* @__PURE__ */ jsx(
             Statistic$1,
-            {
+            __spreadValues({
               title: (title || tipDom) && /* @__PURE__ */ jsxs(Fragment, { children: [
                 title,
                 tipDom
@@ -3563,9 +3542,8 @@ const Statistic = (props) => {
                 trendDom,
                 prefix
               ] }),
-              className: statisticClassName,
-              ...others
-            }
+              className: statisticClassName
+            }, others)
           ),
           description && /* @__PURE__ */ jsx("div", { className: `${prefixCls}-description ${hashId}`.trim(), children: description })
         ] })
@@ -3573,34 +3551,33 @@ const Statistic = (props) => {
     ] })
   );
 };
-
 const cardLoading = new Keyframes("card-loading", {
   "0%": { backgroundPosition: "0 50%" },
   "50%": { backgroundPosition: "100% 50%" },
   "100%": { backgroundPosition: "0 50%" }
 });
-const genProStyle$6 = (token) => {
+const genProStyle$6 = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       "&-loading": {
         overflow: "hidden"
       },
       "&-loading &-body": {
         userSelect: "none"
       },
-      [`${token.componentCls}-loading-content`]: {
+      [`${token2.componentCls}-loading-content`]: {
         width: "100%",
         p: {
           marginBlock: 0,
           marginInline: 0
         }
       },
-      [`${token.componentCls}-loading-block`]: {
+      [`${token2.componentCls}-loading-block`]: {
         height: "14px",
         marginBlock: "4px",
         background: `linear-gradient(90deg, rgba(54, 61, 64, 0.2), rgba(54, 61, 64, 0.4), rgba(54, 61, 64, 0.2))`,
         backgroundSize: "600% 600%",
-        borderRadius: token.borderRadius,
+        borderRadius: token2.borderRadius,
         animationName: cardLoading,
         animationDuration: "1.4s",
         animationTimingFunction: "ease",
@@ -3610,15 +3587,13 @@ const genProStyle$6 = (token) => {
   };
 };
 function useStyle$t(prefixCls) {
-  return useStyle$A("ProCardLoading", (token) => {
-    const proToken = {
-      ...token,
+  return useStyle$A("ProCardLoading", (token2) => {
+    const proToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProStyle$6(proToken)];
   });
 }
-
 const Loading = (props) => {
   const { style, prefix } = props;
   const { wrapSSR } = useStyle$t(prefix || "ipass-pro-card");
@@ -3645,17 +3620,15 @@ const Loading = (props) => {
     ] })
   );
 };
-
 function filter(items) {
   return items.filter((item) => item);
 }
 function useLegacyItems(items, children, tabs) {
   if (items) {
     return items.map((item) => {
-      return {
-        ...item,
-        children: /* @__PURE__ */ jsx(Card, { ...tabs?.cardProps, children: item.children })
-      };
+      return __spreadProps(__spreadValues({}, item), {
+        children: /* @__PURE__ */ jsx(Card, __spreadProps(__spreadValues({}, tabs == null ? void 0 : tabs.cardProps), { children: item.children }))
+      });
     });
   }
   noteOnce(!tabs, "Tabs.TabPane is deprecated. Please use `items` directly.");
@@ -3663,13 +3636,13 @@ function useLegacyItems(items, children, tabs) {
     (node) => {
       if (React__default.isValidElement(node)) {
         const { key, props } = node;
-        const { tab, children: tempChild, ...restProps } = props || {};
-        const item = {
-          key: String(key),
-          ...restProps,
-          children: /* @__PURE__ */ jsx(Card, { ...tabs?.cardProps, children: tempChild }),
+        const _a2 = props || {}, { tab, children: tempChild } = _a2, restProps = __objRest(_a2, ["tab", "children"]);
+        const item = __spreadProps(__spreadValues({
+          key: String(key)
+        }, restProps), {
+          children: /* @__PURE__ */ jsx(Card, __spreadProps(__spreadValues({}, tabs == null ? void 0 : tabs.cardProps), { children: tempChild })),
           label: tab
-        };
+        });
         return item;
       }
       return null;
@@ -3679,11 +3652,11 @@ function useLegacyItems(items, children, tabs) {
 }
 const TabPane = (props) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
-  const version = "5.x.x";
-  if (version.startsWith("5")) {
+  const version2 = "5.x.x";
+  if (version2.startsWith("5")) {
     return /* @__PURE__ */ jsx(Fragment, {});
   } else {
-    const {
+    const _a2 = props, {
       key,
       tab,
       tabKey,
@@ -3692,23 +3665,32 @@ const TabPane = (props) => {
       children,
       className,
       style,
-      cardProps,
-      ...rest
-    } = props;
+      cardProps
+    } = _a2, rest = __objRest(_a2, [
+      "key",
+      "tab",
+      "tabKey",
+      "disabled",
+      "destroyInactiveTabPane",
+      "children",
+      "className",
+      "style",
+      "cardProps"
+    ]);
     const prefixCls = getPrefixCls("pro-card-tabpane");
     const tabPaneClassName = classNames(prefixCls, className);
     return /* @__PURE__ */ jsx(
       Tabs.TabPane,
-      {
+      __spreadProps(__spreadValues({
         tabKey,
         tab,
         className: tabPaneClassName,
         style,
         disabled,
-        destroyInactiveTabPane,
-        ...rest,
-        children: /* @__PURE__ */ jsx(Card, { ...cardProps, children })
-      },
+        destroyInactiveTabPane
+      }, rest), {
+        children: /* @__PURE__ */ jsx(Card, __spreadProps(__spreadValues({}, cardProps), { children }))
+      }),
       key
     );
   }
@@ -3716,15 +3698,15 @@ const TabPane = (props) => {
 if (typeof process !== "undefined" && false) {
   TabPane.displayName = "DeprecatedTabPane";
 }
-
-const genActiveStyle = (token) => ({
-  backgroundColor: token.controlItemBgActive,
-  borderColor: token.controlOutline
+const genActiveStyle = (token2) => ({
+  backgroundColor: token2.controlItemBgActive,
+  borderColor: token2.controlOutline
 });
-const genProCardStyle = (token) => {
-  const { componentCls } = token;
+const genProCardStyle = (token2) => {
+  var _a2;
+  const { componentCls } = token2;
   return {
-    [componentCls]: {
+    [componentCls]: __spreadProps(__spreadValues({
       position: "relative",
       display: "flex",
       flexDirection: "column",
@@ -3734,9 +3716,9 @@ const genProCardStyle = (token) => {
       marginInline: 0,
       paddingBlock: 0,
       paddingInline: 0,
-      backgroundColor: token.colorBgContainer,
-      borderRadius: token.borderRadius,
-      ...resetComponent?.(token),
+      backgroundColor: token2.colorBgContainer,
+      borderRadius: token2.borderRadius
+    }, (_a2 = resetComponent) == null ? void 0 : _a2(token2)), {
       "&-box-shadow": {
         boxShadow: "0 1px 2px -2px #00000029, 0 3px 6px #0000001f, 0 5px 12px 4px #00000017",
         borderColor: "transparent"
@@ -3745,7 +3727,7 @@ const genProCardStyle = (token) => {
         width: "100%"
       },
       "&-border": {
-        border: `${token.lineWidth}px ${token.lineType} ${token.colorSplit}`
+        border: `${token2.lineWidth}px ${token2.lineType} ${token2.colorSplit}`
       },
       "&-hoverable": {
         cursor: "pointer",
@@ -3755,33 +3737,30 @@ const genProCardStyle = (token) => {
           boxShadow: "0 1px 2px -2px #00000029, 0 3px 6px #0000001f, 0 5px 12px 4px #00000017"
         },
         [`&${componentCls}-checked:hover`]: {
-          borderColor: token.controlOutline
+          borderColor: token2.controlOutline
         }
       },
-      "&-checked": {
-        ...genActiveStyle(token),
+      "&-checked": __spreadProps(__spreadValues({}, genActiveStyle(token2)), {
         "&::after": {
           position: "absolute",
           insetBlockStart: 2,
           insetInlineEnd: 2,
           width: 0,
           height: 0,
-          border: `6px solid ${token.colorPrimary}`,
+          border: `6px solid ${token2.colorPrimary}`,
           borderBlockEnd: "6px solid transparent",
           borderInlineStart: "6px solid transparent",
           borderStartEndRadius: 2,
           content: '""'
         }
-      },
-      "&:focus": {
-        ...genActiveStyle(token)
-      },
+      }),
+      "&:focus": __spreadValues({}, genActiveStyle(token2)),
       "&&-ghost": {
         backgroundColor: "transparent",
         [`> ${componentCls}`]: {
           "&-header": {
             paddingInlineEnd: 0,
-            paddingBlockEnd: token.padding,
+            paddingBlockEnd: token2.padding,
             paddingInlineStart: 0
           },
           "&-body": {
@@ -3807,7 +3786,7 @@ const genProCardStyle = (token) => {
       "&&-collapse": {
         [`> ${componentCls}`]: {
           "&-header": {
-            paddingBlockEnd: token.padding,
+            paddingBlockEnd: token2.padding,
             borderBlockEnd: 0
           },
           "&-body": {
@@ -3819,49 +3798,49 @@ const genProCardStyle = (token) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        paddingInline: token.paddingLG,
-        paddingBlock: token.padding,
+        paddingInline: token2.paddingLG,
+        paddingBlock: token2.padding,
         paddingBlockEnd: 0,
         "&-border": {
           "&": {
-            paddingBlockEnd: token.padding
+            paddingBlockEnd: token2.padding
           },
-          borderBlockEnd: `${token.lineWidth}px ${token.lineType} ${token.colorSplit}`
+          borderBlockEnd: `${token2.lineWidth}px ${token2.lineType} ${token2.colorSplit}`
         },
         "&-collapsible": {
           cursor: "pointer"
         }
       },
       [`${componentCls}-title`]: {
-        color: token.colorText,
+        color: token2.colorText,
         fontWeight: 500,
-        fontSize: token.fontSizeLG,
-        lineHeight: token.lineHeight
+        fontSize: token2.fontSizeLG,
+        lineHeight: token2.lineHeight
       },
       [`${componentCls}-extra`]: {
-        color: token.colorText
+        color: token2.colorText
       },
       [`${componentCls}-type-inner`]: {
         [`${componentCls}-header`]: {
-          backgroundColor: token.colorFillAlter
+          backgroundColor: token2.colorFillAlter
         }
       },
       [`${componentCls}-collapsible-icon`]: {
-        marginInlineEnd: token.marginXS,
-        color: token.colorIconHover,
+        marginInlineEnd: token2.marginXS,
+        color: token2.colorIconHover,
         ":hover": {
-          color: token.colorPrimaryHover
+          color: token2.colorPrimaryHover
         },
         "& svg": {
-          transition: `transform ${token.motionDurationMid}`
+          transition: `transform ${token2.motionDurationMid}`
         }
       },
       [`${componentCls}-body`]: {
         display: "block",
         boxSizing: "border-box",
         height: "100%",
-        paddingInline: token.paddingLG,
-        paddingBlock: token.padding,
+        paddingInline: token2.paddingLG,
+        paddingBlock: token2.padding,
         "&-center": {
           display: "flex",
           alignItems: "center",
@@ -3871,85 +3850,85 @@ const genProCardStyle = (token) => {
       "&&-size-small": {
         [componentCls]: {
           "&-header": {
-            paddingInline: token.paddingSM,
-            paddingBlock: token.paddingXS,
+            paddingInline: token2.paddingSM,
+            paddingBlock: token2.paddingXS,
             paddingBlockEnd: 0,
             "&-border": {
-              paddingBlockEnd: token.paddingXS
+              paddingBlockEnd: token2.paddingXS
             }
           },
           "&-title": {
-            fontSize: token.fontSize
+            fontSize: token2.fontSize
           },
           "&-body": {
-            paddingInline: token.paddingSM,
-            paddingBlock: token.paddingSM
+            paddingInline: token2.paddingSM,
+            paddingBlock: token2.paddingSM
           }
         },
         [`${componentCls}-header${componentCls}-header-collapsible`]: {
-          paddingBlock: token.paddingXS
+          paddingBlock: token2.paddingXS
         }
       }
-    },
+    }),
     [`${componentCls}-col`]: {
       [`&${componentCls}-split-vertical`]: {
-        borderInlineEnd: `${token.lineWidth}px ${token.lineType} ${token.colorSplit}`
+        borderInlineEnd: `${token2.lineWidth}px ${token2.lineType} ${token2.colorSplit}`
       },
       [`&${componentCls}-split-horizontal`]: {
-        borderBlockEnd: `${token.lineWidth}px ${token.lineType} ${token.colorSplit}`
+        borderBlockEnd: `${token2.lineWidth}px ${token2.lineType} ${token2.colorSplit}`
       }
     },
     [`${componentCls}-tabs`]: {
-      [`${token.ipassCls}-tabs-top > ${token.ipassCls}-tabs-nav`]: {
+      [`${token2.ipassCls}-tabs-top > ${token2.ipassCls}-tabs-nav`]: {
         marginBlockEnd: 0,
-        [`${token.ipassCls}-tabs-nav-list`]: {
-          marginBlockStart: token.marginXS,
-          paddingInlineStart: token.padding
+        [`${token2.ipassCls}-tabs-nav-list`]: {
+          marginBlockStart: token2.marginXS,
+          paddingInlineStart: token2.padding
         }
       },
-      [`${token.ipassCls}-tabs-bottom > ${token.ipassCls}-tabs-nav`]: {
+      [`${token2.ipassCls}-tabs-bottom > ${token2.ipassCls}-tabs-nav`]: {
         marginBlockEnd: 0,
-        [`${token.ipassCls}-tabs-nav-list`]: {
-          paddingInlineStart: token.padding
+        [`${token2.ipassCls}-tabs-nav-list`]: {
+          paddingInlineStart: token2.padding
         }
       },
-      [`${token.ipassCls}-tabs-left`]: {
-        [`${token.ipassCls}-tabs-content-holder`]: {
-          [`${token.ipassCls}-tabs-content`]: {
-            [`${token.ipassCls}-tabs-tabpane`]: {
+      [`${token2.ipassCls}-tabs-left`]: {
+        [`${token2.ipassCls}-tabs-content-holder`]: {
+          [`${token2.ipassCls}-tabs-content`]: {
+            [`${token2.ipassCls}-tabs-tabpane`]: {
               paddingInlineStart: 0
             }
           }
         }
       },
       // 这里是为了保证 tabs 的高度和左侧的一致
-      [`${token.ipassCls}-tabs-left > ${token.ipassCls}-tabs-nav`]: {
+      [`${token2.ipassCls}-tabs-left > ${token2.ipassCls}-tabs-nav`]: {
         marginInlineEnd: 0,
-        [`${token.ipassCls}-tabs-nav-list`]: {
-          paddingBlockStart: token.padding
+        [`${token2.ipassCls}-tabs-nav-list`]: {
+          paddingBlockStart: token2.padding
         }
       },
-      [`${token.ipassCls}-tabs-right`]: {
-        [`${token.ipassCls}-tabs-content-holder`]: {
-          [`${token.ipassCls}-tabs-content`]: {
-            [`${token.ipassCls}-tabs-tabpane`]: {
+      [`${token2.ipassCls}-tabs-right`]: {
+        [`${token2.ipassCls}-tabs-content-holder`]: {
+          [`${token2.ipassCls}-tabs-content`]: {
+            [`${token2.ipassCls}-tabs-tabpane`]: {
               paddingInlineStart: 0
             }
           }
         }
       },
-      [`${token.ipassCls}-tabs-right > ${token.ipassCls}-tabs-nav`]: {
-        [`${token.ipassCls}-tabs-nav-list`]: {
-          paddingBlockStart: token.padding
+      [`${token2.ipassCls}-tabs-right > ${token2.ipassCls}-tabs-nav`]: {
+        [`${token2.ipassCls}-tabs-nav-list`]: {
+          paddingBlockStart: token2.padding
         }
       }
     }
   };
 };
 const GRID_COLUMNS = 24;
-const genColStyle = (index, token) => {
-  const { componentCls } = token;
-  if (index === 0) {
+const genColStyle = (index2, token2) => {
+  const { componentCls } = token2;
+  if (index2 === 0) {
     return {
       [`${componentCls}-col-0`]: {
         display: "none"
@@ -3957,27 +3936,25 @@ const genColStyle = (index, token) => {
     };
   }
   return {
-    [`${componentCls}-col-${index}`]: {
+    [`${componentCls}-col-${index2}`]: {
       flexShrink: 0,
-      width: `${index / GRID_COLUMNS * 100}%`
+      width: `${index2 / GRID_COLUMNS * 100}%`
     }
   };
 };
-const genGridStyle = (token) => {
-  return Array(GRID_COLUMNS + 1).fill(1).map((_, index) => genColStyle(index, token));
+const genGridStyle = (token2) => {
+  return Array(GRID_COLUMNS + 1).fill(1).map((_, index2) => genColStyle(index2, token2));
 };
 function useStyle$s(prefixCls) {
-  return useStyle$A("ProCard", (token) => {
-    const proCardToken = {
-      ...token,
+  return useStyle$A("ProCard", (token2) => {
+    const proCardToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProCardStyle(proCardToken), genGridStyle(proCardToken)];
   });
 }
-
 const Card = React__default.forwardRef((props, ref) => {
-  const {
+  const _a2 = props, {
     className,
     style,
     bodyStyle = {},
@@ -4009,9 +3986,41 @@ const Card = React__default.forwardRef((props, ref) => {
     checked,
     onChecked,
     tabs,
-    type,
-    ...rest
-  } = props;
+    type
+  } = _a2, rest = __objRest(_a2, [
+    "className",
+    "style",
+    "bodyStyle",
+    "headStyle",
+    "title",
+    "subTitle",
+    "extra",
+    "tip",
+    "wrap",
+    "layout",
+    "loading",
+    "gutter",
+    "tooltip",
+    "split",
+    "headerBordered",
+    "bordered",
+    "boxShadow",
+    "children",
+    "size",
+    "actions",
+    "ghost",
+    "hoverable",
+    "direction",
+    "collapsed",
+    "collapsible",
+    "collapsibleIconRender",
+    "defaultCollapsed",
+    "onCollapse",
+    "checked",
+    "onChecked",
+    "tabs",
+    "type"
+  ]);
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const screens = Grid.useBreakpoint() || {
     lg: true,
@@ -4026,21 +4035,21 @@ const Card = React__default.forwardRef((props, ref) => {
     onChange: onCollapse
   });
   const responsiveArray = ["xxl", "xl", "lg", "md", "sm", "xs"];
-  const ModifyTabItemsContent = useLegacyItems(tabs?.items, children, tabs);
+  const ModifyTabItemsContent = useLegacyItems(tabs == null ? void 0 : tabs.items, children, tabs);
   const getNormalizedGutter = (gut) => {
     const results = [0, 0];
     const normalizedGutter = Array.isArray(gut) ? gut : [gut, 0];
-    normalizedGutter.forEach((g, index) => {
+    normalizedGutter.forEach((g, index2) => {
       if (typeof g === "object") {
         for (let i = 0; i < responsiveArray.length; i += 1) {
           const breakpoint = responsiveArray[i];
           if (screens[breakpoint] && g[breakpoint] !== void 0) {
-            results[index] = g[breakpoint];
+            results[index2] = g[breakpoint];
             break;
           }
         }
       } else {
-        results[index] = g || 0;
+        results[index2] = g || 0;
       }
     });
     return results;
@@ -4053,7 +4062,7 @@ const Card = React__default.forwardRef((props, ref) => {
     if (typeof colSpan === "object") {
       for (let i = 0; i < responsiveArray.length; i += 1) {
         const breakpoint = responsiveArray[i];
-        if (screens?.[breakpoint] && colSpan?.[breakpoint] !== void 0) {
+        if ((screens == null ? void 0 : screens[breakpoint]) && (colSpan == null ? void 0 : colSpan[breakpoint]) !== void 0) {
           span = colSpan[breakpoint];
           break;
         }
@@ -4073,38 +4082,35 @@ const Card = React__default.forwardRef((props, ref) => {
   const [horizontalGutter, verticalGutter] = getNormalizedGutter(gutter);
   let containProCard = false;
   const childrenArray = React__default.Children.toArray(children);
-  const childrenModified = childrenArray.map((element, index) => {
-    if (element?.type?.isProCard) {
+  const childrenModified = childrenArray.map((element, index2) => {
+    var _a3;
+    if ((_a3 = element == null ? void 0 : element.type) == null ? void 0 : _a3.isProCard) {
       containProCard = true;
       const { colSpan } = element.props;
       const { span, colSpanStyle } = getColSpanStyle(colSpan);
       const columnClassName = classNames([`${prefixCls}-col`], hashId, {
-        [`${prefixCls}-split-vertical`]: split === "vertical" && index !== childrenArray.length - 1,
-        [`${prefixCls}-split-horizontal`]: split === "horizontal" && index !== childrenArray.length - 1,
+        [`${prefixCls}-split-vertical`]: split === "vertical" && index2 !== childrenArray.length - 1,
+        [`${prefixCls}-split-horizontal`]: split === "horizontal" && index2 !== childrenArray.length - 1,
         [`${prefixCls}-col-${span}`]: typeof span === "number" && span >= 0 && span <= 24
       });
       const wrappedElement = wrapSSR(
         /* @__PURE__ */ jsx(
           "div",
           {
-            style: {
-              ...colSpanStyle,
-              ...getStyle(horizontalGutter > 0, {
-                paddingInlineEnd: horizontalGutter / 2,
-                paddingInlineStart: horizontalGutter / 2
-              }),
-              ...getStyle(verticalGutter > 0, {
-                paddingBlockStart: verticalGutter / 2,
-                paddingBlockEnd: verticalGutter / 2
-              })
-            },
+            style: __spreadValues(__spreadValues(__spreadValues({}, colSpanStyle), getStyle(horizontalGutter > 0, {
+              paddingInlineEnd: horizontalGutter / 2,
+              paddingInlineStart: horizontalGutter / 2
+            })), getStyle(verticalGutter > 0, {
+              paddingBlockStart: verticalGutter / 2,
+              paddingBlockEnd: verticalGutter / 2
+            })),
             className: columnClassName,
             children: React__default.cloneElement(element)
           }
         )
       );
       return React__default.cloneElement(wrappedElement, {
-        key: `pro-card-col-${element?.key || index}`
+        key: `pro-card-col-${(element == null ? void 0 : element.key) || index2}`
       });
     }
     return element;
@@ -4145,16 +4151,17 @@ const Card = React__default.forwardRef((props, ref) => {
   return wrapSSR(
     /* @__PURE__ */ jsxs(
       "div",
-      {
+      __spreadProps(__spreadValues({
         className: cardCls,
         style,
         ref,
         onClick: (e) => {
-          onChecked?.(e);
-          rest?.onClick?.(e);
+          var _a3;
+          onChecked == null ? void 0 : onChecked(e);
+          (_a3 = rest == null ? void 0 : rest.onClick) == null ? void 0 : _a3.call(rest, e);
           e.stopPropagation();
-        },
-        ...omit(rest, ["prefixCls", "colSpan"]),
+        }
+      }, omit(rest, ["prefixCls", "colSpan"])), {
         children: [
           (title || extra || collapsibleButton) && /* @__PURE__ */ jsxs(
             "div",
@@ -4193,58 +4200,55 @@ const Card = React__default.forwardRef((props, ref) => {
           ),
           tabs ? /* @__PURE__ */ jsx("div", { className: `${prefixCls}-tabs ${hashId}`.trim(), children: /* @__PURE__ */ jsx(
             Tabs,
-            {
-              onChange: tabs.onChange,
-              ...tabs,
+            __spreadProps(__spreadValues({
+              onChange: tabs.onChange
+            }, tabs), {
               items: ModifyTabItemsContent,
               children: loading ? loadingDOM : children
-            }
+            })
           ) }) : /* @__PURE__ */ jsx("div", { className: bodyCls, style: cardBodyStyle, children: loading ? loadingDOM : childrenModified }),
           actions ? /* @__PURE__ */ jsx(ProCardActions, { actions, prefixCls }) : null
         ]
-      }
+      })
     )
   );
 });
-
-const genDividerStyle = (token) => {
-  const { componentCls } = token;
+const genDividerStyle = (token2) => {
+  const { componentCls } = token2;
   return {
     [componentCls]: {
       "&-divider": {
         flex: "none",
-        width: token.lineWidth,
-        marginInline: token.marginXS,
-        marginBlock: token.marginLG,
-        backgroundColor: token.colorSplit,
+        width: token2.lineWidth,
+        marginInline: token2.marginXS,
+        marginBlock: token2.marginLG,
+        backgroundColor: token2.colorSplit,
         "&-horizontal": {
           width: "initial",
-          height: token.lineWidth,
-          marginInline: token.marginLG,
-          marginBlock: token.marginXS
+          height: token2.lineWidth,
+          marginInline: token2.marginLG,
+          marginBlock: token2.marginXS
         }
       },
       "&&-size-small &-divider": {
-        marginBlock: token.marginLG,
-        marginInline: token.marginXS,
+        marginBlock: token2.marginLG,
+        marginInline: token2.marginXS,
         "&-horizontal": {
-          marginBlock: token.marginXS,
-          marginInline: token.marginLG
+          marginBlock: token2.marginXS,
+          marginInline: token2.marginLG
         }
       }
     }
   };
 };
 function useStyle$r(prefixCls) {
-  return useStyle$A("ProCardDivider", (token) => {
-    const proCardDividerToken = {
-      ...token,
+  return useStyle$A("ProCardDivider", (token2) => {
+    const proCardDividerToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genDividerStyle(proCardDividerToken)];
   });
 }
-
 const ProCardDivider = (props) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const proCardPrefixCls = getPrefixCls("pro-card");
@@ -4256,16 +4260,15 @@ const ProCardDivider = (props) => {
   });
   return wrapSSR(/* @__PURE__ */ jsx("div", { className: classString, style }));
 };
-
-const genProStyle$5 = (token) => {
+const genProStyle$5 = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       display: "flex",
       flexDirection: "column",
       justifyContent: "flex-end",
-      marginBlock: token.marginLG,
+      marginBlock: token2.marginLG,
       marginInline: 0,
-      color: token.colorText,
+      color: token2.colorText,
       fontWeight: "500",
       fontSize: "20px",
       lineHeight: "38px"
@@ -4273,15 +4276,13 @@ const genProStyle$5 = (token) => {
   };
 };
 function useStyle$q(prefixCls) {
-  return useStyle$A("ProCardOperation", (token) => {
-    const proToken = {
-      ...token,
+  return useStyle$A("ProCardOperation", (token2) => {
+    const proToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProStyle$5(proToken)];
   });
 }
-
 const ProCardOperation = (props) => {
   const { className, style = {}, children } = props;
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
@@ -4292,10 +4293,9 @@ const ProCardOperation = (props) => {
     /* @__PURE__ */ jsx("div", { className: classString, style, children })
   );
 };
-
-const genProStyle$4 = (token) => {
+const genProStyle$4 = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       "&-chart": {
         display: "flex",
         flexDirection: "column",
@@ -4309,7 +4309,7 @@ const genProStyle$4 = (token) => {
         flexDirection: "column",
         "&-horizontal": {
           flexDirection: "row",
-          [`${token.componentCls}-chart`]: {
+          [`${token2.componentCls}-chart`]: {
             alignItems: "center",
             alignSelf: "flex-start"
           }
@@ -4318,36 +4318,40 @@ const genProStyle$4 = (token) => {
       "&-footer": {
         marginBlockStart: 8,
         paddingBlockStart: "16px",
-        borderBlockStart: `rgba(0, 0, 0, 0.08) solid ${token.colorBorder}`
+        borderBlockStart: `rgba(0, 0, 0, 0.08) solid ${token2.colorBorder}`
       }
     }
   };
 };
 function useStyle$p(prefixCls) {
-  return useStyle$A("StatisticCard", (token) => {
-    const proListToken = {
-      ...token,
+  return useStyle$A("StatisticCard", (token2) => {
+    const proListToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProStyle$4(proListToken)];
   });
 }
-
 const StatisticCard = (props) => {
-  const {
+  const _a2 = props, {
     children,
     statistic,
     className,
     chart,
     chartPlacement,
-    footer,
-    ...others
-  } = props;
+    footer
+  } = _a2, others = __objRest(_a2, [
+    "children",
+    "statistic",
+    "className",
+    "chart",
+    "chartPlacement",
+    "footer"
+  ]);
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const prefixCls = getPrefixCls("pro-statistic-card");
   const { wrapSSR, hashId } = useStyle$p(prefixCls);
   const classString = classNames(prefixCls, className, hashId);
-  const statisticDom = statistic && /* @__PURE__ */ jsx(Statistic, { layout: "vertical", ...statistic });
+  const statisticDom = statistic && /* @__PURE__ */ jsx(Statistic, __spreadValues({ layout: "vertical" }, statistic));
   const chartCls = classNames(`${prefixCls}-chart`, hashId, {
     [`${prefixCls}-chart-left`]: chartPlacement === "left" && chart && statistic,
     [`${prefixCls}-chart-right`]: chartPlacement === "right" && chart && statistic
@@ -4365,27 +4369,25 @@ const StatisticCard = (props) => {
   ] }));
   const footerDom = footer && /* @__PURE__ */ jsx("div", { className: `${prefixCls}-footer ${hashId}`.trim(), children: footer });
   return wrapSSR(
-    /* @__PURE__ */ jsxs(Card, { className: classString, ...others, children: [
+    /* @__PURE__ */ jsxs(Card, __spreadProps(__spreadValues({ className: classString }, others), { children: [
       contentDom,
       children,
       footerDom
-    ] })
+    ] }))
   );
 };
-const Group$2 = (props) => /* @__PURE__ */ jsx(StatisticCard, { bodyStyle: { padding: 0 }, ...props });
+const Group$2 = (props) => /* @__PURE__ */ jsx(StatisticCard, __spreadValues({ bodyStyle: { padding: 0 } }, props));
 StatisticCard.Statistic = Statistic;
 StatisticCard.Divider = ProCardDivider;
 StatisticCard.Operation = ProCardOperation;
 StatisticCard.isProCard = true;
 StatisticCard.Group = Group$2;
-
-const Group$1 = (props) => /* @__PURE__ */ jsx(Card, { bodyStyle: { padding: 0 }, ...props });
+const Group$1 = (props) => /* @__PURE__ */ jsx(Card, __spreadValues({ bodyStyle: { padding: 0 } }, props));
 const ProCard = Card;
 ProCard.isProCard = true;
 ProCard.Divider = ProCardDivider;
 ProCard.TabPane = TabPane;
 ProCard.Group = Group$1;
-
 const useFetchData$1 = (getData, options) => {
   const {
     onRequestError,
@@ -4400,23 +4402,23 @@ const useFetchData$1 = (getData, options) => {
     onChange: onDataSourceChange
   });
   const [loading, setLoading] = useMergedState(
-    options?.loading,
+    options == null ? void 0 : options.loading,
     {
-      value: options?.loading,
-      onChange: options?.onLoadingChange
+      value: options == null ? void 0 : options.loading,
+      onChange: options == null ? void 0 : options.onLoadingChange
     }
   );
   const updateDataAndLoading = (data) => {
     setEntity(data);
     setLoading(false);
   };
-  const fetchList = async () => {
+  const fetchList = () => __async(void 0, null, function* () {
     if (loading) {
       return;
     }
     setLoading(true);
     try {
-      const { data, success } = await getData() || {};
+      const { data, success } = (yield getData()) || {};
       if (success !== false) {
         updateDataAndLoading(data);
       }
@@ -4429,7 +4431,7 @@ const useFetchData$1 = (getData, options) => {
     } finally {
       setLoading(false);
     }
-  };
+  });
   useEffect(() => {
     if (manual) {
       return;
@@ -4445,7 +4447,6 @@ const useFetchData$1 = (getData, options) => {
     }
   };
 };
-
 const getDataFromConfig = (item, entity) => {
   const { dataIndex } = item;
   if (dataIndex) {
@@ -4457,14 +4458,15 @@ const getDataFromConfig = (item, entity) => {
   return item.children;
 };
 const FieldRender = (props) => {
+  var _a2;
   const {
     valueEnum,
     action,
-    index,
+    index: index2,
     text,
     entity,
     render,
-    valueType,
+    valueType: valueType2,
     plain,
     dataIndex,
     request,
@@ -4472,67 +4474,62 @@ const FieldRender = (props) => {
     params
   } = props;
   const form = ProForm.useFormInstance();
-  const { token } = proTheme.useToken?.();
+  const { token: token2 } = (_a2 = proTheme.useToken) == null ? void 0 : _a2.call(proTheme);
   const fieldConfig = {
     mode: "read",
     text,
     valueEnum,
     proFieldProps: {
       emptyText: props.emptyText,
-      render: render ? () => render?.(text, entity, index, action, {
-        ...props,
+      render: render ? () => render == null ? void 0 : render(text, entity, index2, action, __spreadProps(__spreadValues({}, props), {
         type: "descriptions"
-      }) : void 0
+      })) : void 0
     },
     ignoreFormItem: true,
-    valueType,
+    valueType: valueType2,
     request,
     params,
     plain
   };
-  if (valueType === "option") {
+  if (valueType2 === "option") {
     const fieldProps = getFieldPropsOrFormItemProps(
       props.fieldProps,
       void 0,
-      {
-        ...props,
+      __spreadProps(__spreadValues({}, props), {
         rowKey: dataIndex,
         isEditable: false
-      }
+      })
     );
-    return /* @__PURE__ */ jsx(ProFormField, { name: dataIndex, ...fieldConfig, fieldProps });
+    return /* @__PURE__ */ jsx(ProFormField, __spreadProps(__spreadValues({ name: dataIndex }, fieldConfig), { fieldProps }));
   }
   const renderDom = () => {
     const formItemProps = getFieldPropsOrFormItemProps(
       props.formItemProps,
       form,
-      {
-        ...props,
+      __spreadProps(__spreadValues({}, props), {
         rowKey: dataIndex,
         isEditable: true
-      }
+      })
     );
     const fieldProps = getFieldPropsOrFormItemProps(
       props.fieldProps,
       form,
-      {
-        ...props,
+      __spreadProps(__spreadValues({}, props), {
         rowKey: dataIndex,
         isEditable: true
-      }
+      })
     );
-    const dom = renderFormItem ? renderFormItem?.(
-      {
-        ...props,
+    const dom = renderFormItem ? renderFormItem == null ? void 0 : renderFormItem(
+      __spreadProps(__spreadValues({}, props), {
         type: "descriptions"
-      },
+      }),
       {
         isEditable: true,
         recordKey: dataIndex,
         record: form.getFieldValue(
           [dataIndex].flat(1)
         ),
-        defaultRender: () => /* @__PURE__ */ jsx(ProFormField, { ...fieldConfig, fieldProps }),
+        defaultRender: () => /* @__PURE__ */ jsx(ProFormField, __spreadProps(__spreadValues({}, fieldConfig), { fieldProps })),
         type: "descriptions"
       },
       form
@@ -4540,26 +4537,24 @@ const FieldRender = (props) => {
     return /* @__PURE__ */ jsx(
       "div",
       {
-        style: { display: "flex", gap: token.marginXS, alignItems: "center" },
+        style: { display: "flex", gap: token2.marginXS, alignItems: "center" },
         children: /* @__PURE__ */ jsx(
           InlineErrorFormItem,
-          {
-            name: dataIndex,
-            ...formItemProps,
-            style: {
-              margin: 0,
-              ...formItemProps?.style || {}
-            },
-            initialValue: text || formItemProps?.initialValue,
+          __spreadProps(__spreadValues({
+            name: dataIndex
+          }, formItemProps), {
+            style: __spreadValues({
+              margin: 0
+            }, (formItemProps == null ? void 0 : formItemProps.style) || {}),
+            initialValue: text || (formItemProps == null ? void 0 : formItemProps.initialValue),
             children: dom || /* @__PURE__ */ jsx(
               ProFormField,
-              {
-                ...fieldConfig,
-                proFieldProps: { ...fieldConfig.proFieldProps },
+              __spreadProps(__spreadValues({}, fieldConfig), {
+                proFieldProps: __spreadValues({}, fieldConfig.proFieldProps),
                 fieldProps
-              }
+              })
             )
-          }
+          })
         )
       }
     );
@@ -4578,14 +4573,16 @@ const FieldRender = (props) => {
   );
 };
 const schemaToDescriptionsItem = (items, entity, action) => {
+  var _a2;
   const options = [];
-  const children = items?.map?.((item, index) => {
+  const children = (_a2 = items == null ? void 0 : items.map) == null ? void 0 : _a2.call(items, (item, index2) => {
+    var _b2, _c2;
     if (React__default.isValidElement(item)) {
       return {
         children: item
       };
     }
-    const {
+    const _a3 = item, {
       valueEnum,
       render,
       renderText,
@@ -4593,23 +4590,30 @@ const schemaToDescriptionsItem = (items, entity, action) => {
       dataIndex,
       request,
       params,
-      editable,
-      ...restItem
-    } = item;
-    const defaultData = getDataFromConfig(item, entity) ?? restItem.children;
-    const text = renderText ? renderText(defaultData, entity, index, action) : defaultData;
+      editable
+    } = _a3, restItem = __objRest(_a3, [
+      "valueEnum",
+      "render",
+      "renderText",
+      "plain",
+      "dataIndex",
+      "request",
+      "params",
+      "editable"
+    ]);
+    const defaultData = (_b2 = getDataFromConfig(item, entity)) != null ? _b2 : restItem.children;
+    const text = renderText ? renderText(defaultData, entity, index2, action) : defaultData;
     const title = typeof restItem.title === "function" ? restItem.title(item, "descriptions", null) : restItem.title;
-    const valueType = typeof restItem.valueType === "function" ? restItem.valueType(
+    const valueType2 = typeof restItem.valueType === "function" ? restItem.valueType(
       entity || {},
       "descriptions"
     ) : restItem.valueType;
     const Component = React__default.Fragment;
     const contentDom = genCopyable(text, item, text);
-    const field = /* @__PURE__ */ createElement(
+    const field2 = /* @__PURE__ */ createElement(
       Descriptions.Item,
-      {
-        ...restItem,
-        key: restItem.key || restItem.label?.toString() || index,
+      __spreadProps(__spreadValues({}, restItem), {
+        key: restItem.key || ((_c2 = restItem.label) == null ? void 0 : _c2.toString()) || index2,
         label: (title || restItem.label || restItem.tooltip || restItem.tip) && /* @__PURE__ */ jsx(
           LabelIconTip,
           {
@@ -4618,39 +4622,38 @@ const schemaToDescriptionsItem = (items, entity, action) => {
             ellipsis: item.ellipsis
           }
         )
-      },
+      }),
       /* @__PURE__ */ jsx(Component, { children: /* @__PURE__ */ jsx(
         FieldRender,
-        {
-          ...item,
-          dataIndex: item.dataIndex || index,
+        __spreadProps(__spreadValues({}, item), {
+          dataIndex: item.dataIndex || index2,
           text: contentDom,
-          valueType,
+          valueType: valueType2,
           entity,
-          index,
+          index: index2,
           action
-        }
+        })
       ) })
     );
-    if (valueType === "option") {
-      options.push(field);
+    if (valueType2 === "option") {
+      options.push(field2);
       return null;
     }
-    return field;
+    return field2;
   }).filter((item) => item);
   return {
     // 空數組傳遞還是會被判定為有值
-    options: options?.length ? options : null,
+    options: (options == null ? void 0 : options.length) ? options : null,
     children
   };
 };
 const ProDescriptionsItem = (props) => {
-  return /* @__PURE__ */ jsx(Descriptions.Item, { ...props, children: props.children });
+  return /* @__PURE__ */ jsx(Descriptions.Item, __spreadProps(__spreadValues({}, props), { children: props.children }));
 };
 ProDescriptionsItem.displayName = "ProDescriptionsItem";
 const DefaultProDescriptionsDom = (dom) => dom.children;
 const ProDescriptions = (props) => {
-  const {
+  const _a2 = props, {
     request,
     columns,
     params = {},
@@ -4660,15 +4663,25 @@ const ProDescriptions = (props) => {
     loading,
     onLoadingChange,
     actionRef,
-    onRequestError,
-    ...rest
-  } = props;
+    onRequestError
+  } = _a2, rest = __objRest(_a2, [
+    "request",
+    "columns",
+    "params",
+    "dataSource",
+    "onDataSourceChange",
+    "formProps",
+    "loading",
+    "onLoadingChange",
+    "actionRef",
+    "onRequestError"
+  ]);
   const context = useContext(ConfigProvider.ConfigContext);
   const action = useFetchData$1(
-    async () => {
-      const data = request ? await request(params) : { data: {} };
+    () => __async(void 0, null, function* () {
+      const data = request ? yield request(params) : { data: {} };
       return data;
-    },
+    }),
     {
       onRequestError,
       effects: [stringify(params)],
@@ -4696,28 +4709,27 @@ const ProDescriptions = (props) => {
       }
       const {
         valueEnum,
-        valueType,
+        valueType: valueType2,
         dataIndex,
         ellipsis,
         copyable,
         request: itemRequest
-      } = item?.props;
-      if (!valueType && !valueEnum && !dataIndex && !itemRequest && !ellipsis && !copyable && // @ts-ignore
+      } = item == null ? void 0 : item.props;
+      if (!valueType2 && !valueEnum && !dataIndex && !itemRequest && !ellipsis && !copyable && // @ts-ignore
       item.type.displayName !== "ProDescriptionsItem") {
         return item;
       }
-      return {
-        ...item?.props,
+      return __spreadProps(__spreadValues({}, item == null ? void 0 : item.props), {
         entity: dataSource
-      };
+      });
     });
     return [...columns || [], ...childrenColumns].filter((item) => {
       if (!item)
         return false;
-      if (item?.valueType && ["index", "indexBorder"].includes(item?.valueType)) {
+      if ((item == null ? void 0 : item.valueType) && ["index", "indexBorder"].includes(item == null ? void 0 : item.valueType)) {
         return false;
       }
-      return !item?.hideInDescriptions;
+      return !(item == null ? void 0 : item.hideInDescriptions);
     }).sort((a, b) => {
       if (b.order || a.order) {
         return (b.order || 0) - (a.order || 0);
@@ -4728,7 +4740,7 @@ const ProDescriptions = (props) => {
   const { options, children } = schemaToDescriptionsItem(
     getColumns(),
     action.dataSource || {},
-    actionRef?.current || action
+    (actionRef == null ? void 0 : actionRef.current) || action
   );
   const FormComponent = DefaultProDescriptionsDom;
   let title = null;
@@ -4738,16 +4750,16 @@ const ProDescriptions = (props) => {
   const className = context.getPrefixCls("pro-descriptions");
   return /* @__PURE__ */ jsx(ErrorBoundary, { children: /* @__PURE__ */ jsx(
     FormComponent,
-    {
+    __spreadProps(__spreadValues({
       component: false,
-      submitter: false,
-      ...formProps,
+      submitter: false
+    }, formProps), {
       onFinish: void 0,
       children: /* @__PURE__ */ jsx(
         Descriptions,
-        {
-          className,
-          ...rest,
+        __spreadProps(__spreadValues({
+          className
+        }, rest), {
           contentStyle: {
             minWidth: 0
           },
@@ -4757,14 +4769,13 @@ const ProDescriptions = (props) => {
           ] }) : options,
           title,
           children
-        }
+        })
       )
-    },
+    }),
     "form"
   ) });
 };
 ProDescriptions.Item = ProDescriptionsItem;
-
 const Status = {
   Success: ({ children }) => /* @__PURE__ */ jsx(Badge$1, { color: "success", children }),
   Error: ({ children }) => /* @__PURE__ */ jsx(Badge$1, { color: "error", children }),
@@ -4781,15 +4792,14 @@ const ProFieldBadgeColor = ({
   color,
   children
 }) => /* @__PURE__ */ jsx(Badge$1, { color, children });
-
 const getValueOrLabel = (valueMap, v) => {
   if (typeof v !== "object") {
     return valueMap[v] || v;
   }
-  return valueMap[v?.value] || v.label;
+  return valueMap[v == null ? void 0 : v.value] || v.label;
 };
 const LightSelect = (props, ref) => {
-  const {
+  const _a2 = props, {
     label,
     prefixCls: customizePrefixCls,
     onChange,
@@ -4811,19 +4821,41 @@ const LightSelect = (props, ref) => {
     lightLabel,
     labelTrigger,
     optionFilterProp,
-    optionLabelProp = "",
-    ...restProps
-  } = props;
+    optionLabelProp = ""
+  } = _a2, restProps = __objRest(_a2, [
+    "label",
+    "prefixCls",
+    "onChange",
+    "value",
+    "mode",
+    "children",
+    "defaultValue",
+    "size",
+    "showSearch",
+    "disabled",
+    "style",
+    "className",
+    "bordered",
+    "options",
+    "onSearch",
+    "allowClear",
+    "labelInValue",
+    "fieldNames",
+    "lightLabel",
+    "labelTrigger",
+    "optionFilterProp",
+    "optionLabelProp"
+  ]);
   const { placeholder = label } = props;
   const { label: labelPropsName = "label", value: valuePropsName = "value" } = fieldNames || {};
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const prefixCls = getPrefixCls("pro-field-select-light-select");
   const [open, setOpen] = useState(false);
   const [keyword, setKeyword] = useState("");
-  const { wrapSSR, hashId } = useStyle$A("LightSelect", (token) => {
+  const { wrapSSR, hashId } = useStyle$A("LightSelect", (token2) => {
     return {
       [`.${prefixCls}`]: {
-        [`${token.ipassCls}-select`]: {
+        [`${token2.ipassCls}-select`]: {
           position: "absolute",
           width: "153px",
           height: "28px",
@@ -4833,7 +4865,7 @@ const LightSelect = (props, ref) => {
           }
         },
         [`&.${prefixCls}-searchable`]: {
-          [`${token.ipassCls}-select`]: {
+          [`${token2.ipassCls}-select`]: {
             width: "200px",
             "&-selector": {
               height: 28
@@ -4845,7 +4877,7 @@ const LightSelect = (props, ref) => {
   });
   const valueMap = useMemo(() => {
     const values = {};
-    options?.forEach((item) => {
+    options == null ? void 0 : options.forEach((item) => {
       const optionLabel = item[optionLabelProp] || item[labelPropsName];
       const optionValue = item[valuePropsName];
       values[optionValue] = optionLabel || optionValue;
@@ -4868,9 +4900,10 @@ const LightSelect = (props, ref) => {
         ),
         style,
         onClick: (e) => {
+          var _a3, _b2, _c2;
           if (disabled)
             return;
-          const isLabelClick = lightLabel?.current?.labelRef?.current?.contains(
+          const isLabelClick = (_c2 = (_b2 = (_a3 = lightLabel == null ? void 0 : lightLabel.current) == null ? void 0 : _a3.labelRef) == null ? void 0 : _b2.current) == null ? void 0 : _c2.contains(
             e.target
           );
           if (isLabelClick) {
@@ -4882,9 +4915,9 @@ const LightSelect = (props, ref) => {
         children: [
           /* @__PURE__ */ jsx(
             Select,
-            {
-              popupMatchSelectWidth: false,
-              ...restProps,
+            __spreadProps(__spreadValues({
+              popupMatchSelectWidth: false
+            }, restProps), {
               allowClear,
               value,
               mode,
@@ -4892,7 +4925,7 @@ const LightSelect = (props, ref) => {
               size,
               disabled,
               onChange: (v, option) => {
-                onChange?.(v, option);
+                onChange == null ? void 0 : onChange(v, option);
                 if (mode !== "multiple") {
                   setOpen(false);
                 }
@@ -4910,7 +4943,7 @@ const LightSelect = (props, ref) => {
                       allowClear: !!allowClear,
                       onChange: (e) => {
                         setKeyword(e.target.value);
-                        onSearch?.(e.target.value);
+                        onSearch == null ? void 0 : onSearch(e.target.value);
                       },
                       onKeyDown: (e) => {
                         e.stopPropagation();
@@ -4924,22 +4957,24 @@ const LightSelect = (props, ref) => {
               },
               open,
               onDropdownVisibleChange: (isOpen) => {
+                var _a3;
                 if (!isOpen) {
                   setKeyword("");
                 }
                 if (!labelTrigger) {
                   setOpen(isOpen);
                 }
-                restProps?.onDropdownVisibleChange?.(isOpen);
+                (_a3 = restProps == null ? void 0 : restProps.onDropdownVisibleChange) == null ? void 0 : _a3.call(restProps, isOpen);
               },
               prefixCls: customizePrefixCls,
-              options: onSearch || !keyword ? options : options?.filter((o) => {
+              options: onSearch || !keyword ? options : options == null ? void 0 : options.filter((o) => {
+                var _a3, _b2, _c2, _d, _e;
                 if (optionFilterProp) {
                   return toArray(o[optionFilterProp]).join("").toLowerCase().includes(keyword);
                 }
-                return String(o[labelPropsName])?.toLowerCase()?.includes(keyword?.toLowerCase()) || o[valuePropsName]?.toString()?.toLowerCase()?.includes(keyword?.toLowerCase());
+                return ((_b2 = (_a3 = String(o[labelPropsName])) == null ? void 0 : _a3.toLowerCase()) == null ? void 0 : _b2.includes(keyword == null ? void 0 : keyword.toLowerCase())) || ((_e = (_d = (_c2 = o[valuePropsName]) == null ? void 0 : _c2.toString()) == null ? void 0 : _d.toLowerCase()) == null ? void 0 : _e.includes(keyword == null ? void 0 : keyword.toLowerCase()));
               })
-            }
+            })
           ),
           /* @__PURE__ */ jsx(
             FieldLabel,
@@ -4950,9 +4985,9 @@ const LightSelect = (props, ref) => {
               disabled,
               bordered,
               allowClear: !!allowClear,
-              value: filterValue || value?.label || value,
+              value: filterValue || (value == null ? void 0 : value.label) || value,
               onClear: () => {
-                onChange?.(void 0, void 0);
+                onChange == null ? void 0 : onChange(void 0, void 0);
               },
               ref: lightLabel
             }
@@ -4963,9 +4998,8 @@ const LightSelect = (props, ref) => {
   );
 };
 const LightSelect$1 = React__default.forwardRef(LightSelect);
-
 const SearchSelect$1 = (props, ref) => {
-  const {
+  const _a2 = props, {
     optionItemRender,
     mode,
     onSearch,
@@ -4987,22 +5021,45 @@ const SearchSelect$1 = (props, ref) => {
     searchValue: propsSearchValue,
     showSearch,
     fieldNames,
-    defaultSearchValue,
-    ...restProps
-  } = props;
+    defaultSearchValue
+  } = _a2, restProps = __objRest(_a2, [
+    "optionItemRender",
+    "mode",
+    "onSearch",
+    "onFocus",
+    "onChange",
+    "autoClearSearchValue",
+    "searchOnFocus",
+    "resetAfterSelect",
+    "fetchDataOnSearch",
+    "optionFilterProp",
+    "optionLabelProp",
+    "className",
+    "disabled",
+    "options",
+    "fetchData",
+    "resetData",
+    "prefixCls",
+    "onClear",
+    "searchValue",
+    "showSearch",
+    "fieldNames",
+    "defaultSearchValue"
+  ]);
   const {
     label: labelPropsName = "label",
     value: valuePropsName = "value",
     options: optionsPropsName = "options"
   } = fieldNames || {};
   const [searchValue, setSearchValue] = useState(
-    propsSearchValue ?? defaultSearchValue
+    propsSearchValue != null ? propsSearchValue : defaultSearchValue
   );
   const selectRef = useRef();
   useImperativeHandle(ref, () => selectRef.current);
   useEffect(() => {
+    var _a3;
     if (restProps.autoFocus) {
-      selectRef?.current?.focus();
+      (_a3 = selectRef == null ? void 0 : selectRef.current) == null ? void 0 : _a3.focus();
     }
   }, [restProps.autoFocus]);
   useEffect(() => {
@@ -5015,52 +5072,52 @@ const SearchSelect$1 = (props, ref) => {
   });
   const getMergeValue = (value, option) => {
     if (Array.isArray(value) && value.length > 0) {
-      return value.map((item, index) => {
-        const optionItem = option?.[index];
-        const dataItem = optionItem?.["data-item"] || {};
-        return {
-          ...dataItem,
-          ...item
-        };
+      return value.map((item, index2) => {
+        const optionItem = option == null ? void 0 : option[index2];
+        const dataItem = (optionItem == null ? void 0 : optionItem["data-item"]) || {};
+        return __spreadValues(__spreadValues({}, dataItem), item);
       });
     }
     return [];
   };
   const genOptions = (mapOptions) => {
-    return mapOptions.map((item, index) => {
-      const {
+    return mapOptions.map((item, index2) => {
+      var _b2;
+      const _a3 = item, {
         className: itemClassName,
-        optionType,
-        ...resetItem
-      } = item;
+        optionType
+      } = _a3, resetItem = __objRest(_a3, [
+        "className",
+        "optionType"
+      ]);
       const label = item[labelPropsName];
       const value = item[valuePropsName];
-      const itemOptions = item[optionsPropsName] ?? [];
+      const itemOptions = (_b2 = item[optionsPropsName]) != null ? _b2 : [];
       if (optionType === "optGroup" || item.options) {
-        return {
-          label,
-          ...resetItem,
+        return __spreadProps(__spreadValues({
+          label
+        }, resetItem), {
           data_title: label,
           title: label,
-          key: value ?? label?.toString(),
+          key: value != null ? value : label == null ? void 0 : label.toString(),
           children: genOptions(itemOptions)
-        };
+        });
       }
-      return {
-        title: label,
-        ...resetItem,
+      return __spreadProps(__spreadValues({
+        title: label
+      }, resetItem), {
         data_title: label,
-        value: value ?? index,
-        key: value ?? label?.toString(),
+        value: value != null ? value : index2,
+        key: value != null ? value : label == null ? void 0 : label.toString(),
         "data-item": item,
         className: `${prefixCls}-option ${itemClassName || ""}`.trim(),
-        label: optionItemRender?.(item) || label
-      };
+        label: (optionItemRender == null ? void 0 : optionItemRender(item)) || label
+      });
     });
   };
   return /* @__PURE__ */ jsx(
     Select,
-    {
+    __spreadProps(__spreadValues({
       ref: selectRef,
       className: classString,
       allowClear: true,
@@ -5072,50 +5129,50 @@ const SearchSelect$1 = (props, ref) => {
       optionFilterProp,
       optionLabelProp,
       onClear: () => {
-        onClear?.();
+        onClear == null ? void 0 : onClear();
         fetchData(void 0);
         if (showSearch) {
           setSearchValue(void 0);
         }
-      },
-      ...restProps,
+      }
+    }, restProps), {
       filterOption: restProps.filterOption == false ? false : (inputValue, option) => {
+        var _a3, _b2, _c2;
         if (restProps.filterOption && typeof restProps.filterOption === "function") {
-          return restProps.filterOption(inputValue, {
-            ...option,
-            label: option?.data_title
-          });
+          return restProps.filterOption(inputValue, __spreadProps(__spreadValues({}, option), {
+            label: option == null ? void 0 : option.data_title
+          }));
         }
-        return !!(option?.data_title?.toString().toLowerCase().includes(inputValue.toLowerCase()) || option?.label?.toString().toLowerCase().includes(inputValue.toLowerCase()) || option?.value?.toString().toLowerCase().includes(inputValue.toLowerCase()));
+        return !!(((_a3 = option == null ? void 0 : option.data_title) == null ? void 0 : _a3.toString().toLowerCase().includes(inputValue.toLowerCase())) || ((_b2 = option == null ? void 0 : option.label) == null ? void 0 : _b2.toString().toLowerCase().includes(inputValue.toLowerCase())) || ((_c2 = option == null ? void 0 : option.value) == null ? void 0 : _c2.toString().toLowerCase().includes(inputValue.toLowerCase())));
       },
       onSearch: showSearch ? (value) => {
         if (fetchDataOnSearch) {
           fetchData(value);
         }
-        onSearch?.(value);
+        onSearch == null ? void 0 : onSearch(value);
         setSearchValue(value);
       } : void 0,
       onChange: (value, optionList, ...rest) => {
         if (showSearch && autoClearSearchValue) {
           fetchData(void 0);
-          onSearch?.("");
+          onSearch == null ? void 0 : onSearch("");
           setSearchValue(void 0);
         }
         if (!props.labelInValue) {
-          onChange?.(value, optionList, ...rest);
+          onChange == null ? void 0 : onChange(value, optionList, ...rest);
           return;
         }
         if (mode !== "multiple") {
           const dataItem = optionList && optionList["data-item"];
           if (!value || !dataItem) {
-            onChange?.(value, optionList, ...rest);
+            onChange == null ? void 0 : onChange(value, optionList, ...rest);
           } else {
-            onChange?.({ ...value, ...dataItem }, optionList, ...rest);
+            onChange == null ? void 0 : onChange(__spreadValues(__spreadValues({}, value), dataItem), optionList, ...rest);
           }
           return;
         }
         const mergeValue = getMergeValue(value, optionList);
-        onChange?.(mergeValue, optionList, ...rest);
+        onChange == null ? void 0 : onChange(mergeValue, optionList, ...rest);
         if (resetAfterSelect)
           resetData();
       },
@@ -5123,14 +5180,13 @@ const SearchSelect$1 = (props, ref) => {
         if (searchOnFocus) {
           fetchData(searchValue);
         }
-        onFocus?.(e);
+        onFocus == null ? void 0 : onFocus(e);
       },
       options: genOptions(options || [])
-    }
+    })
   );
 };
 const SearchSelect$2 = React__default.forwardRef(SearchSelect$1);
-
 const ObjToMap = (value) => {
   if (getType(value) === "map") {
     return value;
@@ -5140,19 +5196,19 @@ const ObjToMap = (value) => {
 const proFieldParsingText = (text, valueEnumParams, key) => {
   if (Array.isArray(text)) {
     return /* @__PURE__ */ jsx(CompoundedSpace, { split: ",", size: 2, wrap: true, children: text.map(
-      (value, index) => (
+      (value, index2) => (
         // @ts-ignore
-        proFieldParsingText(value, valueEnumParams, index)
+        proFieldParsingText(value, valueEnumParams, index2)
       )
     ) }, key);
   }
   const valueEnum = ObjToMap(valueEnumParams);
   if (!valueEnum.has(text) && !valueEnum.has(`${text}`)) {
-    return text?.label || text;
+    return (text == null ? void 0 : text.label) || text;
   }
   const domText = valueEnum.get(text) || valueEnum.get(`${text}`);
   if (!domText) {
-    return /* @__PURE__ */ jsx(React__default.Fragment, { children: text?.label || text }, key);
+    return /* @__PURE__ */ jsx(React__default.Fragment, { children: (text == null ? void 0 : text.label) || text }, key);
   }
   const { status, color } = domText;
   const Status$1 = Status[status || "Init"];
@@ -5168,10 +5224,10 @@ const Highlight = ({ label, words }) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const lightCls = getPrefixCls("pro-select-item-option-content-light");
   const optionCls = getPrefixCls("pro-select-item-option-content");
-  const { wrapSSR } = useStyle$A("Highlight", (token) => {
+  const { wrapSSR } = useStyle$A("Highlight", (token2) => {
     return {
       [`.${lightCls}`]: {
-        color: token.colorPrimary
+        color: token2.colorPrimary
       },
       [`.${optionCls}`]: {
         flex: "auto",
@@ -5229,9 +5285,10 @@ function getType(obj) {
   return type;
 }
 function filerByItem(item, keyWords) {
+  var _a2, _b2;
   if (!keyWords)
     return true;
-  if (item?.label?.toString().toLowerCase().includes(keyWords.toLowerCase()) || item?.value?.toString().toLowerCase().includes(keyWords.toLowerCase())) {
+  if (((_a2 = item == null ? void 0 : item.label) == null ? void 0 : _a2.toString().toLowerCase().includes(keyWords.toLowerCase())) || ((_b2 = item == null ? void 0 : item.value) == null ? void 0 : _b2.toString().toLowerCase().includes(keyWords.toLowerCase()))) {
     return true;
   }
   if (item.children || item.options) {
@@ -5253,11 +5310,11 @@ const proFieldParsingValueEnumToArray = (valueEnumParams) => {
     if (!value) {
       return;
     }
-    if (typeof value === "object" && value?.text) {
+    if (typeof value === "object" && (value == null ? void 0 : value.text)) {
       enumArray.push({
-        text: value?.text,
+        text: value == null ? void 0 : value.text,
         value: key,
-        label: value?.text,
+        label: value == null ? void 0 : value.text,
         disabled: value.disabled
       });
       return;
@@ -5270,6 +5327,7 @@ const proFieldParsingValueEnumToArray = (valueEnumParams) => {
   return enumArray;
 };
 const useFieldFetchData = (props) => {
+  var _a2, _b2, _c2, _d;
   const { cacheForSwr, fieldProps } = props;
   const [keyWords, setKeyWords] = useState(
     props.defaultKeyWords
@@ -5287,24 +5345,26 @@ const useFieldFetchData = (props) => {
   const getOptionsFormValueEnum = useRefFunction(
     (coverValueEnum) => {
       return proFieldParsingValueEnumToArray(ObjToMap(coverValueEnum)).map(
-        ({ value, text, ...rest }) => ({
-          label: text,
-          value,
-          key: value,
-          ...rest
-        })
+        (_a3) => {
+          var _b3 = _a3, { value, text } = _b3, rest = __objRest(_b3, ["value", "text"]);
+          return __spreadValues({
+            label: text,
+            value,
+            key: value
+          }, rest);
+        }
       );
     }
   );
   const defaultOptions = useDeepCompareMemo(() => {
     if (!fieldProps)
       return void 0;
-    const data2 = fieldProps?.options || fieldProps?.treeData;
+    const data2 = (fieldProps == null ? void 0 : fieldProps.options) || (fieldProps == null ? void 0 : fieldProps.treeData);
     if (!data2)
       return void 0;
     const { children, label, value } = fieldProps.fieldNames || {};
     const traverseFieldKey = (_options, type) => {
-      if (!_options?.length)
+      if (!(_options == null ? void 0 : _options.length))
         return;
       const length = _options.length;
       let i = 0;
@@ -5336,13 +5396,14 @@ const useFieldFetchData = (props) => {
     }
   );
   useDeepCompareEffect(() => {
-    if (!props.valueEnum || props.fieldProps?.options || props.fieldProps?.treeData)
+    var _a3, _b3;
+    if (!props.valueEnum || ((_a3 = props.fieldProps) == null ? void 0 : _a3.options) || ((_b3 = props.fieldProps) == null ? void 0 : _b3.treeData))
       return;
     setOptions(getOptionsFormValueEnum(props.valueEnum));
   }, [props.valueEnum]);
   const swrKey = useDebounceValue(
     [proFieldKeyRef.current, props.params, keyWords],
-    props.debounceTime ?? props?.fieldProps?.debounceTime ?? 0,
+    (_c2 = (_b2 = props.debounceTime) != null ? _b2 : (_a2 = props == null ? void 0 : props.fieldProps) == null ? void 0 : _a2.debounceTime) != null ? _c2 : 0,
     [props.params, keyWords]
   );
   const {
@@ -5357,10 +5418,9 @@ const useFieldFetchData = (props) => {
       return swrKey;
     },
     ([, params, kw]) => props.request(
-      {
-        ...params,
+      __spreadProps(__spreadValues({}, params), {
         keyWords: kw
-      },
+      }),
       props
     ),
     {
@@ -5373,7 +5433,8 @@ const useFieldFetchData = (props) => {
     }
   );
   const resOptions = useMemo(() => {
-    const opt = options?.map((item) => {
+    var _a3, _b3;
+    const opt = options == null ? void 0 : options.map((item) => {
       if (typeof item === "string") {
         return {
           label: item,
@@ -5387,16 +5448,15 @@ const useFieldFetchData = (props) => {
         ].filter((mapItem) => {
           return filerByItem(mapItem, keyWords);
         });
-        return {
-          ...item,
+        return __spreadProps(__spreadValues({}, item), {
           children: childrenOptions,
           options: childrenOptions
-        };
+        });
       }
       return item;
     });
-    if (props.fieldProps?.filterOption === true || props.fieldProps?.filterOption === void 0) {
-      return opt?.filter((item) => {
+    if (((_a3 = props.fieldProps) == null ? void 0 : _a3.filterOption) === true || ((_b3 = props.fieldProps) == null ? void 0 : _b3.filterOption) === void 0) {
+      return opt == null ? void 0 : opt.filter((item) => {
         if (!item)
           return false;
         if (!keyWords)
@@ -5405,7 +5465,7 @@ const useFieldFetchData = (props) => {
       });
     }
     return opt;
-  }, [options, keyWords, props.fieldProps?.filterOption]);
+  }, [options, keyWords, (_d = props.fieldProps) == null ? void 0 : _d.filterOption]);
   return [
     isValidating,
     props.request ? data : resOptions,
@@ -5419,7 +5479,8 @@ const useFieldFetchData = (props) => {
   ];
 };
 const FieldSelect = (props, ref) => {
-  const {
+  var _b2, _c2, _d, _e;
+  const _a2 = props, {
     mode,
     valueEnum,
     render,
@@ -5435,24 +5496,39 @@ const FieldSelect = (props, ref) => {
     bordered,
     id,
     lightLabel,
-    labelTrigger,
-    ...rest
-  } = props;
+    labelTrigger
+  } = _a2, rest = __objRest(_a2, [
+    "mode",
+    "valueEnum",
+    "render",
+    "renderFormItem",
+    "request",
+    "fieldProps",
+    "plain",
+    "children",
+    "light",
+    "proFieldKey",
+    "params",
+    "label",
+    "bordered",
+    "id",
+    "lightLabel",
+    "labelTrigger"
+  ]);
   const inputRef = useRef();
   const intl = useIntl();
   const keyWordsRef = useRef("");
   const { fieldNames } = fieldProps;
   useEffect(() => {
-    keyWordsRef.current = fieldProps?.searchValue;
-  }, [fieldProps?.searchValue]);
+    keyWordsRef.current = fieldProps == null ? void 0 : fieldProps.searchValue;
+  }, [fieldProps == null ? void 0 : fieldProps.searchValue]);
   const [loading, options, fetchData, resetData] = useFieldFetchData(props);
-  const { componentSize } = ConfigProvider?.useConfig?.() || {
+  const { componentSize } = ((_c2 = (_b2 = ConfigProvider) == null ? void 0 : _b2.useConfig) == null ? void 0 : _c2.call(_b2)) || {
     componentSize: "middle"
   };
   useImperativeHandle(
     ref,
-    () => ({
-      ...inputRef.current || {},
+    () => __spreadProps(__spreadValues({}, inputRef.current || {}), {
       fetchData: (keyWord) => fetchData(keyWord)
     }),
     [fetchData]
@@ -5467,7 +5543,7 @@ const FieldSelect = (props, ref) => {
     } = fieldNames || {};
     const valuesMap = /* @__PURE__ */ new Map();
     const traverseOptions = (_options) => {
-      if (!_options?.length) {
+      if (!(_options == null ? void 0 : _options.length)) {
         return valuesMap;
       }
       const length = _options.length;
@@ -5489,7 +5565,7 @@ const FieldSelect = (props, ref) => {
       )
     ) });
     if (render) {
-      return render(rest.text, { mode, ...fieldProps }, dom) ?? null;
+      return (_d = render(rest.text, __spreadValues({ mode }, fieldProps), dom)) != null ? _d : null;
     }
     return dom;
   }
@@ -5498,7 +5574,7 @@ const FieldSelect = (props, ref) => {
       if (light) {
         return /* @__PURE__ */ jsx(
           LightSelect$1,
-          {
+          __spreadValues({
             bordered,
             id,
             loading,
@@ -5512,28 +5588,26 @@ const FieldSelect = (props, ref) => {
               defaultMessage: "請選擇"
             }),
             lightLabel,
-            labelTrigger,
-            ...fieldProps
-          }
+            labelTrigger
+          }, fieldProps)
         );
       }
       return /* @__PURE__ */ jsx(
         SearchSelect$2,
-        {
+        __spreadProps(__spreadValues({
           className: rest.className,
-          style: {
-            minWidth: 100,
-            ...rest.style
-          },
+          style: __spreadValues({
+            minWidth: 100
+          }, rest.style),
           bordered,
           id,
           loading,
           ref: inputRef,
           allowClear: true,
           defaultSearchValue: props.defaultKeyWords,
-          notFoundContent: loading ? /* @__PURE__ */ jsx(CircularProgress, { size: 20 }) : fieldProps?.notFoundContent,
+          notFoundContent: loading ? /* @__PURE__ */ jsx(CircularProgress, { size: 20 }) : fieldProps == null ? void 0 : fieldProps.notFoundContent,
           fetchData: (keyWord) => {
-            keyWordsRef.current = keyWord ?? "";
+            keyWordsRef.current = keyWord != null ? keyWord : "";
             fetchData(keyWord);
           },
           resetData,
@@ -5544,53 +5618,54 @@ const FieldSelect = (props, ref) => {
             return item.label;
           },
           placeholder: intl.formatMessage({ id: "tableForm.selectPlaceholder", defaultMessage: "請選擇" }),
-          label,
-          ...fieldProps,
+          label
+        }, fieldProps), {
           options
-        },
+        }),
         "SearchSelect"
       );
     };
     const dom = renderDom();
     if (renderFormItem) {
-      return renderFormItem(
+      return (_e = renderFormItem(
         rest.text,
-        { mode, ...fieldProps, options, loading },
+        __spreadProps(__spreadValues({ mode }, fieldProps), { options, loading }),
         dom
-      ) ?? null;
+      )) != null ? _e : null;
     }
     return dom;
   }
   return null;
 };
 const FieldSelect$1 = React__default.forwardRef(FieldSelect);
-
-const FieldCheckbox = ({ layout = "horizontal", renderFormItem, mode, render, ...rest }, ref) => {
+const FieldCheckbox = (_f, ref) => {
+  var _g = _f, { layout = "horizontal", renderFormItem, mode, render } = _g, rest = __objRest(_g, ["layout", "renderFormItem", "mode", "render"]);
+  var _a2, _b2, _c2, _d, _e;
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const layoutClassName = getPrefixCls("pro-field-checkbox");
-  const status = Form.Item?.useStatus?.();
+  const status = (_b2 = (_a2 = Form.Item) == null ? void 0 : _a2.useStatus) == null ? void 0 : _b2.call(_a2);
   const [loading, options, fetchData] = useFieldFetchData(rest);
-  const { wrapSSR, hashId } = useStyle$A("Checkbox", (token2) => {
+  const { wrapSSR, hashId } = useStyle$A("Checkbox", (token22) => {
     return {
       [`.${layoutClassName}`]: {
         "&-error": {
           span: {
-            color: token2.colorError
+            color: token22.colorError
           }
         },
         "&-warning": {
           span: {
-            color: token2.colorWarning
+            color: token22.colorWarning
           }
         },
         "&-vertical": {
-          [`&${token2.ipassCls}-checkbox-group`]: {
+          [`&${token22.ipassCls}-checkbox-group`]: {
             display: "inline-block"
           },
-          [`${token2.ipassCls}-checkbox-wrapper+${token2.ipassCls}-checkbox-wrapper`]: {
+          [`${token22.ipassCls}-checkbox-wrapper+${token22.ipassCls}-checkbox-wrapper`]: {
             "margin-inline-start": "0  !important"
           },
-          [`${token2.ipassCls}-checkbox-group-item`]: {
+          [`${token22.ipassCls}-checkbox-group-item`]: {
             display: "flex",
             marginInlineEnd: 0
           }
@@ -5598,12 +5673,11 @@ const FieldCheckbox = ({ layout = "horizontal", renderFormItem, mode, render, ..
       }
     };
   });
-  const { token } = useToken?.();
+  const { token: token2 } = useToken == null ? void 0 : useToken();
   const checkBoxRef = useRef();
   useImperativeHandle(
     ref,
-    () => ({
-      ...checkBoxRef.current || {},
+    () => __spreadProps(__spreadValues({}, checkBoxRef.current || {}), {
       fetchData: (keyWord) => fetchData(keyWord)
     }),
     [fetchData]
@@ -5612,15 +5686,16 @@ const FieldCheckbox = ({ layout = "horizontal", renderFormItem, mode, render, ..
     return /* @__PURE__ */ jsx(CircularProgress, { size: 20 });
   }
   if (mode === "read") {
-    const optionsValueEnum = options?.length ? options?.reduce((pre, cur) => {
-      return { ...pre, [cur.value ?? ""]: cur.label };
+    const optionsValueEnum = (options == null ? void 0 : options.length) ? options == null ? void 0 : options.reduce((pre, cur) => {
+      var _a3;
+      return __spreadProps(__spreadValues({}, pre), { [(_a3 = cur.value) != null ? _a3 : ""]: cur.label });
     }, {}) : void 0;
     const dom = proFieldParsingText(
       rest.text,
       ObjToMap(rest.valueEnum || optionsValueEnum)
     );
     if (render) {
-      return render(rest.text, { mode, ...rest.fieldProps }, /* @__PURE__ */ jsx(Fragment, { children: dom })) ?? null;
+      return (_c2 = render(rest.text, __spreadValues({ mode }, rest.fieldProps), /* @__PURE__ */ jsx(Fragment, { children: dom }))) != null ? _c2 : null;
     }
     return /* @__PURE__ */ jsx(
       "div",
@@ -5629,7 +5704,7 @@ const FieldCheckbox = ({ layout = "horizontal", renderFormItem, mode, render, ..
           display: "flex",
           flexWrap: "wrap",
           alignItems: "center",
-          gap: token.marginSM
+          gap: token2.marginSM
         },
         children: dom
       }
@@ -5639,34 +5714,32 @@ const FieldCheckbox = ({ layout = "horizontal", renderFormItem, mode, render, ..
     const dom = wrapSSR(
       /* @__PURE__ */ jsx(
         Checkbox.Group,
-        {
-          ...rest.fieldProps,
+        __spreadProps(__spreadValues({}, rest.fieldProps), {
           className: classNames(
-            rest.fieldProps?.className,
+            (_d = rest.fieldProps) == null ? void 0 : _d.className,
             hashId,
             `${layoutClassName}-${layout}`,
             {
-              [`${layoutClassName}-error`]: status?.status === "error",
-              [`${layoutClassName}-warning`]: status?.status === "warning"
+              [`${layoutClassName}-error`]: (status == null ? void 0 : status.status) === "error",
+              [`${layoutClassName}-warning`]: (status == null ? void 0 : status.status) === "warning"
             }
           ),
           options
-        }
+        })
       )
     );
     if (renderFormItem) {
-      return renderFormItem(
+      return (_e = renderFormItem(
         rest.text,
-        { mode, ...rest.fieldProps, options, loading },
+        __spreadProps(__spreadValues({ mode }, rest.fieldProps), { options, loading }),
         dom
-      ) ?? null;
+      )) != null ? _e : null;
     }
     return dom;
   }
   return null;
 };
 const FieldCheckbox$1 = React__default.forwardRef(FieldCheckbox);
-
 dayjs.extend(weekOfYear);
 const formatDate = (text, format) => {
   if (!text)
@@ -5699,7 +5772,7 @@ const FieldDatePicker = ({
   if (mode === "read") {
     const dom = formatDate(text, fieldProps.format || format);
     if (render) {
-      return render(text, { mode, ...fieldProps }, /* @__PURE__ */ jsx(Fragment, { children: dom }));
+      return render(text, __spreadValues({ mode }, fieldProps), /* @__PURE__ */ jsx(Fragment, { children: dom }));
     }
     return /* @__PURE__ */ jsx(Fragment, { children: dom });
   }
@@ -5717,7 +5790,8 @@ const FieldDatePicker = ({
         {
           label,
           onClick: () => {
-            fieldProps?.onOpenChange?.(true);
+            var _a2;
+            (_a2 = fieldProps == null ? void 0 : fieldProps.onOpenChange) == null ? void 0 : _a2.call(fieldProps, true);
             setOpen(true);
           },
           style: dayValue ? {
@@ -5726,20 +5800,21 @@ const FieldDatePicker = ({
           disabled,
           value: dayValue || open ? /* @__PURE__ */ jsx(
             DatePicker,
-            {
+            __spreadProps(__spreadValues({
               picker,
               showTime,
               format,
-              ref,
-              ...fieldProps,
+              ref
+            }, fieldProps), {
               value: dayValue,
               onOpenChange: (isOpen) => {
+                var _a2;
                 setOpen(isOpen);
-                fieldProps?.onOpenChange?.(isOpen);
+                (_a2 = fieldProps == null ? void 0 : fieldProps.onOpenChange) == null ? void 0 : _a2.call(fieldProps, isOpen);
               },
               bordered: false,
               open
-            }
+            })
           ) : void 0,
           allowClear: false,
           downIcon: dayValue || open ? false : void 0,
@@ -5750,33 +5825,33 @@ const FieldDatePicker = ({
     } else {
       dom = /* @__PURE__ */ jsx(
         DatePicker,
-        {
+        __spreadProps(__spreadValues({
           picker,
           showTime,
           format,
           placeholder,
           bordered: plain === void 0 ? true : !plain,
-          ref,
-          ...fieldProps,
+          ref
+        }, fieldProps), {
           value: dayValue
-        }
+        })
       );
     }
     if (renderFormItem) {
-      return renderFormItem(text, { mode, ...fieldProps }, dom);
+      return renderFormItem(text, __spreadValues({ mode }, fieldProps), dom);
     }
     return dom;
   }
   return null;
 };
 const FieldDatePicker$1 = React__default.forwardRef(FieldDatePicker);
-
 const FieldDigit = ({ text, mode: type, render, placeholder, renderFormItem, fieldProps }, ref) => {
+  var _a2;
   const intl = useIntl();
   const placeholderValue = placeholder || intl.formatMessage({ id: "tableForm.inputPlaceholder", defaultMessage: "請輸入" });
   const proxyChange = useCallback(
     (value) => {
-      let val = value ?? void 0;
+      let val = value != null ? value : void 0;
       if (!fieldProps.stringMode && typeof val === "string") {
         val = Number(val);
       }
@@ -5789,43 +5864,45 @@ const FieldDigit = ({ text, mode: type, render, placeholder, renderFormItem, fie
   );
   if (type === "read") {
     let fractionDigits = {};
-    if (fieldProps?.precision) {
+    if (fieldProps == null ? void 0 : fieldProps.precision) {
       fractionDigits = {
         minimumFractionDigits: Number(fieldProps.precision),
         maximumFractionDigits: Number(fieldProps.precision)
       };
     }
-    const digit = new Intl.NumberFormat(void 0, {
-      ...fractionDigits,
-      ...fieldProps?.intlProps || {}
-    }).format(Number(text));
-    const dom = /* @__PURE__ */ jsx("span", { ref, children: fieldProps?.formatter?.(digit) || digit });
+    const digit = new Intl.NumberFormat(void 0, __spreadValues(__spreadValues({}, fractionDigits), (fieldProps == null ? void 0 : fieldProps.intlProps) || {})).format(Number(text));
+    const dom = /* @__PURE__ */ jsx("span", { ref, children: ((_a2 = fieldProps == null ? void 0 : fieldProps.formatter) == null ? void 0 : _a2.call(fieldProps, digit)) || digit });
     if (render) {
-      return render(text, { mode: type, ...fieldProps }, dom);
+      return render(text, __spreadValues({ mode: type }, fieldProps), dom);
     }
     return dom;
   }
   if (type === "edit" || type === "update") {
     const dom = /* @__PURE__ */ jsx(
       TypedInputNumber,
-      {
+      __spreadProps(__spreadValues({
         ref,
         min: 0,
-        placeholder: placeholderValue,
-        ...omit(fieldProps, ["onChange", "onBlur"]),
-        onChange: (e) => fieldProps?.onChange?.(proxyChange(e)),
-        onBlur: (e) => fieldProps?.onBlur?.(proxyChange(e.target.value))
-      }
+        placeholder: placeholderValue
+      }, omit(fieldProps, ["onChange", "onBlur"])), {
+        onChange: (e) => {
+          var _a3;
+          return (_a3 = fieldProps == null ? void 0 : fieldProps.onChange) == null ? void 0 : _a3.call(fieldProps, proxyChange(e));
+        },
+        onBlur: (e) => {
+          var _a3;
+          return (_a3 = fieldProps == null ? void 0 : fieldProps.onBlur) == null ? void 0 : _a3.call(fieldProps, proxyChange(e.target.value));
+        }
+      })
     );
     if (renderFormItem) {
-      return renderFormItem(text, { mode: type, ...fieldProps }, dom);
+      return renderFormItem(text, __spreadValues({ mode: type }, fieldProps), dom);
     }
     return dom;
   }
   return null;
 };
 const FieldDigit$1 = React__default.forwardRef(FieldDigit);
-
 const FieldDigitRange = ({
   text,
   mode: type,
@@ -5838,18 +5915,18 @@ const FieldDigitRange = ({
 }, ref) => {
   const { value, defaultValue, onChange, id } = fieldProps;
   const intl = useIntl();
-  const { token } = proTheme.useToken();
+  const { token: token2 } = proTheme.useToken();
   const [valuePair, setValuePair] = useMergedState(() => defaultValue, {
     value,
     onChange
   });
   if (type === "read") {
     const getContent = (number) => {
-      const digit = new Intl.NumberFormat(void 0, {
-        minimumSignificantDigits: 2,
-        ...fieldProps?.intlProps || {}
-      }).format(Number(number));
-      return fieldProps?.formatter?.(digit) || digit;
+      var _a2;
+      const digit = new Intl.NumberFormat(void 0, __spreadValues({
+        minimumSignificantDigits: 2
+      }, (fieldProps == null ? void 0 : fieldProps.intlProps) || {})).format(Number(number));
+      return ((_a2 = fieldProps == null ? void 0 : fieldProps.formatter) == null ? void 0 : _a2.call(fieldProps, digit)) || digit;
     };
     const dom = /* @__PURE__ */ jsxs("span", { ref, children: [
       getContent(text[0]),
@@ -5859,7 +5936,7 @@ const FieldDigitRange = ({
       getContent(text[1])
     ] });
     if (render) {
-      return render(text, { mode: type, ...fieldProps }, dom);
+      return render(text, __spreadValues({ mode: type }, fieldProps), dom);
     }
     return dom;
   }
@@ -5874,30 +5951,29 @@ const FieldDigitRange = ({
         }
       }
     };
-    const handleChange = (index, changedValue) => {
+    const handleChange = (index2, changedValue) => {
       const newValuePair = [...valuePair || []];
-      newValuePair[index] = changedValue === null ? void 0 : changedValue;
+      newValuePair[index2] = changedValue === null ? void 0 : changedValue;
       setValuePair(newValuePair);
     };
-    const placeholderValue = fieldProps?.placeholder || placeholder || [
+    const placeholderValue = (fieldProps == null ? void 0 : fieldProps.placeholder) || placeholder || [
       intl.formatMessage({ id: "tableForm.inputPlaceholder", defaultMessage: "請輸入" }),
       intl.formatMessage({ id: "tableForm.inputPlaceholder", defaultMessage: "請輸入" })
     ];
-    const getInputNumberPlaceholder = (index) => Array.isArray(placeholderValue) ? placeholderValue[index] : placeholderValue;
+    const getInputNumberPlaceholder = (index2) => Array.isArray(placeholderValue) ? placeholderValue[index2] : placeholderValue;
     const Compact = CompoundedSpace.Compact || Input.Group;
     const compactProps = !!CompoundedSpace.Compact ? {} : { compact: true };
-    const dom = /* @__PURE__ */ jsxs(Compact, { ...compactProps, onBlur: handleGroupBlur, children: [
+    const dom = /* @__PURE__ */ jsxs(Compact, __spreadProps(__spreadValues({}, compactProps), { onBlur: handleGroupBlur, children: [
       /* @__PURE__ */ jsx(
         TypedInputNumber,
-        {
-          ...fieldProps,
+        __spreadProps(__spreadValues({}, fieldProps), {
           placeholder: getInputNumberPlaceholder(0),
-          id: id ?? `${id}-0`,
+          id: id != null ? id : `${id}-0`,
           style: { width: `calc((100% - ${separatorWidth}px) / 2)` },
-          value: valuePair?.[0],
-          defaultValue: defaultValue?.[0],
+          value: valuePair == null ? void 0 : valuePair[0],
+          defaultValue: defaultValue == null ? void 0 : defaultValue[0],
           onChange: (changedValue) => handleChange(0, changedValue)
-        }
+        })
       ),
       /* @__PURE__ */ jsx(
         Input,
@@ -5908,7 +5984,7 @@ const FieldDigitRange = ({
             borderInlineStart: 0,
             borderInlineEnd: 0,
             pointerEvents: "none",
-            backgroundColor: token?.colorBgContainer
+            backgroundColor: token2 == null ? void 0 : token2.colorBgContainer
           },
           placeholder: separator,
           disabled: true
@@ -5916,29 +5992,27 @@ const FieldDigitRange = ({
       ),
       /* @__PURE__ */ jsx(
         TypedInputNumber,
-        {
-          ...fieldProps,
+        __spreadProps(__spreadValues({}, fieldProps), {
           placeholder: getInputNumberPlaceholder(1),
-          id: id ?? `${id}-1`,
+          id: id != null ? id : `${id}-1`,
           style: {
             width: `calc((100% - ${separatorWidth}px) / 2)`,
             borderInlineStart: 0
           },
-          value: valuePair?.[1],
-          defaultValue: defaultValue?.[1],
+          value: valuePair == null ? void 0 : valuePair[1],
+          defaultValue: defaultValue == null ? void 0 : defaultValue[1],
           onChange: (changedValue) => handleChange(1, changedValue)
-        }
+        })
       )
-    ] });
+    ] }));
     if (renderFormItem) {
-      return renderFormItem(text, { mode: type, ...fieldProps }, dom);
+      return renderFormItem(text, __spreadValues({ mode: type }, fieldProps), dom);
     }
     return dom;
   }
   return null;
 };
 const FieldDigitRange$1 = React__default.forwardRef(FieldDigitRange);
-
 dayjs.extend(relativeTime);
 const FieldFromNow = ({ text, mode, render, renderFormItem, format, fieldProps }, ref) => {
   const intl = useIntl();
@@ -5947,13 +6021,13 @@ const FieldFromNow = ({ text, mode, render, renderFormItem, format, fieldProps }
       Tooltip,
       {
         title: dayjs(text).format(
-          fieldProps?.format || format || "YYYY-MM-DD HH:mm:ss"
+          (fieldProps == null ? void 0 : fieldProps.format) || format || "YYYY-MM-DD HH:mm:ss"
         ),
         children: dayjs(text).fromNow()
       }
     );
     if (render) {
-      return render(text, { mode, ...fieldProps }, /* @__PURE__ */ jsx(Fragment, { children: dom }));
+      return render(text, __spreadValues({ mode }, fieldProps), /* @__PURE__ */ jsx(Fragment, { children: dom }));
     }
     return /* @__PURE__ */ jsx(Fragment, { children: dom });
   }
@@ -5965,23 +6039,22 @@ const FieldFromNow = ({ text, mode, render, renderFormItem, format, fieldProps }
     const momentValue = parseValueToDay(fieldProps.value);
     const dom = /* @__PURE__ */ jsx(
       DatePicker,
-      {
+      __spreadProps(__spreadValues({
         ref,
         placeholder,
-        showTime: true,
-        ...fieldProps,
+        showTime: true
+      }, fieldProps), {
         value: momentValue
-      }
+      })
     );
     if (renderFormItem) {
-      return renderFormItem(text, { mode, ...fieldProps }, dom);
+      return renderFormItem(text, __spreadValues({ mode }, fieldProps), dom);
     }
     return dom;
   }
   return null;
 };
 const FieldFromNow$1 = React__default.forwardRef(FieldFromNow);
-
 const IndexColumn = ({ border = false, children }, ref) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const className = getPrefixCls("pro-field-index-column");
@@ -6021,7 +6094,6 @@ const IndexColumn = ({ border = false, children }, ref) => {
   );
 };
 const FieldIndexColumn = React__default.forwardRef(IndexColumn);
-
 const defaultMoneyIntl = new Intl.NumberFormat("zh-Hans-CN", {
   currency: "CNY",
   style: "currency"
@@ -6059,7 +6131,8 @@ const intlMap = {
   "pt-BR": ptMoneyIntl
 };
 const getTextByLocale = (moneySymbol, paramsText, precision, config) => {
-  let moneyText = paramsText?.toString().replaceAll(",", "");
+  var _a2;
+  let moneyText = paramsText == null ? void 0 : paramsText.toString().replaceAll(",", "");
   if (typeof moneyText === "string") {
     const parsedNum = Number(moneyText);
     if (Number.isNaN(parsedNum))
@@ -6069,14 +6142,11 @@ const getTextByLocale = (moneySymbol, paramsText, precision, config) => {
   if (!moneyText && moneyText !== 0)
     return "";
   try {
-    const finalMoneyText = new Intl.NumberFormat(moneySymbol || "zh-TW", {
-      // @ts-ignore
-      ...intlMap[moneySymbol || "zh-TW"] || intlMap["zh-TW"],
-      maximumFractionDigits: precision,
-      ...config
-    }).format(moneyText);
+    const finalMoneyText = new Intl.NumberFormat(moneySymbol || "zh-TW", __spreadValues(__spreadProps(__spreadValues({}, intlMap[moneySymbol || "zh-TW"] || intlMap["zh-TW"]), {
+      maximumFractionDigits: precision
+    }), config)).format(moneyText);
     const hasMoneySymbol = moneySymbol === false;
-    const operatorSymbol = (finalMoneyText || "").at(0) ?? "";
+    const operatorSymbol = (_a2 = (finalMoneyText || "").at(0)) != null ? _a2 : "";
     if (["+", "-"].includes(operatorSymbol)) {
       return `${operatorSymbol}${finalMoneyText.substring(
         hasMoneySymbol ? 2 : 1
@@ -6089,57 +6159,76 @@ const getTextByLocale = (moneySymbol, paramsText, precision, config) => {
 };
 const DefaultPrecisionCont = 2;
 const InputNumberPopover = React__default.forwardRef(
-  ({
-    contentRender: content,
-    numberFormatOptions,
-    numberPopoverRender,
-    open,
-    ...rest
-  }, ref) => {
+  (_h, ref) => {
+    var _i = _h, {
+      contentRender: content,
+      numberFormatOptions,
+      numberPopoverRender,
+      open
+    } = _i, rest = __objRest(_i, [
+      "contentRender",
+      "numberFormatOptions",
+      "numberPopoverRender",
+      "open"
+    ]);
     const [value, onChange] = useMergedState(() => rest.defaultValue, {
       value: rest.value,
       onChange: rest.onChange
     });
-    const dom = content?.({
-      ...rest,
+    const dom = content == null ? void 0 : content(__spreadProps(__spreadValues({}, rest), {
       value
-    });
+    }));
     const props = openVisibleCompatible(dom ? open : false);
     return /* @__PURE__ */ jsx(
       Popover,
-      {
-        placement: "topLeft",
-        ...props,
+      __spreadProps(__spreadValues({
+        placement: "topLeft"
+      }, props), {
         trigger: ["focus", "click"],
         content: dom,
         getPopupContainer: (triggerNode) => {
-          return triggerNode?.parentElement || document.body;
+          return (triggerNode == null ? void 0 : triggerNode.parentElement) || document.body;
         },
-        children: /* @__PURE__ */ jsx(TypedInputNumber, { ref, ...rest, value, onChange })
-      }
+        children: /* @__PURE__ */ jsx(TypedInputNumber, __spreadProps(__spreadValues({ ref }, rest), { value, onChange }))
+      })
     );
   }
 );
-const FieldMoney = ({
-  text,
-  mode: type,
-  render,
-  renderFormItem,
-  fieldProps,
-  proFieldKey,
-  plain,
-  valueEnum,
-  placeholder,
-  locale = fieldProps.customSymbol ?? "zh-Hans-CN",
-  customSymbol = fieldProps.customSymbol,
-  numberFormatOptions = fieldProps?.numberFormatOptions,
-  numberPopoverRender = fieldProps?.numberPopoverRender || false,
-  ...rest
-}, ref) => {
-  const precision = fieldProps?.precision ?? DefaultPrecisionCont;
+const FieldMoney = (_k, ref) => {
+  var _l = _k, {
+    text,
+    mode: type,
+    render,
+    renderFormItem,
+    fieldProps,
+    proFieldKey,
+    plain,
+    valueEnum,
+    placeholder,
+    locale: locale2 = ((_j) => (_j = fieldProps.customSymbol) != null ? _j : "zh-Hans-CN")(),
+    customSymbol = fieldProps.customSymbol,
+    numberFormatOptions = fieldProps == null ? void 0 : fieldProps.numberFormatOptions,
+    numberPopoverRender = (fieldProps == null ? void 0 : fieldProps.numberPopoverRender) || false
+  } = _l, rest = __objRest(_l, [
+    "text",
+    "mode",
+    "render",
+    "renderFormItem",
+    "fieldProps",
+    "proFieldKey",
+    "plain",
+    "valueEnum",
+    "placeholder",
+    "locale",
+    "customSymbol",
+    "numberFormatOptions",
+    "numberPopoverRender"
+  ]);
+  var _a2;
+  const precision = (_a2 = fieldProps == null ? void 0 : fieldProps.precision) != null ? _a2 : DefaultPrecisionCont;
   let intl = useIntl();
-  if (locale && intlMap$1[locale]) {
-    intl = intlMap$1[locale];
+  if (locale2 && intlMap$1[locale2]) {
+    intl = intlMap$1[locale2];
   }
   const placeholderValue = placeholder || intl.formatMessage({ id: "tableForm.inputPlaceholder", defaultMessage: "請輸入" });
   const moneySymbol = useMemo(() => {
@@ -6172,36 +6261,35 @@ const FieldMoney = ({
   );
   if (type === "read") {
     const dom = /* @__PURE__ */ jsx("span", { ref, children: getTextByLocale(
-      moneySymbol ? locale : false,
+      moneySymbol ? locale2 : false,
       text,
       precision,
-      numberFormatOptions ?? fieldProps.numberFormatOptions
+      numberFormatOptions != null ? numberFormatOptions : fieldProps.numberFormatOptions
     ) });
     if (render) {
-      return render(text, { mode: type, ...fieldProps }, dom);
+      return render(text, __spreadValues({ mode: type }, fieldProps), dom);
     }
     return dom;
   }
   if (type === "edit" || type === "update") {
     const dom = /* @__PURE__ */ jsx(
       InputNumberPopover,
-      {
+      __spreadProps(__spreadValues({
         contentRender: (props) => {
           if (numberPopoverRender === false)
             return null;
           if (!props.value)
             return null;
           const localeText = getTextByLocale(
-            moneySymbol ? locale : false,
+            moneySymbol ? locale2 : false,
             `${getFormateValue(props.value)}`,
             precision,
-            {
-              ...numberFormatOptions,
+            __spreadProps(__spreadValues({}, numberFormatOptions), {
               notation: "compact"
-            }
+            })
           );
           if (typeof numberPopoverRender === "function") {
-            return numberPopoverRender?.(props, localeText);
+            return numberPopoverRender == null ? void 0 : numberPopoverRender(props, localeText);
           }
           return localeText;
         },
@@ -6211,7 +6299,7 @@ const FieldMoney = ({
           if (value && moneySymbol) {
             return `${moneySymbol} ${getFormateValue(value)}`;
           }
-          return value?.toString();
+          return value == null ? void 0 : value.toString();
         },
         parser: (value) => {
           if (moneySymbol && value) {
@@ -6222,17 +6310,18 @@ const FieldMoney = ({
           }
           return value;
         },
-        placeholder: placeholderValue,
-        ...omit(fieldProps, [
-          "numberFormatOptions",
-          "precision",
-          "numberPopoverRender",
-          "customSymbol",
-          "moneySymbol",
-          "visible",
-          "open"
-        ]),
+        placeholder: placeholderValue
+      }, omit(fieldProps, [
+        "numberFormatOptions",
+        "precision",
+        "numberPopoverRender",
+        "customSymbol",
+        "moneySymbol",
+        "visible",
+        "open"
+      ])), {
         onBlur: fieldProps.onBlur ? (e) => {
+          var _a3;
           let value = e.target.value;
           if (moneySymbol && value) {
             value = value.replace(
@@ -6240,46 +6329,44 @@ const FieldMoney = ({
               ""
             );
           }
-          fieldProps.onBlur?.(value);
+          (_a3 = fieldProps.onBlur) == null ? void 0 : _a3.call(fieldProps, value);
         } : void 0
-      }
+      })
     );
     if (renderFormItem) {
-      return renderFormItem(text, { mode: type, ...fieldProps }, dom);
+      return renderFormItem(text, __spreadValues({ mode: type }, fieldProps), dom);
     }
     return dom;
   }
   return null;
 };
 const FieldMoney$1 = React__default.forwardRef(FieldMoney);
-
-const addArrayKeys = (doms) => doms.map((dom, index) => {
+const addArrayKeys = (doms) => doms.map((dom, index2) => {
+  var _a2;
   if (!React__default.isValidElement(dom)) {
-    return /* @__PURE__ */ jsx(React__default.Fragment, { children: dom }, index);
+    return /* @__PURE__ */ jsx(React__default.Fragment, { children: dom }, index2);
   }
-  return React__default.cloneElement(dom, {
+  return React__default.cloneElement(dom, __spreadProps(__spreadValues({
     // eslint-disable-next-line react/no-array-index-key
-    key: index,
-    ...dom?.props,
-    style: {
-      flex: 1,
-      // @ts-ignore
-      ...dom?.props?.style
-    }
-  });
+    key: index2
+  }, dom == null ? void 0 : dom.props), {
+    style: __spreadValues({
+      flex: 1
+    }, (_a2 = dom == null ? void 0 : dom.props) == null ? void 0 : _a2.style)
+  }));
 });
 const FieldOptions = ({ text, mode: type, render, fieldProps }, ref) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const className = getPrefixCls("pro-field-option");
-  const { token } = proTheme.useToken();
+  const { token: token2 } = proTheme.useToken();
   useImperativeHandle(ref, () => ({}));
   if (render) {
     const doms = render(
       text,
-      { mode: type, ...fieldProps },
+      __spreadValues({ mode: type }, fieldProps),
       /* @__PURE__ */ jsx(Fragment, {})
     );
-    if (!doms || doms?.length < 1 || !Array.isArray(doms)) {
+    if (!doms || (doms == null ? void 0 : doms.length) < 1 || !Array.isArray(doms)) {
       return null;
     }
     return /* @__PURE__ */ jsx(
@@ -6287,7 +6374,7 @@ const FieldOptions = ({ text, mode: type, render, fieldProps }, ref) => {
       {
         style: {
           display: "flex",
-          gap: token.margin,
+          gap: token2.margin,
           alignItems: "center"
         },
         className,
@@ -6306,7 +6393,7 @@ const FieldOptions = ({ text, mode: type, render, fieldProps }, ref) => {
     {
       style: {
         display: "flex",
-        gap: token.margin,
+        gap: token2.margin,
         alignItems: "center"
       },
       className,
@@ -6315,8 +6402,8 @@ const FieldOptions = ({ text, mode: type, render, fieldProps }, ref) => {
   );
 };
 const FieldOptions$1 = React__default.forwardRef(FieldOptions);
-
-const FieldPassword = ({ text, mode, render, renderFormItem, fieldProps, proFieldKey, ...rest }, ref) => {
+const FieldPassword = (_m, ref) => {
+  var _n = _m, { text, mode, render, renderFormItem, fieldProps, proFieldKey } = _n, rest = __objRest(_n, ["text", "mode", "render", "renderFormItem", "fieldProps", "proFieldKey"]);
   const intl = useIntl();
   const [open, setOpen] = useMergedState(
     () => rest.open || rest.visible || false,
@@ -6334,28 +6421,26 @@ const FieldPassword = ({ text, mode, render, renderFormItem, fieldProps, proFiel
       ] });
     }
     if (render) {
-      return render(text, { mode, ...fieldProps }, dom);
+      return render(text, __spreadValues({ mode }, fieldProps), dom);
     }
     return dom;
   }
   if (mode === "edit" || mode === "update") {
     const dom = /* @__PURE__ */ jsx(
       Input.Password,
-      {
+      __spreadValues({
         placeholder: intl.formatMessage({ id: "tableForm.inputPlaceholder", defaultMessage: "請輸入" }),
-        ref,
-        ...fieldProps
-      }
+        ref
+      }, fieldProps)
     );
     if (renderFormItem) {
-      return renderFormItem(text, { mode, ...fieldProps }, dom);
+      return renderFormItem(text, __spreadValues({ mode }, fieldProps), dom);
     }
     return dom;
   }
   return null;
 };
 const FieldPassword$1 = React__default.forwardRef(FieldPassword);
-
 function getSymbolByRealValue(realValue) {
   if (realValue === 0) {
     return null;
@@ -6372,9 +6457,8 @@ function getColorByRealValue(realValue) {
   return realValue > 0 ? "#ff4d4f" : "#52c41a";
 }
 function getRealTextWithPrecision(realValue, precision = 2) {
-  return precision >= 0 ? realValue?.toFixed(precision) : realValue;
+  return precision >= 0 ? realValue == null ? void 0 : realValue.toFixed(precision) : realValue;
 }
-
 const FieldPercent = ({
   text,
   prefix,
@@ -6396,7 +6480,7 @@ const FieldPercent = ({
   );
   const showSymbol = useMemo(() => {
     if (typeof propsShowSymbol === "function") {
-      return propsShowSymbol?.(text);
+      return propsShowSymbol == null ? void 0 : propsShowSymbol(text);
     }
     return propsShowSymbol;
   }, [propsShowSymbol, text]);
@@ -6414,7 +6498,7 @@ const FieldPercent = ({
     if (render) {
       return render(
         text,
-        { mode, ...fieldProps, prefix, precision, showSymbol, suffix },
+        __spreadProps(__spreadValues({ mode }, fieldProps), { prefix, precision, showSymbol, suffix }),
         dom
       );
     }
@@ -6423,7 +6507,7 @@ const FieldPercent = ({
   if (mode === "edit" || mode === "update") {
     const dom = /* @__PURE__ */ jsx(
       TypedInputNumber,
-      {
+      __spreadValues({
         ref,
         formatter: (value) => {
           if (value && prefix) {
@@ -6432,47 +6516,46 @@ const FieldPercent = ({
           return value;
         },
         parser: (value) => value ? value.replace(/.*\s|,/g, "") : "",
-        placeholder: placeholderValue,
-        ...fieldProps
-      }
+        placeholder: placeholderValue
+      }, fieldProps)
     );
     if (renderFormItem) {
-      return renderFormItem(text, { mode, ...fieldProps }, dom);
+      return renderFormItem(text, __spreadValues({ mode }, fieldProps), dom);
     }
     return dom;
   }
   return null;
 };
 const FieldPercent$1 = React__default.forwardRef(FieldPercent);
-
-const FieldRadio = ({ radioType, renderFormItem, mode, render, ...rest }, ref) => {
+const FieldRadio = (_o, ref) => {
+  var _p = _o, { radioType, renderFormItem, mode, render } = _p, rest = __objRest(_p, ["radioType", "renderFormItem", "mode", "render"]);
+  var _a2, _b2, _c2, _d, _e;
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const layoutClassName = getPrefixCls("pro-field-radio");
   const [loading, options, fetchData] = useFieldFetchData(rest);
   const radioRef = useRef();
-  const status = Form.Item?.useStatus?.();
+  const status = (_b2 = (_a2 = Form.Item) == null ? void 0 : _a2.useStatus) == null ? void 0 : _b2.call(_a2);
   useImperativeHandle(
     ref,
-    () => ({
-      ...radioRef.current || {},
+    () => __spreadProps(__spreadValues({}, radioRef.current || {}), {
       fetchData: (keyWord) => fetchData(keyWord)
     }),
     [fetchData]
   );
-  const { wrapSSR, hashId } = useStyle$A("FieldRadioRadio", (token) => {
+  const { wrapSSR, hashId } = useStyle$A("FieldRadioRadio", (token2) => {
     return {
       [`.${layoutClassName}-error`]: {
         span: {
-          color: token.colorError
+          color: token2.colorError
         }
       },
       [`.${layoutClassName}-warning`]: {
         span: {
-          color: token.colorWarning
+          color: token2.colorWarning
         }
       },
       [`.${layoutClassName}-vertical`]: {
-        [`${token.ipassCls}-radio-wrapper`]: {
+        [`${token2.ipassCls}-radio-wrapper`]: {
           display: "flex",
           marginInlineEnd: 0
         }
@@ -6483,15 +6566,16 @@ const FieldRadio = ({ radioType, renderFormItem, mode, render, ...rest }, ref) =
     return /* @__PURE__ */ jsx(CircularProgress, { size: 20 });
   }
   if (mode === "read") {
-    const optionsValueEnum = options?.length ? options?.reduce((pre, cur) => {
-      return { ...pre, [cur.value ?? ""]: cur.label };
+    const optionsValueEnum = (options == null ? void 0 : options.length) ? options == null ? void 0 : options.reduce((pre, cur) => {
+      var _a3;
+      return __spreadProps(__spreadValues({}, pre), { [(_a3 = cur.value) != null ? _a3 : ""]: cur.label });
     }, {}) : void 0;
     const dom = /* @__PURE__ */ jsx(Fragment, { children: proFieldParsingText(
       rest.text,
       ObjToMap(rest.valueEnum || optionsValueEnum)
     ) });
     if (render) {
-      return render(rest.text, { mode, ...rest.fieldProps }, dom) ?? null;
+      return (_c2 = render(rest.text, __spreadValues({ mode }, rest.fieldProps), dom)) != null ? _c2 : null;
     }
     return dom;
   }
@@ -6499,36 +6583,35 @@ const FieldRadio = ({ radioType, renderFormItem, mode, render, ...rest }, ref) =
     const dom = wrapSSR(
       /* @__PURE__ */ jsx(
         Radio.Group,
-        {
+        __spreadProps(__spreadValues({
           ref: radioRef,
-          optionType: radioType,
-          ...rest.fieldProps,
+          optionType: radioType
+        }, rest.fieldProps), {
           className: classNames(
-            rest.fieldProps?.className,
+            (_d = rest.fieldProps) == null ? void 0 : _d.className,
             {
-              [`${layoutClassName}-error`]: status?.status === "error",
-              [`${layoutClassName}-warning`]: status?.status === "warning"
+              [`${layoutClassName}-error`]: (status == null ? void 0 : status.status) === "error",
+              [`${layoutClassName}-warning`]: (status == null ? void 0 : status.status) === "warning"
             },
             hashId,
             `${layoutClassName}-${rest.fieldProps.layout || "horizontal"}`
           ),
           options
-        }
+        })
       )
     );
     if (renderFormItem) {
-      return renderFormItem(
+      return (_e = renderFormItem(
         rest.text,
-        { mode, ...rest.fieldProps, options, loading },
+        __spreadProps(__spreadValues({ mode }, rest.fieldProps), { options, loading }),
         dom
-      ) ?? null;
+      )) != null ? _e : null;
     }
     return dom;
   }
   return null;
 };
 const FieldRadio$1 = React__default.forwardRef(FieldRadio);
-
 const FieldRangePicker = ({
   text,
   mode,
@@ -6544,15 +6627,17 @@ const FieldRangePicker = ({
   bordered,
   fieldProps
 }, ref) => {
+  var _a2;
   const intl = useIntl();
   const [startText, endText] = Array.isArray(text) ? text : [];
   const [open, setOpen] = React__default.useState(false);
   const genFormatText = useCallback(
     (formatValue) => {
-      if (typeof fieldProps?.format === "function") {
-        return fieldProps?.format?.(formatValue);
+      var _a3;
+      if (typeof (fieldProps == null ? void 0 : fieldProps.format) === "function") {
+        return (_a3 = fieldProps == null ? void 0 : fieldProps.format) == null ? void 0 : _a3.call(fieldProps, formatValue);
       }
-      return fieldProps?.format || format || "YYYY-MM-DD";
+      return (fieldProps == null ? void 0 : fieldProps.format) || format || "YYYY-MM-DD";
     },
     [fieldProps, format]
   );
@@ -6564,7 +6649,7 @@ const FieldRangePicker = ({
       /* @__PURE__ */ jsx("div", { children: parsedEndText || "-" })
     ] });
     if (render) {
-      return render(text, { mode, ...fieldProps }, /* @__PURE__ */ jsx("span", { children: dom }));
+      return render(text, __spreadValues({ mode }, fieldProps), /* @__PURE__ */ jsx("span", { children: dom }));
     }
     return dom;
   }
@@ -6577,7 +6662,8 @@ const FieldRangePicker = ({
         {
           label,
           onClick: () => {
-            fieldProps?.onOpenChange?.(true);
+            var _a3;
+            (_a3 = fieldProps == null ? void 0 : fieldProps.onOpenChange) == null ? void 0 : _a3.call(fieldProps, true);
             setOpen(true);
           },
           style: dayValue ? {
@@ -6586,27 +6672,29 @@ const FieldRangePicker = ({
           disabled: fieldProps.disabled,
           value: dayValue || open ? /* @__PURE__ */ jsx(
             DatePicker.RangePicker,
-            {
+            __spreadProps(__spreadValues({
               picker,
               showTime,
               format,
-              bordered: false,
-              ...fieldProps,
-              placeholder: fieldProps.placeholder ?? [
+              bordered: false
+            }, fieldProps), {
+              placeholder: (_a2 = fieldProps.placeholder) != null ? _a2 : [
                 intl.formatMessage({ id: "tableForm.selectPlaceholder", defaultMessage: "請選擇" }),
                 intl.formatMessage({ id: "tableForm.selectPlaceholder", defaultMessage: "請選擇" })
               ],
               onClear: () => {
+                var _a3;
                 setOpen(false);
-                fieldProps?.onClear?.();
+                (_a3 = fieldProps == null ? void 0 : fieldProps.onClear) == null ? void 0 : _a3.call(fieldProps);
               },
               value: dayValue,
               onOpenChange: (isOpen) => {
+                var _a3;
                 if (dayValue)
                   setOpen(isOpen);
-                fieldProps?.onOpenChange?.(isOpen);
+                (_a3 = fieldProps == null ? void 0 : fieldProps.onOpenChange) == null ? void 0 : _a3.call(fieldProps, isOpen);
               }
-            }
+            })
           ) : null,
           allowClear: false,
           bordered,
@@ -6617,7 +6705,7 @@ const FieldRangePicker = ({
     } else {
       dom = /* @__PURE__ */ jsx(
         DatePicker.RangePicker,
-        {
+        __spreadProps(__spreadValues({
           ref,
           format,
           showTime,
@@ -6625,21 +6713,20 @@ const FieldRangePicker = ({
             intl.formatMessage({ id: "tableForm.selectPlaceholder", defaultMessage: "請選擇" }),
             intl.formatMessage({ id: "tableForm.selectPlaceholder", defaultMessage: "請選擇" })
           ],
-          bordered: plain === void 0 ? true : false,
-          ...fieldProps,
+          bordered: plain === void 0 ? true : false
+        }, fieldProps), {
           value: dayValue
-        }
+        })
       );
     }
     if (renderFormItem) {
-      return renderFormItem(text, { mode, ...fieldProps }, dom);
+      return renderFormItem(text, __spreadValues({ mode }, fieldProps), dom);
     }
     return dom;
   }
   return null;
 };
 const FieldRangePicker$1 = React__default.forwardRef(FieldRangePicker);
-
 function formatSecond(result) {
   let formatText = "";
   const d = Math.floor(result / (3600 * 24));
@@ -6665,54 +6752,54 @@ const Second = ({ text, mode: type, render, renderFormItem, fieldProps, placehol
     const secondText = formatSecond(Number(text));
     const dom = /* @__PURE__ */ jsx("span", { ref, children: secondText });
     if (render) {
-      return render(text, { mode: type, ...fieldProps }, dom);
+      return render(text, __spreadValues({ mode: type }, fieldProps), dom);
     }
     return dom;
   }
   if (type === "edit" || type === "update") {
     const dom = /* @__PURE__ */ jsx(
       TypedInputNumber,
-      {
+      __spreadValues({
         ref,
         min: 0,
         style: {
           width: "100%"
         },
-        placeholder: placeholderValue,
-        ...fieldProps
-      }
+        placeholder: placeholderValue
+      }, fieldProps)
     );
     if (renderFormItem) {
-      return renderFormItem(text, { mode: type, ...fieldProps }, dom);
+      return renderFormItem(text, __spreadValues({ mode: type }, fieldProps), dom);
     }
     return dom;
   }
   return null;
 };
 const FieldSecond = React__default.forwardRef(Second);
-
 const FieldSwitch = ({ text, mode, render, light, label, renderFormItem, fieldProps }, ref) => {
+  var _a2;
   const intl = useIntl();
   const dom = useMemo(() => {
+    var _a3, _b2;
     if (text === void 0 || text === null || `${text}`.length < 1)
       return "-";
-    return text ? fieldProps?.checkedChildren ?? intl.formatMessage({ id: "switch.open", defaultMessage: "打開" }) : fieldProps?.unCheckedChildren ?? intl.formatMessage({ id: "switch.close", defaultMessage: "關閉" });
-  }, [fieldProps?.checkedChildren, fieldProps?.unCheckedChildren, text]);
+    return text ? (_a3 = fieldProps == null ? void 0 : fieldProps.checkedChildren) != null ? _a3 : intl.formatMessage({ id: "switch.open", defaultMessage: "打開" }) : (_b2 = fieldProps == null ? void 0 : fieldProps.unCheckedChildren) != null ? _b2 : intl.formatMessage({ id: "switch.close", defaultMessage: "關閉" });
+  }, [fieldProps == null ? void 0 : fieldProps.checkedChildren, fieldProps == null ? void 0 : fieldProps.unCheckedChildren, text]);
   if (mode === "read") {
     if (render) {
-      return render(text, { mode, ...fieldProps }, /* @__PURE__ */ jsx(Fragment, { children: dom }));
+      return render(text, __spreadValues({ mode }, fieldProps), /* @__PURE__ */ jsx(Fragment, { children: dom }));
     }
-    return dom ?? "-";
+    return dom != null ? dom : "-";
   }
   if (mode === "edit" || mode === "update") {
     const editDom = /* @__PURE__ */ jsx(
       Switch,
-      {
+      __spreadProps(__spreadValues({
         ref,
-        size: light ? "small" : void 0,
-        ...omit(fieldProps, ["value"]),
-        checked: fieldProps?.checked ?? fieldProps?.value
-      }
+        size: light ? "small" : void 0
+      }, omit(fieldProps, ["value"])), {
+        checked: (_a2 = fieldProps == null ? void 0 : fieldProps.checked) != null ? _a2 : fieldProps == null ? void 0 : fieldProps.value
+      })
     );
     if (light) {
       const { disabled, bordered } = fieldProps;
@@ -6737,32 +6824,33 @@ const FieldSwitch = ({ text, mode, render, light, label, renderFormItem, fieldPr
       );
     }
     if (renderFormItem) {
-      return renderFormItem(text, { mode, ...fieldProps }, editDom);
+      return renderFormItem(text, __spreadValues({ mode }, fieldProps), editDom);
     }
     return editDom;
   }
   return null;
 };
 const FieldSwitch$1 = React__default.forwardRef(FieldSwitch);
-
 const FieldText = ({ text, mode, render, renderFormItem, fieldProps, emptyText = "-" }, ref) => {
+  var _a2;
   const { autoFocus, prefix = "", suffix = "" } = fieldProps || {};
   const intl = useIntl();
   const inputRef = useRef();
   useImperativeHandle(ref, () => inputRef.current, []);
   useEffect(() => {
+    var _a3;
     if (autoFocus) {
-      inputRef.current?.focus();
+      (_a3 = inputRef.current) == null ? void 0 : _a3.focus();
     }
   }, [autoFocus]);
   if (mode === "read") {
     const dom = /* @__PURE__ */ jsxs(Fragment, { children: [
       prefix,
-      text ?? emptyText,
+      text != null ? text : emptyText,
       suffix
     ] });
     if (render) {
-      return render(text, { mode, ...fieldProps }, dom) ?? emptyText;
+      return (_a2 = render(text, __spreadValues({ mode }, fieldProps), dom)) != null ? _a2 : emptyText;
     }
     return dom;
   }
@@ -6770,22 +6858,20 @@ const FieldText = ({ text, mode, render, renderFormItem, fieldProps, emptyText =
     const placeholder = intl.formatMessage({ id: "tableForm.inputPlaceholder", defaultMessage: "請輸入" });
     const dom = /* @__PURE__ */ jsx(
       Input,
-      {
+      __spreadValues({
         ref: inputRef,
         placeholder,
-        allowClear: true,
-        ...fieldProps
-      }
+        allowClear: true
+      }, fieldProps)
     );
     if (renderFormItem) {
-      return renderFormItem(text, { mode, ...fieldProps }, dom);
+      return renderFormItem(text, __spreadValues({ mode }, fieldProps), dom);
     }
     return dom;
   }
   return null;
 };
 const FieldText$1 = React__default.forwardRef(FieldText);
-
 const FieldTextAreaReadonly = ({ text }, ref) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const readonlyClassName = getPrefixCls("pro-field-readonly");
@@ -6808,46 +6894,43 @@ const FieldTextAreaReadonly = ({ text }, ref) => {
         ref,
         className: classNames(hashId, readonlyClassName, compClassName),
         style: {},
-        children: text ?? "-"
+        children: text != null ? text : "-"
       }
     )
   );
 };
 const FieldTextAreaReadonly$1 = React__default.forwardRef(FieldTextAreaReadonly);
-
 const FieldTextArea = (props, ref) => {
   const { text, mode, render, renderFormItem, fieldProps } = props;
   const intl = useIntl();
   if (mode === "read") {
-    const dom = /* @__PURE__ */ jsx(FieldTextAreaReadonly$1, { ...props, ref });
+    const dom = /* @__PURE__ */ jsx(FieldTextAreaReadonly$1, __spreadProps(__spreadValues({}, props), { ref }));
     if (render) {
-      return render(text, { mode, ...fieldProps }, dom);
+      return render(text, __spreadValues({ mode }, fieldProps), dom);
     }
     return dom;
   }
   if (mode === "edit" || mode === "update") {
     const dom = /* @__PURE__ */ jsx(
       Input.TextArea,
-      {
+      __spreadValues({
         ref,
         rows: 3,
         onKeyPress: (e) => {
           if (e.key === "Enter")
             e.stopPropagation();
         },
-        placeholder: intl.formatMessage({ id: "tableForm.inputPlaceholder", defaultMessage: "請輸入" }),
-        ...fieldProps
-      }
+        placeholder: intl.formatMessage({ id: "tableForm.inputPlaceholder", defaultMessage: "請輸入" })
+      }, fieldProps)
     );
     if (renderFormItem) {
-      return renderFormItem(text, { mode, ...fieldProps }, dom);
+      return renderFormItem(text, __spreadValues({ mode }, fieldProps), dom);
     }
     return dom;
   }
   return null;
 };
 const FieldTextArea$1 = React__default.forwardRef(FieldTextArea);
-
 const FieldTimePicker = ({
   text,
   mode,
@@ -6860,16 +6943,17 @@ const FieldTimePicker = ({
   fieldProps,
   lightLabel
 }, ref) => {
+  var _a2;
   const [open, setOpen] = useState(false);
   const intl = useIntl();
-  const finalFormat = fieldProps?.format || format || "HH:mm:ss";
+  const finalFormat = (fieldProps == null ? void 0 : fieldProps.format) || format || "HH:mm:ss";
   const isNumberOrMoment = dayjs.isDayjs(text) || typeof text === "number";
   if (mode === "read") {
     const dom = /* @__PURE__ */ jsx("span", { ref, children: text ? dayjs(text, isNumberOrMoment ? void 0 : finalFormat).format(
       finalFormat
     ) : "-" });
     if (render) {
-      return render(text, { mode, ...fieldProps }, /* @__PURE__ */ jsx("span", { children: dom }));
+      return render(text, __spreadValues({ mode }, fieldProps), /* @__PURE__ */ jsx("span", { children: dom }));
     }
     return dom;
   }
@@ -6882,7 +6966,8 @@ const FieldTimePicker = ({
         FieldLabel,
         {
           onClick: () => {
-            fieldProps?.onOpenChange?.(true);
+            var _a3;
+            (_a3 = fieldProps == null ? void 0 : fieldProps.onOpenChange) == null ? void 0 : _a3.call(fieldProps, true);
             setOpen(true);
           },
           style: dayValue ? {
@@ -6892,19 +6977,20 @@ const FieldTimePicker = ({
           disabled,
           value: dayValue || open ? /* @__PURE__ */ jsx(
             TimePicker,
-            {
+            __spreadProps(__spreadValues({
               bordered: false,
               format,
-              ref,
-              ...fieldProps,
-              placeholder: fieldProps.placeholder ?? intl.formatMessage({ id: "tableForm.selectPlaceholder", defaultMessage: "請選擇" }),
+              ref
+            }, fieldProps), {
+              placeholder: (_a2 = fieldProps.placeholder) != null ? _a2 : intl.formatMessage({ id: "tableForm.selectPlaceholder", defaultMessage: "請選擇" }),
               value: dayValue,
               onOpenChange: (isOpen) => {
+                var _a3;
                 setOpen(isOpen);
-                fieldProps?.onOpenChange?.(isOpen);
+                (_a3 = fieldProps == null ? void 0 : fieldProps.onOpenChange) == null ? void 0 : _a3.call(fieldProps, isOpen);
               },
               open
-            }
+            })
           ) : null,
           downIcon: dayValue || open ? false : void 0,
           allowClear: false,
@@ -6914,17 +7000,17 @@ const FieldTimePicker = ({
     } else {
       dom = /* @__PURE__ */ jsx(
         DatePicker.TimePicker,
-        {
+        __spreadProps(__spreadValues({
           ref,
           format,
-          bordered: plain === void 0 ? true : !plain,
-          ...fieldProps,
+          bordered: plain === void 0 ? true : !plain
+        }, fieldProps), {
           value: dayValue
-        }
+        })
       );
     }
     if (renderFormItem) {
-      return renderFormItem(text, { mode, ...fieldProps }, dom);
+      return renderFormItem(text, __spreadValues({ mode }, fieldProps), dom);
     }
     return dom;
   }
@@ -6944,7 +7030,7 @@ const FieldTimeRangePickerComponents = ({
 }, ref) => {
   const intl = useIntl();
   const [open, setOpen] = useState(false);
-  const finalFormat = fieldProps?.format || format || "HH:mm:ss";
+  const finalFormat = (fieldProps == null ? void 0 : fieldProps.format) || format || "HH:mm:ss";
   const [startText, endText] = Array.isArray(text) ? text : [];
   const startTextIsNumberOrMoment = dayjs.isDayjs(startText) || typeof startText === "number";
   const endTextIsNumberOrMoment = dayjs.isDayjs(endText) || typeof endText === "number";
@@ -6961,7 +7047,7 @@ const FieldTimeRangePickerComponents = ({
       /* @__PURE__ */ jsx("div", { children: parsedEndText || "-" })
     ] });
     if (render) {
-      return render(text, { mode, ...fieldProps }, /* @__PURE__ */ jsx("span", { children: dom }));
+      return render(text, __spreadValues({ mode }, fieldProps), /* @__PURE__ */ jsx("span", { children: dom }));
     }
     return dom;
   }
@@ -6983,7 +7069,8 @@ const FieldTimeRangePickerComponents = ({
         FieldLabel,
         {
           onClick: () => {
-            fieldProps?.onOpenChange?.(true);
+            var _a2;
+            (_a2 = fieldProps == null ? void 0 : fieldProps.onOpenChange) == null ? void 0 : _a2.call(fieldProps, true);
             setOpen(true);
           },
           style: dayValue ? {
@@ -6994,19 +7081,20 @@ const FieldTimeRangePickerComponents = ({
           placeholder,
           value: dayValue || open ? /* @__PURE__ */ jsx(
             TimePicker.RangePicker,
-            {
+            __spreadProps(__spreadValues({
               bordered: false,
               format,
-              ref,
-              ...fieldProps,
+              ref
+            }, fieldProps), {
               placeholder,
               value: dayValue,
               onOpenChange: (isOpen) => {
+                var _a2;
                 setOpen(isOpen);
-                fieldProps?.onOpenChange?.(isOpen);
+                (_a2 = fieldProps == null ? void 0 : fieldProps.onOpenChange) == null ? void 0 : _a2.call(fieldProps, isOpen);
               },
               open
-            }
+            })
           ) : null,
           downIcon: dayValue || open ? false : void 0,
           allowClear: false,
@@ -7016,17 +7104,17 @@ const FieldTimeRangePickerComponents = ({
     } else {
       dom = /* @__PURE__ */ jsx(
         TimePicker.RangePicker,
-        {
+        __spreadProps(__spreadValues({
           ref,
           format,
-          bordered: plain === void 0 ? true : !plain,
-          ...fieldProps,
+          bordered: plain === void 0 ? true : !plain
+        }, fieldProps), {
           value: dayValue
-        }
+        })
       );
     }
     if (renderFormItem) {
-      return renderFormItem(text, { mode, ...fieldProps }, dom);
+      return renderFormItem(text, __spreadValues({ mode }, fieldProps), dom);
     }
     return dom;
   }
@@ -7034,16 +7122,16 @@ const FieldTimeRangePickerComponents = ({
 };
 const FieldTimeRangePicker = React__default.forwardRef(FieldTimeRangePickerComponents);
 const FieldTimePicker$1 = React__default.forwardRef(FieldTimePicker);
-
 function FieldHOC(props) {
   const [labelTrigger, setLabelTrigger] = useState(false);
   const lightLabel = useRef(null);
   const isTriggeredByLabel = useCallback(
     (e) => {
-      const isLabelMouseDown = lightLabel.current?.labelRef?.current?.contains(
+      var _a2, _b2, _c2, _d, _e, _f;
+      const isLabelMouseDown = (_c2 = (_b2 = (_a2 = lightLabel.current) == null ? void 0 : _a2.labelRef) == null ? void 0 : _b2.current) == null ? void 0 : _c2.contains(
         e.target
       );
-      const isClearMouseDown = lightLabel.current?.clearRef?.current?.contains(
+      const isClearMouseDown = (_f = (_e = (_d = lightLabel.current) == null ? void 0 : _d.clearRef) == null ? void 0 : _e.current) == null ? void 0 : _f.contains(
         e.target
       );
       return isLabelMouseDown && !isClearMouseDown;
@@ -7066,351 +7154,339 @@ function FieldHOC(props) {
   }
   return /* @__PURE__ */ jsx(Fragment, { children: props.children });
 }
-
 dayjs.extend(localeData);
 dayjs.extend(advancedFormat);
 dayjs.extend(isoWeek);
 dayjs.extend(weekOfYear);
 dayjs.extend(weekday);
-const defaultRenderTextByObject = (text, valueType, props) => {
+const defaultRenderTextByObject = (text, valueType2, props) => {
   const pickFormItemProps = pickProProps(props.fieldProps);
-  if (valueType.type === "money") {
+  if (valueType2.type === "money") {
     return /* @__PURE__ */ jsx(
       FieldMoney$1,
-      {
-        locale: valueType.locale,
-        ...props,
+      __spreadProps(__spreadValues({
+        locale: valueType2.locale
+      }, props), {
         fieldProps: pickFormItemProps,
         text,
-        moneySymbol: valueType.moneySymbol
-      }
+        moneySymbol: valueType2.moneySymbol
+      })
     );
   }
-  if (valueType.type === "percent") {
+  if (valueType2.type === "percent") {
     return /* @__PURE__ */ jsx(
       FieldPercent$1,
-      {
-        ...props,
+      __spreadProps(__spreadValues({}, props), {
         text,
-        showSymbol: valueType.showSymbol,
-        precision: valueType.precision,
+        showSymbol: valueType2.showSymbol,
+        precision: valueType2.precision,
         fieldProps: pickFormItemProps,
-        showColor: valueType.showColor
-      }
+        showColor: valueType2.showColor
+      })
     );
   }
   return text;
 };
-const defaultRenderText = (dataValue, valueType, props, valueTypeMap) => {
+const defaultRenderText = (dataValue, valueType2, props, valueTypeMap) => {
+  var _a2, _b2;
   const { mode = "read", emptyText = "-" } = props;
-  if (emptyText !== false && mode === "read" && valueType !== "option" && valueType !== "switch") {
+  if (emptyText !== false && mode === "read" && valueType2 !== "option" && valueType2 !== "switch") {
     if (typeof dataValue !== "boolean" && typeof dataValue !== "number" && !dataValue) {
       const { fieldProps, render } = props;
       if (render) {
-        return render(dataValue, { mode, ...fieldProps }, /* @__PURE__ */ jsx(Fragment, { children: emptyText }));
+        return render(dataValue, __spreadValues({ mode }, fieldProps), /* @__PURE__ */ jsx(Fragment, { children: emptyText }));
       }
       return /* @__PURE__ */ jsx(Fragment, { children: emptyText });
     }
   }
   delete props.emptyText;
-  if (typeof valueType === "object") {
-    return defaultRenderTextByObject(dataValue, valueType, props);
+  if (typeof valueType2 === "object") {
+    return defaultRenderTextByObject(dataValue, valueType2, props);
   }
-  const customValueTypeConfig = valueTypeMap && valueTypeMap[valueType];
+  const customValueTypeConfig = valueTypeMap && valueTypeMap[valueType2];
   if (customValueTypeConfig) {
     delete props.ref;
     if (mode === "read") {
-      return customValueTypeConfig.render?.(
+      return (_a2 = customValueTypeConfig.render) == null ? void 0 : _a2.call(
+        customValueTypeConfig,
         dataValue,
-        {
-          text: dataValue,
-          ...props,
+        __spreadProps(__spreadValues({
+          text: dataValue
+        }, props), {
           mode: mode || "read"
-        },
+        }),
         /* @__PURE__ */ jsx(Fragment, { children: dataValue })
       );
     }
     if (mode === "update" || mode === "edit") {
-      return customValueTypeConfig.renderFormItem?.(
+      return (_b2 = customValueTypeConfig.renderFormItem) == null ? void 0 : _b2.call(
+        customValueTypeConfig,
         dataValue,
-        {
-          text: dataValue,
-          ...props
-        },
+        __spreadValues({
+          text: dataValue
+        }, props),
         /* @__PURE__ */ jsx(Fragment, { children: dataValue })
       );
     }
   }
-  if (valueType === "money") {
-    return /* @__PURE__ */ jsx(FieldMoney$1, { ...props, text: dataValue });
+  if (valueType2 === "money") {
+    return /* @__PURE__ */ jsx(FieldMoney$1, __spreadProps(__spreadValues({}, props), { text: dataValue }));
   }
-  if (valueType === "date") {
+  if (valueType2 === "date") {
     return /* @__PURE__ */ jsx(FieldHOC, { isLight: props.light, children: /* @__PURE__ */ jsx(
       FieldDatePicker$1,
-      {
+      __spreadValues({
         text: dataValue,
-        format: "YYYY-MM-DD",
-        ...props
-      }
+        format: "YYYY-MM-DD"
+      }, props)
     ) });
   }
-  if (valueType === "dateWeek") {
+  if (valueType2 === "dateWeek") {
     return /* @__PURE__ */ jsx(FieldHOC, { isLight: props.light, children: /* @__PURE__ */ jsx(
       FieldDatePicker$1,
-      {
+      __spreadValues({
         text: dataValue,
         format: "YYYY-wo",
-        picker: "week",
-        ...props
-      }
+        picker: "week"
+      }, props)
     ) });
   }
-  if (valueType === "dateWeekRange") {
-    const { fieldProps, ...otherProps } = props;
+  if (valueType2 === "dateWeekRange") {
+    const _c2 = props, { fieldProps } = _c2, otherProps = __objRest(_c2, ["fieldProps"]);
     return /* @__PURE__ */ jsx(FieldHOC, { isLight: props.light, children: /* @__PURE__ */ jsx(
       FieldRangePicker$1,
-      {
+      __spreadValues({
         text: dataValue,
         format: "YYYY-W",
         showTime: true,
-        fieldProps: {
-          picker: "week",
-          ...fieldProps
-        },
-        ...otherProps
-      }
+        fieldProps: __spreadValues({
+          picker: "week"
+        }, fieldProps)
+      }, otherProps)
     ) });
   }
-  if (valueType === "dateMonthRange") {
-    const { fieldProps, ...otherProps } = props;
+  if (valueType2 === "dateMonthRange") {
+    const _d = props, { fieldProps } = _d, otherProps = __objRest(_d, ["fieldProps"]);
     return /* @__PURE__ */ jsx(FieldHOC, { isLight: props.light, children: /* @__PURE__ */ jsx(
       FieldRangePicker$1,
-      {
+      __spreadValues({
         text: dataValue,
         format: "YYYY-MM",
         showTime: true,
-        fieldProps: {
-          picker: "month",
-          ...fieldProps
-        },
-        ...otherProps
-      }
+        fieldProps: __spreadValues({
+          picker: "month"
+        }, fieldProps)
+      }, otherProps)
     ) });
   }
-  if (valueType === "dateQuarterRange") {
-    const { fieldProps, ...otherProps } = props;
+  if (valueType2 === "dateQuarterRange") {
+    const _e = props, { fieldProps } = _e, otherProps = __objRest(_e, ["fieldProps"]);
     return /* @__PURE__ */ jsx(FieldHOC, { isLight: props.light, children: /* @__PURE__ */ jsx(
       FieldRangePicker$1,
-      {
+      __spreadValues({
         text: dataValue,
         format: "YYYY-Q",
         showTime: true,
-        fieldProps: {
-          picker: "quarter",
-          ...fieldProps
-        },
-        ...otherProps
-      }
+        fieldProps: __spreadValues({
+          picker: "quarter"
+        }, fieldProps)
+      }, otherProps)
     ) });
   }
-  if (valueType === "dateYearRange") {
-    const { fieldProps, ...otherProps } = props;
+  if (valueType2 === "dateYearRange") {
+    const _f = props, { fieldProps } = _f, otherProps = __objRest(_f, ["fieldProps"]);
     return /* @__PURE__ */ jsx(FieldHOC, { isLight: props.light, children: /* @__PURE__ */ jsx(
       FieldRangePicker$1,
-      {
+      __spreadValues({
         text: dataValue,
         format: "YYYY",
         showTime: true,
-        fieldProps: {
-          picker: "year",
-          ...fieldProps
-        },
-        ...otherProps
-      }
+        fieldProps: __spreadValues({
+          picker: "year"
+        }, fieldProps)
+      }, otherProps)
     ) });
   }
-  if (valueType === "dateMonth") {
+  if (valueType2 === "dateMonth") {
     return /* @__PURE__ */ jsx(FieldHOC, { isLight: props.light, children: /* @__PURE__ */ jsx(
       FieldDatePicker$1,
-      {
+      __spreadValues({
         text: dataValue,
         format: "YYYY-MM",
-        picker: "month",
-        ...props
-      }
+        picker: "month"
+      }, props)
     ) });
   }
-  if (valueType === "dateQuarter") {
+  if (valueType2 === "dateQuarter") {
     return /* @__PURE__ */ jsx(FieldHOC, { isLight: props.light, children: /* @__PURE__ */ jsx(
       FieldDatePicker$1,
-      {
+      __spreadValues({
         text: dataValue,
         format: "YYYY-[Q]Q",
-        picker: "quarter",
-        ...props
-      }
+        picker: "quarter"
+      }, props)
     ) });
   }
-  if (valueType === "dateYear") {
+  if (valueType2 === "dateYear") {
     return /* @__PURE__ */ jsx(FieldHOC, { isLight: props.light, children: /* @__PURE__ */ jsx(
       FieldDatePicker$1,
-      {
+      __spreadValues({
         text: dataValue,
         format: "YYYY",
-        picker: "year",
-        ...props
-      }
+        picker: "year"
+      }, props)
     ) });
   }
-  if (valueType === "dateRange") {
+  if (valueType2 === "dateRange") {
     return /* @__PURE__ */ jsx(
       FieldRangePicker$1,
-      {
+      __spreadValues({
         text: dataValue,
-        format: "YYYY-MM-DD",
-        ...props
-      }
+        format: "YYYY-MM-DD"
+      }, props)
     );
   }
-  if (valueType === "dateTime") {
+  if (valueType2 === "dateTime") {
     return /* @__PURE__ */ jsx(FieldHOC, { isLight: props.light, children: /* @__PURE__ */ jsx(
       FieldDatePicker$1,
-      {
+      __spreadValues({
         text: dataValue,
         format: "YYYY-MM-DD HH:mm:ss",
-        showTime: true,
-        ...props
-      }
+        showTime: true
+      }, props)
     ) });
   }
-  if (valueType === "dateTimeRange") {
+  if (valueType2 === "dateTimeRange") {
     return /* @__PURE__ */ jsx(FieldHOC, { isLight: props.light, children: /* @__PURE__ */ jsx(
       FieldRangePicker$1,
-      {
+      __spreadValues({
         text: dataValue,
         format: "YYYY-MM-DD HH:mm:ss",
-        showTime: true,
-        ...props
-      }
+        showTime: true
+      }, props)
     ) });
   }
-  if (valueType === "time") {
+  if (valueType2 === "time") {
     return /* @__PURE__ */ jsx(FieldHOC, { isLight: props.light, children: /* @__PURE__ */ jsx(
       FieldTimePicker$1,
-      {
+      __spreadValues({
         text: dataValue,
-        format: "HH:mm:ss",
-        ...props
-      }
+        format: "HH:mm:ss"
+      }, props)
     ) });
   }
-  if (valueType === "timeRange") {
+  if (valueType2 === "timeRange") {
     return /* @__PURE__ */ jsx(FieldHOC, { isLight: props.light, children: /* @__PURE__ */ jsx(
       FieldTimeRangePicker,
-      {
+      __spreadValues({
         text: dataValue,
-        format: "HH:mm:ss",
-        ...props
-      }
+        format: "HH:mm:ss"
+      }, props)
     ) });
   }
-  if (valueType === "fromNow") {
-    return /* @__PURE__ */ jsx(FieldFromNow$1, { text: dataValue, ...props });
+  if (valueType2 === "fromNow") {
+    return /* @__PURE__ */ jsx(FieldFromNow$1, __spreadValues({ text: dataValue }, props));
   }
-  if (valueType === "index") {
+  if (valueType2 === "index") {
     return /* @__PURE__ */ jsx(FieldIndexColumn, { children: dataValue + 1 });
   }
-  if (valueType === "indexBorder") {
+  if (valueType2 === "indexBorder") {
     return /* @__PURE__ */ jsx(FieldIndexColumn, { border: true, children: dataValue + 1 });
   }
-  if (valueType === "percent") {
-    return /* @__PURE__ */ jsx(FieldPercent$1, { text: dataValue, ...props });
+  if (valueType2 === "percent") {
+    return /* @__PURE__ */ jsx(FieldPercent$1, __spreadValues({ text: dataValue }, props));
   }
-  if (valueType === "textarea") {
-    return /* @__PURE__ */ jsx(FieldTextArea$1, { text: dataValue, ...props });
+  if (valueType2 === "textarea") {
+    return /* @__PURE__ */ jsx(FieldTextArea$1, __spreadValues({ text: dataValue }, props));
   }
-  if (valueType === "digit") {
-    return /* @__PURE__ */ jsx(FieldDigit$1, { text: dataValue, ...props });
+  if (valueType2 === "digit") {
+    return /* @__PURE__ */ jsx(FieldDigit$1, __spreadValues({ text: dataValue }, props));
   }
-  if (valueType === "digitRange") {
-    return /* @__PURE__ */ jsx(FieldDigitRange$1, { text: dataValue, ...props });
+  if (valueType2 === "digitRange") {
+    return /* @__PURE__ */ jsx(FieldDigitRange$1, __spreadValues({ text: dataValue }, props));
   }
-  if (valueType === "second") {
-    return /* @__PURE__ */ jsx(FieldSecond, { text: dataValue, ...props });
+  if (valueType2 === "second") {
+    return /* @__PURE__ */ jsx(FieldSecond, __spreadValues({ text: dataValue }, props));
   }
-  if (valueType === "select" || valueType === "text" && (props.valueEnum || props.request)) {
-    return /* @__PURE__ */ jsx(FieldHOC, { isLight: props.light, children: /* @__PURE__ */ jsx(FieldSelect$1, { text: dataValue, ...props }) });
+  if (valueType2 === "select" || valueType2 === "text" && (props.valueEnum || props.request)) {
+    return /* @__PURE__ */ jsx(FieldHOC, { isLight: props.light, children: /* @__PURE__ */ jsx(FieldSelect$1, __spreadValues({ text: dataValue }, props)) });
   }
-  if (valueType === "checkbox") {
-    return /* @__PURE__ */ jsx(FieldCheckbox$1, { text: dataValue, ...props });
+  if (valueType2 === "checkbox") {
+    return /* @__PURE__ */ jsx(FieldCheckbox$1, __spreadValues({ text: dataValue }, props));
   }
-  if (valueType === "radio") {
-    return /* @__PURE__ */ jsx(FieldRadio$1, { text: dataValue, ...props });
+  if (valueType2 === "radio") {
+    return /* @__PURE__ */ jsx(FieldRadio$1, __spreadValues({ text: dataValue }, props));
   }
-  if (valueType === "radioButton") {
-    return /* @__PURE__ */ jsx(FieldRadio$1, { radioType: "button", text: dataValue, ...props });
+  if (valueType2 === "radioButton") {
+    return /* @__PURE__ */ jsx(FieldRadio$1, __spreadValues({ radioType: "button", text: dataValue }, props));
   }
-  if (valueType === "switch") {
-    return /* @__PURE__ */ jsx(FieldSwitch$1, { text: dataValue, ...props });
+  if (valueType2 === "switch") {
+    return /* @__PURE__ */ jsx(FieldSwitch$1, __spreadValues({ text: dataValue }, props));
   }
-  if (valueType === "option") {
-    return /* @__PURE__ */ jsx(FieldOptions$1, { text: dataValue, ...props });
+  if (valueType2 === "option") {
+    return /* @__PURE__ */ jsx(FieldOptions$1, __spreadValues({ text: dataValue }, props));
   }
-  if (valueType === "password") {
-    return /* @__PURE__ */ jsx(FieldPassword$1, { text: dataValue, ...props });
+  if (valueType2 === "password") {
+    return /* @__PURE__ */ jsx(FieldPassword$1, __spreadValues({ text: dataValue }, props));
   }
-  return /* @__PURE__ */ jsx(FieldText$1, { text: dataValue, ...props });
+  return /* @__PURE__ */ jsx(FieldText$1, __spreadValues({ text: dataValue }, props));
 };
-const ProFieldComponent = ({
-  text,
-  valueType = "text",
-  mode = "read",
-  onChange,
-  renderFormItem,
-  value,
-  readonly,
-  fieldProps: restFieldProps,
-  ...rest
-}, ref) => {
+const ProFieldComponent = (_q, ref) => {
+  var _r = _q, {
+    text,
+    valueType: valueType2 = "text",
+    mode = "read",
+    onChange,
+    renderFormItem,
+    value,
+    readonly,
+    fieldProps: restFieldProps
+  } = _r, rest = __objRest(_r, [
+    "text",
+    "valueType",
+    "mode",
+    "onChange",
+    "renderFormItem",
+    "value",
+    "readonly",
+    "fieldProps"
+  ]);
   const context = useContext(ProConfigContext);
   const onChangeCallBack = useRefFunction((...restParams) => {
-    restFieldProps?.onChange?.(...restParams);
-    onChange?.(...restParams);
+    var _a2;
+    (_a2 = restFieldProps == null ? void 0 : restFieldProps.onChange) == null ? void 0 : _a2.call(restFieldProps, ...restParams);
+    onChange == null ? void 0 : onChange(...restParams);
   });
   const fieldProps = useDeepCompareMemo(() => {
-    return (value !== void 0 || restFieldProps) && {
-      value,
-      // fieldProps 優先度更高，在類似 LightFilter 場景下需要覆蓋預設的 value 和 onChange
-      ...omitUndefined(restFieldProps),
+    return (value !== void 0 || restFieldProps) && __spreadProps(__spreadValues({
+      value
+    }, omitUndefined(restFieldProps)), {
       onChange: onChangeCallBack
-    };
+    });
   }, [value, restFieldProps, onChangeCallBack]);
   const renderedDom = useDeepCompareMemo(() => {
+    var _a2, _b2, _c2, _d, _e;
     return defaultRenderText(
-      mode === "edit" ? fieldProps?.value ?? text ?? "" : text ?? fieldProps?.value ?? "",
-      valueType || "text",
-      omitUndefined({
-        ref,
-        ...rest,
+      mode === "edit" ? (_b2 = (_a2 = fieldProps == null ? void 0 : fieldProps.value) != null ? _a2 : text) != null ? _b2 : "" : (_c2 = text != null ? text : fieldProps == null ? void 0 : fieldProps.value) != null ? _c2 : "",
+      valueType2 || "text",
+      omitUndefined(__spreadProps(__spreadValues({
+        ref
+      }, rest), {
         mode: readonly ? "read" : mode,
         renderFormItem: renderFormItem ? (curText, props, dom) => {
-          const { placeholder: _placeholder, ...restProps } = props;
+          const _a3 = props, { placeholder: _placeholder } = _a3, restProps = __objRest(_a3, ["placeholder"]);
           const newDom = renderFormItem(curText, restProps, dom);
           if (React__default.isValidElement(newDom))
-            return React__default.cloneElement(newDom, {
-              ...fieldProps,
-              ...newDom.props || {}
-            });
+            return React__default.cloneElement(newDom, __spreadValues(__spreadValues({}, fieldProps), newDom.props || {}));
           return newDom;
         } : void 0,
-        placeholder: renderFormItem ? void 0 : rest?.placeholder ?? fieldProps?.placeholder,
+        placeholder: renderFormItem ? void 0 : (_d = rest == null ? void 0 : rest.placeholder) != null ? _d : fieldProps == null ? void 0 : fieldProps.placeholder,
         fieldProps: pickProProps(
-          omitUndefined({
-            ...fieldProps,
-            placeholder: renderFormItem ? void 0 : rest?.placeholder ?? fieldProps?.placeholder
-          })
+          omitUndefined(__spreadProps(__spreadValues({}, fieldProps), {
+            placeholder: renderFormItem ? void 0 : (_e = rest == null ? void 0 : rest.placeholder) != null ? _e : fieldProps == null ? void 0 : fieldProps.placeholder
+          }))
         )
-      }),
+      })),
       context.valueTypeMap || {}
     );
   }, [
@@ -7422,16 +7498,14 @@ const ProFieldComponent = ({
     renderFormItem,
     rest,
     text,
-    valueType
+    valueType2
   ]);
   return /* @__PURE__ */ jsx(React__default.Fragment, { children: renderedDom });
 };
 const ProField = React__default.forwardRef(
   ProFieldComponent
 );
-
 const FieldContext = React__default.createContext({});
-
 const GridContext = createContext({
   grid: false,
   colProps: void 0,
@@ -7439,15 +7513,17 @@ const GridContext = createContext({
 });
 const gridHelpers = ({ grid, rowProps, colProps }) => ({
   grid: !!grid,
-  RowWrapper({ children, Wrapper, ...props } = {}) {
+  RowWrapper(_a2 = {}) {
+    var _b2 = _a2, { children, Wrapper } = _b2, props = __objRest(_b2, ["children", "Wrapper"]);
     if (!grid) {
       return Wrapper ? /* @__PURE__ */ jsx(Wrapper, { children }) : children;
     }
-    return /* @__PURE__ */ jsx(Row, { gutter: 8, ...rowProps, ...props, children });
+    return /* @__PURE__ */ jsx(Row, __spreadProps(__spreadValues(__spreadValues({ gutter: 8 }, rowProps), props), { children }));
   },
-  ColWrapper({ children, Wrapper, ...rest } = {}) {
+  ColWrapper(_c2 = {}) {
+    var _d = _c2, { children, Wrapper } = _d, rest = __objRest(_d, ["children", "Wrapper"]);
     const props = useMemo(() => {
-      const originProps = { ...colProps, ...rest };
+      const originProps = __spreadValues(__spreadValues({}, colProps), rest);
       if (typeof originProps.span === "undefined" && typeof originProps.xs === "undefined") {
         originProps.xs = 24;
       }
@@ -7456,7 +7532,7 @@ const gridHelpers = ({ grid, rowProps, colProps }) => ({
     if (!grid) {
       return Wrapper ? /* @__PURE__ */ jsx(Wrapper, { children }) : children;
     }
-    return /* @__PURE__ */ jsx(Col, { ...props, children });
+    return /* @__PURE__ */ jsx(Col, __spreadProps(__spreadValues({}, props), { children }));
   }
 });
 const useGridHelpers = (props) => {
@@ -7474,21 +7550,20 @@ const useGridHelpers = (props) => {
   return useMemo(
     () => gridHelpers({
       grid: !!(grid || config.grid),
-      rowProps: config?.rowProps,
-      colProps: config?.colProps || colProps,
-      Wrapper: config?.Wrapper
+      rowProps: config == null ? void 0 : config.rowProps,
+      colProps: (config == null ? void 0 : config.colProps) || colProps,
+      Wrapper: config == null ? void 0 : config.Wrapper
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [
-      config?.Wrapper,
+      config == null ? void 0 : config.Wrapper,
       config.grid,
       grid,
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      JSON.stringify([colProps, config?.colProps, config?.rowProps])
+      JSON.stringify([colProps, config == null ? void 0 : config.colProps, config == null ? void 0 : config.rowProps])
     ]
   );
 };
-
 const WIDTH_SIZE_ENUM = {
   // 適用於短數字，短文字或者選項
   xs: 104,
@@ -7508,16 +7583,22 @@ const ignoreWidthValueType = ["switch", "radioButton", "radio", "rate"];
 function createField(Field, config) {
   Field.displayName = "ProFormComponent";
   const FieldWithContext = (props) => {
-    const {
+    const _a2 = __spreadValues(__spreadValues({}, props == null ? void 0 : props.filedConfig), config), {
       valueType: tmpValueType,
       customLightMode,
       lightFilterLabelFormatter,
       valuePropName = "value",
       ignoreWidth,
-      defaultProps,
-      ...defaultFormItemProps
-    } = { ...props?.filedConfig, ...config };
-    const {
+      defaultProps
+    } = _a2, defaultFormItemProps = __objRest(_a2, [
+      "valueType",
+      "customLightMode",
+      "lightFilterLabelFormatter",
+      "valuePropName",
+      "ignoreWidth",
+      "defaultProps"
+    ]);
+    const _b2 = __spreadValues(__spreadValues({}, defaultProps), props), {
       label,
       tooltip,
       placeholder,
@@ -7534,13 +7615,30 @@ function createField(Field, config) {
       getFieldProps,
       filedConfig,
       cacheForSwr,
-      proFieldProps,
-      ...rest
-    } = { ...defaultProps, ...props };
-    const valueType = tmpValueType || rest.valueType;
+      proFieldProps: proFieldProps2
+    } = _b2, rest = __objRest(_b2, [
+      "label",
+      "tooltip",
+      "placeholder",
+      "width",
+      "bordered",
+      "messageVariables",
+      "ignoreFormItem",
+      "transform",
+      "convertValue",
+      "readonly",
+      "allowClear",
+      "colSize",
+      "getFormItemProps",
+      "getFieldProps",
+      "filedConfig",
+      "cacheForSwr",
+      "proFieldProps"
+    ]);
+    const valueType2 = tmpValueType || rest.valueType;
     const isIgnoreWidth = useMemo(
-      () => ignoreWidth || ignoreWidthValueType.includes(valueType),
-      [ignoreWidth, valueType]
+      () => ignoreWidth || ignoreWidthValueType.includes(valueType2),
+      [ignoreWidth, valueType2]
     );
     const [, forceUpdate] = useState();
     const [onlyChange, forceUpdateByOnChange] = useState();
@@ -7548,25 +7646,19 @@ function createField(Field, config) {
     const changedProps = useDeepCompareMemo(
       () => {
         return {
-          formItemProps: getFormItemProps?.(),
-          fieldProps: getFieldProps?.()
+          formItemProps: getFormItemProps == null ? void 0 : getFormItemProps(),
+          fieldProps: getFieldProps == null ? void 0 : getFieldProps()
         };
       },
       // eslint-disable-next-line react-hooks/exhaustive-deps
       [getFieldProps, getFormItemProps, rest.dependenciesValues, onlyChange]
     );
     const fieldProps = useDeepCompareMemo(() => {
-      const newFieldProps = {
-        ...ignoreFormItem ? omitUndefined$1({ value: rest.value }) : {},
+      const newFieldProps = __spreadValues(__spreadValues(__spreadValues(__spreadProps(__spreadValues({}, ignoreFormItem ? omitUndefined$1({ value: rest.value }) : {}), {
         placeholder,
-        disabled: props.disabled,
-        ...contextValue.fieldProps,
-        ...changedProps.fieldProps,
-        // 支援未傳遞getFieldProps的情況
-        // 某些特殊hack情況下覆蓋原來設置的fieldProps參數
-        ...rest.fieldProps
-      };
-      newFieldProps.style = omitUndefined$1(newFieldProps?.style);
+        disabled: props.disabled
+      }), contextValue.fieldProps), changedProps.fieldProps), rest.fieldProps);
+      newFieldProps.style = omitUndefined$1(newFieldProps == null ? void 0 : newFieldProps.style);
       return newFieldProps;
     }, [
       ignoreFormItem,
@@ -7579,14 +7671,7 @@ function createField(Field, config) {
     ]);
     const restFormItemProps = pickProFormItemProps(rest);
     const formItemProps = useDeepCompareMemo(
-      () => ({
-        ...contextValue.formItemProps,
-        ...restFormItemProps,
-        ...changedProps.formItemProps,
-        // 支援未傳遞getFormItemProps的情況
-        // 某些特殊hack情況下覆蓋原來設置的formItemProps參數
-        ...rest.formItemProps
-      }),
+      () => __spreadValues(__spreadValues(__spreadValues(__spreadValues({}, contextValue.formItemProps), restFormItemProps), changedProps.formItemProps), rest.formItemProps),
       [
         changedProps.formItemProps,
         contextValue.formItemProps,
@@ -7595,11 +7680,9 @@ function createField(Field, config) {
       ]
     );
     const otherProps = useDeepCompareMemo(
-      () => ({
-        messageVariables,
-        ...defaultFormItemProps,
-        ...formItemProps
-      }),
+      () => __spreadValues(__spreadValues({
+        messageVariables
+      }, defaultFormItemProps), formItemProps),
       [defaultFormItemProps, formItemProps, messageVariables]
     );
     noteOnce(
@@ -7609,105 +7692,103 @@ function createField(Field, config) {
     );
     const { prefixName } = useContext(FieldContext$1);
     const proFieldKey = useDeepCompareMemo(() => {
-      let name = otherProps?.name;
+      var _a3;
+      let name = otherProps == null ? void 0 : otherProps.name;
       if (Array.isArray(name))
         name = name.join("_");
       if (Array.isArray(prefixName) && name)
         name = `${prefixName.join(".")}.${name}`;
-      const key = name && `form-${contextValue.formKey ?? ""}-field-${name}`;
+      const key = name && `form-${(_a3 = contextValue.formKey) != null ? _a3 : ""}-field-${name}`;
       return key;
-    }, [stringify(otherProps?.name), prefixName, contextValue.formKey]);
+    }, [stringify(otherProps == null ? void 0 : otherProps.name), prefixName, contextValue.formKey]);
     const onChange = useRefFunction((...restParams) => {
+      var _a3;
       if (getFormItemProps || getFieldProps) {
         forceUpdateByOnChange([]);
       } else if (rest.renderFormItem) {
         forceUpdate([]);
       }
-      fieldProps?.onChange?.(...restParams);
+      (_a3 = fieldProps == null ? void 0 : fieldProps.onChange) == null ? void 0 : _a3.call(fieldProps, ...restParams);
     });
     const style = useDeepCompareMemo(() => {
-      const newStyle = {
+      const newStyle = __spreadValues({
         width: (
           // @ts-ignore
           width && !WIDTH_SIZE_ENUM[width] ? width : contextValue.grid ? "100%" : void 0
-        ),
-        ...fieldProps?.style
-      };
+        )
+      }, fieldProps == null ? void 0 : fieldProps.style);
       if (isIgnoreWidth)
         Reflect.deleteProperty(newStyle, "width");
       return omitUndefined$1(newStyle);
-    }, [stringify(fieldProps?.style), contextValue.grid, isIgnoreWidth, width]);
+    }, [stringify(fieldProps == null ? void 0 : fieldProps.style), contextValue.grid, isIgnoreWidth, width]);
     const className = useDeepCompareMemo(() => {
       const isSizeEnum = width && WIDTH_SIZE_ENUM[width];
-      return classNames(fieldProps?.className, {
+      return classNames(fieldProps == null ? void 0 : fieldProps.className, {
         "pro-field": isSizeEnum,
         [`pro-field-${width}`]: isSizeEnum && !isIgnoreWidth
       }) || void 0;
-    }, [width, fieldProps?.className, isIgnoreWidth]);
+    }, [width, fieldProps == null ? void 0 : fieldProps.className, isIgnoreWidth]);
     const fieldProFieldProps = useDeepCompareMemo(() => {
-      return omitUndefined$1({
-        ...contextValue.proFieldProps,
-        mode: rest?.mode,
+      return omitUndefined$1(__spreadValues(__spreadProps(__spreadValues({}, contextValue.proFieldProps), {
+        mode: rest == null ? void 0 : rest.mode,
         readonly,
         params: rest.params,
         proFieldKey,
-        cacheForSwr,
-        ...proFieldProps
-      });
+        cacheForSwr
+      }), proFieldProps2));
     }, [
       contextValue.proFieldProps,
-      rest?.mode,
+      rest == null ? void 0 : rest.mode,
       rest.params,
       readonly,
       proFieldKey,
       cacheForSwr,
-      proFieldProps
+      proFieldProps2
     ]);
     const fieldFieldProps = useDeepCompareMemo(() => {
-      return {
+      return __spreadProps(__spreadValues({
         onChange,
-        allowClear,
-        ...fieldProps,
+        allowClear
+      }, fieldProps), {
         style,
         className
-      };
+      });
     }, [allowClear, className, onChange, fieldProps, style]);
-    const field = useDeepCompareMemo(() => {
+    const field2 = useDeepCompareMemo(() => {
       return /* @__PURE__ */ jsx(
         Field,
-        {
-          ...rest,
+        __spreadProps(__spreadValues({}, rest), {
           fieldProps: fieldFieldProps,
           proFieldProps: fieldProFieldProps,
-          ref: props?.fieldRef
-        },
+          ref: props == null ? void 0 : props.fieldRef
+        }),
         props.proFormFieldKey || props.name
       );
     }, [fieldProFieldProps, fieldFieldProps, rest]);
     const formItem = useDeepCompareMemo(() => {
+      var _a3;
       return /* @__PURE__ */ jsx(
         ProFormItem,
-        {
-          label: label && proFieldProps?.light !== true ? label : void 0,
-          tooltip: proFieldProps?.light !== true && tooltip,
-          valuePropName,
-          ...otherProps,
+        __spreadProps(__spreadValues({
+          label: label && (proFieldProps2 == null ? void 0 : proFieldProps2.light) !== true ? label : void 0,
+          tooltip: (proFieldProps2 == null ? void 0 : proFieldProps2.light) !== true && tooltip,
+          valuePropName
+        }, otherProps), {
           ignoreFormItem,
           transform,
-          dataFormat: fieldProps?.format,
-          valueType,
-          messageVariables: {
-            label: label || "",
-            ...otherProps?.messageVariables
-          },
+          dataFormat: fieldProps == null ? void 0 : fieldProps.format,
+          valueType: valueType2,
+          messageVariables: __spreadValues({
+            label: label || ""
+          }, otherProps == null ? void 0 : otherProps.messageVariables),
           convertValue,
-          children: field
-        },
-        props.proFormFieldKey || otherProps.name?.toString()
+          children: field2
+        }),
+        props.proFormFieldKey || ((_a3 = otherProps.name) == null ? void 0 : _a3.toString())
       );
     }, [
       label,
-      proFieldProps?.light,
+      proFieldProps2 == null ? void 0 : proFieldProps2.light,
       tooltip,
       valuePropName,
       props.proFormFieldKey,
@@ -7715,10 +7796,10 @@ function createField(Field, config) {
       ignoreFormItem,
       transform,
       fieldProps,
-      valueType,
+      valueType2,
       convertValue,
       bordered,
-      field,
+      field2,
       allowClear,
       customLightMode,
       lightFilterLabelFormatter
@@ -7732,29 +7813,26 @@ function createField(Field, config) {
       ProFormDependency,
       {
         name: dependencies,
-        originDependencies: props?.originDependencies,
+        originDependencies: props == null ? void 0 : props.originDependencies,
         children: (values) => {
           return /* @__PURE__ */ jsx(
             FieldWithContext,
-            {
+            __spreadValues({
               dependenciesValues: values,
-              dependencies,
-              ...props
-            }
+              dependencies
+            }, props)
           );
         }
       }
-    ) : /* @__PURE__ */ jsx(FieldWithContext, { dependencies, ...props });
+    ) : /* @__PURE__ */ jsx(FieldWithContext, __spreadValues({ dependencies }, props));
   };
   return DependencyWrapper;
 }
-
 const EditOrReadOnlyContext = React__default.createContext({
   mode: "edit"
 });
-
 const BaseProFormField = (props) => {
-  const {
+  const _a2 = props, {
     fieldProps,
     children,
     labelCol,
@@ -7762,9 +7840,9 @@ const BaseProFormField = (props) => {
     autoFocus,
     isDefaultDom,
     render,
-    proFieldProps,
+    proFieldProps: proFieldProps2,
     renderFormItem,
-    valueType,
+    valueType: valueType2,
     initialValue,
     onChange,
     valueEnum,
@@ -7772,26 +7850,42 @@ const BaseProFormField = (props) => {
     name,
     dependenciesValues,
     cacheForSwr = false,
-    valuePropName = "value",
-    ...restProps
-  } = props;
+    valuePropName = "value"
+  } = _a2, restProps = __objRest(_a2, [
+    "fieldProps",
+    "children",
+    "labelCol",
+    "label",
+    "autoFocus",
+    "isDefaultDom",
+    "render",
+    "proFieldProps",
+    "renderFormItem",
+    "valueType",
+    "initialValue",
+    "onChange",
+    "valueEnum",
+    "params",
+    "name",
+    "dependenciesValues",
+    "cacheForSwr",
+    "valuePropName"
+  ]);
   const modeContext = useContext(EditOrReadOnlyContext);
   const propsParams = useMemo(() => {
-    return dependenciesValues && restProps.request ? {
-      ...params,
-      ...dependenciesValues || {}
-    } : params;
+    return dependenciesValues && restProps.request ? __spreadValues(__spreadValues({}, params), dependenciesValues || {}) : params;
   }, [dependenciesValues, params, restProps.request]);
   const memoUnChange = useRefFunction((...restParams) => {
-    if (fieldProps?.onChange) {
-      fieldProps?.onChange?.(...restParams);
+    var _a3;
+    if (fieldProps == null ? void 0 : fieldProps.onChange) {
+      (_a3 = fieldProps == null ? void 0 : fieldProps.onChange) == null ? void 0 : _a3.call(fieldProps, ...restParams);
       return;
     }
   });
   const memoFieldProps = useMemo(
-    () => ({
-      autoFocus,
-      ...fieldProps,
+    () => __spreadProps(__spreadValues({
+      autoFocus
+    }, fieldProps), {
       onChange: memoUnChange
     }),
     [autoFocus, fieldProps, memoUnChange]
@@ -7799,40 +7893,38 @@ const BaseProFormField = (props) => {
   const childrenRender = useMemo(() => {
     if (children) {
       if (React__default.isValidElement(children)) {
-        return React__default.cloneElement(children, {
-          ...restProps,
+        return React__default.cloneElement(children, __spreadValues(__spreadProps(__spreadValues({}, restProps), {
           onChange: (...restParams) => {
-            if (fieldProps?.onChange) {
-              fieldProps?.onChange?.(...restParams);
+            var _a3;
+            if (fieldProps == null ? void 0 : fieldProps.onChange) {
+              (_a3 = fieldProps == null ? void 0 : fieldProps.onChange) == null ? void 0 : _a3.call(fieldProps, ...restParams);
               return;
             }
-            onChange?.(...restParams);
-          },
-          ...children.props
-        });
+            onChange == null ? void 0 : onChange(...restParams);
+          }
+        }), children.props));
       }
       return /* @__PURE__ */ jsx(Fragment, { children });
     }
     return;
-  }, [children, fieldProps?.onChange, onChange, restProps]);
+  }, [children, fieldProps == null ? void 0 : fieldProps.onChange, onChange, restProps]);
   if (childrenRender) {
     return childrenRender;
   }
   return /* @__PURE__ */ jsx(
     ProField,
-    {
-      text: fieldProps?.[valuePropName],
+    __spreadProps(__spreadValues(__spreadValues({
+      text: fieldProps == null ? void 0 : fieldProps[valuePropName],
       render,
       renderFormItem,
-      valueType: valueType || "text",
+      valueType: valueType2 || "text",
       cacheForSwr,
       fieldProps: memoFieldProps,
-      valueEnum: runFunction(valueEnum),
-      ...proFieldProps,
-      ...restProps,
-      mode: proFieldProps?.mode || modeContext.mode || "edit",
+      valueEnum: runFunction(valueEnum)
+    }, proFieldProps2), restProps), {
+      mode: (proFieldProps2 == null ? void 0 : proFieldProps2.mode) || modeContext.mode || "edit",
       params: propsParams
-    }
+    })
   );
 };
 const ProFormField = createField(
@@ -7840,26 +7932,26 @@ const ProFormField = createField(
     return isDeepEqualReact(nextProps, prevProps, ["onChange", "onBlur"]);
   })
 );
-
 const CheckboxGroup = React__default.forwardRef(
-  ({ options, fieldProps, proFieldProps, valueEnum, ...rest }, ref) => /* @__PURE__ */ jsx(
-    ProFormField,
-    {
-      ref,
-      valueType: "checkbox",
-      valueEnum: runFunction(valueEnum, void 0),
-      fieldProps: {
-        options,
-        ...fieldProps
-      },
-      proFieldProps,
-      ...rest
-    }
-  )
+  (_s, ref) => {
+    var _t = _s, { options, fieldProps, proFieldProps: proFieldProps2, valueEnum } = _t, rest = __objRest(_t, ["options", "fieldProps", "proFieldProps", "valueEnum"]);
+    return /* @__PURE__ */ jsx(
+      ProFormField,
+      __spreadValues({
+        ref,
+        valueType: "checkbox",
+        valueEnum: runFunction(valueEnum, void 0),
+        fieldProps: __spreadValues({
+          options
+        }, fieldProps),
+        proFieldProps: proFieldProps2
+      }, rest)
+    );
+  }
 );
 const ProFormCheckboxComponents = React__default.forwardRef(
   ({ fieldProps, children }, ref) => {
-    return /* @__PURE__ */ jsx(Checkbox, { ref, ...fieldProps, children });
+    return /* @__PURE__ */ jsx(Checkbox, __spreadProps(__spreadValues({ ref }, fieldProps), { children }));
   }
 );
 const ProFormCheckbox = createField(
@@ -7870,283 +7962,257 @@ const ProFormCheckbox = createField(
 );
 const WrappedProFormCheckbox = ProFormCheckbox;
 WrappedProFormCheckbox.Group = CheckboxGroup;
-
 const valueType$d = "dateMonthRange";
-const DateMonthRangePicker = React__default.forwardRef(({ fieldProps, proFieldProps, ...rest }, ref) => {
+const DateMonthRangePicker = React__default.forwardRef((_u, ref) => {
+  var _v = _u, { fieldProps, proFieldProps: proFieldProps2 } = _v, rest = __objRest(_v, ["fieldProps", "proFieldProps"]);
   const context = useContext(FieldContext);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       ref,
-      fieldProps: {
-        getPopupContainer: context.getPopupContainer,
-        ...fieldProps
-      },
+      fieldProps: __spreadValues({
+        getPopupContainer: context.getPopupContainer
+      }, fieldProps),
       valueType: valueType$d,
-      proFieldProps,
+      proFieldProps: proFieldProps2,
       filedConfig: {
         valueType: valueType$d,
         customLightMode: true,
-        lightFilterLabelFormatter: (value) => dateArrayFormatter(value, fieldProps?.format || "YYYY-MM")
-      },
-      ...rest
-    }
+        lightFilterLabelFormatter: (value) => dateArrayFormatter(value, (fieldProps == null ? void 0 : fieldProps.format) || "YYYY-MM")
+      }
+    }, rest)
   );
 });
-
 const valueType$c = "date";
-const ProFormDatePicker = React__default.forwardRef(({ proFieldProps, fieldProps, ...rest }, ref) => {
+const ProFormDatePicker = React__default.forwardRef((_w, ref) => {
+  var _x = _w, { proFieldProps: proFieldProps2, fieldProps } = _x, rest = __objRest(_x, ["proFieldProps", "fieldProps"]);
   const context = useContext(FieldContext);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       ref,
       valueType: valueType$c,
-      fieldProps: {
-        getPopupContainer: context.getPopupContainer,
-        ...fieldProps
-      },
-      proFieldProps,
+      fieldProps: __spreadValues({
+        getPopupContainer: context.getPopupContainer
+      }, fieldProps),
+      proFieldProps: proFieldProps2,
       filedConfig: {
         valueType: valueType$c,
         customLightMode: true
-      },
-      ...rest
-    }
+      }
+    }, rest)
   );
 });
-
 const valueType$b = "dateMonth";
-const ProFormDatePickerMonth = React__default.forwardRef(({ proFieldProps, fieldProps, ...rest }, ref) => {
+const ProFormDatePickerMonth = React__default.forwardRef((_y, ref) => {
+  var _z = _y, { proFieldProps: proFieldProps2, fieldProps } = _z, rest = __objRest(_z, ["proFieldProps", "fieldProps"]);
   const context = useContext(FieldContext);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       ref,
       valueType: valueType$b,
-      fieldProps: {
-        getPopupContainer: context.getPopupContainer,
-        ...fieldProps
-      },
-      proFieldProps,
+      fieldProps: __spreadValues({
+        getPopupContainer: context.getPopupContainer
+      }, fieldProps),
+      proFieldProps: proFieldProps2,
       filedConfig: {
         valueType: valueType$b,
         customLightMode: true
-      },
-      ...rest
-    }
+      }
+    }, rest)
   );
 });
-
 const valueType$a = "dateQuarter";
-const ProFormDatePickerQuarter = React__default.forwardRef(({ fieldProps, ...rest }, ref) => {
+const ProFormDatePickerQuarter = React__default.forwardRef((_A, ref) => {
+  var _B = _A, { fieldProps } = _B, rest = __objRest(_B, ["fieldProps"]);
   const context = useContext(FieldContext);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       ref,
       valueType: valueType$a,
-      fieldProps: {
-        getPopupContainer: context.getPopupContainer,
-        ...fieldProps
-      },
+      fieldProps: __spreadValues({
+        getPopupContainer: context.getPopupContainer
+      }, fieldProps),
       filedConfig: {
         valueType: valueType$a,
         customLightMode: true
-      },
-      ...rest
-    }
+      }
+    }, rest)
   );
 });
-
 const valueType$9 = "dateWeek";
-const ProFormDatePickerWeek = React__default.forwardRef(({ proFieldProps, fieldProps, ...rest }, ref) => {
+const ProFormDatePickerWeek = React__default.forwardRef((_C, ref) => {
+  var _D = _C, { proFieldProps: proFieldProps2, fieldProps } = _D, rest = __objRest(_D, ["proFieldProps", "fieldProps"]);
   const context = useContext(FieldContext);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       ref,
       valueType: valueType$9,
-      fieldProps: {
-        getPopupContainer: context.getPopupContainer,
-        ...fieldProps
-      },
-      proFieldProps,
+      fieldProps: __spreadValues({
+        getPopupContainer: context.getPopupContainer
+      }, fieldProps),
+      proFieldProps: proFieldProps2,
       filedConfig: {
         valueType: valueType$9,
         customLightMode: true
-      },
-      ...rest
-    }
+      }
+    }, rest)
   );
 });
-
 const valueType$8 = "dateYear";
-const ProFormDatePickerYear = React__default.forwardRef(({ proFieldProps, fieldProps, ...rest }, ref) => {
+const ProFormDatePickerYear = React__default.forwardRef((_E, ref) => {
+  var _F = _E, { proFieldProps: proFieldProps2, fieldProps } = _F, rest = __objRest(_F, ["proFieldProps", "fieldProps"]);
   const context = useContext(FieldContext);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       ref,
       valueType: valueType$8,
-      fieldProps: {
-        getPopupContainer: context.getPopupContainer,
-        ...fieldProps
-      },
-      proFieldProps,
+      fieldProps: __spreadValues({
+        getPopupContainer: context.getPopupContainer
+      }, fieldProps),
+      proFieldProps: proFieldProps2,
       filedConfig: {
         valueType: valueType$8,
         customLightMode: true
-      },
-      ...rest
-    }
+      }
+    }, rest)
   );
 });
-
 const ExportComponent = ProFormDatePicker;
 ExportComponent.Week = ProFormDatePickerWeek;
 ExportComponent.Month = ProFormDatePickerMonth;
 ExportComponent.Quarter = ProFormDatePickerQuarter;
 ExportComponent.Year = ProFormDatePickerYear;
 ExportComponent.displayName = "ProFormComponent";
-
 const valueType$7 = "dateQuarterRange";
-const DateQuarterRangePicker = React__default.forwardRef(({ fieldProps, proFieldProps, ...rest }, ref) => {
+const DateQuarterRangePicker = React__default.forwardRef((_G, ref) => {
+  var _H = _G, { fieldProps, proFieldProps: proFieldProps2 } = _H, rest = __objRest(_H, ["fieldProps", "proFieldProps"]);
   const context = useContext(FieldContext);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       ref,
-      fieldProps: {
-        getPopupContainer: context.getPopupContainer,
-        ...fieldProps
-      },
+      fieldProps: __spreadValues({
+        getPopupContainer: context.getPopupContainer
+      }, fieldProps),
       valueType: valueType$7,
-      proFieldProps,
+      proFieldProps: proFieldProps2,
       filedConfig: {
         valueType: valueType$7,
         customLightMode: true,
-        lightFilterLabelFormatter: (value) => dateArrayFormatter(value, fieldProps?.format || "YYYY-W")
-      },
-      ...rest
-    }
+        lightFilterLabelFormatter: (value) => dateArrayFormatter(value, (fieldProps == null ? void 0 : fieldProps.format) || "YYYY-W")
+      }
+    }, rest)
   );
 });
-
 const valueType$6 = "dateRange";
-const ProFormDateRangePicker = React__default.forwardRef(({ fieldProps, proFieldProps, ...rest }, ref) => {
+const ProFormDateRangePicker = React__default.forwardRef((_I, ref) => {
+  var _J = _I, { fieldProps, proFieldProps: proFieldProps2 } = _J, rest = __objRest(_J, ["fieldProps", "proFieldProps"]);
   const context = useContext(FieldContext);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       ref,
-      fieldProps: {
-        getPopupContainer: context.getPopupContainer,
-        ...fieldProps
-      },
+      fieldProps: __spreadValues({
+        getPopupContainer: context.getPopupContainer
+      }, fieldProps),
       valueType: valueType$6,
-      proFieldProps,
+      proFieldProps: proFieldProps2,
       filedConfig: {
         valueType: valueType$6,
         customLightMode: true,
-        lightFilterLabelFormatter: (value) => dateArrayFormatter(value, fieldProps?.format || "YYYY-MM-DD")
-      },
-      ...rest
-    }
+        lightFilterLabelFormatter: (value) => dateArrayFormatter(value, (fieldProps == null ? void 0 : fieldProps.format) || "YYYY-MM-DD")
+      }
+    }, rest)
   );
 });
-
 const valueType$5 = "dateTime";
-const ProFormDateTimePicker = React__default.forwardRef(({ fieldProps, proFieldProps, ...rest }, ref) => {
+const ProFormDateTimePicker = React__default.forwardRef((_K, ref) => {
+  var _L = _K, { fieldProps, proFieldProps: proFieldProps2 } = _L, rest = __objRest(_L, ["fieldProps", "proFieldProps"]);
   const context = useContext(FieldContext);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       ref,
-      fieldProps: {
-        getPopupContainer: context.getPopupContainer,
-        ...fieldProps
-      },
+      fieldProps: __spreadValues({
+        getPopupContainer: context.getPopupContainer
+      }, fieldProps),
       valueType: valueType$5,
-      proFieldProps,
+      proFieldProps: proFieldProps2,
       filedConfig: {
         valueType: valueType$5,
         customLightMode: true
-      },
-      ...rest
-    }
+      }
+    }, rest)
   );
 });
-
 const valueType$4 = "dateTimeRange";
-const ProFormDateTimeRangePicker = React__default.forwardRef(({ fieldProps, proFieldProps, ...rest }, ref) => {
+const ProFormDateTimeRangePicker = React__default.forwardRef((_M, ref) => {
+  var _N = _M, { fieldProps, proFieldProps: proFieldProps2 } = _N, rest = __objRest(_N, ["fieldProps", "proFieldProps"]);
   const context = useContext(FieldContext);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       ref,
-      fieldProps: {
-        getPopupContainer: context.getPopupContainer,
-        ...fieldProps
-      },
+      fieldProps: __spreadValues({
+        getPopupContainer: context.getPopupContainer
+      }, fieldProps),
       valueType: valueType$4,
-      proFieldProps,
+      proFieldProps: proFieldProps2,
       filedConfig: {
         valueType: valueType$4,
         customLightMode: true,
         lightFilterLabelFormatter: (value) => dateArrayFormatter(value, "YYYY-MM-DD HH:mm:ss")
-      },
-      ...rest
-    }
+      }
+    }, rest)
   );
 });
-
 const valueType$3 = "dateWeekRange";
-const DateWeekRangePicker = React__default.forwardRef(({ fieldProps, proFieldProps, ...rest }, ref) => {
+const DateWeekRangePicker = React__default.forwardRef((_O, ref) => {
+  var _P = _O, { fieldProps, proFieldProps: proFieldProps2 } = _P, rest = __objRest(_P, ["fieldProps", "proFieldProps"]);
   const context = useContext(FieldContext);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       ref,
-      fieldProps: {
-        getPopupContainer: context.getPopupContainer,
-        ...fieldProps
-      },
+      fieldProps: __spreadValues({
+        getPopupContainer: context.getPopupContainer
+      }, fieldProps),
       valueType: valueType$3,
-      proFieldProps,
+      proFieldProps: proFieldProps2,
       filedConfig: {
         valueType: valueType$3,
         customLightMode: true,
-        lightFilterLabelFormatter: (value) => dateArrayFormatter(value, fieldProps?.format || "YYYY-MM-DD")
-      },
-      ...rest
-    }
+        lightFilterLabelFormatter: (value) => dateArrayFormatter(value, (fieldProps == null ? void 0 : fieldProps.format) || "YYYY-MM-DD")
+      }
+    }, rest)
   );
 });
-
 const valueType$2 = "dateYearRange";
-const DateYearRangePicker = React__default.forwardRef(({ fieldProps, proFieldProps, ...rest }, ref) => {
+const DateYearRangePicker = React__default.forwardRef((_Q, ref) => {
+  var _R = _Q, { fieldProps, proFieldProps: proFieldProps2 } = _R, rest = __objRest(_R, ["fieldProps", "proFieldProps"]);
   const context = useContext(FieldContext);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       ref,
-      fieldProps: {
-        getPopupContainer: context.getPopupContainer,
-        ...fieldProps
-      },
+      fieldProps: __spreadValues({
+        getPopupContainer: context.getPopupContainer
+      }, fieldProps),
       valueType: valueType$2,
-      proFieldProps,
+      proFieldProps: proFieldProps2,
       filedConfig: {
         valueType: valueType$2,
         customLightMode: true,
-        lightFilterLabelFormatter: (value) => dateArrayFormatter(value, fieldProps?.format || "YYYY")
-      },
-      ...rest
-    }
+        lightFilterLabelFormatter: (value) => dateArrayFormatter(value, (fieldProps == null ? void 0 : fieldProps.format) || "YYYY")
+      }
+    }, rest)
   );
 });
-
 const listToArray = (children) => {
   if (Array.isArray(children)) {
     return children;
@@ -8157,7 +8223,8 @@ const listToArray = (children) => {
   return toArray(children);
 };
 const ProFormListItem = (props) => {
-  const {
+  var _b2;
+  const _a2 = props, {
     creatorButtonProps,
     deleteIconProps,
     copyIconProps,
@@ -8172,17 +8239,40 @@ const ProFormListItem = (props) => {
     actionRender,
     fields,
     meta,
-    field,
-    index,
+    field: field2,
+    index: index2,
     formInstance,
     originName,
     containerClassName,
     containerStyle,
     min,
     max,
-    count,
-    ...rest
-  } = props;
+    count
+  } = _a2, rest = __objRest(_a2, [
+    "creatorButtonProps",
+    "deleteIconProps",
+    "copyIconProps",
+    "itemContainerRender",
+    "itemRender",
+    "alwaysShowItemLabel",
+    "prefixCls",
+    "creatorRecord",
+    "action",
+    "actionGuard",
+    "children",
+    "actionRender",
+    "fields",
+    "meta",
+    "field",
+    "index",
+    "formInstance",
+    "originName",
+    "containerClassName",
+    "containerStyle",
+    "min",
+    "max",
+    "count"
+  ]);
   const { hashId } = useContext(ProProvider);
   const listContext = useContext(FormListContext);
   const unmountedRef = useRef(false);
@@ -8196,41 +8286,35 @@ const ProFormListItem = (props) => {
   }, []);
   const getCurrentRowData = () => {
     return formInstance.getFieldValue(
-      [listContext.listName, originName, index?.toString()].flat(1).filter((item) => item !== null && item !== void 0)
+      [listContext.listName, originName, index2 == null ? void 0 : index2.toString()].flat(1).filter((item) => item !== null && item !== void 0)
     );
   };
   const formListAction = {
     getCurrentRowData,
     setCurrentRowData: (data) => {
-      const oldTableDate = formInstance?.getFieldsValue?.() || {};
-      const rowKeyName = [listContext.listName, originName, index?.toString()].flat(1).filter((item) => item !== null && item !== void 0);
-      const updateValues = set(oldTableDate, rowKeyName, {
-        // 只是簡單的覆蓋，如果很複雜的話，需要自己處理
-        ...getCurrentRowData(),
-        ...data || {}
-      });
+      var _a3;
+      const oldTableDate = ((_a3 = formInstance == null ? void 0 : formInstance.getFieldsValue) == null ? void 0 : _a3.call(formInstance)) || {};
+      const rowKeyName = [listContext.listName, originName, index2 == null ? void 0 : index2.toString()].flat(1).filter((item) => item !== null && item !== void 0);
+      const updateValues = set(oldTableDate, rowKeyName, __spreadValues(__spreadValues({}, getCurrentRowData()), data || {}));
       return formInstance.setFieldsValue(updateValues);
     }
   };
   const childrenArray = listToArray(children).map((childrenItem) => {
     if (typeof childrenItem === "function") {
-      return childrenItem?.(
-        field,
-        index,
-        {
-          ...action,
-          ...formListAction
-        },
+      return childrenItem == null ? void 0 : childrenItem(
+        field2,
+        index2,
+        __spreadValues(__spreadValues({}, action), formListAction),
         count
       );
     }
     return childrenItem;
   }).map((childrenItem, itemIndex) => {
+    var _a3;
     if (React__default.isValidElement(childrenItem)) {
-      return React__default.cloneElement(childrenItem, {
-        key: childrenItem.key || childrenItem?.props?.name || itemIndex,
-        ...childrenItem?.props || {}
-      });
+      return React__default.cloneElement(childrenItem, __spreadValues({
+        key: childrenItem.key || ((_a3 = childrenItem == null ? void 0 : childrenItem.props) == null ? void 0 : _a3.name) || itemIndex
+      }, (childrenItem == null ? void 0 : childrenItem.props) || {}));
     }
     return childrenItem;
   });
@@ -8239,19 +8323,19 @@ const ProFormListItem = (props) => {
       return null;
     if (copyIconProps === false || max === count)
       return null;
-    const { Icon = ContentCopyIcon, tooltipText } = copyIconProps;
+    const { Icon: Icon2 = ContentCopyIcon, tooltipText } = copyIconProps;
     return /* @__PURE__ */ jsx(Tooltip, { title: tooltipText, children: loadingCopy ? /* @__PURE__ */ jsx(CircularProgress, {}) : /* @__PURE__ */ jsx(
-      Icon,
+      Icon2,
       {
         className: `${prefixCls}-action-icon action-copy ${hashId}`.trim(),
-        onClick: async () => {
+        onClick: () => __async(void 0, null, function* () {
           setLoadingCopy(true);
-          const row = formInstance?.getFieldValue(
-            [listContext.listName, originName, field.name].filter((item) => item !== void 0).flat(1)
+          const row = formInstance == null ? void 0 : formInstance.getFieldValue(
+            [listContext.listName, originName, field2.name].filter((item) => item !== void 0).flat(1)
           );
-          await action.add(row);
+          yield action.add(row);
           setLoadingCopy(false);
-        }
+        })
       }
     ) }, "copy");
   }, [
@@ -8263,7 +8347,7 @@ const ProFormListItem = (props) => {
     hashId,
     formInstance,
     listContext.listName,
-    field.name,
+    field2.name,
     originName,
     action
   ]);
@@ -8272,18 +8356,18 @@ const ProFormListItem = (props) => {
       return null;
     if (deleteIconProps === false || min === count)
       return null;
-    const { Icon = DeleteIcon, tooltipText } = deleteIconProps;
+    const { Icon: Icon2 = DeleteIcon, tooltipText } = deleteIconProps;
     return /* @__PURE__ */ jsx(Tooltip, { title: tooltipText, children: loadingRemove ? /* @__PURE__ */ jsx(CircularProgress, {}) : /* @__PURE__ */ jsx(
-      Icon,
+      Icon2,
       {
         className: `${prefixCls}-action-icon action-remove ${hashId}`.trim(),
-        onClick: async () => {
+        onClick: () => __async(void 0, null, function* () {
           setLoadingRemove(true);
-          await action.remove(field.name);
+          yield action.remove(field2.name);
           if (!unmountedRef.current) {
             setLoadingRemove(false);
           }
-        }
+        })
       }
     ) }, "delete");
   }, [
@@ -8294,7 +8378,7 @@ const ProFormListItem = (props) => {
     prefixCls,
     hashId,
     action,
-    field.name
+    field2.name
   ]);
   const defaultActionDom = useMemo(
     () => [copyIcon, deleteIcon].filter(
@@ -8302,38 +8386,38 @@ const ProFormListItem = (props) => {
     ),
     [copyIcon, deleteIcon]
   );
-  const actions = actionRender?.(field, action, defaultActionDom, count) || defaultActionDom;
+  const actions = (actionRender == null ? void 0 : actionRender(field2, action, defaultActionDom, count)) || defaultActionDom;
   const dom = actions.length > 0 && mode !== "read" ? /* @__PURE__ */ jsx("div", { className: `${prefixCls}-action ${hashId}`.trim(), children: actions }) : null;
   const options = {
     name: rest.name,
-    field,
-    index,
-    record: formInstance?.getFieldValue?.(
-      [listContext.listName, originName, field.name].filter((item) => item !== void 0).flat(1)
+    field: field2,
+    index: index2,
+    record: (_b2 = formInstance == null ? void 0 : formInstance.getFieldValue) == null ? void 0 : _b2.call(
+      formInstance,
+      [listContext.listName, originName, field2.name].filter((item) => item !== void 0).flat(1)
     ),
     fields,
     operation: action,
     meta
   };
   const { grid } = useGridHelpers();
-  const itemContainer = itemContainerRender?.(childrenArray, options) || childrenArray;
-  const contentDom = itemRender?.(
+  const itemContainer = (itemContainerRender == null ? void 0 : itemContainerRender(childrenArray, options)) || childrenArray;
+  const contentDom = (itemRender == null ? void 0 : itemRender(
     {
       listDom: /* @__PURE__ */ jsx(
         "div",
         {
           className: `${prefixCls}-container ${containerClassName || ""} ${hashId || ""}`.trim(),
-          style: {
-            width: grid ? "100%" : void 0,
-            ...containerStyle
-          },
+          style: __spreadValues({
+            width: grid ? "100%" : void 0
+          }, containerStyle),
           children: itemContainer
         }
       ),
       action: dom
     },
     options
-  ) || /* @__PURE__ */ jsxs(
+  )) || /* @__PURE__ */ jsxs(
     "div",
     {
       className: `${prefixCls}-item ${hashId} 
@@ -8348,10 +8432,9 @@ const ProFormListItem = (props) => {
           "div",
           {
             className: `${prefixCls}-container ${containerClassName || ""} ${hashId}`.trim(),
-            style: {
-              width: grid ? "100%" : void 0,
-              ...containerStyle
-            },
+            style: __spreadValues({
+              width: grid ? "100%" : void 0
+            }, containerStyle),
             children: itemContainer
           }
         ),
@@ -8362,15 +8445,13 @@ const ProFormListItem = (props) => {
   return /* @__PURE__ */ jsx(
     FormListContext.Provider,
     {
-      value: {
-        ...field,
-        listName: [listContext.listName, originName, field.name].filter((item) => item !== void 0).flat(1)
-      },
+      value: __spreadProps(__spreadValues({}, field2), {
+        listName: [listContext.listName, originName, field2.name].filter((item) => item !== void 0).flat(1)
+      }),
       children: contentDom
     }
   );
 };
-
 const ProFormListContainer = (props) => {
   const intl = useIntl();
   const {
@@ -8393,59 +8474,59 @@ const ProFormListContainer = (props) => {
   const fieldKeyMap = useRef(/* @__PURE__ */ new Map());
   const [loading, setLoading] = useState(false);
   const uuidFields = useMemo(() => {
-    return fields.map((field) => {
-      if (!fieldKeyMap.current?.has(field.key.toString())) {
-        fieldKeyMap.current?.set(field.key.toString(), nanoid());
+    return fields.map((field2) => {
+      var _a2, _b2, _c2;
+      if (!((_a2 = fieldKeyMap.current) == null ? void 0 : _a2.has(field2.key.toString()))) {
+        (_b2 = fieldKeyMap.current) == null ? void 0 : _b2.set(field2.key.toString(), nanoid());
       }
-      const uuid = fieldKeyMap.current?.get(field.key.toString());
-      return {
-        ...field,
+      const uuid = (_c2 = fieldKeyMap.current) == null ? void 0 : _c2.get(field2.key.toString());
+      return __spreadProps(__spreadValues({}, field2), {
         uuid
-      };
+      });
     });
   }, [fields]);
   const wrapperAction = useMemo(() => {
-    const wrapAction = { ...action };
+    const wrapAction = __spreadValues({}, action);
     const count = uuidFields.length;
-    if (actionGuard?.beforeAddRow) {
-      wrapAction.add = async (...rest) => {
-        const success = await actionGuard.beforeAddRow(...rest, count);
+    if (actionGuard == null ? void 0 : actionGuard.beforeAddRow) {
+      wrapAction.add = (...rest) => __async(void 0, null, function* () {
+        const success = yield actionGuard.beforeAddRow(...rest, count);
         if (success) {
           const res = action.add(...rest);
-          onAfterAdd?.(...rest, count + 1);
+          onAfterAdd == null ? void 0 : onAfterAdd(...rest, count + 1);
           return res;
         }
         return false;
-      };
+      });
     } else {
-      wrapAction.add = async (...rest) => {
+      wrapAction.add = (...rest) => __async(void 0, null, function* () {
         const res = action.add(...rest);
-        onAfterAdd?.(...rest, count + 1);
+        onAfterAdd == null ? void 0 : onAfterAdd(...rest, count + 1);
         return res;
-      };
+      });
     }
-    if (actionGuard?.beforeRemoveRow) {
-      wrapAction.remove = async (...rest) => {
-        const success = await actionGuard.beforeRemoveRow(...rest, count);
+    if (actionGuard == null ? void 0 : actionGuard.beforeRemoveRow) {
+      wrapAction.remove = (...rest) => __async(void 0, null, function* () {
+        const success = yield actionGuard.beforeRemoveRow(...rest, count);
         if (success) {
           const res = action.remove(...rest);
-          onAfterRemove?.(...rest, count - 1);
+          onAfterRemove == null ? void 0 : onAfterRemove(...rest, count - 1);
           return res;
         }
         return false;
-      };
+      });
     } else {
-      wrapAction.remove = async (...rest) => {
+      wrapAction.remove = (...rest) => __async(void 0, null, function* () {
         const res = action.remove(...rest);
-        onAfterRemove?.(...rest, count - 1);
+        onAfterRemove == null ? void 0 : onAfterRemove(...rest, count - 1);
         return res;
-      };
+      });
     }
     return wrapAction;
   }, [
     action,
-    actionGuard?.beforeAddRow,
-    actionGuard?.beforeRemoveRow,
+    actionGuard == null ? void 0 : actionGuard.beforeAddRow,
+    actionGuard == null ? void 0 : actionGuard.beforeRemoveRow,
     onAfterAdd,
     onAfterRemove,
     uuidFields.length
@@ -8466,12 +8547,12 @@ const ProFormListContainer = (props) => {
         className: `${prefixCls}-creator-button-${position} ${hashId || ""}`.trim(),
         loading,
         startIcon: /* @__PURE__ */ jsx(AddIcon, {}),
-        onClick: async () => {
+        onClick: () => __async(void 0, null, function* () {
           setLoading(true);
-          let index = uuidFields.length;
-          await wrapperAction.add(runFunction(creatorRecord) || {}, index);
+          let index2 = uuidFields.length;
+          yield wrapperAction.add(runFunction(creatorRecord) || {}, index2);
           setLoading(false);
-        },
+        }),
         children: creatorButtonText
       }
     );
@@ -8487,24 +8568,22 @@ const ProFormListContainer = (props) => {
     creatorRecord
   ]);
   const readOnlyContext = useContext(EditOrReadOnlyContext);
-  const defaultStyle = {
+  const defaultStyle = __spreadValues({
     width: "max-content",
     maxWidth: "100%",
-    minWidth: "100%",
-    ...containerStyle
-  };
+    minWidth: "100%"
+  }, containerStyle);
   const itemList = useMemo(() => {
-    return uuidFields.map((field, index) => {
+    return uuidFields.map((field2, index2) => {
       return /* @__PURE__ */ createElement(
         ProFormListItem,
-        {
-          ...props,
-          key: field.uuid,
-          field,
-          index,
+        __spreadProps(__spreadValues({}, props), {
+          key: field2.uuid,
+          field: field2,
+          index: index2,
           action: wrapperAction,
           count: uuidFields.length
-        },
+        }),
         children
       );
     });
@@ -8513,38 +8592,37 @@ const ProFormListContainer = (props) => {
     return /* @__PURE__ */ jsx(Fragment, { children: itemList });
   }
   return /* @__PURE__ */ jsxs("div", { style: defaultStyle, className: containerClassName, children: [
-    creatorButtonProps !== false && creatorButtonProps?.position === "top" && creatorButton,
+    creatorButtonProps !== false && (creatorButtonProps == null ? void 0 : creatorButtonProps.position) === "top" && creatorButton,
     itemList,
     fieldExtraRender && fieldExtraRender(wrapperAction, meta),
-    creatorButtonProps !== false && creatorButtonProps?.position !== "top" && creatorButton
+    creatorButtonProps !== false && (creatorButtonProps == null ? void 0 : creatorButtonProps.position) !== "top" && creatorButton
   ] });
 };
-
-const genProStyle$3 = (token) => {
+const genProStyle$3 = (token2) => {
   return {
-    [`${token.ipassCls}-pro`]: {
-      [`${token.ipassCls}-form:not(${token.ipassCls}-form-horizontal)`]: {
-        [token.componentCls]: {
-          [`&-item:not(${token.componentCls}-item-show-label)`]: {
-            [`${token.ipassCls}-form-item-label`]: {
+    [`${token2.ipassCls}-pro`]: {
+      [`${token2.ipassCls}-form:not(${token2.ipassCls}-form-horizontal)`]: {
+        [token2.componentCls]: {
+          [`&-item:not(${token2.componentCls}-item-show-label)`]: {
+            [`${token2.ipassCls}-form-item-label`]: {
               display: "none"
             }
           }
         }
       }
     },
-    [token.componentCls]: {
+    [token2.componentCls]: {
       maxWidth: "100%",
       "&-item": {
         "&&-show-label": {
-          [`${token.ipassCls}-form-item-label`]: {
+          [`${token2.ipassCls}-form-item-label`]: {
             display: "inline-block"
           }
         },
         "&&-default:first-child": {
           "div:first-of-type": {
-            [`${token.ipassCls}-form-item`]: {
-              [`${token.ipassCls}-form-item-label`]: {
+            [`${token2.ipassCls}-form-item`]: {
+              [`${token2.ipassCls}-form-item-label`]: {
                 display: "inline-block"
               }
             }
@@ -8552,8 +8630,8 @@ const genProStyle$3 = (token) => {
         },
         "&&-default:not(:first-child)": {
           "div:first-of-type": {
-            [`${token.ipassCls}-form-item`]: {
-              [`${token.ipassCls}-form-item-label`]: {
+            [`${token2.ipassCls}-form-item`]: {
+              [`${token2.ipassCls}-form-item-label`]: {
                 display: "none"
               }
             }
@@ -8563,7 +8641,7 @@ const genProStyle$3 = (token) => {
       "&-action": {
         display: "flex",
         height: "32px",
-        marginBlockEnd: token.marginLG,
+        marginBlockEnd: token2.marginLG,
         lineHeight: "32px"
       },
       "&-action-icon": {
@@ -8571,11 +8649,11 @@ const genProStyle$3 = (token) => {
         cursor: "pointer",
         transition: "color 0.3s ease-in-out",
         "&:hover": {
-          color: token.colorPrimaryTextHover
+          color: token2.colorPrimaryTextHover
         }
       },
-      [`${token.proComponentsCls}-card ${token.proComponentsCls}-card-extra`]: {
-        [token.componentCls]: {
+      [`${token2.proComponentsCls}-card ${token2.proComponentsCls}-card-extra`]: {
+        [token2.componentCls]: {
           "&-action": {
             marginBlockEnd: 0
           }
@@ -8588,15 +8666,13 @@ const genProStyle$3 = (token) => {
   };
 };
 function useStyle$o(prefixCls) {
-  return useStyle$A("ProFormList", (token) => {
-    const proToken = {
-      ...token,
+  return useStyle$A("ProFormList", (token2) => {
+    const proToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProStyle$3(proToken)];
   });
 }
-
 const FormListContext = React__default.createContext({});
 function ProFormList(props) {
   const actionRefs = useRef();
@@ -8604,7 +8680,7 @@ function ProFormList(props) {
   const listContext = useContext(FormListContext);
   const baseClassName = context.getPrefixCls("pro-form-list");
   const intl = useIntl();
-  const {
+  const _a2 = props, {
     actionRender,
     creatorButtonProps,
     label,
@@ -8637,9 +8713,36 @@ function ProFormList(props) {
     onAfterRemove,
     isValidateList = false,
     emptyListMessage = "列表不能為空",
-    className,
-    ...rest
-  } = props;
+    className
+  } = _a2, rest = __objRest(_a2, [
+    "actionRender",
+    "creatorButtonProps",
+    "label",
+    "alwaysShowItemLabel",
+    "tooltip",
+    "creatorRecord",
+    "itemRender",
+    "rules",
+    "itemContainerRender",
+    "fieldExtraRender",
+    "copyIconProps",
+    "children",
+    "deleteIconProps",
+    "actionRef",
+    "style",
+    "prefixCls",
+    "actionGuard",
+    "min",
+    "max",
+    "colProps",
+    "wrapperCol",
+    "rowProps",
+    "onAfterAdd",
+    "onAfterRemove",
+    "isValidateList",
+    "emptyListMessage",
+    "className"
+  ]);
   const { ColWrapper, RowWrapper } = useGridHelpers({ colProps, rowProps });
   const proFormContext = useContext(ProFormContext);
   const name = useMemo(() => {
@@ -8650,12 +8753,11 @@ function ProFormList(props) {
   }, [listContext.name, rest.name]);
   useImperativeHandle(
     actionRef,
-    () => ({
-      ...actionRefs.current,
-      get: (index) => {
+    () => __spreadProps(__spreadValues({}, actionRefs.current), {
+      get: (index2) => {
         return proFormContext.formRef.current.getFieldValue([
           ...name,
-          index
+          index2
         ]);
       },
       getList: () => proFormContext.formRef.current.getFieldValue([...name])
@@ -8678,15 +8780,15 @@ function ProFormList(props) {
   return wrapSSR(
     /* @__PURE__ */ jsx(ColWrapper, { children: /* @__PURE__ */ jsx("div", { className: classNames(baseClassName, hashId), style, children: /* @__PURE__ */ jsx(
       Form.Item,
-      {
+      __spreadProps(__spreadValues({
         label,
         prefixCls,
         tooltip,
         style,
-        required: rules?.some((rule) => rule.required),
+        required: rules == null ? void 0 : rules.some((rule) => rule.required),
         wrapperCol,
-        className,
-        ...rest,
+        className
+      }, rest), {
         name: isValidateList ? name : void 0,
         rules: isValidateList ? [
           {
@@ -8699,7 +8801,7 @@ function ProFormList(props) {
             required: true
           }
         ] : void 0,
-        children: /* @__PURE__ */ jsx(Form.List, { rules, ...rest, name, children: (fields, action, meta) => {
+        children: /* @__PURE__ */ jsx(Form.List, __spreadProps(__spreadValues({ rules }, rest), { name, children: (fields, action, meta) => {
           actionRefs.current = action;
           return /* @__PURE__ */ jsxs(RowWrapper, { children: [
             /* @__PURE__ */ jsx(
@@ -8730,9 +8832,9 @@ function ProFormList(props) {
                   if (isValidateList) {
                     proFormContext.formRef.current.validateFields([name]);
                   }
-                  onAfterAdd?.(defaultValue, insertIndex, count);
+                  onAfterAdd == null ? void 0 : onAfterAdd(defaultValue, insertIndex, count);
                 },
-                onAfterRemove: (index, count) => {
+                onAfterRemove: (index2, count) => {
                   if (isValidateList) {
                     if (count === 0) {
                       proFormContext.formRef.current.validateFields([
@@ -8740,7 +8842,7 @@ function ProFormList(props) {
                       ]);
                     }
                   }
-                  onAfterRemove?.(index, count);
+                  onAfterRemove == null ? void 0 : onAfterRemove(index2, count);
                 },
                 containerClassName: props.containerClassName,
                 containerStyle: props.containerStyle,
@@ -8749,25 +8851,30 @@ function ProFormList(props) {
             ),
             /* @__PURE__ */ jsx(Form.ErrorList, { errors: meta.errors })
           ] });
-        } })
-      }
+        } }))
+      })
     ) }) })
   );
 }
-
-const ProFormDependency = ({
-  name: nameList,
-  originDependencies = nameList,
-  children,
-  ignoreFormListField,
-  ...rest
-}) => {
+const ProFormDependency = (_S) => {
+  var _T = _S, {
+    name: nameList,
+    originDependencies = nameList,
+    children,
+    ignoreFormListField
+  } = _T, rest = __objRest(_T, [
+    "name",
+    "originDependencies",
+    "children",
+    "ignoreFormListField"
+  ]);
   const context = useContext(ProFormContext);
   const formListField = useContext(FormListContext);
   const flattenNames = useMemo(() => {
     return nameList.map((itemName) => {
+      var _a2;
       const name = [itemName];
-      if (!ignoreFormListField && formListField.name !== void 0 && formListField.listName?.length) {
+      if (!ignoreFormListField && formListField.name !== void 0 && ((_a2 = formListField.listName) == null ? void 0 : _a2.length)) {
         name.unshift(formListField.listName);
       }
       return name.flat(1);
@@ -8776,18 +8883,18 @@ const ProFormDependency = ({
     formListField.listName,
     formListField.name,
     ignoreFormListField,
-    nameList?.toString()
+    nameList == null ? void 0 : nameList.toString()
   ]);
   return /* @__PURE__ */ jsx(
     Form.Item,
-    {
-      ...rest,
+    __spreadProps(__spreadValues({}, rest), {
       noStyle: true,
       shouldUpdate: (prevValues, nextValues, info) => {
+        var _a2;
         if (typeof rest.shouldUpdate === "boolean") {
           return rest.shouldUpdate;
         } else if (typeof rest.shouldUpdate === "function") {
-          return rest.shouldUpdate?.(prevValues, nextValues, info);
+          return (_a2 = rest.shouldUpdate) == null ? void 0 : _a2.call(rest, prevValues, nextValues, info);
         }
         return flattenNames.some((name) => {
           return !isDeepEqualReact(
@@ -8797,77 +8904,69 @@ const ProFormDependency = ({
         });
       },
       children: (form) => {
+        var _a2, _b2;
         let values = {};
         for (let i = 0; i < nameList.length; i++) {
           const itemName = flattenNames[i], itemOriginName = originDependencies[i];
           const finalName = [itemOriginName].flat(1);
-          let value = context.getFieldFormatValueObject?.(itemName);
+          let value = (_a2 = context.getFieldFormatValueObject) == null ? void 0 : _a2.call(context, itemName);
           if (value && Object.keys(value).length) {
             values = merge({}, values, value);
             if (get$1(value, itemName)) {
               values = set(values, finalName, get$1(value, itemName), false);
             }
           } else {
-            value = form.getFieldValue?.(itemName);
+            value = (_b2 = form.getFieldValue) == null ? void 0 : _b2.call(form, itemName);
             if (typeof value !== "undefined") {
               values = set(values, finalName, value, false);
             }
           }
         }
-        return children?.(values, {
-          ...form,
-          ...context
-        });
+        return children == null ? void 0 : children(values, __spreadValues(__spreadValues({}, form), context));
       }
-    }
+    })
   );
 };
 ProFormDependency.displayName = "ProFormDependency";
-
-const ProFormDigit$1 = ({ fieldProps, min, proFieldProps, max, ...rest }, ref) => {
+const ProFormDigit$1 = (_U, ref) => {
+  var _V = _U, { fieldProps, min, proFieldProps: proFieldProps2, max } = _V, rest = __objRest(_V, ["fieldProps", "min", "proFieldProps", "max"]);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       valueType: "digit",
-      fieldProps: {
+      fieldProps: __spreadValues({
         min,
-        max,
-        ...fieldProps
-      },
+        max
+      }, fieldProps),
       ref,
       filedConfig: {
         defaultProps: {
           width: "100%"
         }
       },
-      proFieldProps,
-      ...rest
-    }
+      proFieldProps: proFieldProps2
+    }, rest)
   );
 };
 const ForwardRefProFormDigit = React__default.forwardRef(ProFormDigit$1);
-
-const ProFormDigit = ({ fieldProps, proFieldProps, ...rest }, ref) => {
+const ProFormDigit = (_W, ref) => {
+  var _X = _W, { fieldProps, proFieldProps: proFieldProps2 } = _X, rest = __objRest(_X, ["fieldProps", "proFieldProps"]);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       valueType: "digitRange",
-      fieldProps: {
-        ...fieldProps
-      },
+      fieldProps: __spreadValues({}, fieldProps),
       ref,
       filedConfig: {
         defaultProps: {
           width: "100%"
         }
       },
-      proFieldProps,
-      ...rest
-    }
+      proFieldProps: proFieldProps2
+    }, rest)
   );
 };
 const index$3 = React__default.forwardRef(ProFormDigit);
-
 const FieldSetType = {
   space: CompoundedSpace,
   group: Input.Group
@@ -8879,58 +8978,70 @@ function defaultGetValueFromEvent(valuePropName, ...args) {
   }
   return event;
 }
-const FieldSet = ({
-  children,
-  value = [],
-  valuePropName,
-  onChange,
-  fieldProps,
-  space,
-  type = "space",
-  transform,
-  convertValue,
-  ...rest
-}) => {
-  const fieldSetOnChange = useRefFunction((fileValue, index) => {
+const FieldSet = (_Y) => {
+  var _Z = _Y, {
+    children,
+    value = [],
+    valuePropName,
+    onChange,
+    fieldProps,
+    space,
+    type = "space",
+    transform,
+    convertValue
+  } = _Z, rest = __objRest(_Z, [
+    "children",
+    "value",
+    "valuePropName",
+    "onChange",
+    "fieldProps",
+    "space",
+    "type",
+    "transform",
+    "convertValue"
+  ]);
+  const fieldSetOnChange = useRefFunction((fileValue, index2) => {
+    var _a2;
     const newValues = [...value];
-    newValues[index] = defaultGetValueFromEvent(
+    newValues[index2] = defaultGetValueFromEvent(
       valuePropName || "value",
       fileValue
     );
-    onChange?.(newValues);
-    fieldProps?.onChange?.(newValues);
+    onChange == null ? void 0 : onChange(newValues);
+    (_a2 = fieldProps == null ? void 0 : fieldProps.onChange) == null ? void 0 : _a2.call(fieldProps, newValues);
   });
   let itemIndex = -1;
   const list = toArray(children).map((item) => {
+    var _a2, _b2, _c2;
     if (React__default.isValidElement(item)) {
       itemIndex += 1;
-      const index = itemIndex;
+      const index2 = itemIndex;
       const isProFromItem = (
         // @ts-ignore
-        item?.type?.displayName === "ProFormComponent" || item?.props?.readonly
+        ((_a2 = item == null ? void 0 : item.type) == null ? void 0 : _a2.displayName) === "ProFormComponent" || ((_b2 = item == null ? void 0 : item.props) == null ? void 0 : _b2.readonly)
       );
-      const forkProps = isProFromItem ? {
-        key: index,
-        ignoreFormItem: true,
-        ...item.props || {},
+      const forkProps = isProFromItem ? __spreadProps(__spreadValues({
+        key: index2,
+        ignoreFormItem: true
+      }, item.props || {}), {
         // 如果不是我們自訂的元件 fieldProps 無法識別
-        fieldProps: {
-          ...item?.props?.fieldProps,
+        fieldProps: __spreadProps(__spreadValues({}, (_c2 = item == null ? void 0 : item.props) == null ? void 0 : _c2.fieldProps), {
           onChange: (...restParams) => {
-            fieldSetOnChange(restParams[0], index);
+            fieldSetOnChange(restParams[0], index2);
           }
-        },
-        value: value?.[index],
+        }),
+        value: value == null ? void 0 : value[index2],
         onChange: void 0
-      } : {
-        key: index,
-        ...item.props || {},
-        value: value?.[index],
+      }) : __spreadProps(__spreadValues({
+        key: index2
+      }, item.props || {}), {
+        value: value == null ? void 0 : value[index2],
         onChange: (itemValue) => {
-          fieldSetOnChange(itemValue, index);
-          item.props.onChange?.(itemValue);
+          var _a3, _b3;
+          fieldSetOnChange(itemValue, index2);
+          (_b3 = (_a3 = item.props).onChange) == null ? void 0 : _b3.call(_a3, itemValue);
         }
-      };
+      });
       return React__default.cloneElement(item, forkProps);
     }
     return item;
@@ -8938,80 +9049,93 @@ const FieldSet = ({
   const Components = FieldSetType[type];
   const { RowWrapper } = useGridHelpers(rest);
   const typeProps = useMemo(
-    () => ({ ...type === "group" ? { compact: true } : {} }),
+    () => __spreadValues({}, type === "group" ? { compact: true } : {}),
     [type]
   );
   const Wrapper = useCallback(
-    ({ children: dom }) => /* @__PURE__ */ jsx(Components, { ...typeProps, ...space, align: "start", wrap: true, children: dom }),
+    ({ children: dom }) => /* @__PURE__ */ jsx(Components, __spreadProps(__spreadValues(__spreadValues({}, typeProps), space), { align: "start", wrap: true, children: dom })),
     [Components, space, typeProps]
   );
   return /* @__PURE__ */ jsx(RowWrapper, { Wrapper, children: list });
 };
-const BaseProFormFieldSet = React__default.forwardRef(({ children, space, valuePropName, ...rest }, ref) => {
+const BaseProFormFieldSet = React__default.forwardRef((__, ref) => {
+  var _$ = __, { children, space, valuePropName } = _$, rest = __objRest(_$, ["children", "space", "valuePropName"]);
   useImperativeHandle(ref, () => ({}));
   return /* @__PURE__ */ jsx(
     FieldSet,
-    {
+    __spreadProps(__spreadValues(__spreadProps(__spreadValues({
       space,
-      valuePropName,
-      ...rest.fieldProps,
-      onChange: void 0,
-      ...rest,
+      valuePropName
+    }, rest.fieldProps), {
+      onChange: void 0
+    }), rest), {
       children
-    }
+    })
   );
 });
 const ProFormFieldSet = createField(
   BaseProFormFieldSet
 );
-
 const FormItemProvide = React__default.createContext({});
 const WithValueFomFiledProps = (formFieldProps) => {
-  const {
+  var _b2, _c2;
+  const _a2 = formFieldProps, {
     children: filedChildren,
     onChange,
     onBlur,
     ignoreFormItem,
-    valuePropName = "value",
-    ...restProps
-  } = formFieldProps;
+    valuePropName = "value"
+  } = _a2, restProps = __objRest(_a2, [
+    "children",
+    "onChange",
+    "onBlur",
+    "ignoreFormItem",
+    "valuePropName"
+  ]);
   const isProFormComponent = (
     // @ts-ignore
-    filedChildren?.type?.displayName !== "ProFormComponent"
+    ((_b2 = filedChildren == null ? void 0 : filedChildren.type) == null ? void 0 : _b2.displayName) !== "ProFormComponent"
   );
   const isValidElementForFiledChildren = !React__default.isValidElement(filedChildren);
   const onChangeMemo = useRefFunction(function(...restParams) {
-    onChange?.(...restParams);
+    var _a3, _b3, _c3, _d, _e;
+    onChange == null ? void 0 : onChange(...restParams);
     if (isProFormComponent)
       return;
     if (isValidElementForFiledChildren)
       return void 0;
-    filedChildren?.props?.onChange?.(...restParams);
-    filedChildren?.props?.fieldProps?.onChange?.(
+    (_b3 = (_a3 = filedChildren == null ? void 0 : filedChildren.props) == null ? void 0 : _a3.onChange) == null ? void 0 : _b3.call(_a3, ...restParams);
+    (_e = (_d = (_c3 = filedChildren == null ? void 0 : filedChildren.props) == null ? void 0 : _c3.fieldProps) == null ? void 0 : _d.onChange) == null ? void 0 : _e.call(
+      _d,
       ...restParams
     );
   });
   const onBlurMemo = useRefFunction(function(...restParams) {
+    var _a3, _b3, _c3, _d, _e;
     if (isProFormComponent)
       return;
     if (isValidElementForFiledChildren)
       return;
-    onBlur?.(...restParams);
-    filedChildren?.props?.onBlur?.(...restParams);
-    filedChildren?.props?.fieldProps?.onBlur?.(
+    onBlur == null ? void 0 : onBlur(...restParams);
+    (_b3 = (_a3 = filedChildren == null ? void 0 : filedChildren.props) == null ? void 0 : _a3.onBlur) == null ? void 0 : _b3.call(_a3, ...restParams);
+    (_e = (_d = (_c3 = filedChildren == null ? void 0 : filedChildren.props) == null ? void 0 : _c3.fieldProps) == null ? void 0 : _d.onBlur) == null ? void 0 : _e.call(
+      _d,
       ...restParams
     );
   });
   const omitOnBlurAndOnChangeProps = useDeepCompareMemo(
-    () => omit(
-      // @ts-ignore
-      filedChildren?.props?.fieldProps || {},
-      ["onBlur", "onChange"]
-    ),
+    () => {
+      var _a3;
+      return omit(
+        // @ts-ignore
+        ((_a3 = filedChildren == null ? void 0 : filedChildren.props) == null ? void 0 : _a3.fieldProps) || {},
+        ["onBlur", "onChange"]
+      );
+    },
     [
       omit(
         // @ts-ignore
-        filedChildren?.props?.fieldProps || {},
+        ((_c2 = filedChildren == null ? void 0 : filedChildren.props) == null ? void 0 : _c2.fieldProps) || {},
         ["onBlur", "onChange"]
       )
     ]
@@ -9022,17 +9146,17 @@ const WithValueFomFiledProps = (formFieldProps) => {
       return void 0;
     if (isValidElementForFiledChildren)
       return void 0;
-    return omitUndefined$1({
+    return omitUndefined$1(__spreadProps(__spreadValues({
       id: restProps.id,
       // 優先使用 children.props.fieldProps，
       // 比如 LightFilter 中可能需要通過 fieldProps 覆蓋 Form.Item 預設的 onChange
-      [valuePropName]: propsValuePropName,
-      ...omitOnBlurAndOnChangeProps,
+      [valuePropName]: propsValuePropName
+    }, omitOnBlurAndOnChangeProps), {
       onBlur: onBlurMemo,
       // 這個 onChange 是 Form.Item 新增上的，
       // 要通過 fieldProps 透傳給 ProField 調用
       onChange: onChangeMemo
-    });
+    }));
   }, [
     propsValuePropName,
     omitOnBlurAndOnChangeProps,
@@ -9047,34 +9171,41 @@ const WithValueFomFiledProps = (formFieldProps) => {
     if (!React__default.isValidElement(filedChildren))
       return void 0;
     return (...restParams) => {
-      onChange?.(...restParams);
-      filedChildren?.props?.onChange?.(...restParams);
+      var _a3, _b3;
+      onChange == null ? void 0 : onChange(...restParams);
+      (_b3 = (_a3 = filedChildren == null ? void 0 : filedChildren.props) == null ? void 0 : _a3.onChange) == null ? void 0 : _b3.call(_a3, ...restParams);
     };
   }, [fieldProps, filedChildren, onChange]);
   if (!React__default.isValidElement(filedChildren))
     return /* @__PURE__ */ jsx(Fragment, { children: filedChildren });
   return React__default.cloneElement(
     filedChildren,
-    omitUndefined$1({
-      ...restProps,
-      [valuePropName]: formFieldProps[valuePropName],
-      ...filedChildren.props,
+    omitUndefined$1(__spreadProps(__spreadValues(__spreadProps(__spreadValues({}, restProps), {
+      [valuePropName]: formFieldProps[valuePropName]
+    }), filedChildren.props), {
       onChange: finalChange,
       fieldProps
-    })
+    }))
   );
 };
-const WarpFormItem = ({
-  children,
-  addonAfter,
-  addonBefore,
-  valuePropName,
-  convertValue,
-  ...props
-}) => {
+const WarpFormItem = (_aa) => {
+  var _ba = _aa, {
+    children,
+    addonAfter,
+    addonBefore,
+    valuePropName,
+    convertValue
+  } = _ba, props = __objRest(_ba, [
+    "children",
+    "addonAfter",
+    "addonBefore",
+    "valuePropName",
+    "convertValue"
+  ]);
   const formDom = useMemo(() => {
     let getValuePropsFunc = (value) => {
-      const newValue = convertValue?.(value, props.name) ?? value;
+      var _a2;
+      const newValue = (_a2 = convertValue == null ? void 0 : convertValue(value, props.name)) != null ? _a2 : value;
       if (props.getValueProps)
         return props.getValueProps(newValue);
       return {
@@ -9087,18 +9218,16 @@ const WarpFormItem = ({
     if (!addonAfter && !addonBefore) {
       return /* @__PURE__ */ jsx(
         Form.Item,
-        {
-          ...props,
+        __spreadProps(__spreadValues({}, props), {
           valuePropName,
           getValueProps: getValuePropsFunc,
           children
-        }
+        })
       );
     }
     return /* @__PURE__ */ jsx(
       Form.Item,
-      {
-        ...props,
+      __spreadProps(__spreadValues(__spreadProps(__spreadValues({}, props), {
         valuePropName,
         _internalItemRender: {
           mark: "pro_table_render",
@@ -9120,13 +9249,13 @@ const WarpFormItem = ({
             doms.extra,
             doms.errorList
           ] })
-        },
-        ...props,
+        }
+      }), props), {
         getValueProps: getValuePropsFunc,
         children
-      }
+      })
     );
-  }, [addonAfter, addonBefore, children, convertValue?.toString(), props]);
+  }, [addonAfter, addonBefore, children, convertValue == null ? void 0 : convertValue.toString(), props]);
   return /* @__PURE__ */ jsx(
     FormItemProvide.Provider,
     {
@@ -9139,17 +9268,23 @@ const WarpFormItem = ({
   );
 };
 const ProFormItem = (props) => {
-  ConfigProvider?.useConfig?.() || {
+  var _a2, _b2, _d, _e, _f;
+  ((_b2 = (_a2 = ConfigProvider) == null ? void 0 : _a2.useConfig) == null ? void 0 : _b2.call(_a2)) || {
     componentSize: "middle"
   };
-  const {
-    valueType,
+  const _c2 = props, {
+    valueType: valueType2,
     transform,
     dataFormat,
     ignoreFormItem,
-    children: unusedChildren,
-    ...rest
-  } = props;
+    children: unusedChildren
+  } = _c2, rest = __objRest(_c2, [
+    "valueType",
+    "transform",
+    "dataFormat",
+    "ignoreFormItem",
+    "children"
+  ]);
   const formListField = useContext(FormListContext);
   const name = useMemo(() => {
     if (props.name === void 0)
@@ -9167,7 +9302,7 @@ const ProFormItem = (props) => {
     setFieldValueType(
       [formListField.listName, props.name].flat(1).filter((itemName) => itemName !== void 0),
       {
-        valueType: valueType || "text",
+        valueType: valueType2 || "text",
         dateFormat: dataFormat,
         transform
       }
@@ -9179,17 +9314,16 @@ const ProFormItem = (props) => {
     props.name,
     setFieldValueType,
     transform,
-    valueType
+    valueType2
   ]);
-  React__default.isValidElement(props.children) && isDropdownValueType(valueType || props.children.props.valueType);
+  React__default.isValidElement(props.children) && isDropdownValueType(valueType2 || props.children.props.valueType);
   if (typeof props.children === "function") {
     return /* @__PURE__ */ createElement(
       WarpFormItem,
-      {
-        ...rest,
+      __spreadProps(__spreadValues({}, rest), {
         name,
-        key: rest.proFormFieldKey || rest.name?.toString()
-      },
+        key: rest.proFormFieldKey || ((_d = rest.name) == null ? void 0 : _d.toString())
+      }),
       props.children
     );
   }
@@ -9199,41 +9333,38 @@ const ProFormItem = (props) => {
       valuePropName: props.valuePropName,
       children: props.children
     },
-    rest.proFormFieldKey || rest.name?.toString()
+    rest.proFormFieldKey || ((_e = rest.name) == null ? void 0 : _e.toString())
   );
   return /* @__PURE__ */ jsx(
     WarpFormItem,
-    {
-      ...formItemProps,
-      ...rest,
+    __spreadProps(__spreadValues(__spreadValues({}, formItemProps), rest), {
       name,
       isListField: formListField.name !== void 0,
       children
-    },
-    rest.proFormFieldKey || rest.name?.toString()
+    }),
+    rest.proFormFieldKey || ((_f = rest.name) == null ? void 0 : _f.toString())
   );
 };
-
-const genProStyle$2 = (token) => {
+const genProStyle$2 = (token2) => {
   return {
-    [token.componentCls]: {
-      "&-title": { marginBlockEnd: token.marginXL, fontWeight: "bold" },
+    [token2.componentCls]: {
+      "&-title": { marginBlockEnd: token2.marginXL, fontWeight: "bold" },
       "&-container": {
         flexWrap: "wrap",
         maxWidth: "100%",
-        [`> div${token.ipassCls}-space-item`]: {
+        [`> div${token2.ipassCls}-space-item`]: {
           maxWidth: "100%"
         }
       },
       "&-twoLine": {
         display: "block",
         width: "100%",
-        [`${token.componentCls}-title`]: { width: "100%", margin: "8px 0" },
-        [`${token.componentCls}-container`]: { paddingInlineStart: 16 },
-        [`${token.ipassCls}-space-item,${token.ipassCls}-form-item`]: {
+        [`${token2.componentCls}-title`]: { width: "100%", margin: "8px 0" },
+        [`${token2.componentCls}-container`]: { paddingInlineStart: 16 },
+        [`${token2.ipassCls}-space-item,${token2.ipassCls}-form-item`]: {
           width: "100%"
         },
-        [`${token.ipassCls}-form-item`]: {
+        [`${token2.ipassCls}-form-item`]: {
           "&-control": {
             display: "flex",
             alignItems: "center",
@@ -9252,15 +9383,13 @@ const genProStyle$2 = (token) => {
   };
 };
 function useStyle$n(prefixCls) {
-  return useStyle$A("ProFormGroup", (token) => {
-    const proToken = {
-      ...token,
+  return useStyle$A("ProFormGroup", (token2) => {
+    const proToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProStyle$2(proToken)];
   });
 }
-
 const Group = React__default.forwardRef(
   (props, ref) => {
     const { groupProps } = React__default.useContext(FieldContext);
@@ -9279,10 +9408,7 @@ const Group = React__default.forwardRef(
       spaceProps,
       extra,
       autoFocus
-    } = {
-      ...groupProps,
-      ...props
-    };
+    } = __spreadValues(__spreadValues({}, groupProps), props);
     const [collapsed, setCollapsed] = useMergedState(
       () => defaultCollapsed || false,
       {
@@ -9316,20 +9442,18 @@ const Group = React__default.forwardRef(
     const Wrapper = useCallback(
       ({ children: dom }) => /* @__PURE__ */ jsx(
         CompoundedSpace,
-        {
-          ...spaceProps,
+        __spreadProps(__spreadValues({}, spaceProps), {
           className: classNames(
             `${className}-container ${hashId}`,
-            spaceProps?.className
+            spaceProps == null ? void 0 : spaceProps.className
           ),
           size,
           align,
-          style: {
-            rowGap: 0,
-            ...spaceProps?.style
-          },
+          style: __spreadValues({
+            rowGap: 0
+          }, spaceProps == null ? void 0 : spaceProps.style),
           children: dom
-        }
+        })
       ),
       [align, className, hashId, size, spaceProps]
     );
@@ -9337,16 +9461,16 @@ const Group = React__default.forwardRef(
     const [childrenDoms, hiddenDoms] = useMemo(() => {
       const hiddenChildren = [];
       const childrenList = React__default.Children.toArray(children).map(
-        (element, index) => {
-          if (React__default.isValidElement(element) && element?.props?.hidden) {
+        (element, index2) => {
+          var _a2;
+          if (React__default.isValidElement(element) && ((_a2 = element == null ? void 0 : element.props) == null ? void 0 : _a2.hidden)) {
             hiddenChildren.push(element);
             return null;
           }
-          if (index === 0 && React__default.isValidElement(element) && autoFocus) {
-            return React__default.cloneElement(element, {
-              ...element.props,
+          if (index2 === 0 && React__default.isValidElement(element) && autoFocus) {
+            return React__default.cloneElement(element, __spreadProps(__spreadValues({}, element.props), {
               autoFocus
-            });
+            }));
           }
           return element;
         }
@@ -9416,65 +9540,68 @@ const Group = React__default.forwardRef(
   }
 );
 Group.displayName = "ProForm-Group";
-
-const ProFormMoney = ({ fieldProps, proFieldProps, locale, min, max, ...rest }, ref) => {
+const ProFormMoney = (_ca, ref) => {
+  var _da = _ca, { fieldProps, proFieldProps: proFieldProps2, locale: locale2, min, max } = _da, rest = __objRest(_da, ["fieldProps", "proFieldProps", "locale", "min", "max"]);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       valueType: {
         type: "money",
-        locale
+        locale: locale2
       },
-      fieldProps: {
+      fieldProps: __spreadValues({
         min,
-        max,
-        ...fieldProps
-      },
+        max
+      }, fieldProps),
       ref,
       filedConfig: {
         defaultProps: {
           width: "100%"
         }
       },
-      proFieldProps,
-      ...rest
-    }
+      proFieldProps: proFieldProps2
+    }, rest)
   );
 };
 const index$2 = React__default.forwardRef(ProFormMoney);
-
 const RadioGroup = React__default.forwardRef(
-  ({
-    fieldProps,
-    options,
-    radioType,
-    layout,
-    proFieldProps,
-    valueEnum,
-    ...rest
-  }, ref) => {
+  (_ea, ref) => {
+    var _fa = _ea, {
+      fieldProps,
+      options,
+      radioType,
+      layout,
+      proFieldProps: proFieldProps2,
+      valueEnum
+    } = _fa, rest = __objRest(_fa, [
+      "fieldProps",
+      "options",
+      "radioType",
+      "layout",
+      "proFieldProps",
+      "valueEnum"
+    ]);
     return /* @__PURE__ */ jsx(
       ProFormField,
-      {
+      __spreadProps(__spreadValues({
         valueType: radioType === "button" ? "radioButton" : "radio",
         ref,
-        valueEnum: runFunction(valueEnum, void 0),
-        ...rest,
-        fieldProps: {
+        valueEnum: runFunction(valueEnum, void 0)
+      }, rest), {
+        fieldProps: __spreadValues({
           options,
-          layout,
-          ...fieldProps
-        },
-        proFieldProps,
+          layout
+        }, fieldProps),
+        proFieldProps: proFieldProps2,
         filedConfig: {
           customLightMode: true
         }
-      }
+      })
     );
   }
 );
 const ProFormRadioComponents = React__default.forwardRef(({ fieldProps, children }, ref) => {
-  return /* @__PURE__ */ jsx(Radio, { ...fieldProps, ref, children });
+  return /* @__PURE__ */ jsx(Radio, __spreadProps(__spreadValues({}, fieldProps), { ref, children }));
 });
 const ProFormRadio = createField(
   ProFormRadioComponents,
@@ -9487,10 +9614,9 @@ const WrappedProFormRadio = ProFormRadio;
 WrappedProFormRadio.Group = RadioGroup;
 WrappedProFormRadio.Button = Radio.Button;
 WrappedProFormRadio.displayName = "ProFormComponent";
-
-const genDrawerFormStyle = (token) => {
+const genDrawerFormStyle = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       "&-sidebar-dragger": {
         width: "5px",
         cursor: "ew-resize",
@@ -9513,37 +9639,50 @@ const genDrawerFormStyle = (token) => {
   };
 };
 function useStyle$m(prefixCls) {
-  return useStyle$A("DrawerForm", (token) => {
-    const drawerFormToken = {
-      ...token,
+  return useStyle$A("DrawerForm", (token2) => {
+    const drawerFormToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genDrawerFormStyle(drawerFormToken)];
   });
 }
-
-function DrawerForm({
-  children,
-  trigger,
-  onVisibleChange,
-  drawerProps,
-  onFinish,
-  submitTimeout,
-  title,
-  width,
-  resize,
-  onOpenChange,
-  visible: propVisible,
-  open: propsOpen,
-  ...rest
-}) {
+function DrawerForm(_ga) {
+  var _ha = _ga, {
+    children,
+    trigger,
+    onVisibleChange,
+    drawerProps,
+    onFinish,
+    submitTimeout,
+    title,
+    width,
+    resize,
+    onOpenChange,
+    visible: propVisible,
+    open: propsOpen
+  } = _ha, rest = __objRest(_ha, [
+    "children",
+    "trigger",
+    "onVisibleChange",
+    "drawerProps",
+    "onFinish",
+    "submitTimeout",
+    "title",
+    "width",
+    "resize",
+    "onOpenChange",
+    "visible",
+    "open"
+  ]);
+  var _a2, _b2, _c2, _d;
   noteOnce(
     // eslint-disable-next-line @typescript-eslint/dot-notation
     // @ts-ignore
-    !rest["footer"] || !drawerProps?.footer,
+    !rest["footer"] || !(drawerProps == null ? void 0 : drawerProps.footer),
     "DrawerForm 是一個 ProForm 的特殊布局，如果想自訂按鈕，請使用 submit.render 自訂。"
   );
   const resizeInfo = React__default.useMemo(() => {
+    var _a3, _b3, _c3;
     const defaultResize = {
       onResize: () => {
       },
@@ -9558,9 +9697,9 @@ function DrawerForm({
       }
     }
     return omitUndefined({
-      onResize: resize?.onResize ?? defaultResize.onResize,
-      maxWidth: resize?.maxWidth ?? defaultResize.maxWidth,
-      minWidth: resize?.minWidth ?? defaultResize.minWidth
+      onResize: (_a3 = resize == null ? void 0 : resize.onResize) != null ? _a3 : defaultResize.onResize,
+      maxWidth: (_b3 = resize == null ? void 0 : resize.maxWidth) != null ? _b3 : defaultResize.maxWidth,
+      minWidth: (_c3 = resize == null ? void 0 : resize.minWidth) != null ? _c3 : defaultResize.minWidth
     });
   }, [resize]);
   const context = useContext(ConfigProvider.ConfigContext);
@@ -9571,7 +9710,7 @@ function DrawerForm({
   const [loading, setLoading] = useState(false);
   const [resizableDrawer, setResizableDrawer] = useState(false);
   const [drawerWidth, setDrawerWidth] = useState(
-    width ? width : resize ? resizeInfo?.minWidth : 800
+    width ? width : resize ? resizeInfo == null ? void 0 : resizeInfo.minWidth : 800
   );
   const [open, setOpen] = useMergedState(!!propVisible, {
     value: propsOpen || propVisible,
@@ -9589,18 +9728,19 @@ function DrawerForm({
   );
   const formRef = useRef();
   const resetFields = useCallback(() => {
-    const form = rest.formRef?.current ?? rest.form ?? formRef.current;
-    if (form && drawerProps?.destroyOnClose) {
+    var _a3, _b3, _c3;
+    const form = (_c3 = (_b3 = (_a3 = rest.formRef) == null ? void 0 : _a3.current) != null ? _b3 : rest.form) != null ? _c3 : formRef.current;
+    if (form && (drawerProps == null ? void 0 : drawerProps.destroyOnClose)) {
       form.resetFields();
     }
-  }, [drawerProps?.destroyOnClose, rest.form, rest.formRef]);
+  }, [drawerProps == null ? void 0 : drawerProps.destroyOnClose, rest.form, rest.formRef]);
   useEffect(() => {
     if (open && (propsOpen || propVisible)) {
-      onOpenChange?.(true);
-      onVisibleChange?.(true);
+      onOpenChange == null ? void 0 : onOpenChange(true);
+      onVisibleChange == null ? void 0 : onVisibleChange(true);
     }
     if (resizableDrawer) {
-      setDrawerWidth(resizeInfo?.minWidth);
+      setDrawerWidth(resizeInfo == null ? void 0 : resizeInfo.minWidth);
     }
   }, [propVisible, open, resizableDrawer]);
   useImperativeHandle(
@@ -9614,33 +9754,36 @@ function DrawerForm({
     if (!trigger) {
       return null;
     }
-    return React__default.cloneElement(trigger, {
-      key: "trigger",
-      ...trigger.props,
-      onClick: async (e) => {
+    return React__default.cloneElement(trigger, __spreadProps(__spreadValues({
+      key: "trigger"
+    }, trigger.props), {
+      onClick: (e) => __async(this, null, function* () {
+        var _a3, _b3;
         setOpen(!open);
         setResizableDrawer(!Object.keys(resizeInfo));
-        trigger.props?.onClick?.(e);
-      }
-    });
+        (_b3 = (_a3 = trigger.props) == null ? void 0 : _a3.onClick) == null ? void 0 : _b3.call(_a3, e);
+      })
+    }));
   }, [setOpen, trigger, open, setResizableDrawer, resizableDrawer]);
   const submitterConfig = useMemo(() => {
+    var _a3, _b3, _c3, _d2, _e, _f;
     if (rest.submitter === false) {
       return false;
     }
     return merge$1(
       {
         searchConfig: {
-          submitText: context.locale?.Modal?.okText ?? "確認",
-          resetText: context.locale?.Modal?.cancelText ?? "取消"
+          submitText: (_c3 = (_b3 = (_a3 = context.locale) == null ? void 0 : _a3.Modal) == null ? void 0 : _b3.okText) != null ? _c3 : "確認",
+          resetText: (_f = (_e = (_d2 = context.locale) == null ? void 0 : _d2.Modal) == null ? void 0 : _e.cancelText) != null ? _f : "取消"
         },
         resetButtonProps: {
           preventDefault: true,
           // 提交表單loading時，不可關閉彈框
           disabled: submitTimeout ? loading : void 0,
           onClick: (e) => {
+            var _a4;
             setOpen(false);
-            drawerProps?.onClose?.(e);
+            (_a4 = drawerProps == null ? void 0 : drawerProps.onClose) == null ? void 0 : _a4.call(drawerProps, e);
           }
         }
       },
@@ -9648,8 +9791,8 @@ function DrawerForm({
     );
   }, [
     rest.submitter,
-    context.locale?.Modal?.okText,
-    context.locale?.Modal?.cancelText,
+    (_b2 = (_a2 = context.locale) == null ? void 0 : _a2.Modal) == null ? void 0 : _b2.okText,
+    (_d = (_c2 = context.locale) == null ? void 0 : _c2.Modal) == null ? void 0 : _d.cancelText,
     submitTimeout,
     loading,
     setOpen,
@@ -9661,8 +9804,8 @@ function DrawerForm({
       footerRef.current && submitter ? /* @__PURE__ */ jsx(React__default.Fragment, { children: createPortal(submitter, footerRef.current) }, "submitter") : submitter
     ] });
   }, []);
-  const onFinishHandle = useRefFunction(async (values) => {
-    const response = onFinish?.(values);
+  const onFinishHandle = useRefFunction((values) => __async(this, null, function* () {
+    const response = onFinish == null ? void 0 : onFinish(values);
     if (submitTimeout && response instanceof Promise) {
       setLoading(true);
       const timer = setTimeout(() => setLoading(false), submitTimeout);
@@ -9671,18 +9814,19 @@ function DrawerForm({
         setLoading(false);
       });
     }
-    const result = await response;
+    const result = yield response;
     if (result) {
       setOpen(false);
     }
     return result;
-  });
+  }));
   const drawerOpenProps = openVisibleCompatible(open, onVisibleChange);
   const cbHandleMouseMove = useCallback(
     (e) => {
+      var _a3, _b3;
       const offsetRight = (document.body.offsetWidth || 1e3) - (e.clientX - document.body.offsetLeft);
-      const minWidth = resizeInfo?.minWidth ?? (width || 800);
-      const maxWidth = resizeInfo?.maxWidth ?? window.innerWidth * 0.8;
+      const minWidth = (_a3 = resizeInfo == null ? void 0 : resizeInfo.minWidth) != null ? _a3 : width || 800;
+      const maxWidth = (_b3 = resizeInfo == null ? void 0 : resizeInfo.maxWidth) != null ? _b3 : window.innerWidth * 0.8;
       if (offsetRight < minWidth) {
         setDrawerWidth(minWidth);
         return;
@@ -9693,7 +9837,7 @@ function DrawerForm({
       }
       setDrawerWidth(offsetRight);
     },
-    [resizeInfo?.maxWidth, resizeInfo?.minWidth, width]
+    [resizeInfo == null ? void 0 : resizeInfo.maxWidth, resizeInfo == null ? void 0 : resizeInfo.minWidth, width]
   );
   const cbHandleMouseUp = useCallback(() => {
     document.removeEventListener("mousemove", cbHandleMouseMove);
@@ -9703,21 +9847,22 @@ function DrawerForm({
     /* @__PURE__ */ jsxs(Fragment, { children: [
       /* @__PURE__ */ jsxs(
         Drawer,
-        {
+        __spreadProps(__spreadValues(__spreadValues({
           title,
-          width: drawerWidth,
-          ...drawerProps,
-          ...drawerOpenProps,
+          width: drawerWidth
+        }, drawerProps), drawerOpenProps), {
           afterOpenChange: (e) => {
+            var _a3;
             if (!e)
               resetFields();
-            drawerProps?.afterOpenChange?.(e);
+            (_a3 = drawerProps == null ? void 0 : drawerProps.afterOpenChange) == null ? void 0 : _a3.call(drawerProps, e);
           },
           onClose: (e) => {
+            var _a3;
             if (submitTimeout && loading)
               return;
             setOpen(false);
-            drawerProps?.onClose?.(e);
+            (_a3 = drawerProps == null ? void 0 : drawerProps.onClose) == null ? void 0 : _a3.call(drawerProps, e);
           },
           footer: rest.submitter !== false && /* @__PURE__ */ jsx(
             "div",
@@ -9734,11 +9879,12 @@ function DrawerForm({
               "div",
               {
                 className: resize ? classNames(getCls("sidebar-dragger"), hashId, {
-                  [getCls("sidebar-dragger-min-disabled")]: drawerWidth === resizeInfo?.minWidth,
-                  [getCls("sidebar-dragger-max-disabled")]: drawerWidth === resizeInfo?.maxWidth
+                  [getCls("sidebar-dragger-min-disabled")]: drawerWidth === (resizeInfo == null ? void 0 : resizeInfo.minWidth),
+                  [getCls("sidebar-dragger-max-disabled")]: drawerWidth === (resizeInfo == null ? void 0 : resizeInfo.maxWidth)
                 }) : void 0,
                 onMouseDown: (e) => {
-                  resizeInfo?.onResize?.();
+                  var _a3;
+                  (_a3 = resizeInfo == null ? void 0 : resizeInfo.onResize) == null ? void 0 : _a3.call(resizeInfo);
                   e.stopPropagation();
                   e.preventDefault();
                   document.addEventListener("mousemove", cbHandleMouseMove);
@@ -9749,53 +9895,66 @@ function DrawerForm({
             ),
             /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx(
               BaseForm,
-              {
+              __spreadProps(__spreadValues({
                 formComponentType: "DrawerForm",
-                layout: "vertical",
-                ...rest,
+                layout: "vertical"
+              }, rest), {
                 formRef,
                 onInit: (_, form) => {
+                  var _a3;
                   if (rest.formRef) {
                     rest.formRef.current = form;
                   }
-                  rest?.onInit?.(_, form);
+                  (_a3 = rest == null ? void 0 : rest.onInit) == null ? void 0 : _a3.call(rest, _, form);
                   formRef.current = form;
                 },
                 submitter: submitterConfig,
-                onFinish: async (values) => {
-                  const result = await onFinishHandle(values);
+                onFinish: (values) => __async(this, null, function* () {
+                  const result = yield onFinishHandle(values);
                   return result;
-                },
+                }),
                 contentRender,
                 children
-              }
+              })
             ) })
           ]
-        }
+        })
       ),
       triggerDom
     ] })
   );
 }
-
-function ModalForm({
-  children,
-  trigger,
-  onVisibleChange,
-  onOpenChange,
-  modalProps,
-  onFinish,
-  submitTimeout,
-  title,
-  width,
-  visible: propVisible,
-  open: propsOpen,
-  ...rest
-}) {
+function ModalForm(_ia) {
+  var _ja = _ia, {
+    children,
+    trigger,
+    onVisibleChange,
+    onOpenChange,
+    modalProps,
+    onFinish,
+    submitTimeout,
+    title,
+    width,
+    visible: propVisible,
+    open: propsOpen
+  } = _ja, rest = __objRest(_ja, [
+    "children",
+    "trigger",
+    "onVisibleChange",
+    "onOpenChange",
+    "modalProps",
+    "onFinish",
+    "submitTimeout",
+    "title",
+    "width",
+    "visible",
+    "open"
+  ]);
+  var _a2, _b2, _c2, _d;
   noteOnce(
     // eslint-disable-next-line @typescript-eslint/dot-notation
     // @ts-ignore
-    !rest["footer"] || !modalProps?.footer,
+    !rest["footer"] || !(modalProps == null ? void 0 : modalProps.footer),
     "ModalForm 是一個 ProForm 的特殊布局，如果想自訂按鈕，請使用 submit.render 自訂。"
   );
   const context = useContext(ConfigProvider.ConfigContext);
@@ -9817,11 +9976,12 @@ function ModalForm({
   );
   const formRef = useRef();
   const resetFields = useCallback(() => {
-    const form = rest.form ?? rest.formRef?.current ?? formRef.current;
-    if (form && modalProps?.destroyOnClose) {
+    var _a3, _b3, _c3;
+    const form = (_c3 = (_b3 = rest.form) != null ? _b3 : (_a3 = rest.formRef) == null ? void 0 : _a3.current) != null ? _c3 : formRef.current;
+    if (form && (modalProps == null ? void 0 : modalProps.destroyOnClose)) {
       form.resetFields();
     }
-  }, [modalProps?.destroyOnClose, rest.form, rest.formRef]);
+  }, [modalProps == null ? void 0 : modalProps.destroyOnClose, rest.form, rest.formRef]);
   useImperativeHandle(
     rest.formRef,
     () => {
@@ -9831,48 +9991,51 @@ function ModalForm({
   );
   useEffect(() => {
     if (open && (propsOpen || propVisible)) {
-      onOpenChange?.(true);
-      onVisibleChange?.(true);
+      onOpenChange == null ? void 0 : onOpenChange(true);
+      onVisibleChange == null ? void 0 : onVisibleChange(true);
     }
   }, [propVisible, propsOpen, open]);
   const triggerDom = useMemo(() => {
     if (!trigger) {
       return null;
     }
-    return React__default.cloneElement(trigger, {
-      key: "trigger",
-      ...trigger.props,
-      onClick: async (e) => {
+    return React__default.cloneElement(trigger, __spreadProps(__spreadValues({
+      key: "trigger"
+    }, trigger.props), {
+      onClick: (e) => __async(this, null, function* () {
+        var _a3, _b3;
         setOpen(!open);
-        trigger.props?.onClick?.(e);
-      }
-    });
+        (_b3 = (_a3 = trigger.props) == null ? void 0 : _a3.onClick) == null ? void 0 : _b3.call(_a3, e);
+      })
+    }));
   }, [setOpen, trigger, open]);
   const submitterConfig = useMemo(() => {
+    var _a3, _b3, _c3, _d2, _e, _f, _g, _h;
     if (rest.submitter === false) {
       return false;
     }
     return merge$1(
       {
         searchConfig: {
-          submitText: modalProps?.okText ?? context.locale?.Modal?.okText ?? "確認",
-          resetText: modalProps?.cancelText ?? context.locale?.Modal?.cancelText ?? "取消"
+          submitText: (_d2 = (_c3 = modalProps == null ? void 0 : modalProps.okText) != null ? _c3 : (_b3 = (_a3 = context.locale) == null ? void 0 : _a3.Modal) == null ? void 0 : _b3.okText) != null ? _d2 : "確認",
+          resetText: (_h = (_g = modalProps == null ? void 0 : modalProps.cancelText) != null ? _g : (_f = (_e = context.locale) == null ? void 0 : _e.Modal) == null ? void 0 : _f.cancelText) != null ? _h : "取消"
         },
         resetButtonProps: {
           preventDefault: true,
           // 提交表單loading時，不可關閉彈框
           disabled: submitTimeout ? loading : void 0,
           onClick: (e) => {
+            var _a4;
             setOpen(false);
-            modalProps?.onCancel?.(e);
+            (_a4 = modalProps == null ? void 0 : modalProps.onCancel) == null ? void 0 : _a4.call(modalProps, e);
           }
         }
       },
       rest.submitter
     );
   }, [
-    context.locale?.Modal?.cancelText,
-    context.locale?.Modal?.okText,
+    (_b2 = (_a2 = context.locale) == null ? void 0 : _a2.Modal) == null ? void 0 : _b2.cancelText,
+    (_d = (_c2 = context.locale) == null ? void 0 : _c2.Modal) == null ? void 0 : _d.okText,
     modalProps,
     rest.submitter,
     setOpen,
@@ -9886,8 +10049,8 @@ function ModalForm({
     ] });
   }, []);
   const onFinishHandle = useCallback(
-    async (values) => {
-      const response = onFinish?.(values);
+    (values) => __async(this, null, function* () {
+      const response = onFinish == null ? void 0 : onFinish(values);
       if (submitTimeout && response instanceof Promise) {
         setLoading(true);
         const timer = setTimeout(() => setLoading(false), submitTimeout);
@@ -9896,33 +10059,34 @@ function ModalForm({
           setLoading(false);
         });
       }
-      const result = await response;
+      const result = yield response;
       if (result) {
         setOpen(false);
       }
       return result;
-    },
+    }),
     [onFinish, setOpen, submitTimeout]
   );
   const modalOpenProps = openVisibleCompatible(open);
   return /* @__PURE__ */ jsxs(Fragment, { children: [
     /* @__PURE__ */ jsx(
       Modal,
-      {
+      __spreadProps(__spreadValues(__spreadValues({
         title,
-        width: width || 800,
-        ...modalProps,
-        ...modalOpenProps,
+        width: width || 800
+      }, modalProps), modalOpenProps), {
         onCancel: (e) => {
+          var _a3;
           if (submitTimeout && loading)
             return;
           setOpen(false);
-          modalProps?.onCancel?.(e);
+          (_a3 = modalProps == null ? void 0 : modalProps.onCancel) == null ? void 0 : _a3.call(modalProps, e);
         },
         afterClose: () => {
+          var _a3;
           resetFields();
           setOpen(false);
-          modalProps?.afterClose?.();
+          (_a3 = modalProps == null ? void 0 : modalProps.afterClose) == null ? void 0 : _a3.call(modalProps);
         },
         footer: rest.submitter !== false ? /* @__PURE__ */ jsx(
           "div",
@@ -9936,33 +10100,33 @@ function ModalForm({
         ) : null,
         children: /* @__PURE__ */ jsx(
           BaseForm,
-          {
+          __spreadProps(__spreadValues({
             formComponentType: "ModalForm",
-            layout: "vertical",
-            ...rest,
+            layout: "vertical"
+          }, rest), {
             onInit: (_, form) => {
+              var _a3;
               if (rest.formRef) {
                 rest.formRef.current = form;
               }
-              rest?.onInit?.(_, form);
+              (_a3 = rest == null ? void 0 : rest.onInit) == null ? void 0 : _a3.call(rest, _, form);
               formRef.current = form;
             },
             formRef,
             submitter: submitterConfig,
-            onFinish: async (values) => {
-              const result = await onFinishHandle(values);
+            onFinish: (values) => __async(this, null, function* () {
+              const result = yield onFinishHandle(values);
               return result;
-            },
+            }),
             contentRender,
             children
-          }
+          })
         )
-      }
+      })
     ),
     triggerDom
   ] });
 }
-
 const defaultCollapseRender = (collapsed, _, intl, hiddenNum) => {
   if (collapsed) {
     return /* @__PURE__ */ jsxs(Fragment, { children: [
@@ -10021,31 +10185,30 @@ const Actions = (props) => {
           "pro-query-filter-collapse-button"
         )} ${hashId}`.trim(),
         onClick: () => setCollapsed(!collapsed),
-        children: collapseRender?.(collapsed, props, intl, hiddenNum)
+        children: collapseRender == null ? void 0 : collapseRender(collapsed, props, intl, hiddenNum)
       }
     )
   ] });
 };
-
-const genProStyle$1 = (token) => {
+const genProStyle$1 = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       "&&": {
         padding: 24
       },
-      [`${token.ipassCls}-form-item`]: {
+      [`${token2.ipassCls}-form-item`]: {
         marginBlock: 0
       },
-      [`${token.proComponentsCls}-form-group-title`]: {
+      [`${token2.proComponentsCls}-form-group-title`]: {
         marginBlock: 0
       },
       "&-row": {
         rowGap: 24,
         "&-split": {
-          [`${token.proComponentsCls}-form-group`]: {
+          [`${token2.proComponentsCls}-form-group`]: {
             display: "flex",
             alignItems: "center",
-            gap: token.marginXS
+            gap: token2.marginXS
           },
           "&:last-child": {
             marginBlockEnd: 12
@@ -10058,28 +10221,26 @@ const genProStyle$1 = (token) => {
             content: '""',
             height: 1,
             insetBlockEnd: -12,
-            borderBlockEnd: `1px dashed ${token.colorSplit}`
+            borderBlockEnd: `1px dashed ${token2.colorSplit}`
           }
         }
       },
       "&-collapse-button": {
         display: "flex",
         alignItems: "center",
-        color: token.colorPrimary
+        color: token2.colorPrimary
       }
     }
   };
 };
 function useStyle$l(prefixCls) {
-  return useStyle$A("QueryFilter", (token) => {
-    const proToken = {
-      ...token,
+  return useStyle$A("QueryFilter", (token2) => {
+    const proToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProStyle$1(proToken)];
   });
 }
-
 const CONFIG_SPAN_BREAKPOINTS = {
   xs: 513,
   sm: 513,
@@ -10128,32 +10289,31 @@ const getSpanConfig = (layout, width, span) => {
   };
 };
 const flatMapItems = (items, ignoreRules, form) => {
-  return items?.flatMap((item) => {
-    if (item?.type.displayName === "ProForm-Group" && !item.props?.title) {
+  return items == null ? void 0 : items.flatMap((item) => {
+    var _a2, _b2, _c2;
+    if ((item == null ? void 0 : item.type.displayName) === "ProForm-Group" && !((_a2 = item.props) == null ? void 0 : _a2.title)) {
       return item.props.children;
     }
-    if (item?.type.displayName === "ProFormDependency" && !item.props?.title) {
+    if ((item == null ? void 0 : item.type.displayName) === "ProFormDependency" && !((_b2 = item.props) == null ? void 0 : _b2.title)) {
       const values = item.props.name.reduce((current, next) => {
-        return {
-          ...current,
-          [next]: form?.getFieldValue(next)
-        };
+        return __spreadProps(__spreadValues({}, current), {
+          [next]: form == null ? void 0 : form.getFieldValue(next)
+        });
       }, {});
       return item.props.children(values);
     }
     if (ignoreRules && React__default.isValidElement(item)) {
-      return React__default.cloneElement(item, {
-        ...item.props,
-        formItemProps: {
-          ...item.props?.formItemProps,
+      return React__default.cloneElement(item, __spreadProps(__spreadValues({}, item.props), {
+        formItemProps: __spreadProps(__spreadValues({}, (_c2 = item.props) == null ? void 0 : _c2.formItemProps), {
           rules: []
-        }
-      });
+        })
+      }));
     }
     return item;
   });
 };
 const QueryFilterContent = (props) => {
+  var _a2, _b2, _c2, _d;
   const intl = useIntl();
   const { hashId } = useContext(ProProvider);
   const resetText = props.resetText || intl.formatMessage({ id: "tableForm.reset", defaultMessage: "重置" });
@@ -10180,22 +10340,20 @@ const QueryFilterContent = (props) => {
     if (!props.submitter || optionRender === false) {
       return null;
     }
-    return React__default.cloneElement(props.submitter, {
+    return React__default.cloneElement(props.submitter, __spreadValues({
       searchConfig: {
         resetText,
         submitText: searchText
       },
       render: optionRender ? (_, dom) => optionRender(
-        {
-          ...props,
+        __spreadProps(__spreadValues({}, props), {
           resetText,
           searchText
-        },
+        }),
         props,
         dom
-      ) : optionRender,
-      ...props.submitter.props
-    });
+      ) : optionRender
+    }, props.submitter.props));
   }, [props, resetText, searchText, optionRender]);
   let totalSpan = 0;
   let itemLength = 0;
@@ -10203,19 +10361,20 @@ const QueryFilterContent = (props) => {
   let totalSize = 0;
   let currentSpan = 0;
   const processedList = flatMapItems(items, props.ignoreRules, form).map(
-    (item, index) => {
-      const colSize = React__default.isValidElement(item) ? item?.props?.colSize ?? 1 : 1;
+    (item, index2) => {
+      var _a3, _b3, _c3, _d2, _e;
+      const colSize = React__default.isValidElement(item) ? (_b3 = (_a3 = item == null ? void 0 : item.props) == null ? void 0 : _a3.colSize) != null ? _b3 : 1 : 1;
       const colSpan = Math.min(spanSize.span * (colSize || 1), 24);
       totalSpan += colSpan;
       totalSize += colSize;
-      if (index === 0) {
-        firstRowFull = colSpan === 24 && !item?.props?.hidden;
+      if (index2 === 0) {
+        firstRowFull = colSpan === 24 && !((_c3 = item == null ? void 0 : item.props) == null ? void 0 : _c3.hidden);
       }
-      const hidden = item?.props?.hidden || // 如果收起了
+      const hidden = ((_d2 = item == null ? void 0 : item.props) == null ? void 0 : _d2.hidden) || // 如果收起了
       collapsed && (firstRowFull || // 如果 超過顯示長度 且 總長度超過了 24
-      totalSize > showLength - 1) && !!index && totalSpan >= 24;
+      totalSize > showLength - 1) && !!index2 && totalSpan >= 24;
       itemLength += 1;
-      const itemKey = React__default.isValidElement(item) && (item.key || `${item.props?.name}`) || index;
+      const itemKey = React__default.isValidElement(item) && (item.key || `${(_e = item.props) == null ? void 0 : _e.name}`) || index2;
       if (React__default.isValidElement(item) && hidden) {
         if (!props.preserve) {
           return {
@@ -10227,7 +10386,7 @@ const QueryFilterContent = (props) => {
         return {
           itemDom: React__default.cloneElement(item, {
             hidden: true,
-            key: itemKey || index
+            key: itemKey || index2
           }),
           hidden: true,
           colSpan
@@ -10240,18 +10399,19 @@ const QueryFilterContent = (props) => {
       };
     }
   );
-  const doms = processedList.map((itemProps, index) => {
+  const doms = processedList.map((itemProps, index2) => {
+    var _a3, _b3;
     const { itemDom, colSpan } = itemProps;
-    const hidden = itemDom?.props?.hidden;
+    const hidden = (_a3 = itemDom == null ? void 0 : itemDom.props) == null ? void 0 : _a3.hidden;
     if (hidden)
       return itemDom;
-    const itemKey = React__default.isValidElement(itemDom) && (itemDom.key || `${itemDom.props?.name}`) || index;
+    const itemKey = React__default.isValidElement(itemDom) && (itemDom.key || `${(_b3 = itemDom.props) == null ? void 0 : _b3.name}`) || index2;
     if (24 - currentSpan % 24 < colSpan) {
       totalSpan += 24 - currentSpan % 24;
       currentSpan += 24 - currentSpan % 24;
     }
     currentSpan += colSpan;
-    if (split && currentSpan % 24 === 0 && index < itemLength - 1) {
+    if (split && currentSpan % 24 === 0 && index2 < itemLength - 1) {
       return /* @__PURE__ */ jsx(
         Col,
         {
@@ -10280,15 +10440,16 @@ const QueryFilterContent = (props) => {
     return true;
   }, [totalSize, showLength, totalSpan]);
   const offset = useMemo(() => {
-    const offsetSpan = currentSpan % 24 + (props.submitterColSpanProps?.span ?? spanSize.span);
+    var _a3, _b3, _c3, _d2;
+    const offsetSpan = currentSpan % 24 + ((_b3 = (_a3 = props.submitterColSpanProps) == null ? void 0 : _a3.span) != null ? _b3 : spanSize.span);
     if (offsetSpan > 24) {
-      return 24 - (props.submitterColSpanProps?.span ?? spanSize.span);
+      return 24 - ((_d2 = (_c3 = props.submitterColSpanProps) == null ? void 0 : _c3.span) != null ? _d2 : spanSize.span);
     }
     return 24 - offsetSpan;
   }, [
     currentSpan,
-    currentSpan % 24 + (props.submitterColSpanProps?.span ?? spanSize.span),
-    props.submitterColSpanProps?.span
+    currentSpan % 24 + ((_b2 = (_a2 = props.submitterColSpanProps) == null ? void 0 : _a2.span) != null ? _b2 : spanSize.span),
+    (_c2 = props.submitterColSpanProps) == null ? void 0 : _c2.span
   ]);
   const context = useContext(ConfigProvider.ConfigContext);
   const baseClassName = context.getPrefixCls("pro-query-filter");
@@ -10302,11 +10463,11 @@ const QueryFilterContent = (props) => {
         doms,
         submitter && /* @__PURE__ */ jsx(
           Col,
-          {
+          __spreadProps(__spreadValues({
             span: spanSize.span,
             offset,
-            className: classNames(props.submitterColSpanProps?.className),
-            ...props.submitterColSpanProps,
+            className: classNames((_d = props.submitterColSpanProps) == null ? void 0 : _d.className)
+          }, props.submitterColSpanProps), {
             style: {
               textAlign: "end"
             },
@@ -10330,7 +10491,7 @@ const QueryFilterContent = (props) => {
                 )
               }
             )
-          },
+          }),
           "submitter"
         )
       ]
@@ -10338,9 +10499,9 @@ const QueryFilterContent = (props) => {
     "resize-observer-row"
   );
 };
-const defaultWidth = isBrowser() ? document?.body?.clientWidth : 1024;
+const defaultWidth = isBrowser() ? (_ka = document == null ? void 0 : document.body) == null ? void 0 : _ka.clientWidth : 1024;
 function QueryFilter(props) {
-  const {
+  const _a2 = props, {
     collapsed: controlCollapsed,
     layout,
     defaultCollapsed = true,
@@ -10359,14 +10520,33 @@ function QueryFilter(props) {
     preserve = true,
     ignoreRules,
     showHiddenNum = false,
-    submitterColSpanProps,
-    ...rest
-  } = props;
+    submitterColSpanProps
+  } = _a2, rest = __objRest(_a2, [
+    "collapsed",
+    "layout",
+    "defaultCollapsed",
+    "defaultColsNumber",
+    "span",
+    "searchGutter",
+    "searchText",
+    "resetText",
+    "optionRender",
+    "collapseRender",
+    "onReset",
+    "onCollapse",
+    "labelWidth",
+    "style",
+    "split",
+    "preserve",
+    "ignoreRules",
+    "showHiddenNum",
+    "submitterColSpanProps"
+  ]);
   const context = useContext(ConfigProvider.ConfigContext);
   const baseClassName = context.getPrefixCls("pro-query-filter");
   const { wrapSSR, hashId } = useStyle$l(baseClassName);
   const [width, setWidth] = useMergedState(
-    () => typeof style?.width === "number" ? style?.width : defaultWidth
+    () => typeof (style == null ? void 0 : style.width) === "number" ? style == null ? void 0 : style.width : defaultWidth
   );
   const spanSize = useMemo(
     () => getSpanConfig(layout, width + 16, span),
@@ -10407,10 +10587,10 @@ function QueryFilter(props) {
         },
         children: /* @__PURE__ */ jsx(
           BaseForm,
-          {
+          __spreadProps(__spreadValues({
             isKeyPressSubmit: true,
-            preserve,
-            ...rest,
+            preserve
+          }, rest), {
             className: classNames(baseClassName, hashId, rest.className),
             onReset,
             style,
@@ -10451,79 +10631,82 @@ function QueryFilter(props) {
                 showHiddenNum
               }
             )
-          }
+          })
         )
       },
       "resize-observer"
     )
   );
 }
-
 function StepForm(stepNativeProps) {
   const formRef = useRef();
   const context = useContext(StepsFormProvide);
   const stepContext = useContext(StepFormProvide);
-  const props = { ...stepNativeProps, ...stepContext };
-  const {
+  const props = __spreadValues(__spreadValues({}, stepNativeProps), stepContext);
+  const _a2 = props, {
     onFinish,
     step,
     formRef: propFormRef,
     title,
-    stepProps,
-    ...restProps
-  } = props;
+    stepProps
+  } = _a2, restProps = __objRest(_a2, [
+    "onFinish",
+    "step",
+    "formRef",
+    "title",
+    "stepProps"
+  ]);
   noteOnce(!restProps.submitter, "StepForm 不包含提交按钮，请在 StepsForm 上");
   useImperativeHandle(propFormRef, () => formRef.current, [
-    propFormRef?.current
+    propFormRef == null ? void 0 : propFormRef.current
   ]);
   useEffect(() => {
     if (!(props.name || props.step))
       return;
     const name = (props.name || props.step).toString();
-    context?.regForm(name, props);
+    context == null ? void 0 : context.regForm(name, props);
     return () => {
-      context?.unRegForm(name);
+      context == null ? void 0 : context.unRegForm(name);
     };
   }, []);
-  if (context && context?.formArrayRef) {
+  if (context && (context == null ? void 0 : context.formArrayRef)) {
     context.formArrayRef.current[step || 0] = formRef;
   }
   return /* @__PURE__ */ jsx(
     BaseForm,
-    {
+    __spreadValues({
       formRef,
-      onFinish: async (values) => {
+      onFinish: (values) => __async(this, null, function* () {
         if (restProps.name) {
-          context?.onFormFinish(restProps.name, values);
+          context == null ? void 0 : context.onFormFinish(restProps.name, values);
         }
         if (onFinish) {
-          context?.setLoading(true);
-          const success = await onFinish?.(values);
+          context == null ? void 0 : context.setLoading(true);
+          const success = yield onFinish == null ? void 0 : onFinish(values);
           if (success) {
-            context?.next();
+            context == null ? void 0 : context.next();
           }
-          context?.setLoading(false);
+          context == null ? void 0 : context.setLoading(false);
           return;
         }
-        if (!context?.lastStep)
-          context?.next();
-      },
+        if (!(context == null ? void 0 : context.lastStep))
+          context == null ? void 0 : context.next();
+      }),
       onInit: (_, form) => {
+        var _a3;
         formRef.current = form;
-        if (context && context?.formArrayRef) {
+        if (context && (context == null ? void 0 : context.formArrayRef)) {
           context.formArrayRef.current[step || 0] = formRef;
         }
-        restProps?.onInit?.(_, form);
+        (_a3 = restProps == null ? void 0 : restProps.onInit) == null ? void 0 : _a3.call(restProps, _, form);
       },
-      layout: "vertical",
-      ...omit(restProps, ["layoutType", "columns"])
-    }
+      layout: "vertical"
+    }, omit(restProps, ["layoutType", "columns"]))
   );
 }
-
-const genStepsFormStyle = (token) => {
+const genStepsFormStyle = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       "&-container": {
         width: "max-content",
         minWidth: "420px",
@@ -10533,7 +10716,7 @@ const genStepsFormStyle = (token) => {
       "&-steps-container": {
         maxWidth: "1160px",
         margin: "auto",
-        [`${token.ipassCls}-steps-vertical`]: { height: "100%" }
+        [`${token2.ipassCls}-steps-vertical`]: { height: "100%" }
       },
       "&-step": {
         display: "none",
@@ -10547,15 +10730,13 @@ const genStepsFormStyle = (token) => {
   };
 };
 function useStyle$k(prefixCls) {
-  return useStyle$A("StepsForm", (token) => {
-    const loginFormToken = {
-      ...token,
+  return useStyle$A("StepsForm", (token2) => {
+    const loginFormToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genStepsFormStyle(loginFormToken)];
   });
 }
-
 const version$2 = "5.1.7";
 const StepsFormProvide = React__default.createContext(void 0);
 const StepsLayoutStrategy = {
@@ -10594,7 +10775,7 @@ function StepsForm$1(props) {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const prefixCls = getPrefixCls("pro-steps-form");
   const { wrapSSR, hashId } = useStyle$k(prefixCls);
-  const {
+  const _a2 = props, {
     current,
     onCurrentChange,
     submitter,
@@ -10607,9 +10788,22 @@ function StepsForm$1(props) {
     containerStyle,
     formRef,
     formMapRef: propsFormMapRef,
-    layoutRender: propsLayoutRender,
-    ...rest
-  } = props;
+    layoutRender: propsLayoutRender
+  } = _a2, rest = __objRest(_a2, [
+    "current",
+    "onCurrentChange",
+    "submitter",
+    "stepsFormRender",
+    "stepsRender",
+    "stepFormRender",
+    "stepsProps",
+    "onFinish",
+    "formProps",
+    "containerStyle",
+    "formRef",
+    "formMapRef",
+    "layoutRender"
+  ]);
   const formDataRef = useRef(/* @__PURE__ */ new Map());
   const formMapRef = useRef(/* @__PURE__ */ new Map());
   const formArrayRef = useRef([]);
@@ -10645,12 +10839,13 @@ function StepsForm$1(props) {
   useImperativeHandle(
     formRef,
     () => {
-      return formArrayRef.current[step || 0]?.current;
+      var _a3;
+      return (_a3 = formArrayRef.current[step || 0]) == null ? void 0 : _a3.current;
     },
     [step, formArrayRef.current]
   );
   const onFormFinish = useCallback(
-    async (name, formData) => {
+    (name, formData) => __async(this, null, function* () {
       formDataRef.current.set(name, formData);
       if (!lastStep || !onFinish) {
         return;
@@ -10661,17 +10856,20 @@ function StepsForm$1(props) {
         ...Array.from(formDataRef.current.values())
       );
       try {
-        const success = await onFinish(values);
+        const success = yield onFinish(values);
         if (success) {
           setStep(0);
-          formArrayRef.current.forEach((form) => form.current?.resetFields());
+          formArrayRef.current.forEach((form) => {
+            var _a3;
+            return (_a3 = form.current) == null ? void 0 : _a3.resetFields();
+          });
         }
       } catch (error) {
         console.log(error);
       } finally {
         setLoading(false);
       }
-    },
+    }),
     [lastStep, onFinish, setLoading, setStep]
   );
   const stepsDom = useMemo(() => {
@@ -10679,11 +10877,10 @@ function StepsForm$1(props) {
     const itemsProps = isNew ? {
       items: formArray.map((item) => {
         const itemProps = formMapRef.current.get(item);
-        return {
+        return __spreadValues({
           key: item,
-          title: itemProps?.title,
-          ...itemProps?.stepProps
-        };
+          title: itemProps == null ? void 0 : itemProps.title
+        }, itemProps == null ? void 0 : itemProps.stepProps);
       })
     } : {};
     return /* @__PURE__ */ jsx(
@@ -10695,30 +10892,28 @@ function StepsForm$1(props) {
         },
         children: /* @__PURE__ */ jsx(
           Steps,
-          {
-            ...stepsProps,
-            ...itemsProps,
+          __spreadProps(__spreadValues(__spreadValues({}, stepsProps), itemsProps), {
             current: step,
             onChange: void 0,
             children: !isNew && formArray.map((item) => {
               const itemProps = formMapRef.current.get(item);
               return /* @__PURE__ */ jsx(
                 Steps.Step,
-                {
-                  title: itemProps?.title,
-                  ...itemProps?.stepProps
-                },
+                __spreadValues({
+                  title: itemProps == null ? void 0 : itemProps.title
+                }, itemProps == null ? void 0 : itemProps.stepProps),
                 item
               );
             })
-          }
+          })
         )
       }
     );
   }, [formArray, hashId, prefixCls, step, stepsProps]);
   const onSubmit = useRefFunction(() => {
+    var _a3;
     const from = formArrayRef.current[step];
-    from.current?.submit();
+    (_a3 = from.current) == null ? void 0 : _a3.submit();
   });
   const prePage = useRefFunction(() => {
     if (step < 1)
@@ -10728,46 +10923,48 @@ function StepsForm$1(props) {
   const next = useMemo(() => {
     return submitter !== false && /* @__PURE__ */ jsx(
       LoadingButton,
-      {
+      __spreadProps(__spreadValues({
         color: "primary",
-        loading,
-        ...submitter?.submitButtonProps,
+        loading
+      }, submitter == null ? void 0 : submitter.submitButtonProps), {
         onClick: () => {
-          submitter?.onSubmit?.();
+          var _a3;
+          (_a3 = submitter == null ? void 0 : submitter.onSubmit) == null ? void 0 : _a3.call(submitter);
           onSubmit();
         },
         children: intl.formatMessage({ id: "stepsForm.next", defaultMessage: "下一步" })
-      },
+      }),
       "next"
     );
   }, [intl, loading, onSubmit, submitter]);
   const pre = useMemo(() => {
     return submitter !== false && /* @__PURE__ */ jsx(
       LoadingButton,
-      {
-        ...submitter?.resetButtonProps,
+      __spreadProps(__spreadValues({}, submitter == null ? void 0 : submitter.resetButtonProps), {
         onClick: () => {
+          var _a3;
           prePage();
-          submitter?.onReset?.();
+          (_a3 = submitter == null ? void 0 : submitter.onReset) == null ? void 0 : _a3.call(submitter);
         },
         children: intl.formatMessage({ id: "stepsForm.prev", defaultMessage: "上一步" })
-      },
+      }),
       "pre"
     );
   }, [intl, prePage, submitter]);
   const submit = useMemo(() => {
     return submitter !== false && /* @__PURE__ */ jsx(
       LoadingButton,
-      {
+      __spreadProps(__spreadValues({
         color: "primary",
-        loading,
-        ...submitter?.submitButtonProps,
+        loading
+      }, submitter == null ? void 0 : submitter.submitButtonProps), {
         onClick: () => {
-          submitter?.onSubmit?.();
+          var _a3;
+          (_a3 = submitter == null ? void 0 : submitter.onSubmit) == null ? void 0 : _a3.call(submitter);
           onSubmit();
         },
         children: intl.formatMessage({ id: "stepsForm.submit", defaultMessage: "提交" })
-      },
+      }),
       "submit"
     );
   }, [intl, loading, onSubmit, submitter]);
@@ -10777,15 +10974,16 @@ function StepsForm$1(props) {
     setStep(step + 1);
   });
   const submitterDom = useMemo(() => {
+    var _a3;
     let buttons = [];
-    const index = step || 0;
-    if (index < 1) {
+    const index2 = step || 0;
+    if (index2 < 1) {
       if (formArray.length === 1) {
         buttons.push(submit);
       } else {
         buttons.push(next);
       }
-    } else if (index + 1 === formArray.length) {
+    } else if (index2 + 1 === formArray.length) {
       buttons.push(pre, submit);
     } else {
       buttons.push(pre, next);
@@ -10793,7 +10991,7 @@ function StepsForm$1(props) {
     buttons = buttons.filter(React__default.isValidElement);
     if (submitter && submitter.render) {
       const submitterProps = {
-        form: formArrayRef.current[step]?.current,
+        form: (_a3 = formArrayRef.current[step]) == null ? void 0 : _a3.current,
         onSubmit,
         step,
         onPre: prePage
@@ -10803,16 +11001,16 @@ function StepsForm$1(props) {
         buttons
       );
     }
-    if (submitter && submitter?.render === false) {
+    if (submitter && (submitter == null ? void 0 : submitter.render) === false) {
       return null;
     }
     return buttons;
   }, [formArray.length, next, onSubmit, pre, prePage, step, submit, submitter]);
   const formDom = useMemo(() => {
-    return toArray(props.children).map((item, index) => {
+    return toArray(props.children).map((item, index2) => {
       const itemProps = item.props;
-      const name = itemProps.name || `${index}`;
-      const isShow = step === index;
+      const name = itemProps.name || `${index2}`;
+      const isShow = step === index2;
       const config = isShow ? {
         contentRender: stepFormRender,
         submitter: false
@@ -10826,13 +11024,10 @@ function StepsForm$1(props) {
           children: /* @__PURE__ */ jsx(
             StepFormProvide.Provider,
             {
-              value: {
-                ...config,
-                ...formProps,
-                ...itemProps,
+              value: __spreadProps(__spreadValues(__spreadValues(__spreadValues({}, config), formProps), itemProps), {
                 name,
-                step: index
-              },
+                step: index2
+              }),
               children: item
             }
           )
@@ -10844,10 +11039,13 @@ function StepsForm$1(props) {
   const finalStepsDom = useMemo(() => {
     if (stepsRender) {
       return stepsRender(
-        formArray.map((item) => ({
-          key: item,
-          title: formMapRef.current.get(item)?.title
-        })),
+        formArray.map((item) => {
+          var _a3;
+          return {
+            key: item,
+            title: (_a3 = formMapRef.current.get(item)) == null ? void 0 : _a3.title
+          };
+        }),
         stepsDom
       );
     }
@@ -10892,7 +11090,7 @@ function StepsForm$1(props) {
     propsLayoutRender
   ]);
   return wrapSSR(
-    /* @__PURE__ */ jsx("div", { className: classNames(prefixCls, hashId), children: /* @__PURE__ */ jsx(Form.Provider, { ...rest, children: /* @__PURE__ */ jsx(
+    /* @__PURE__ */ jsx("div", { className: classNames(prefixCls, hashId), children: /* @__PURE__ */ jsx(Form.Provider, __spreadProps(__spreadValues({}, rest), { children: /* @__PURE__ */ jsx(
       StepsFormProvide.Provider,
       {
         value: {
@@ -10909,61 +11107,65 @@ function StepsForm$1(props) {
         },
         children: stepsFormDom
       }
-    ) }) })
+    ) })) })
   );
 }
 function StepsFormWarp(props) {
-  return /* @__PURE__ */ jsx(ProConfigProvider, { needDeps: true, children: /* @__PURE__ */ jsx(StepsForm$1, { ...props }) });
+  return /* @__PURE__ */ jsx(ProConfigProvider, { needDeps: true, children: /* @__PURE__ */ jsx(StepsForm$1, __spreadValues({}, props)) });
 }
 StepsFormWarp.StepForm = StepForm;
 StepsFormWarp.useForm = Form.useForm;
-
 const Embed = ({ children }) => /* @__PURE__ */ jsx(Fragment, { children });
-
-const StepsForm = ({
-  steps,
-  columns,
-  forceUpdate,
-  grid,
-  ...props
-}) => {
+const StepsForm = (_la) => {
+  var _ma = _la, {
+    steps,
+    columns,
+    forceUpdate,
+    grid
+  } = _ma, props = __objRest(_ma, [
+    "steps",
+    "columns",
+    "forceUpdate",
+    "grid"
+  ]);
   const propsRef = useLatest(props);
   const onCurrentChange = useCallback(
     (current) => {
-      propsRef.current.onCurrentChange?.(current);
+      var _a2, _b2;
+      (_b2 = (_a2 = propsRef.current).onCurrentChange) == null ? void 0 : _b2.call(_a2, current);
       forceUpdate([]);
     },
     [forceUpdate, propsRef]
   );
   const StepDoms = useMemo(() => {
-    return steps?.map((step, index) => /* @__PURE__ */ createElement(
+    return steps == null ? void 0 : steps.map((step, index2) => /* @__PURE__ */ createElement(
       BetaSchemaForm,
-      {
-        grid,
-        ...step,
-        key: index,
+      __spreadProps(__spreadValues({
+        grid
+      }, step), {
+        key: index2,
         layoutType: "StepForm",
-        columns: columns[index]
-      }
+        columns: columns[index2]
+      })
     ));
   }, [columns, grid, steps]);
-  return /* @__PURE__ */ jsx(StepsFormWarp, { ...props, onCurrentChange, children: StepDoms });
+  return /* @__PURE__ */ jsx(StepsFormWarp, __spreadProps(__spreadValues({}, props), { onCurrentChange, children: StepDoms }));
 };
-
 const dependency = (item, helpers) => {
+  var _a2, _b2, _c2;
   if (item.valueType === "dependency") {
-    const fieldProps = item.getFieldProps?.();
+    const fieldProps = (_a2 = item.getFieldProps) == null ? void 0 : _a2.call(item);
     noteOnce(
-      Array.isArray(item.name ?? fieldProps?.name),
+      Array.isArray((_b2 = item.name) != null ? _b2 : fieldProps == null ? void 0 : fieldProps.name),
       'SchemaForm: fieldProps.name should be NamePath[] when valueType is "dependency"'
     );
     noteOnce(
       typeof item.columns === "function",
       'SchemaForm: columns should be a function when valueType is "dependency"'
     );
-    if (!Array.isArray(item.name ?? fieldProps?.name))
+    if (!Array.isArray((_c2 = item.name) != null ? _c2 : fieldProps == null ? void 0 : fieldProps.name))
       return null;
-    return /* @__PURE__ */ createElement(ProFormDependency, { name: item.name, ...fieldProps, key: item.key }, (values) => {
+    return /* @__PURE__ */ createElement(ProFormDependency, __spreadProps(__spreadValues({ name: item.name }, fieldProps), { key: item.key }), (values) => {
       if (!item.columns || typeof item.columns !== "function")
         return null;
       return helpers.genItems(item.columns(values));
@@ -10971,69 +11173,70 @@ const dependency = (item, helpers) => {
   }
   return true;
 };
-
 const divider = (item) => {
+  var _a2;
   if (item.valueType === "divider") {
-    return /* @__PURE__ */ createElement(Divider, { ...item.getFieldProps?.(), key: item.key });
+    return /* @__PURE__ */ createElement(Divider, __spreadProps(__spreadValues({}, (_a2 = item.getFieldProps) == null ? void 0 : _a2.call(item)), { key: item.key }));
   }
   return true;
 };
-
 const field = (item, { action, formRef, type, originItem }) => {
-  const formFieldProps = {
-    ...omit(item, [
-      "dataIndex",
-      "width",
-      "render",
-      "renderFormItem",
-      "renderText",
-      "title"
-    ]),
+  const formFieldProps = __spreadProps(__spreadValues({}, omit(item, [
+    "dataIndex",
+    "width",
+    "render",
+    "renderFormItem",
+    "renderText",
+    "title"
+  ])), {
     name: item.name || item.key || item.dataIndex,
     width: item.width,
-    render: item?.render ? (dom, entity, renderIndex) => item?.render?.(dom, entity, renderIndex, action?.current, {
-      type,
-      ...item,
-      key: item.key?.toString(),
-      formItemProps: item.getFormItemProps?.(),
-      fieldProps: item.getFieldProps?.()
-    }) : void 0
-  };
+    render: (item == null ? void 0 : item.render) ? (dom, entity, renderIndex) => {
+      var _a2, _b2, _c2, _d;
+      return (_d = item == null ? void 0 : item.render) == null ? void 0 : _d.call(item, dom, entity, renderIndex, action == null ? void 0 : action.current, __spreadProps(__spreadValues({
+        type
+      }, item), {
+        key: (_a2 = item.key) == null ? void 0 : _a2.toString(),
+        formItemProps: (_b2 = item.getFormItemProps) == null ? void 0 : _b2.call(item),
+        fieldProps: (_c2 = item.getFieldProps) == null ? void 0 : _c2.call(item)
+      }));
+    } : void 0
+  });
   const defaultRender = () => {
-    return /* @__PURE__ */ jsx(ProFormField, { ...formFieldProps, ignoreFormItem: true });
+    return /* @__PURE__ */ jsx(ProFormField, __spreadProps(__spreadValues({}, formFieldProps), { ignoreFormItem: true }));
   };
-  const renderFormItem = item?.renderFormItem ? (_, config) => {
-    const renderConfig = omitUndefined$1({ ...config, onChange: void 0 });
-    return item?.renderFormItem?.(
-      {
-        type,
-        ...item,
-        key: item.key?.toString(),
-        formItemProps: item.getFormItemProps?.(),
-        fieldProps: item.getFieldProps?.(),
+  const renderFormItem = (item == null ? void 0 : item.renderFormItem) ? (_, config) => {
+    var _a2, _b2, _c2, _d;
+    const renderConfig = omitUndefined$1(__spreadProps(__spreadValues({}, config), { onChange: void 0 }));
+    return (_d = item == null ? void 0 : item.renderFormItem) == null ? void 0 : _d.call(
+      item,
+      __spreadProps(__spreadValues({
+        type
+      }, item), {
+        key: (_a2 = item.key) == null ? void 0 : _a2.toString(),
+        formItemProps: (_b2 = item.getFormItemProps) == null ? void 0 : _b2.call(item),
+        fieldProps: (_c2 = item.getFieldProps) == null ? void 0 : _c2.call(item),
         originProps: originItem
-      },
-      {
-        ...renderConfig,
+      }),
+      __spreadProps(__spreadValues({}, renderConfig), {
         defaultRender,
         type
-      },
+      }),
       formRef.current
     );
   } : void 0;
   const getField = () => {
-    if (item?.renderFormItem) {
-      const dom = renderFormItem?.(null, {});
+    if (item == null ? void 0 : item.renderFormItem) {
+      const dom = renderFormItem == null ? void 0 : renderFormItem(null, {});
       if (!dom || item.ignoreFormItem)
         return dom;
     }
     return /* @__PURE__ */ createElement(
       ProFormField,
-      {
-        ...formFieldProps,
+      __spreadProps(__spreadValues({}, formFieldProps), {
         key: [item.key, item.index || 0].join("-"),
         renderFormItem
-      }
+      })
     );
   };
   if (item.dependencies) {
@@ -11048,77 +11251,71 @@ const field = (item, { action, formRef, type, originItem }) => {
   }
   return getField();
 };
-
 const formList = (item, { genItems }) => {
+  var _a2, _b2;
   if (item.valueType === "formList" && item.dataIndex) {
     if (!item.columns || !Array.isArray(item.columns))
       return null;
     return /* @__PURE__ */ createElement(
       ProFormList,
-      {
-        ...item.getFormItemProps?.(),
+      __spreadValues(__spreadProps(__spreadValues({}, (_a2 = item.getFormItemProps) == null ? void 0 : _a2.call(item)), {
         key: item.key,
         name: item.dataIndex,
         label: item.label,
         initialValue: item.initialValue,
         colProps: item.colProps,
-        rowProps: item.rowProps,
-        ...item.getFieldProps?.()
-      },
+        rowProps: item.rowProps
+      }), (_b2 = item.getFieldProps) == null ? void 0 : _b2.call(item)),
       genItems(item.columns)
     );
   }
   return true;
 };
-
 const formSet = (item, { genItems }) => {
+  var _a2, _b2;
   if (item.valueType === "formSet" && item.dataIndex) {
     if (!item.columns || !Array.isArray(item.columns))
       return null;
     return /* @__PURE__ */ createElement(
       ProFormFieldSet,
-      {
-        ...item.getFormItemProps?.(),
+      __spreadValues(__spreadProps(__spreadValues({}, (_a2 = item.getFormItemProps) == null ? void 0 : _a2.call(item)), {
         key: item.key,
         initialValue: item.initialValue,
         name: item.dataIndex,
         label: item.label,
         colProps: item.colProps,
-        rowProps: item.rowProps,
-        ...item.getFieldProps?.()
-      },
+        rowProps: item.rowProps
+      }), (_b2 = item.getFieldProps) == null ? void 0 : _b2.call(item)),
       genItems(item.columns)
     );
   }
   return true;
 };
-
 const group = (item, { genItems }) => {
+  var _a2;
   if (item.valueType === "group") {
     if (!item.columns || !Array.isArray(item.columns))
       return null;
     return /* @__PURE__ */ jsx(
       ProForm.Group,
-      {
+      __spreadProps(__spreadValues({
         label: item.label,
         colProps: item.colProps,
-        rowProps: item.rowProps,
-        ...item.getFieldProps?.(),
+        rowProps: item.rowProps
+      }, (_a2 = item.getFieldProps) == null ? void 0 : _a2.call(item)), {
         children: genItems(item.columns)
-      },
+      }),
       item.key
     );
   }
   return true;
 };
-
 const ignore = (item) => {
-  if (item.valueType && typeof item.valueType === "string" && ["index", "indexBorder", "option"].includes(item?.valueType)) {
+  if (item.valueType && typeof item.valueType === "string" && ["index", "indexBorder", "option"].includes(item == null ? void 0 : item.valueType)) {
     return null;
   }
   return true;
 };
-
 const tasks = [
   ignore,
   group,
@@ -11139,7 +11336,6 @@ const renderValueType = (item, helpers) => {
   }
   return field(item, helpers);
 };
-
 const FormLayoutType = {
   QueryFilter,
   DrawerForm,
@@ -11149,15 +11345,21 @@ const FormLayoutType = {
   Embed
 };
 function BetaSchemaForm(props) {
-  const {
+  const _a2 = props, {
     columns,
     layoutType = "Form",
     type = "form",
     action,
     shouldUpdate = (pre, next) => stringify(pre) !== stringify(next),
-    formRef: propsFormRef,
-    ...restProps
-  } = props;
+    formRef: propsFormRef
+  } = _a2, restProps = __objRest(_a2, [
+    "columns",
+    "layoutType",
+    "type",
+    "action",
+    "shouldUpdate",
+    "formRef"
+  ]);
   const FormRenderComponents = FormLayoutType[layoutType] || ProForm;
   const [form] = Form.useForm();
   const formInstance = Form.useFormInstance();
@@ -11176,7 +11378,7 @@ function BetaSchemaForm(props) {
         return (b.order || 0) - (a.order || 0);
       }
       return (b.index || 0) - (a.index || 0);
-    }).map((originItem, index) => {
+    }).map((originItem, index2) => {
       const title = runFunction(
         originItem.title,
         originItem,
@@ -11194,7 +11396,7 @@ function BetaSchemaForm(props) {
         label: title,
         name: originItem.name,
         valueType: runFunction(originItem.valueType, {}),
-        key: originItem.key || originItem.dataIndex || index,
+        key: originItem.key || originItem.dataIndex || index2,
         columns: originItem.columns,
         valueEnum: originItem.valueEnum,
         dataIndex: originItem.dataIndex || originItem.key,
@@ -11237,8 +11439,8 @@ function BetaSchemaForm(props) {
         formRef,
         genItems
       });
-    }).filter((field) => {
-      return Boolean(field);
+    }).filter((field2) => {
+      return Boolean(field2);
     });
   });
   const onValuesChange = useCallback(
@@ -11248,7 +11450,7 @@ function BetaSchemaForm(props) {
         updatedFormDoms([]);
       }
       oldValuesRef.current = values;
-      propsOnValuesChange?.(changedValues, values);
+      propsOnValuesChange == null ? void 0 : propsOnValuesChange(changedValues, values);
     },
     [propsRef, shouldUpdate]
   );
@@ -11258,7 +11460,7 @@ function BetaSchemaForm(props) {
     if (columns.length && Array.isArray(columns[0]))
       return;
     return genItems(columns);
-  }, [columns, restProps?.open, action, type, formDomsDeps, !!formRef.current]);
+  }, [columns, restProps == null ? void 0 : restProps.open, action, type, formDomsDeps, !!formRef.current]);
   const specificProps = useDeepCompareMemo(() => {
     if (layoutType === "StepsForm") {
       return {
@@ -11277,96 +11479,111 @@ function BetaSchemaForm(props) {
   );
   return /* @__PURE__ */ jsx(
     FormRenderComponents,
-    {
-      ...specificProps,
-      ...restProps,
+    __spreadProps(__spreadValues(__spreadValues({}, specificProps), restProps), {
       onInit: (_, initForm) => {
+        var _a3;
         if (propsFormRef) {
           propsFormRef.current = initForm;
         }
-        restProps?.onInit?.(_, initForm);
+        (_a3 = restProps == null ? void 0 : restProps.onInit) == null ? void 0 : _a3.call(restProps, _, initForm);
         formRef.current = initForm;
       },
       form: props.form || form,
       formRef,
       onValuesChange,
       children: formChildrenDoms
-    }
+    })
   );
 }
-
-const ProFormSelectComponents = ({
-  fieldProps,
-  children,
-  params,
-  proFieldProps,
-  mode,
-  valueEnum,
-  request,
-  showSearch,
-  options,
-  ...rest
-}, ref) => {
+const ProFormSelectComponents = (_na, ref) => {
+  var _oa = _na, {
+    fieldProps,
+    children,
+    params,
+    proFieldProps: proFieldProps2,
+    mode,
+    valueEnum,
+    request,
+    showSearch,
+    options
+  } = _oa, rest = __objRest(_oa, [
+    "fieldProps",
+    "children",
+    "params",
+    "proFieldProps",
+    "mode",
+    "valueEnum",
+    "request",
+    "showSearch",
+    "options"
+  ]);
   const context = useContext(FieldContext);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadProps(__spreadValues({
       valueEnum: runFunction(valueEnum),
       request,
       params,
       valueType: "select",
       filedConfig: { customLightMode: true },
-      fieldProps: {
+      fieldProps: __spreadValues({
         options,
         mode,
         showSearch,
-        getPopupContainer: context.getPopupContainer,
-        ...fieldProps
-      },
+        getPopupContainer: context.getPopupContainer
+      }, fieldProps),
       ref,
-      proFieldProps,
-      ...rest,
+      proFieldProps: proFieldProps2
+    }, rest), {
       children
-    }
+    })
   );
 };
 const SearchSelect = React__default.forwardRef(
-  ({
-    fieldProps,
-    children,
-    params,
-    proFieldProps,
-    mode,
-    valueEnum,
-    request,
-    options,
-    ...rest
-  }, ref) => {
-    const props = {
+  (_pa, ref) => {
+    var _qa = _pa, {
+      fieldProps,
+      children,
+      params,
+      proFieldProps: proFieldProps2,
+      mode,
+      valueEnum,
+      request,
+      options
+    } = _qa, rest = __objRest(_qa, [
+      "fieldProps",
+      "children",
+      "params",
+      "proFieldProps",
+      "mode",
+      "valueEnum",
+      "request",
+      "options"
+    ]);
+    const props = __spreadValues({
       options,
       mode: mode || "multiple",
       labelInValue: true,
       showSearch: true,
       showArrow: false,
       autoClearSearchValue: true,
-      optionLabelProp: "label",
-      ...fieldProps
-    };
+      optionLabelProp: "label"
+    }, fieldProps);
     const context = useContext(FieldContext);
     return /* @__PURE__ */ jsx(
       ProFormField,
-      {
+      __spreadProps(__spreadValues({
         valueEnum: runFunction(valueEnum),
         request,
         params,
         valueType: "select",
         filedConfig: { customLightMode: true },
-        fieldProps: { getPopupContainer: context.getPopupContainer, ...props },
+        fieldProps: __spreadValues({ getPopupContainer: context.getPopupContainer }, props),
         ref,
-        proFieldProps,
-        ...rest,
+        proFieldProps: proFieldProps2
+      }, rest), {
         children
-      }
+      })
     );
   }
 );
@@ -11375,7 +11592,6 @@ const ProFormSearchSelect = SearchSelect;
 const WrappedProFormSelect = ProFormSelect;
 WrappedProFormSelect.SearchSelect = ProFormSearchSelect;
 WrappedProFormSelect.displayName = "ProFormComponent";
-
 const Submitter = (props) => {
   const intl = useIntl();
   const form = Form.useFormInstance();
@@ -11390,14 +11606,14 @@ const Submitter = (props) => {
     submitButtonProps,
     resetButtonProps = {}
   } = props;
-  const { token } = proTheme.useToken();
+  const { token: token2 } = proTheme.useToken();
   const submit = () => {
     form.submit();
-    onSubmit?.();
+    onSubmit == null ? void 0 : onSubmit();
   };
   const reset = () => {
     form.resetFields();
-    onReset?.();
+    onReset == null ? void 0 : onReset();
   };
   const {
     submitText = intl.formatMessage({ id: "tableForm.submit", defaultMessage: "提交" }),
@@ -11408,18 +11624,19 @@ const Submitter = (props) => {
     dom.push(
       /* @__PURE__ */ createElement(
         LoadingButton,
-        {
-          ...omit(resetButtonProps, ["preventDefault"]),
+        __spreadProps(__spreadValues({}, omit(resetButtonProps, ["preventDefault"])), {
           key: "rest",
           onClick: (e) => {
-            if (!resetButtonProps?.preventDefault)
+            var _a2;
+            if (!(resetButtonProps == null ? void 0 : resetButtonProps.preventDefault))
               reset();
-            resetButtonProps?.onClick?.(
+            (_a2 = resetButtonProps == null ? void 0 : resetButtonProps.onClick) == null ? void 0 : _a2.call(
+              resetButtonProps,
               e
             );
           }
-        },
-        resetButtonProps?.text ? resetButtonProps.text : resetText
+        }),
+        (resetButtonProps == null ? void 0 : resetButtonProps.text) ? resetButtonProps.text : resetText
       )
     );
   }
@@ -11427,31 +11644,33 @@ const Submitter = (props) => {
     dom.push(
       /* @__PURE__ */ createElement(
         LoadingButton,
-        {
-          variant: "contained",
-          ...omit(submitButtonProps || {}, ["preventDefault"]),
+        __spreadProps(__spreadValues({
+          variant: "contained"
+        }, omit(submitButtonProps || {}, ["preventDefault"])), {
           key: "submit",
           onClick: (e) => {
-            if (!submitButtonProps?.preventDefault)
+            var _a2;
+            if (!(submitButtonProps == null ? void 0 : submitButtonProps.preventDefault))
               submit();
-            submitButtonProps?.onClick?.(
+            (_a2 = submitButtonProps == null ? void 0 : submitButtonProps.onClick) == null ? void 0 : _a2.call(
+              submitButtonProps,
               e
             );
           }
-        },
-        submitButtonProps?.text ? submitButtonProps.text : submitText
+        }),
+        (submitButtonProps == null ? void 0 : submitButtonProps.text) ? submitButtonProps.text : submitText
       )
     );
   }
-  const renderDom = render ? render({ ...props, form, submit, reset }, dom) : dom;
+  const renderDom = render ? render(__spreadProps(__spreadValues({}, props), { form, submit, reset }), dom) : dom;
   if (!renderDom) {
     return null;
   }
   if (Array.isArray(renderDom)) {
-    if (renderDom?.length < 1) {
+    if ((renderDom == null ? void 0 : renderDom.length) < 1) {
       return null;
     }
-    if (renderDom?.length === 1) {
+    if ((renderDom == null ? void 0 : renderDom.length) === 1) {
       return renderDom[0];
     }
     return /* @__PURE__ */ jsx(
@@ -11459,7 +11678,7 @@ const Submitter = (props) => {
       {
         style: {
           display: "flex",
-          gap: token.marginXS,
+          gap: token2.marginXS,
           alignItems: "center"
         },
         children: renderDom
@@ -11468,135 +11687,133 @@ const Submitter = (props) => {
   }
   return renderDom;
 };
-
 const ProFormSwitch = React__default.forwardRef(
-  ({ fieldProps, unCheckedChildren, checkedChildren, proFieldProps, ...rest }, ref) => {
+  (_ra, ref) => {
+    var _sa = _ra, { fieldProps, unCheckedChildren, checkedChildren, proFieldProps: proFieldProps2 } = _sa, rest = __objRest(_sa, ["fieldProps", "unCheckedChildren", "checkedChildren", "proFieldProps"]);
     return /* @__PURE__ */ jsx(
       ProFormField,
-      {
+      __spreadValues({
         valueType: "switch",
-        fieldProps: {
+        fieldProps: __spreadValues({
           unCheckedChildren,
-          checkedChildren,
-          ...fieldProps
-        },
+          checkedChildren
+        }, fieldProps),
         ref,
         valuePropName: "checked",
-        proFieldProps,
+        proFieldProps: proFieldProps2,
         filedConfig: {
           valuePropName: "checked",
           ignoreWidth: true,
           customLightMode: true
-        },
-        ...rest
-      }
+        }
+      }, rest)
     );
   }
 );
-
 const valueType$1 = "text";
-const ProFormText = ({
-  fieldProps,
-  proFieldProps,
-  ...rest
-}) => {
+const ProFormText = (_ta) => {
+  var _ua = _ta, {
+    fieldProps,
+    proFieldProps: proFieldProps2
+  } = _ua, rest = __objRest(_ua, [
+    "fieldProps",
+    "proFieldProps"
+  ]);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       valueType: valueType$1,
       fieldProps,
       filedConfig: {
         valueType: valueType$1
       },
-      proFieldProps,
-      ...rest
-    }
+      proFieldProps: proFieldProps2
+    }, rest)
   );
 };
-const Password = ({
-  fieldProps,
-  proFieldProps,
-  ...rest
-}) => {
+const Password = (_va) => {
+  var _wa = _va, {
+    fieldProps,
+    proFieldProps: proFieldProps2
+  } = _wa, rest = __objRest(_wa, [
+    "fieldProps",
+    "proFieldProps"
+  ]);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       valueType: "password",
       fieldProps,
-      proFieldProps,
+      proFieldProps: proFieldProps2,
       filedConfig: {
         valueType: valueType$1
-      },
-      ...rest
-    }
+      }
+    }, rest)
   );
 };
 const WrappedProFormText = ProFormText;
 WrappedProFormText.Password = Password;
 WrappedProFormText.displayName = "ProFormComponent";
-
-const ProFormTextArea = ({ fieldProps, proFieldProps, ...rest }, ref) => {
+const ProFormTextArea = (_xa, ref) => {
+  var _ya = _xa, { fieldProps, proFieldProps: proFieldProps2 } = _ya, rest = __objRest(_ya, ["fieldProps", "proFieldProps"]);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       ref,
       valueType: "textarea",
       fieldProps,
-      proFieldProps,
-      ...rest
-    }
+      proFieldProps: proFieldProps2
+    }, rest)
   );
 };
 const index$1 = React__default.forwardRef(ProFormTextArea);
-
 const valueType = "time";
-const TimeRangePicker = React__default.forwardRef(({ fieldProps, proFieldProps, ...rest }, ref) => {
+const TimeRangePicker = React__default.forwardRef((_za, ref) => {
+  var _Aa = _za, { fieldProps, proFieldProps: proFieldProps2 } = _Aa, rest = __objRest(_Aa, ["fieldProps", "proFieldProps"]);
   const context = useContext(FieldContext);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
+    __spreadValues({
       ref,
-      fieldProps: {
-        getPopupContainer: context.getPopupContainer,
-        ...fieldProps
-      },
+      fieldProps: __spreadValues({
+        getPopupContainer: context.getPopupContainer
+      }, fieldProps),
       valueType: "timeRange",
-      proFieldProps,
+      proFieldProps: proFieldProps2,
       filedConfig: {
         valueType: "timeRange",
         customLightMode: true,
         lightFilterLabelFormatter: (value) => dateArrayFormatter(value, "HH:mm:ss")
-      },
-      ...rest
-    }
+      }
+    }, rest)
   );
 });
-const ProFormTimePicker = ({
-  fieldProps,
-  proFieldProps,
-  ...rest
-}) => {
+const ProFormTimePicker = (_Ba) => {
+  var _Ca = _Ba, {
+    fieldProps,
+    proFieldProps: proFieldProps2
+  } = _Ca, rest = __objRest(_Ca, [
+    "fieldProps",
+    "proFieldProps"
+  ]);
   const context = useContext(FieldContext);
   return /* @__PURE__ */ jsx(
     ProFormField,
-    {
-      fieldProps: {
-        getPopupContainer: context.getPopupContainer,
-        ...fieldProps
-      },
+    __spreadValues({
+      fieldProps: __spreadValues({
+        getPopupContainer: context.getPopupContainer
+      }, fieldProps),
       valueType,
-      proFieldProps,
+      proFieldProps: proFieldProps2,
       filedConfig: {
         customLightMode: true,
         valueType
-      },
-      ...rest
-    }
+      }
+    }, rest)
   );
 };
 const WrappedProFormTimePicker = ProFormTimePicker;
 WrappedProFormTimePicker.RangePicker = TimeRangePicker;
-
 const genParams = (syncUrl, params, type) => {
   if (syncUrl === true) {
     return params;
@@ -11611,7 +11828,8 @@ const covertFormName = (name) => {
   return [name];
 };
 function BaseFormComponents(props) {
-  const {
+  var _b2, _c2;
+  const _a2 = props, {
     children,
     contentRender,
     submitter,
@@ -11633,11 +11851,33 @@ function BaseFormComponents(props) {
     autoFocusFirstInput = true,
     grid,
     rowProps,
-    colProps,
-    ...rest
-  } = props;
+    colProps
+  } = _a2, rest = __objRest(_a2, [
+    "children",
+    "contentRender",
+    "submitter",
+    "fieldProps",
+    "formItemProps",
+    "groupProps",
+    "transformKey",
+    "formRef",
+    "onInit",
+    "form",
+    "loading",
+    "formComponentType",
+    "extraUrlParams",
+    "syncToUrl",
+    "onUrlSearchChange",
+    "onReset",
+    "omitNil",
+    "isKeyPressSubmit",
+    "autoFocusFirstInput",
+    "grid",
+    "rowProps",
+    "colProps"
+  ]);
   const formInstance = Form.useFormInstance();
-  const { componentSize } = ConfigProvider?.useConfig?.() || {
+  const { componentSize } = ((_c2 = (_b2 = ConfigProvider) == null ? void 0 : _b2.useConfig) == null ? void 0 : _c2.call(_b2)) || {
     componentSize: "middle"
   };
   const formRef = useRef(form || formInstance);
@@ -11653,8 +11893,9 @@ function BaseFormComponents(props) {
        * @example  getFieldsFormatValue(true) ->返回所有資料，即使沒有被 form 託管的
        */
       getFieldsFormatValue: (allData) => {
+        var _a3;
         return transformKey(
-          getFormInstance()?.getFieldsValue(allData),
+          (_a3 = getFormInstance()) == null ? void 0 : _a3.getFieldsValue(allData),
           omitNil
         );
       },
@@ -11667,10 +11908,11 @@ function BaseFormComponents(props) {
        */
       /** 取得格式化之後的單個資料 */
       getFieldFormatValue: (paramsNameList = []) => {
+        var _a3;
         const nameList = covertFormName(paramsNameList);
         if (!nameList)
           throw new Error("nameList is require");
-        const value = getFormInstance()?.getFieldValue(nameList);
+        const value = (_a3 = getFormInstance()) == null ? void 0 : _a3.getFieldValue(nameList);
         const obj = nameList ? set({}, nameList, value) : value;
         return get$1(transformKey(obj, omitNil, nameList), nameList);
       },
@@ -11683,8 +11925,9 @@ function BaseFormComponents(props) {
        */
       /** 取得格式化之後的單個資料 */
       getFieldFormatValueObject: (paramsNameList) => {
+        var _a3;
         const nameList = covertFormName(paramsNameList);
-        const value = getFormInstance()?.getFieldValue(nameList);
+        const value = (_a3 = getFormInstance()) == null ? void 0 : _a3.getFieldValue(nameList);
         const obj = nameList ? set({}, nameList, value) : value;
         return transformKey(obj, omitNil, nameList);
       },
@@ -11696,23 +11939,23 @@ function BaseFormComponents(props) {
        * 
        * @example validateFieldsReturnFormatValue -> {a:{b:value}}
        */
-      validateFieldsReturnFormatValue: async (nameList) => {
+      validateFieldsReturnFormatValue: (nameList) => __async(this, null, function* () {
+        var _a3;
         if (!Array.isArray(nameList) && nameList)
           throw new Error("nameList must be array");
-        const values = await getFormInstance()?.validateFields(nameList);
+        const values = yield (_a3 = getFormInstance()) == null ? void 0 : _a3.validateFields(nameList);
         const transformedKey = transformKey(values, omitNil);
         return transformedKey ? transformedKey : {};
-      }
+      })
     }),
     [omitNil, transformKey]
   );
   const items = useMemo(() => {
-    return React__default.Children.toArray(children).map((item, index) => {
-      if (index === 0 && React__default.isValidElement(item) && autoFocusFirstInput) {
-        return React__default.cloneElement(item, {
-          ...item.props,
+    return React__default.Children.toArray(children).map((item, index2) => {
+      if (index2 === 0 && React__default.isValidElement(item) && autoFocusFirstInput) {
+        return React__default.cloneElement(item, __spreadProps(__spreadValues({}, item.props), {
           autoFocus: autoFocusFirstInput
-        });
+        }));
       }
       return item;
     });
@@ -11726,32 +11969,30 @@ function BaseFormComponents(props) {
       return void 0;
     return /* @__PURE__ */ jsx(
       Submitter,
-      {
-        ...submitterProps,
+      __spreadProps(__spreadValues({}, submitterProps), {
         onReset: () => {
+          var _a3, _b3, _c3;
           const finalValues = transformKey(
-            formRef.current?.getFieldsValue(),
+            (_a3 = formRef.current) == null ? void 0 : _a3.getFieldsValue(),
             omitNil
           );
-          submitterProps?.onReset?.(finalValues);
-          onReset?.(finalValues);
+          (_b3 = submitterProps == null ? void 0 : submitterProps.onReset) == null ? void 0 : _b3.call(submitterProps, finalValues);
+          onReset == null ? void 0 : onReset(finalValues);
           if (syncToUrl) {
             const params = Object.keys(
-              transformKey(formRef.current?.getFieldsValue(), false)
+              transformKey((_c3 = formRef.current) == null ? void 0 : _c3.getFieldsValue(), false)
             ).reduce((pre, next) => {
-              return {
-                ...pre,
+              return __spreadProps(__spreadValues({}, pre), {
                 [next]: finalValues[next] || void 0
-              };
+              });
             }, extraUrlParams);
             onUrlSearchChange(genParams(syncToUrl, params, "set"));
           }
         },
-        submitButtonProps: {
-          loading,
-          ...submitterProps.submitButtonProps
-        }
-      },
+        submitButtonProps: __spreadValues({
+          loading
+        }, submitterProps.submitButtonProps)
+      }),
       "submitter"
     );
   }, [
@@ -11789,30 +12030,24 @@ function BaseFormComponents(props) {
   useImperativeHandle(
     propsFormRef,
     () => {
-      return {
-        ...formRef.current,
-        ...formatValues
-      };
+      return __spreadValues(__spreadValues({}, formRef.current), formatValues);
     },
     [formatValues, formRef.current]
   );
   useEffect(() => {
+    var _a3, _b3;
     const finalValues = transformKey(
-      formRef.current?.getFieldsValue?.(true),
+      (_b3 = (_a3 = formRef.current) == null ? void 0 : _a3.getFieldsValue) == null ? void 0 : _b3.call(_a3, true),
       omitNil
     );
-    onInit?.(finalValues, {
-      ...formRef.current,
-      ...formatValues
-    });
+    onInit == null ? void 0 : onInit(finalValues, __spreadValues(__spreadValues({}, formRef.current), formatValues));
   }, []);
   return /* @__PURE__ */ jsx(
     ProFormContext.Provider,
     {
-      value: {
-        ...formatValues,
+      value: __spreadProps(__spreadValues({}, formatValues), {
         formRef
-      },
+      }),
       children: /* @__PURE__ */ jsx(ConfigProvider, { componentSize: rest.size || componentSize, children: /* @__PURE__ */ jsxs(GridContext.Provider, { value: { grid, colProps }, children: [
         rest.component !== false && /* @__PURE__ */ jsx(
           "input",
@@ -11830,7 +12065,7 @@ function BaseFormComponents(props) {
 }
 let requestFormCacheId = 0;
 function BaseForm(props) {
-  const {
+  const _a2 = props, {
     extraUrlParams = {},
     syncToUrl,
     isKeyPressSubmit,
@@ -11840,7 +12075,7 @@ function BaseForm(props) {
     contentRender,
     submitter,
     fieldProps,
-    proFieldProps,
+    proFieldProps: proFieldProps2,
     formItemProps,
     groupProps,
     dateFormatter = "string",
@@ -11859,9 +12094,38 @@ function BaseForm(props) {
     formKey = requestFormCacheId,
     readonly,
     onLoadingChange,
-    loading: propsLoading,
-    ...propRest
-  } = props;
+    loading: propsLoading
+  } = _a2, propRest = __objRest(_a2, [
+    "extraUrlParams",
+    "syncToUrl",
+    "isKeyPressSubmit",
+    "syncToUrlAsImportant",
+    "syncToInitialValues",
+    "children",
+    "contentRender",
+    "submitter",
+    "fieldProps",
+    "proFieldProps",
+    "formItemProps",
+    "groupProps",
+    "dateFormatter",
+    "formRef",
+    "onInit",
+    "form",
+    "formComponentType",
+    "onReset",
+    "grid",
+    "rowProps",
+    "colProps",
+    "omitNil",
+    "request",
+    "params",
+    "initialValues",
+    "formKey",
+    "readonly",
+    "onLoadingChange",
+    "loading"
+  ]);
   const formRef = useRef({});
   const [loading, setLoading] = useMergedState(false, {
     onChange: onLoadingChange,
@@ -11882,10 +12146,10 @@ function BaseForm(props) {
   });
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const prefixCls = getPrefixCls("pro-form");
-  const { wrapSSR, hashId } = useStyle$A("ProForm", (token) => {
+  const { wrapSSR, hashId } = useStyle$A("ProForm", (token2) => {
     return {
       [`.${prefixCls}`]: {
-        [`> div:not(${token.proComponentsCls}-form-light-filter)`]: {
+        [`> div:not(${token2.proComponentsCls}-form-light-filter)`]: {
           ".pro-field": {
             maxWidth: "100%",
             "@media screen and (max-width: 575px)": {
@@ -11957,10 +12221,7 @@ function BaseForm(props) {
   useEffect(() => {
     if (!syncToUrl)
       return;
-    setUrlSearch({
-      ...urlSearch,
-      ...extraUrlParams
-    });
+    setUrlSearch(__spreadValues(__spreadValues({}, urlSearch), extraUrlParams));
   }, [extraUrlParams, syncToUrl]);
   const getPopupContainer = useMemo(() => {
     if (typeof window === "undefined")
@@ -11970,23 +12231,24 @@ function BaseForm(props) {
     }
     return void 0;
   }, [formComponentType]);
-  const onFinish = useRefFunction(async () => {
+  const onFinish = useRefFunction(() => __async(this, null, function* () {
+    var _a3, _b2, _c2, _d;
     if (!propRest.onFinish)
       return;
     if (loading)
       return;
     setLoading(true);
     try {
-      const finalValues = formRef?.current?.getFieldsFormatValue?.();
-      await propRest.onFinish(finalValues);
+      const finalValues = (_b2 = (_a3 = formRef == null ? void 0 : formRef.current) == null ? void 0 : _a3.getFieldsFormatValue) == null ? void 0 : _b2.call(_a3);
+      yield propRest.onFinish(finalValues);
       if (syncToUrl) {
         const syncToUrlParams = Object.keys(
-          formRef?.current?.getFieldsFormatValue?.(void 0, false)
+          (_d = (_c2 = formRef == null ? void 0 : formRef.current) == null ? void 0 : _c2.getFieldsFormatValue) == null ? void 0 : _d.call(_c2, void 0, false)
         ).reduce((pre, next) => {
-          return {
-            ...pre,
-            [next]: finalValues[next] ?? void 0
-          };
+          var _a4;
+          return __spreadProps(__spreadValues({}, pre), {
+            [next]: (_a4 = finalValues[next]) != null ? _a4 : void 0
+          });
         }, extraUrlParams);
         Object.keys(urlSearch).forEach((key) => {
           if (syncToUrlParams[key] !== false && syncToUrlParams[key] !== 0 && !syncToUrlParams[key]) {
@@ -12000,7 +12262,7 @@ function BaseForm(props) {
       console.log(error);
       setLoading(false);
     }
-  });
+  }));
   useImperativeHandle(
     propsFormRef,
     () => {
@@ -12024,13 +12286,13 @@ function BaseForm(props) {
             value: {
               formRef,
               fieldProps,
-              proFieldProps,
+              proFieldProps: proFieldProps2,
               formItemProps,
               groupProps,
               formComponentType,
               getPopupContainer,
               formKey: curFormKey.current,
-              setFieldValueType: (name, { valueType = "text", dateFormat, transform }) => {
+              setFieldValueType: (name, { valueType: valueType2 = "text", dateFormat, transform }) => {
                 if (!Array.isArray(name))
                   return;
                 transformKeyRef.current = set(
@@ -12042,7 +12304,7 @@ function BaseForm(props) {
                   fieldsValueType.current,
                   name,
                   {
-                    valueType,
+                    valueType: valueType2,
                     dateFormat
                   }
                 );
@@ -12050,31 +12312,26 @@ function BaseForm(props) {
             },
             children: /* @__PURE__ */ jsx(FormListContext.Provider, { value: {}, children: /* @__PURE__ */ jsx(
               Form,
-              {
+              __spreadProps(__spreadValues({
                 onKeyPress: (event) => {
+                  var _a3;
                   if (!isKeyPressSubmit)
                     return;
                   if (event.key === "Enter") {
-                    formRef.current?.submit();
+                    (_a3 = formRef.current) == null ? void 0 : _a3.submit();
                   }
                 },
                 autoComplete: "off",
-                form,
-                ...omit(propRest, [
-                  "labelWidth",
-                  "autoFocusFirstInput"
-                ]),
-                initialValues: syncToUrlAsImportant ? {
-                  ...initialValues,
-                  ...initialData,
-                  ...urlParamsMergeInitialValues
-                } : {
-                  ...urlParamsMergeInitialValues,
-                  ...initialValues,
-                  ...initialData
-                },
+                form
+              }, omit(propRest, [
+                "labelWidth",
+                "autoFocusFirstInput"
+              ])), {
+                initialValues: syncToUrlAsImportant ? __spreadValues(__spreadValues(__spreadValues({}, initialValues), initialData), urlParamsMergeInitialValues) : __spreadValues(__spreadValues(__spreadValues({}, urlParamsMergeInitialValues), initialValues), initialData),
                 onValuesChange: (changedValues, values) => {
-                  propRest?.onValuesChange?.(
+                  var _a3;
+                  (_a3 = propRest == null ? void 0 : propRest.onValuesChange) == null ? void 0 : _a3.call(
+                    propRest,
                     transformKey(changedValues, !!omitNil),
                     transformKey(values, !!omitNil)
                   );
@@ -12083,20 +12340,17 @@ function BaseForm(props) {
                 onFinish,
                 children: /* @__PURE__ */ jsx(
                   BaseFormComponents,
-                  {
+                  __spreadProps(__spreadValues({
                     transformKey,
                     autoComplete: "off",
                     loading,
-                    onUrlSearchChange: setUrlSearch,
-                    ...props,
+                    onUrlSearchChange: setUrlSearch
+                  }, props), {
                     formRef,
-                    initialValues: {
-                      ...initialValues,
-                      ...initialData
-                    }
-                  }
+                    initialValues: __spreadValues(__spreadValues({}, initialValues), initialData)
+                  })
                 )
-              }
+              })
             ) })
           }
         ) })
@@ -12104,11 +12358,10 @@ function BaseForm(props) {
     )
   );
 }
-
 function ProForm(props) {
   return /* @__PURE__ */ jsx(
     BaseForm,
-    {
+    __spreadValues({
       layout: "vertical",
       submitter: {
         // 反轉按鈕，在正常模式下，按鈕應該是主按鈕在前
@@ -12119,9 +12372,8 @@ function ProForm(props) {
           items,
           submitter
         ] });
-      },
-      ...props
-    }
+      }
+    }, props)
   );
 }
 ProForm.Group = Group;
@@ -12132,10 +12384,9 @@ ProForm.ErrorList = Form.ErrorList;
 ProForm.Provider = Form.Provider;
 ProForm.useFormInstance = Form.useFormInstance;
 ProForm.EditOrReadOnlyContext = EditOrReadOnlyContext;
-
-const genLoginFormStyle$1 = (token) => {
+const genLoginFormStyle$1 = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       "&-container": {
         display: "flex",
         flex: "1",
@@ -12178,8 +12429,8 @@ const genLoginFormStyle$1 = (token) => {
       "&-desc": {
         marginBlockStart: "12px",
         marginBlockEnd: "40px",
-        color: token.colorTextSecondary,
-        fontSize: token.fontSize
+        color: token2.colorTextSecondary,
+        fontSize: token2.fontSize
       },
       "&-main": {
         minWidth: "328px",
@@ -12193,7 +12444,7 @@ const genLoginFormStyle$1 = (token) => {
       }
     },
     "@media (min-width: @screen-md-min)": {
-      [`${token.componentCls}-container`]: {
+      [`${token2.componentCls}-container`]: {
         paddingInline: 0,
         paddingBlockStart: 32,
         paddingBlockEnd: 24,
@@ -12205,17 +12456,16 @@ const genLoginFormStyle$1 = (token) => {
   };
 };
 function useStyle$j(prefixCls) {
-  return useStyle$A("LoginForm", (token) => {
-    const loginFormToken = {
-      ...token,
+  return useStyle$A("LoginForm", (token2) => {
+    const loginFormToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genLoginFormStyle$1(loginFormToken)];
   });
 }
-
 function LoginForm(props) {
-  const {
+  var _b2;
+  const _a2 = props, {
     logo,
     message,
     contentStyle,
@@ -12224,30 +12474,39 @@ function LoginForm(props) {
     actions,
     children,
     containerStyle,
-    otherStyle,
-    ...proFormProps
-  } = props;
+    otherStyle
+  } = _a2, proFormProps2 = __objRest(_a2, [
+    "logo",
+    "message",
+    "contentStyle",
+    "title",
+    "subTitle",
+    "actions",
+    "children",
+    "containerStyle",
+    "otherStyle"
+  ]);
   const intl = useIntl();
-  const submitter = proFormProps.submitter === false ? false : {
+  const submitter = proFormProps2.submitter === false ? false : __spreadProps(__spreadValues({
     searchConfig: {
       submitText: intl.formatMessage({ id: "loginForm.submitText", defaultMessage: "登入" })
-    },
-    ...proFormProps.submitter,
-    submitButtonProps: {
+    }
+  }, proFormProps2.submitter), {
+    submitButtonProps: __spreadValues({
       size: "large",
       style: {
         width: "100%"
-      },
-      ...proFormProps.submitter?.submitButtonProps
-    },
+      }
+    }, (_b2 = proFormProps2.submitter) == null ? void 0 : _b2.submitButtonProps),
     render: (_, dom) => {
+      var _a3, _b3, _c2;
       const loginButton = dom.pop();
-      if (typeof proFormProps?.submitter?.render === "function") {
-        return proFormProps?.submitter?.render?.(_, dom);
+      if (typeof ((_a3 = proFormProps2 == null ? void 0 : proFormProps2.submitter) == null ? void 0 : _a3.render) === "function") {
+        return (_c2 = (_b3 = proFormProps2 == null ? void 0 : proFormProps2.submitter) == null ? void 0 : _b3.render) == null ? void 0 : _c2.call(_b3, _, dom);
       }
       return loginButton;
     }
-  };
+  });
   const context = useContext(ConfigContext);
   const baseClassName = context.getPrefixCls("pro-form-login");
   const { wrapSSR, hashId } = useStyle$j(baseClassName);
@@ -12278,15 +12537,14 @@ function LoginForm(props) {
             "div",
             {
               className: getCls("main"),
-              style: {
-                width: 328,
-                ...contentStyle
-              },
+              style: __spreadValues({
+                width: 328
+              }, contentStyle),
               children: [
-                /* @__PURE__ */ jsxs(ProForm, { isKeyPressSubmit: true, ...proFormProps, submitter, children: [
+                /* @__PURE__ */ jsxs(ProForm, __spreadProps(__spreadValues({ isKeyPressSubmit: true }, proFormProps2), { submitter, children: [
                   message,
                   children
-                ] }),
+                ] })),
                 actions ? /* @__PURE__ */ jsx("div", { className: getCls("main-other"), style: otherStyle, children: actions }) : null
               ]
             }
@@ -12296,10 +12554,9 @@ function LoginForm(props) {
     )
   );
 }
-
-const genLoginFormStyle = (token) => {
+const genLoginFormStyle = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       display: "flex",
       width: "100%",
       height: "100%",
@@ -12335,11 +12592,11 @@ const genLoginFormStyle = (token) => {
         padding: 24
       },
       "&-container": {
-        borderRadius: token.borderRadius,
+        borderRadius: token2.borderRadius,
         backgroundSize: "100%",
         backgroundPosition: "top",
         backdropFilter: "blur(10px)",
-        backgroundColor: setAlpha(token.colorBgContainer, 0.8),
+        backgroundColor: setAlpha(token2.colorBgContainer, 0.8),
         backgroundImage: "radial-gradient(circle at 93% 1e+02%, rgba(22,119,255,0.17) 0%, rgba(255,255,255,0.05) 23%, rgba(255,255,255,0.03) 87%, rgba(22,119,255,0.12) 109%)",
         padding: 32,
         boxShadow: "0px 0px 24px 0px rgba(0,0,0,0.1)"
@@ -12360,7 +12617,7 @@ const genLoginFormStyle = (token) => {
       "&-title": {
         position: "relative",
         tinsetBlockStartop: "2px",
-        color: token.colorTextHeading,
+        color: token2.colorTextHeading,
         fontWeight: "600",
         fontSize: "33px"
       },
@@ -12376,8 +12633,8 @@ const genLoginFormStyle = (token) => {
       "&-desc": {
         marginBlockStart: "12px",
         marginBlockEnd: "40px",
-        color: token.colorTextSecondary,
-        fontSize: token.fontSize
+        color: token2.colorTextSecondary,
+        fontSize: token2.fontSize
       },
       "&-main": {
         width: "328px",
@@ -12389,8 +12646,8 @@ const genLoginFormStyle = (token) => {
         }
       }
     },
-    [`@media (max-width: ${token.screenMDMin}px)`]: {
-      [token.componentCls]: {
+    [`@media (max-width: ${token2.screenMDMin}px)`]: {
+      [token2.componentCls]: {
         flexDirection: "column-reverse",
         background: "none !important",
         "&-container": {
@@ -12410,8 +12667,8 @@ const genLoginFormStyle = (token) => {
         }
       }
     },
-    [`@media (min-width: ${token.screenMDMin}px)`]: {
-      [token.componentCls]: {
+    [`@media (min-width: ${token2.screenMDMin}px)`]: {
+      [token2.componentCls]: {
         "&-left": {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center 110px",
@@ -12419,25 +12676,23 @@ const genLoginFormStyle = (token) => {
         }
       }
     },
-    [`@media (max-width: ${token.screenSM}px)`]: {
-      [token.componentCls]: {
+    [`@media (max-width: ${token2.screenSM}px)`]: {
+      [token2.componentCls]: {
         "&-main": { width: "95%", maxWidth: "328px" }
       }
     }
   };
 };
 function useStyle$i(prefixCls) {
-  return useStyle$A("LoginFormPage", (token) => {
-    const loginFormToken = {
-      ...token,
+  return useStyle$A("LoginFormPage", (token2) => {
+    const loginFormToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genLoginFormStyle(loginFormToken)];
   });
 }
-
 function LoginFormPage(props) {
-  const {
+  const _a2 = props, {
     logo,
     message,
     style,
@@ -12450,31 +12705,44 @@ function LoginFormPage(props) {
     children,
     containerStyle,
     otherStyle,
-    mainStyle,
-    ...proFormProps
-  } = props;
+    mainStyle
+  } = _a2, proFormProps2 = __objRest(_a2, [
+    "logo",
+    "message",
+    "style",
+    "activityConfig",
+    "backgroundImageUrl",
+    "backgroundVideoUrl",
+    "title",
+    "subTitle",
+    "actions",
+    "children",
+    "containerStyle",
+    "otherStyle",
+    "mainStyle"
+  ]);
   const intl = useIntl();
   const genSubmitButtonProps = () => {
-    if (proFormProps.submitter === false)
+    var _a3, _b2;
+    if (proFormProps2.submitter === false)
       return false;
-    if (proFormProps.submitter?.submitButtonProps === false)
+    if (((_a3 = proFormProps2.submitter) == null ? void 0 : _a3.submitButtonProps) === false)
       return false;
-    return {
+    return __spreadValues({
       size: "large",
       style: {
         width: "100%"
-      },
-      ...proFormProps.submitter?.submitButtonProps
-    };
+      }
+    }, (_b2 = proFormProps2.submitter) == null ? void 0 : _b2.submitButtonProps);
   };
-  const submitter = {
+  const submitter = __spreadProps(__spreadValues({
     searchConfig: {
       submitText: intl.formatMessage({ id: "loginForm.submitText", defaultMessage: "登入" })
     },
-    render: (_, dom) => dom.pop(),
-    ...proFormProps.submitter,
+    render: (_, dom) => dom.pop()
+  }, proFormProps2.submitter), {
     submitButtonProps: genSubmitButtonProps()
-  };
+  });
   const context = useContext(ConfigProvider.ConfigContext);
   const baseClassName = context.getPrefixCls("pro-form-login-page");
   const { wrapSSR, hashId } = useStyle$i(baseClassName);
@@ -12492,11 +12760,10 @@ function LoginFormPage(props) {
       "div",
       {
         className: classNames(baseClassName, hashId),
-        style: {
-          ...style,
+        style: __spreadProps(__spreadValues({}, style), {
           position: "relative",
           backgroundImage: `url("${backgroundImageUrl}")`
-        },
+        }),
         children: [
           backgroundVideoUrl ? /* @__PURE__ */ jsx(
             "div",
@@ -12554,10 +12821,10 @@ function LoginFormPage(props) {
               subTitle ? /* @__PURE__ */ jsx("div", { className: getCls("desc"), children: subTitle }) : null
             ] }),
             /* @__PURE__ */ jsxs("div", { className: getCls("main"), style: mainStyle, children: [
-              /* @__PURE__ */ jsxs(ProForm, { isKeyPressSubmit: true, ...proFormProps, submitter, children: [
+              /* @__PURE__ */ jsxs(ProForm, __spreadProps(__spreadValues({ isKeyPressSubmit: true }, proFormProps2), { submitter, children: [
                 message,
                 children
-              ] }),
+              ] })),
               actions ? /* @__PURE__ */ jsx("div", { className: getCls("other"), style: otherStyle, children: actions }) : null
             ] })
           ] }) })
@@ -12566,14 +12833,11 @@ function LoginFormPage(props) {
     )
   );
 }
-
 const ProFormGroup = ProForm.Group;
-
 const RouteContext = createContext({});
-
-const genFooterToolBarStyle$1 = (token) => {
+const genFooterToolBarStyle$1 = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       position: "fixed",
       insetInlineEnd: 0,
       bottom: 0,
@@ -12586,18 +12850,18 @@ const genFooterToolBarStyle$1 = (token) => {
       boxSizing: "border-box",
       lineHeight: "64px",
       /* A way to reset the style of the component. */
-      backgroundColor: setAlpha(token.colorBgElevated, 0.6),
-      borderBlockStart: `1px solid ${token.colorSplit}`,
+      backgroundColor: setAlpha(token2.colorBgElevated, 0.6),
+      borderBlockStart: `1px solid ${token2.colorSplit}`,
       "-webkit-backdrop-filter": "blur(8px)",
       backdropFilter: "blur(8px)",
-      color: token.colorText,
+      color: token2.colorText,
       transition: "all 0.2s ease 0s",
       "&-left": {
         flex: 1,
-        color: token.colorText
+        color: token2.colorText
       },
       "&-right": {
-        color: token.colorText,
+        color: token2.colorText,
         "> *": {
           marginInlineEnd: 8,
           "&:last-child": {
@@ -12610,43 +12874,45 @@ const genFooterToolBarStyle$1 = (token) => {
   };
 };
 function useStyle$h(prefixCls) {
-  return useStyle$A("ProLayoutFooterToolbar", (token) => {
-    const proCardToken = {
-      ...token,
+  return useStyle$A("ProLayoutFooterToolbar", (token2) => {
+    const proCardToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genFooterToolBarStyle$1(proCardToken)];
   });
 }
-
 function useStylish$3(prefixCls, {
   stylish
 }) {
-  return useStyle$A("ProLayoutFooterToolbarStylish", (token) => {
-    const stylishToken = {
-      ...token,
+  return useStyle$A("ProLayoutFooterToolbarStylish", (token2) => {
+    const stylishToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     if (!stylish)
       return [];
     return [
       {
-        [`${stylishToken.componentCls}`]: stylish?.(stylishToken)
+        [`${stylishToken.componentCls}`]: stylish == null ? void 0 : stylish(stylishToken)
       }
     ];
   });
 }
-
 const FooterToolbar = (props) => {
-  const {
+  const _a2 = props, {
     children,
     className,
     extra,
     portalDom = true,
     style,
-    renderContent,
-    ...restProps
-  } = props;
+    renderContent
+  } = _a2, restProps = __objRest(_a2, [
+    "children",
+    "className",
+    "extra",
+    "portalDom",
+    "style",
+    "renderContent"
+  ]);
   const { getPrefixCls, getTargetContainer } = useContext(
     ConfigProvider.ConfigContext
   );
@@ -12667,7 +12933,7 @@ const FooterToolbar = (props) => {
   const containerDom = useMemo(() => {
     if (typeof window === void 0 || typeof document === void 0)
       return null;
-    return getTargetContainer?.() || document.body;
+    return (getTargetContainer == null ? void 0 : getTargetContainer()) || document.body;
   }, []);
   const stylish = useStylish$3(`${baseClassName}.${baseClassName}-stylish`, {
     stylish: props.stylish
@@ -12677,42 +12943,40 @@ const FooterToolbar = (props) => {
     /* @__PURE__ */ jsx("div", { className: `${baseClassName}-right ${hashId}`.trim(), children })
   ] });
   useEffect(() => {
-    if (!value || !value?.setHasFooterToolbar) {
+    if (!value || !(value == null ? void 0 : value.setHasFooterToolbar)) {
       return () => {
       };
     }
-    value?.setHasFooterToolbar(true);
+    value == null ? void 0 : value.setHasFooterToolbar(true);
     return () => {
-      value?.setHasFooterToolbar?.(false);
+      var _a3;
+      (_a3 = value == null ? void 0 : value.setHasFooterToolbar) == null ? void 0 : _a3.call(value, false);
     };
   }, []);
   const renderDom = /* @__PURE__ */ jsx(
     "div",
-    {
+    __spreadProps(__spreadValues({
       className: classNames(className, hashId, baseClassName, {
         [`${baseClassName}-stylish`]: !!props.stylish
       }),
-      style: { width, ...style },
-      ...omit(restProps, ["prefixCls"]),
+      style: __spreadValues({ width }, style)
+    }, omit(restProps, ["prefixCls"])), {
       children: renderContent ? renderContent(
-        {
-          ...props,
-          ...value,
+        __spreadProps(__spreadValues(__spreadValues({}, props), value), {
           leftWidth: width
-        },
+        }),
         dom
       ) : dom
-    }
+    })
   );
   const ssrDom = !isBrowser() || !portalDom || !containerDom ? renderDom : createPortal(renderDom, containerDom, baseClassName);
   return stylish.wrapSSR(
     wrapSSR(/* @__PURE__ */ jsx(React__default.Fragment, { children: ssrDom }, baseClassName))
   );
 };
-
-const genGridContentStyle = (token) => {
+const genGridContentStyle = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       width: "100%",
       "&-wide": {
         maxWidth: 1152,
@@ -12722,15 +12986,13 @@ const genGridContentStyle = (token) => {
   };
 };
 function useStyle$g(prefixCls) {
-  return useStyle$A("ProLayoutGridContent", (token) => {
-    const GridContentToken = {
-      ...token,
+  return useStyle$A("ProLayoutGridContent", (token2) => {
+    const GridContentToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genGridContentStyle(GridContentToken)];
   });
 }
-
 const GridContent = (props) => {
   const value = useContext(RouteContext);
   const {
@@ -12758,50 +13020,49 @@ const GridContent = (props) => {
     )
   );
 };
-
 const textOverflowEllipsis = () => ({
   overflow: "hidden",
   whiteSpace: "nowrap",
   textOverflow: "ellipsis"
 });
-const genPageHeaderStyle = (token) => {
+const genPageHeaderStyle = (token2) => {
+  var _a2, _b2;
   return {
-    [token.componentCls]: {
-      ...resetComponent?.(token),
+    [token2.componentCls]: __spreadProps(__spreadValues({}, (_a2 = resetComponent) == null ? void 0 : _a2(token2)), {
       position: "relative",
-      backgroundColor: token.pageHeaderBgGhost,
-      paddingBlock: token.pageHeaderPaddingVertical + 2,
-      paddingInline: token.pageHeaderPadding,
+      backgroundColor: token2.pageHeaderBgGhost,
+      paddingBlock: token2.pageHeaderPaddingVertical + 2,
+      paddingInline: token2.pageHeaderPadding,
       "& &-has-breadcrumb": {
-        paddingBlockStart: token.pageHeaderPaddingBreadCrumb
+        paddingBlockStart: token2.pageHeaderPaddingBreadCrumb
       },
       "& &-has-footer": {
         paddingBlockEnd: 0
       },
       "& &-back": {
-        marginInlineEnd: token.margin,
+        marginInlineEnd: token2.margin,
         fontSize: 16,
         lineHeight: 1,
-        "&-button": {
-          fontSize: 16,
-          ...operationUnit?.(token),
-          color: token.pageHeaderColorBack,
+        "&-button": __spreadProps(__spreadValues({
+          fontSize: 16
+        }, (_b2 = operationUnit) == null ? void 0 : _b2(token2)), {
+          color: token2.pageHeaderColorBack,
           cursor: "pointer"
-        },
-        [`${token.componentCls}-rlt &`]: {
+        }),
+        [`${token2.componentCls}-rlt &`]: {
           float: "right",
           marginInlineEnd: 0,
           marginInlineStart: 0
         }
       },
-      [`& ${token.ipassCls}-divider-vertical`]: {
+      [`& ${token2.ipassCls}-divider-vertical`]: {
         height: 14,
         marginBlock: 0,
-        marginInline: token.marginSM,
+        marginInline: token2.marginSM,
         verticalAlign: "middle"
       },
       [`& &-breadcrumb + &-heading`]: {
-        marginBlockStart: token.marginXS
+        marginBlockStart: token2.marginXS
       },
       "& &-heading": {
         display: "flex",
@@ -12809,76 +13070,76 @@ const genPageHeaderStyle = (token) => {
         "&-left": {
           display: "flex",
           alignItems: "center",
-          marginBlock: token.marginXS / 2,
+          marginBlock: token2.marginXS / 2,
           marginInlineEnd: 0,
           marginInlineStart: 0,
           overflow: "hidden"
         },
-        "&-title": {
-          marginInlineEnd: token.marginSM,
+        "&-title": __spreadProps(__spreadValues({
+          marginInlineEnd: token2.marginSM,
           marginBlockEnd: 0,
-          color: token.colorTextHeading,
+          color: token2.colorTextHeading,
           fontWeight: 600,
-          fontSize: token.pageHeaderFontSizeHeaderTitle,
-          lineHeight: token.controlHeight + "px",
-          ...textOverflowEllipsis(),
-          [`${token.componentCls}-rlt &`]: {
+          fontSize: token2.pageHeaderFontSizeHeaderTitle,
+          lineHeight: token2.controlHeight + "px"
+        }, textOverflowEllipsis()), {
+          [`${token2.componentCls}-rlt &`]: {
             marginInlineEnd: 0,
-            marginInlineStart: token.marginSM
+            marginInlineStart: token2.marginSM
           }
-        },
+        }),
         "&-avatar": {
-          marginInlineEnd: token.marginSM,
-          [`${token.componentCls}-rlt &`]: {
+          marginInlineEnd: token2.marginSM,
+          [`${token2.componentCls}-rlt &`]: {
             float: "right",
             marginInlineEnd: 0,
-            marginInlineStart: token.marginSM
+            marginInlineStart: token2.marginSM
           }
         },
         "&-tags": {
-          [`${token.componentCls}-rlt &`]: {
+          [`${token2.componentCls}-rlt &`]: {
             float: "right"
           }
         },
-        "&-sub-title": {
-          marginInlineEnd: token.marginSM,
-          color: token.colorTextSecondary,
-          fontSize: token.pageHeaderFontSizeHeaderSubTitle,
-          lineHeight: token.lineHeight,
-          ...textOverflowEllipsis(),
-          [`${token.componentCls}-rlt &`]: {
+        "&-sub-title": __spreadProps(__spreadValues({
+          marginInlineEnd: token2.marginSM,
+          color: token2.colorTextSecondary,
+          fontSize: token2.pageHeaderFontSizeHeaderSubTitle,
+          lineHeight: token2.lineHeight
+        }, textOverflowEllipsis()), {
+          [`${token2.componentCls}-rlt &`]: {
             float: "right",
             marginInlineEnd: 0,
             marginInlineStart: 12
           }
-        },
+        }),
         "&-extra": {
-          marginBlock: token.marginXS / 2,
+          marginBlock: token2.marginXS / 2,
           marginInlineEnd: 0,
           marginInlineStart: 0,
           whiteSpace: "nowrap",
           "> *": {
             "white-space": "unset",
-            [`${token.componentCls}-rlt &`]: {
-              marginInlineEnd: token.marginSM,
+            [`${token2.componentCls}-rlt &`]: {
+              marginInlineEnd: token2.marginSM,
               marginInlineStart: 0
             }
           },
-          [`${token.componentCls}-rlt &`]: {
+          [`${token2.componentCls}-rlt &`]: {
             float: "left"
           },
           "*:first-child": {
-            [`${token.componentCls}-rlt &`]: {
+            [`${token2.componentCls}-rlt &`]: {
               marginInlineEnd: 0
             }
           }
         }
       },
       "&-content": {
-        paddingBlockStart: token.pageHeaderPaddingContentPadding
+        paddingBlockStart: token2.pageHeaderPaddingContentPadding
       },
       "&-footer": {
-        marginBlockStart: token.margin
+        marginBlockStart: token2.margin
       },
       "&-compact &-heading": {
         flexWrap: "wrap"
@@ -12890,27 +13151,25 @@ const genPageHeaderStyle = (token) => {
       "&-rtl": {
         direction: "rtl"
       }
-    }
+    })
   };
 };
 function useStyle$f(prefixCls) {
-  return useStyle$A("ProLayoutPageHeader", (token) => {
-    const proCardToken = {
-      ...token,
+  return useStyle$A("ProLayoutPageHeader", (token2) => {
+    const proCardToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`,
       pageHeaderBgGhost: "transparent",
       pageHeaderPadding: 16,
       pageHeaderPaddingVertical: 4,
-      pageHeaderPaddingBreadCrumb: token.paddingSM,
-      pageHeaderColorBack: token.colorTextHeading,
-      pageHeaderFontSizeHeaderTitle: token.fontSizeHeading4,
+      pageHeaderPaddingBreadCrumb: token2.paddingSM,
+      pageHeaderColorBack: token2.colorTextHeading,
+      pageHeaderFontSizeHeaderTitle: token2.fontSizeHeading4,
       pageHeaderFontSizeHeaderSubTitle: 14,
-      pageHeaderPaddingContentPadding: token.paddingSM
-    };
+      pageHeaderPaddingContentPadding: token2.paddingSM
+    });
     return [genPageHeaderStyle(proCardToken)];
   });
 }
-
 const renderBack = (prefixCls, hashId, backIcon, onBack) => {
   if (!backIcon || !onBack) {
     return null;
@@ -12920,7 +13179,7 @@ const renderBack = (prefixCls, hashId, backIcon, onBack) => {
     {
       role: "button",
       onClick: (e) => {
-        onBack?.(e);
+        onBack == null ? void 0 : onBack(e);
       },
       className: `${prefixCls}-back-button ${hashId}`.trim(),
       "aria-label": "back",
@@ -12937,27 +13196,30 @@ const renderBreadcrumb = (breadcrumb, items, prefixCls) => {
       className: classNames(`${prefixCls}-breadcrumb`, breadcrumb.className),
       "aria-label": "breadcrumb",
       children: [
-        linkItems.map((item, index) => item.disabled ? /* @__PURE__ */ jsx(
-          Typography$1,
-          {
-            sx: { fontSize: "0.85rem" },
-            color: "inherit",
-            children: item?.title
-          },
-          `breadcrumb-${item.title}-${index}`
-        ) : /* @__PURE__ */ jsx(
-          MUILink,
-          {
-            component: Link,
-            underline: "hover",
-            color: "inherit",
-            sx: { fontSize: "0.85rem" },
-            href: item.href ?? "#",
-            children: item.title
-          },
-          `breadcrumb-${item.title}-${index}`
-        )),
-        /* @__PURE__ */ jsx(Typography$1, { sx: { fontSize: "0.85rem" }, color: "inherit", children: currentItem?.title }, `breadcrumb-${currentItem?.title}-9999`)
+        linkItems.map((item, index2) => {
+          var _a2;
+          return item.disabled ? /* @__PURE__ */ jsx(
+            Typography$1,
+            {
+              sx: { fontSize: "0.85rem" },
+              color: "inherit",
+              children: item == null ? void 0 : item.title
+            },
+            `breadcrumb-${item.title}-${index2}`
+          ) : /* @__PURE__ */ jsx(
+            MUILink,
+            {
+              component: Link,
+              underline: "hover",
+              color: "inherit",
+              sx: { fontSize: "0.85rem" },
+              href: (_a2 = item.href) != null ? _a2 : "#",
+              children: item.title
+            },
+            `breadcrumb-${item.title}-${index2}`
+          );
+        }),
+        /* @__PURE__ */ jsx(Typography$1, { sx: { fontSize: "0.85rem" }, color: "inherit", children: currentItem == null ? void 0 : currentItem.title }, `breadcrumb-${currentItem == null ? void 0 : currentItem.title}-9999`)
       ]
     }
   );
@@ -13010,10 +13272,12 @@ const renderFooter$1 = (prefixCls, footer, hashId) => {
 };
 const renderChildren = (prefixCls, children, hashId) => /* @__PURE__ */ jsx("div", { className: `${prefixCls}-content ${hashId}`.trim(), children });
 const PageHeader = (props) => {
+  var _a2;
   const [compact, updateCompact] = React.useState(false);
   const pathname = usePathname();
   const intl = useIntl();
   const getBreadcrumbItems = (routes, prefix = "") => {
+    var _a3, _b2;
     for (const route of routes) {
       if (route.path === pathname) {
         return [
@@ -13024,7 +13288,7 @@ const PageHeader = (props) => {
           }
         ];
       }
-      if ((route.routes?.length ?? 0) > 0) {
+      if (((_b2 = (_a3 = route.routes) == null ? void 0 : _a3.length) != null ? _b2 : 0) > 0) {
         const childRoute = getBreadcrumbItems(route.routes, `${prefix}.${route.name}`);
         if (childRoute.length) {
           return [
@@ -13056,7 +13320,7 @@ const PageHeader = (props) => {
     contentWidth,
     layout
   } = props;
-  const breadcrumbItems = breadcrumbRender === false ? [] : rawBreadcrumbItems ?? getBreadcrumbItems(useAppData().clientRoutes);
+  const breadcrumbItems = breadcrumbRender === false ? [] : rawBreadcrumbItems != null ? rawBreadcrumbItems : getBreadcrumbItems(useAppData().clientRoutes);
   const prefixCls = getPrefixCls("page-header", customizePrefixCls);
   const { wrapSSR, hashId } = useStyle$f(prefixCls);
   const getDefaultBreadcrumbDom = () => {
@@ -13066,7 +13330,7 @@ const PageHeader = (props) => {
     return null;
   };
   const defaultBreadcrumbDom = getDefaultBreadcrumbDom();
-  const breadcrumbRenderDomFromProps = breadcrumbRender === false ? /* @__PURE__ */ jsx(Fragment, {}) : breadcrumbRender?.({ ...props, prefixCls }, defaultBreadcrumbDom) ?? defaultBreadcrumbDom;
+  const breadcrumbRenderDomFromProps = breadcrumbRender === false ? /* @__PURE__ */ jsx(Fragment, {}) : (_a2 = breadcrumbRender == null ? void 0 : breadcrumbRender(__spreadProps(__spreadValues({}, props), { prefixCls }), defaultBreadcrumbDom)) != null ? _a2 : defaultBreadcrumbDom;
   const breadcrumbDom = breadcrumbRenderDomFromProps;
   const className = classNames(prefixCls, hashId, customizeClassName, {
     [`${prefixCls}-has-breadcrumb`]: !!breadcrumbDom,
@@ -13090,51 +13354,50 @@ const PageHeader = (props) => {
     ] }) })
   );
 };
-
 const PageLoading = () => /* @__PURE__ */ jsx("div", { style: { paddingBlockStart: 100, textAlign: "center" }, children: /* @__PURE__ */ jsx(CircularProgress, {}) });
-
 const [sm, md, lg, xl] = [576, 768, 992, 1200].map(
   (bp) => `@media (max-width: ${bp}px)`
 );
-const genPageContainerStyle = (token) => {
+const genPageContainerStyle = (token2) => {
+  var _a2, _b2, _c2, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C, _D;
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       position: "relative",
       "&-children-container": {
         paddingBlockStart: 0,
-        paddingBlockEnd: token.layout?.pageContainer?.paddingBlockPageContainerContent,
-        paddingInline: token.layout?.pageContainer?.paddingInlinePageContainerContent
+        paddingBlockEnd: (_b2 = (_a2 = token2.layout) == null ? void 0 : _a2.pageContainer) == null ? void 0 : _b2.paddingBlockPageContainerContent,
+        paddingInline: (_d = (_c2 = token2.layout) == null ? void 0 : _c2.pageContainer) == null ? void 0 : _d.paddingInlinePageContainerContent
       },
       "&-children-container-no-header": {
-        paddingBlockStart: token.layout?.pageContainer?.paddingBlockPageContainerContent
+        paddingBlockStart: (_f = (_e = token2.layout) == null ? void 0 : _e.pageContainer) == null ? void 0 : _f.paddingBlockPageContainerContent
       },
       "&-affix": {
-        [`${token.ipassCls}-affix`]: {
-          [`${token.componentCls}-warp`]: {
-            backgroundColor: token.layout?.pageContainer?.colorBgPageContainerFixed,
+        [`${token2.ipassCls}-affix`]: {
+          [`${token2.componentCls}-warp`]: {
+            backgroundColor: (_h = (_g = token2.layout) == null ? void 0 : _g.pageContainer) == null ? void 0 : _h.colorBgPageContainerFixed,
             transition: "background-color 0.3s",
             boxShadow: "0 2px 8px #f0f1f2"
           }
         }
       },
       ["& &-warp-page-header"]: {
-        paddingBlockStart: (token.layout?.pageContainer?.paddingBlockPageContainerContent ?? 40) / 4,
-        paddingBlockEnd: (token.layout?.pageContainer?.paddingBlockPageContainerContent ?? 40) / 2,
-        paddingInlineStart: token.layout?.pageContainer?.paddingInlinePageContainerContent,
-        paddingInlineEnd: token.layout?.pageContainer?.paddingInlinePageContainerContent,
-        [`& ~ ${token.proComponentsCls}-grid-content`]: {
-          [`${token.proComponentsCls}-page-container-children-content`]: {
-            paddingBlock: (token.layout?.pageContainer?.paddingBlockPageContainerContent ?? 24) / 3
+        paddingBlockStart: ((_k = (_j = (_i = token2.layout) == null ? void 0 : _i.pageContainer) == null ? void 0 : _j.paddingBlockPageContainerContent) != null ? _k : 40) / 4,
+        paddingBlockEnd: ((_n = (_m = (_l = token2.layout) == null ? void 0 : _l.pageContainer) == null ? void 0 : _m.paddingBlockPageContainerContent) != null ? _n : 40) / 2,
+        paddingInlineStart: (_p = (_o = token2.layout) == null ? void 0 : _o.pageContainer) == null ? void 0 : _p.paddingInlinePageContainerContent,
+        paddingInlineEnd: (_r = (_q = token2.layout) == null ? void 0 : _q.pageContainer) == null ? void 0 : _r.paddingInlinePageContainerContent,
+        [`& ~ ${token2.proComponentsCls}-grid-content`]: {
+          [`${token2.proComponentsCls}-page-container-children-content`]: {
+            paddingBlock: ((_u = (_t = (_s = token2.layout) == null ? void 0 : _s.pageContainer) == null ? void 0 : _t.paddingBlockPageContainerContent) != null ? _u : 24) / 3
           }
         },
-        [`${token.ipassCls}-page-header-breadcrumb`]: {
-          paddingBlockStart: (token.layout?.pageContainer?.paddingBlockPageContainerContent ?? 40) / 4 + 10
+        [`${token2.ipassCls}-page-header-breadcrumb`]: {
+          paddingBlockStart: ((_x = (_w = (_v = token2.layout) == null ? void 0 : _v.pageContainer) == null ? void 0 : _w.paddingBlockPageContainerContent) != null ? _x : 40) / 4 + 10
         },
-        [`${token.ipassCls}-page-header-heading`]: {
-          paddingBlockStart: (token.layout?.pageContainer?.paddingBlockPageContainerContent ?? 40) / 4
+        [`${token2.ipassCls}-page-header-heading`]: {
+          paddingBlockStart: ((_A = (_z = (_y = token2.layout) == null ? void 0 : _y.pageContainer) == null ? void 0 : _z.paddingBlockPageContainerContent) != null ? _A : 40) / 4
         },
-        [`${token.ipassCls}-page-header-footer`]: {
-          marginBlockStart: (token.layout?.pageContainer?.paddingBlockPageContainerContent ?? 40) / 4
+        [`${token2.ipassCls}-page-header-footer`]: {
+          marginBlockStart: ((_D = (_C = (_B = token2.layout) == null ? void 0 : _B.pageContainer) == null ? void 0 : _C.paddingBlockPageContainerContent) != null ? _D : 40) / 4
         }
       },
       "&-detail": {
@@ -13180,40 +13443,33 @@ const genPageContainerStyle = (token) => {
   };
 };
 function useStyle$e(prefixCls, componentsToken) {
-  return useStyle$A("ProLayoutPageContainer", (token) => {
-    const proCardToken = {
-      ...token,
+  return useStyle$A("ProLayoutPageContainer", (token2) => {
+    var _a2;
+    const proCardToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`,
-      layout: {
-        ...token?.layout,
-        pageContainer: {
-          ...token?.layout?.pageContainer,
-          ...componentsToken
-        }
-      }
-    };
+      layout: __spreadProps(__spreadValues({}, token2 == null ? void 0 : token2.layout), {
+        pageContainer: __spreadValues(__spreadValues({}, (_a2 = token2 == null ? void 0 : token2.layout) == null ? void 0 : _a2.pageContainer), componentsToken)
+      })
+    });
     return [genPageContainerStyle(proCardToken)];
   });
 }
-
 function useStylish$2(prefixCls, {
   stylish
 }) {
-  return useStyle$A("ProLayoutPageContainerStylish", (token) => {
-    const stylishToken = {
-      ...token,
+  return useStyle$A("ProLayoutPageContainerStylish", (token2) => {
+    const stylishToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     if (!stylish)
       return [];
     return [
       {
-        [`div${stylishToken.componentCls}`]: stylish?.(stylishToken)
+        [`div${stylishToken.componentCls}`]: stylish == null ? void 0 : stylish(stylishToken)
       }
     ];
   });
 }
-
 const version$1 = "5.1.7";
 const renderFooter = ({
   tabList,
@@ -13227,7 +13483,7 @@ const renderFooter = ({
   if (Array.isArray(tabList) || tabBarExtraContent) {
     return /* @__PURE__ */ jsx(
       Tabs,
-      {
+      __spreadProps(__spreadValues({
         className: `${prefixedClassName}-tabs ${hashId}`.trim(),
         activeKey: tabActiveKey,
         onChange: (key) => {
@@ -13236,23 +13492,25 @@ const renderFooter = ({
           }
         },
         tabBarExtraContent,
-        items: tabList?.map((item, index) => ({
-          label: item.tab,
-          ...item,
-          key: item.key?.toString() || index?.toString()
-        })),
-        ...tabProps,
-        children: compareVersions(version$1, "4.23.0") < 0 ? tabList?.map((item, index) => {
+        items: tabList == null ? void 0 : tabList.map((item, index2) => {
+          var _a2;
+          return __spreadProps(__spreadValues({
+            label: item.tab
+          }, item), {
+            key: ((_a2 = item.key) == null ? void 0 : _a2.toString()) || (index2 == null ? void 0 : index2.toString())
+          });
+        })
+      }, tabProps), {
+        children: compareVersions(version$1, "4.23.0") < 0 ? tabList == null ? void 0 : tabList.map((item, index2) => {
           return /* @__PURE__ */ jsx(
             Tabs.TabPane,
-            {
-              tab: item.tab,
-              ...item
-            },
-            item.key || index
+            __spreadValues({
+              tab: item.tab
+            }, item),
+            item.key || index2
           );
         }) : null
-      }
+      })
     );
   }
   return null;
@@ -13273,7 +13531,7 @@ const renderPageHeader = (content, extraContent, prefixedClassName, hashId) => {
   ] }) }) });
 };
 const memoRenderPageHeader = (props) => {
-  const {
+  const _a2 = props, {
     title,
     content,
     pageHeaderRender,
@@ -13285,9 +13543,21 @@ const memoRenderPageHeader = (props) => {
     prefixCls,
     hashId,
     value,
-    breadcrumbRender,
-    ...restProps
-  } = props;
+    breadcrumbRender
+  } = _a2, restProps = __objRest(_a2, [
+    "title",
+    "content",
+    "pageHeaderRender",
+    "header",
+    "prefixedClassName",
+    "extraContent",
+    "childrenContentStyle",
+    "style",
+    "prefixCls",
+    "hashId",
+    "value",
+    "breadcrumbRender"
+  ]);
   const getBreadcrumbRender = () => {
     if (breadcrumbRender === false) {
       return false;
@@ -13303,25 +13573,22 @@ const memoRenderPageHeader = (props) => {
   if (pageHeaderRender) {
     return /* @__PURE__ */ jsxs(Fragment, { children: [
       " ",
-      pageHeaderRender({ ...props, ...value })
+      pageHeaderRender(__spreadValues(__spreadValues({}, props), value))
     ] });
   }
   let pageHeaderTitle = title;
   if (!title && title !== false) {
     pageHeaderTitle = value.title;
   }
-  const pageHeaderProps = {
-    ...value,
-    title: pageHeaderTitle,
-    ...restProps,
-    footer: renderFooter({
-      ...restProps,
+  const pageHeaderProps = __spreadValues(__spreadProps(__spreadValues(__spreadProps(__spreadValues({}, value), {
+    title: pageHeaderTitle
+  }), restProps), {
+    footer: renderFooter(__spreadProps(__spreadValues({}, restProps), {
       hashId,
       breadcrumbRender,
       prefixedClassName
-    }),
-    ...header
-  };
+    }))
+  }), header);
   const { breadcrumb } = pageHeaderProps;
   const noHasBreadCrumb = !breadcrumb && !breadcrumbRender;
   if ([
@@ -13338,18 +13605,18 @@ const memoRenderPageHeader = (props) => {
   }
   return /* @__PURE__ */ jsx(
     PageHeader,
-    {
-      ...pageHeaderProps,
+    __spreadProps(__spreadValues({}, pageHeaderProps), {
       className: `${prefixedClassName}-warp-page-header ${hashId}`.trim(),
-      breadcrumb: breadcrumbRender === false ? void 0 : { ...pageHeaderProps.breadcrumb, ...value.breadcrumbProps },
+      breadcrumb: breadcrumbRender === false ? void 0 : __spreadValues(__spreadValues({}, pageHeaderProps.breadcrumb), value.breadcrumbProps),
       breadcrumbRender: getBreadcrumbRender(),
       prefixCls,
-      children: header?.children || renderPageHeader(content, extraContent, prefixedClassName, hashId)
-    }
+      children: (header == null ? void 0 : header.children) || renderPageHeader(content, extraContent, prefixedClassName, hashId)
+    })
   );
 };
 const PageContainerBase = (props) => {
-  const {
+  var _b2, _c2, _d;
+  const _a2 = props, {
     children,
     loading = false,
     className,
@@ -13360,21 +13627,34 @@ const PageContainerBase = (props) => {
     fixedHeader,
     breadcrumbRender,
     footerToolBarProps,
-    childrenContentStyle,
-    ...restProps
-  } = props;
+    childrenContentStyle
+  } = _a2, restProps = __objRest(_a2, [
+    "children",
+    "loading",
+    "className",
+    "style",
+    "footer",
+    "affixProps",
+    "token",
+    "fixedHeader",
+    "breadcrumbRender",
+    "footerToolBarProps",
+    "childrenContentStyle"
+  ]);
   const value = useContext(RouteContext);
   useEffect(() => {
-    if (!value || !value?.setHasPageContainer) {
+    var _a3;
+    if (!value || !(value == null ? void 0 : value.setHasPageContainer)) {
       return () => {
       };
     }
-    value?.setHasPageContainer?.((num) => num + 1);
+    (_a3 = value == null ? void 0 : value.setHasPageContainer) == null ? void 0 : _a3.call(value, (num) => num + 1);
     return () => {
-      value?.setHasPageContainer?.((num) => num - 1);
+      var _a4;
+      (_a4 = value == null ? void 0 : value.setHasPageContainer) == null ? void 0 : _a4.call(value, (num) => num - 1);
     };
   }, []);
-  const { token } = useContext(ProProvider);
+  const { token: token2 } = useContext(ProProvider);
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const prefixCls = props.prefixCls || getPrefixCls("pro");
   const basePageContainer = `${prefixCls}-page-container`;
@@ -13386,19 +13666,19 @@ const PageContainerBase = (props) => {
     }
   );
   const memoBreadcrumbRender = useMemo(() => {
+    var _a3;
     if (breadcrumbRender == false)
       return false;
-    return breadcrumbRender || restProps?.header?.breadcrumbRender;
-  }, [breadcrumbRender, restProps?.header?.breadcrumbRender]);
-  const pageHeaderDom = memoRenderPageHeader({
-    ...restProps,
+    return breadcrumbRender || ((_a3 = restProps == null ? void 0 : restProps.header) == null ? void 0 : _a3.breadcrumbRender);
+  }, [breadcrumbRender, (_b2 = restProps == null ? void 0 : restProps.header) == null ? void 0 : _b2.breadcrumbRender]);
+  const pageHeaderDom = memoRenderPageHeader(__spreadProps(__spreadValues({}, restProps), {
     breadcrumbRender: memoBreadcrumbRender,
     ghost: true,
     hashId,
     prefixCls: void 0,
     prefixedClassName: basePageContainer,
     value
-  });
+  }));
   const loadingDom = useMemo(() => {
     if (!loading) {
       return null;
@@ -13438,36 +13718,35 @@ const PageContainerBase = (props) => {
             // 在 hasHeader 且 fixedHeader 的情況下，才需要設置高度
             /* @__PURE__ */ jsx(
               Affix,
-              {
-                offsetTop: value.hasHeader && value.fixedHeader ? token.layout?.header?.heightLayoutHeader : 1,
-                ...affixProps,
+              __spreadProps(__spreadValues({
+                offsetTop: value.hasHeader && value.fixedHeader ? (_d = (_c2 = token2.layout) == null ? void 0 : _c2.header) == null ? void 0 : _d.heightLayoutHeader : 1
+              }, affixProps), {
                 className: `${basePageContainer}-affix ${hashId}`.trim(),
                 children: /* @__PURE__ */ jsx("div", { className: `${basePageContainer}-warp ${hashId}`.trim(), children: pageHeaderDom })
-              }
+              })
             )
           ) : pageHeaderDom,
           renderContentDom && /* @__PURE__ */ jsx(GridContent, { children: renderContentDom })
         ] }),
         footer && /* @__PURE__ */ jsx(
           FooterToolbar,
-          {
+          __spreadProps(__spreadValues({
             stylish: restProps.footerStylish,
-            prefixCls,
-            ...footerToolBarProps,
+            prefixCls
+          }, footerToolBarProps), {
             children: footer
-          }
+          })
         )
       ] })
     )
   );
 };
 const PageContainer = (props) => {
-  return /* @__PURE__ */ jsx(ProConfigProvider, { needDeps: true, children: /* @__PURE__ */ jsx(PageContainerBase, { ...props }) });
+  return /* @__PURE__ */ jsx(ProConfigProvider, { needDeps: true, children: /* @__PURE__ */ jsx(PageContainerBase, __spreadValues({}, props)) });
 };
-
-const genFooterToolBarStyle = (token) => {
+const genFooterToolBarStyle = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       marginBlock: 0,
       marginBlockStart: 48,
       marginBlockEnd: 24,
@@ -13476,21 +13755,21 @@ const genFooterToolBarStyle = (token) => {
       paddingInline: 16,
       "&-list": {
         marginBlockEnd: 8,
-        color: token.colorTextSecondary,
+        color: token2.colorTextSecondary,
         "&-link": {
-          color: token.colorTextSecondary,
-          textDecoration: token.linkDecoration
+          color: token2.colorTextSecondary,
+          textDecoration: token2.linkDecoration
         },
         "*:not(:last-child)": {
           marginInlineEnd: 8
         },
         "&:hover": {
-          color: token.colorPrimary
+          color: token2.colorPrimary
         }
       },
       "&-copyright": {
         fontSize: "14px",
-        color: token.colorText,
+        color: token2.colorText,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -13502,15 +13781,13 @@ const genFooterToolBarStyle = (token) => {
   };
 };
 function useStyle$d(prefixCls) {
-  return useStyle$A("ProLayoutFooter", (token) => {
-    const proCardToken = {
-      ...token,
+  return useStyle$A("ProLayoutFooter", (token2) => {
+    const proCardToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genFooterToolBarStyle(proCardToken)];
   });
 }
-
 const GlobalFooter = ({
   className,
   prefixCls,
@@ -13542,7 +13819,6 @@ const GlobalFooter = ({
     ] })
   );
 };
-
 const { Footer } = Layout;
 const DefaultFooter = ({
   links,
@@ -13550,7 +13826,7 @@ const DefaultFooter = ({
   style,
   className,
   prefixCls
-}) => /* @__PURE__ */ jsx(Footer, { className, style: { padding: 0, ...style }, children: /* @__PURE__ */ jsx(
+}) => /* @__PURE__ */ jsx(Footer, { className, style: __spreadValues({ padding: 0 }, style), children: /* @__PURE__ */ jsx(
   GlobalFooter,
   {
     links,
@@ -13562,7 +13838,6 @@ const DefaultFooter = ({
     ] })
   }
 ) });
-
 const getOpenKeysFromMenuData = (menuData) => {
   return (menuData || []).reduce((pre, item) => {
     if (item.key) {
@@ -13580,19 +13855,18 @@ const getOpenKeysFromMenuData = (menuData) => {
 function clearMenuItem(menusData) {
   return menusData.map((item) => {
     const children = item.children || [];
-    const finalItem = { ...item };
+    const finalItem = __spreadValues({}, item);
     if (!finalItem.children && finalItem.routes) {
       finalItem.children = finalItem.routes;
     }
     if (!finalItem.name || finalItem.hideInMenu) {
       return null;
     }
-    if (finalItem && finalItem?.children) {
+    if (finalItem && (finalItem == null ? void 0 : finalItem.children)) {
       if (!finalItem.hideChildrenInMenu && children.some((child) => child && child.name && !child.hideInMenu)) {
-        return {
-          ...item,
+        return __spreadProps(__spreadValues({}, item), {
           children: clearMenuItem(children)
-        };
+        });
       }
       delete finalItem.children;
     }
@@ -13600,7 +13874,6 @@ function clearMenuItem(menusData) {
     return finalItem;
   }).filter((item) => item);
 }
-
 const AppsLogo = () => /* @__PURE__ */ jsx(
   "svg",
   {
@@ -13612,11 +13885,11 @@ const AppsLogo = () => /* @__PURE__ */ jsx(
     children: /* @__PURE__ */ jsx("path", { d: "M0 0h3v3H0V0zm4.5 0h3v3h-3V0zM9 0h3v3H9V0zM0 4.5h3v3H0v-3zm4.503 0h3v3h-3v-3zM9 4.5h3v3H9v-3zM0 9h3v3H0V9zm4.503 0h3v3h-3V9zM9 9h3v3H9V9z" })
   }
 );
-
 const DefaultContent = (props) => {
   const { appList, baseClassName, hashId, itemClick } = props;
-  return /* @__PURE__ */ jsx("div", { className: `${baseClassName}-content ${hashId}`.trim(), children: /* @__PURE__ */ jsx("ul", { className: `${baseClassName}-content-list ${hashId}`.trim(), children: appList?.map((app, index) => {
-    if (app?.children?.length) {
+  return /* @__PURE__ */ jsx("div", { className: `${baseClassName}-content ${hashId}`.trim(), children: /* @__PURE__ */ jsx("ul", { className: `${baseClassName}-content-list ${hashId}`.trim(), children: appList == null ? void 0 : appList.map((app, index2) => {
+    var _a2;
+    if ((_a2 = app == null ? void 0 : app.children) == null ? void 0 : _a2.length) {
       return /* @__PURE__ */ jsxs(
         "div",
         {
@@ -13634,13 +13907,13 @@ const DefaultContent = (props) => {
               {
                 hashId,
                 itemClick,
-                appList: app?.children,
+                appList: app == null ? void 0 : app.children,
                 baseClassName
               }
             )
           ]
         },
-        index
+        index2
       );
     }
     return /* @__PURE__ */ jsx(
@@ -13649,7 +13922,7 @@ const DefaultContent = (props) => {
         className: `${baseClassName}-content-list-item ${hashId}`.trim(),
         onClick: (e) => {
           e.stopPropagation();
-          itemClick?.(app);
+          itemClick == null ? void 0 : itemClick(app);
         },
         children: /* @__PURE__ */ jsxs(
           "a",
@@ -13667,11 +13940,10 @@ const DefaultContent = (props) => {
           }
         )
       },
-      index
+      index2
     );
   }) }) });
 };
-
 const renderLogo$1 = (logo, title) => {
   if (logo && typeof logo === "string" && isUrl$1(logo)) {
     return /* @__PURE__ */ jsx("img", { src: logo, alt: "logo" });
@@ -13690,8 +13962,9 @@ const renderLogo$1 = (logo, title) => {
 };
 const SimpleContent = (props) => {
   const { appList, baseClassName, hashId, itemClick } = props;
-  return /* @__PURE__ */ jsx("div", { className: `${baseClassName}-content ${hashId}`.trim(), children: /* @__PURE__ */ jsx("ul", { className: `${baseClassName}-content-list ${hashId}`.trim(), children: appList?.map((app, index) => {
-    if (app?.children?.length) {
+  return /* @__PURE__ */ jsx("div", { className: `${baseClassName}-content ${hashId}`.trim(), children: /* @__PURE__ */ jsx("ul", { className: `${baseClassName}-content-list ${hashId}`.trim(), children: appList == null ? void 0 : appList.map((app, index2) => {
+    var _a2;
+    if ((_a2 = app == null ? void 0 : app.children) == null ? void 0 : _a2.length) {
       return /* @__PURE__ */ jsxs(
         "div",
         {
@@ -13709,13 +13982,13 @@ const SimpleContent = (props) => {
               {
                 hashId,
                 itemClick,
-                appList: app?.children,
+                appList: app == null ? void 0 : app.children,
                 baseClassName
               }
             )
           ]
         },
-        index
+        index2
       );
     }
     return /* @__PURE__ */ jsx(
@@ -13724,7 +13997,7 @@ const SimpleContent = (props) => {
         className: `${baseClassName}-content-list-item ${hashId}`.trim(),
         onClick: (e) => {
           e.stopPropagation();
-          itemClick?.(app);
+          itemClick == null ? void 0 : itemClick(app);
         },
         children: /* @__PURE__ */ jsxs(
           "a",
@@ -13739,12 +14012,12 @@ const SimpleContent = (props) => {
           }
         )
       },
-      index
+      index2
     );
   }) }) });
 };
-
-const genAppsLogoComponentsDefaultListStyle = (token) => {
+const genAppsLogoComponentsDefaultListStyle = (token2) => {
+  var _a2;
   return {
     "&-content": {
       maxHeight: "calc(100vh - 48px)",
@@ -13767,7 +14040,7 @@ const genAppsLogoComponentsDefaultListStyle = (token) => {
           verticalAlign: "top",
           listStyleType: "none",
           transition: "transform 0.2s cubic-bezier(0.333, 0, 0, 1)",
-          borderRadius: token.borderRadius,
+          borderRadius: token2.borderRadius,
           "&-group": {
             marginBottom: 16,
             "&-title": {
@@ -13783,9 +14056,9 @@ const genAppsLogoComponentsDefaultListStyle = (token) => {
             }
           },
           "&:hover": {
-            backgroundColor: token.colorBgTextHover
+            backgroundColor: token2.colorBgTextHover
           },
-          "* div": resetComponent?.(token),
+          "* div": (_a2 = resetComponent) == null ? void 0 : _a2(token2),
           a: {
             display: "flex",
             height: "100%",
@@ -13797,14 +14070,14 @@ const genAppsLogoComponentsDefaultListStyle = (token) => {
             },
             "& > div": {
               marginInlineStart: 14,
-              color: token.colorTextHeading,
+              color: token2.colorTextHeading,
               fontSize: 14,
               lineHeight: "22px",
               whiteSpace: "nowrap",
               textOverflow: "ellipsis"
             },
             "& > div > span": {
-              color: token.colorTextSecondary,
+              color: token2.colorTextSecondary,
               fontSize: 12,
               lineHeight: "20px"
             }
@@ -13814,8 +14087,7 @@ const genAppsLogoComponentsDefaultListStyle = (token) => {
     }
   };
 };
-
-const genAppsLogoComponentsSimpleListStyle = (token) => {
+const genAppsLogoComponentsSimpleListStyle = (token2) => {
   return {
     "&-content": {
       maxHeight: "calc(100vh - 48px)",
@@ -13840,7 +14112,7 @@ const genAppsLogoComponentsSimpleListStyle = (token) => {
           verticalAlign: "top",
           listStyleType: "none",
           transition: "transform 0.2s cubic-bezier(0.333, 0, 0, 1)",
-          borderRadius: token.borderRadius,
+          borderRadius: token2.borderRadius,
           "&-group": {
             marginBottom: 16,
             "&-title": {
@@ -13856,7 +14128,7 @@ const genAppsLogoComponentsSimpleListStyle = (token) => {
             }
           },
           "&:hover": {
-            backgroundColor: token.colorBgTextHover
+            backgroundColor: token2.colorBgTextHover
           },
           a: {
             display: "flex",
@@ -13869,12 +14141,12 @@ const genAppsLogoComponentsSimpleListStyle = (token) => {
               width: 40,
               height: 40,
               margin: "0 auto",
-              color: token.colorPrimary,
+              color: token2.colorPrimary,
               fontSize: 22,
               lineHeight: "40px",
               textAlign: "center",
               backgroundImage: "linear-gradient(180deg, #E8F0FB 0%, #F6F8FC 100%)",
-              borderRadius: token.borderRadius
+              borderRadius: token2.borderRadius
             },
             "& > img": {
               width: 40,
@@ -13883,14 +14155,14 @@ const genAppsLogoComponentsSimpleListStyle = (token) => {
             "& > div": {
               marginBlockStart: 5,
               marginInlineStart: 0,
-              color: token.colorTextHeading,
+              color: token2.colorTextHeading,
               fontSize: 14,
               lineHeight: "22px",
               whiteSpace: "nowrap",
               textOverflow: "ellipsis"
             },
             "& > div > span": {
-              color: token.colorTextSecondary,
+              color: token2.colorTextSecondary,
               fontSize: 12,
               lineHeight: "20px"
             }
@@ -13900,10 +14172,10 @@ const genAppsLogoComponentsSimpleListStyle = (token) => {
     }
   };
 };
-
-const genAppsLogoComponentsStyle = (token) => {
+const genAppsLogoComponentsStyle = (token2) => {
+  var _a2, _b2, _c2, _d, _e;
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       "&-icon": {
         display: "inline-flex",
         alignItems: "center",
@@ -13915,15 +14187,15 @@ const genAppsLogoComponentsStyle = (token) => {
         height: 28,
         width: 28,
         cursor: "pointer",
-        color: token.layout?.colorTextAppListIcon,
-        borderRadius: token.borderRadius,
+        color: (_a2 = token2.layout) == null ? void 0 : _a2.colorTextAppListIcon,
+        borderRadius: token2.borderRadius,
         "&:hover": {
-          color: token.layout?.colorTextAppListIconHover,
-          backgroundColor: token.layout?.colorBgAppListIconHover
+          color: (_b2 = token2.layout) == null ? void 0 : _b2.colorTextAppListIconHover,
+          backgroundColor: (_c2 = token2.layout) == null ? void 0 : _c2.colorBgAppListIconHover
         },
         "&-active": {
-          color: token.layout?.colorTextAppListIconHover,
-          backgroundColor: token.layout?.colorBgAppListIconHover
+          color: (_d = token2.layout) == null ? void 0 : _d.colorTextAppListIconHover,
+          backgroundColor: (_e = token2.layout) == null ? void 0 : _e.colorBgAppListIconHover
         }
       },
       "&-item-title": {
@@ -13941,25 +14213,23 @@ const genAppsLogoComponentsStyle = (token) => {
         }
       },
       "&-popover": {
-        [`${token.ipassCls}-popover-arrow`]: {
+        [`${token2.ipassCls}-popover-arrow`]: {
           display: "none"
         }
       },
-      "&-simple": genAppsLogoComponentsSimpleListStyle(token),
-      "&-default": genAppsLogoComponentsDefaultListStyle(token)
+      "&-simple": genAppsLogoComponentsSimpleListStyle(token2),
+      "&-default": genAppsLogoComponentsDefaultListStyle(token2)
     }
   };
 };
 function useStyle$c(prefixCls) {
-  return useStyle$A("AppsLogoComponents", (token) => {
-    const proCardToken = {
-      ...token,
+  return useStyle$A("AppsLogoComponents", (token2) => {
+    const proCardToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genAppsLogoComponentsStyle(proCardToken)];
   });
 }
-
 const defaultRenderLogo = (logo) => {
   if (typeof logo === "string") {
     return /* @__PURE__ */ jsx("img", { width: "auto", height: 22, src: logo, alt: "logo" });
@@ -13970,6 +14240,7 @@ const defaultRenderLogo = (logo) => {
   return logo;
 };
 const AppsLogoComponents = (props) => {
+  var _a2;
   const {
     appList,
     appListRender,
@@ -13982,11 +14253,11 @@ const AppsLogoComponents = (props) => {
   const { wrapSSR, hashId } = useStyle$c(baseClassName);
   const [open, setOpen] = useState(false);
   const cloneItemClick = (app) => {
-    itemClick?.(app, popoverRef);
+    itemClick == null ? void 0 : itemClick(app, popoverRef);
   };
   const defaultDomContent = useMemo(() => {
-    const isSimple = appList?.some((app) => {
-      return !app?.desc;
+    const isSimple = appList == null ? void 0 : appList.some((app) => {
+      return !(app == null ? void 0 : app.desc);
     });
     if (isSimple) {
       return /* @__PURE__ */ jsx(
@@ -14009,9 +14280,9 @@ const AppsLogoComponents = (props) => {
       }
     );
   }, [appList, baseClassName, hashId]);
-  if (!props?.appList?.length)
+  if (!((_a2 = props == null ? void 0 : props.appList) == null ? void 0 : _a2.length))
     return null;
-  const popoverContent = appListRender ? appListRender(props?.appList, defaultDomContent) : defaultDomContent;
+  const popoverContent = appListRender ? appListRender(props == null ? void 0 : props.appList, defaultDomContent) : defaultDomContent;
   const popoverOpenProps = openVisibleCompatible(
     void 0,
     (openChange) => setOpen(openChange)
@@ -14030,12 +14301,12 @@ const AppsLogoComponents = (props) => {
       ),
       /* @__PURE__ */ jsx(
         Popover,
-        {
+        __spreadProps(__spreadValues({
           placement: "bottomRight",
           trigger: ["click"],
           zIndex: 9999,
-          arrow: false,
-          ...popoverOpenProps,
+          arrow: false
+        }, popoverOpenProps), {
           overlayClassName: `${baseClassName}-popover ${hashId}`.trim(),
           content: popoverContent,
           getPopupContainer: () => ref.current || document.body,
@@ -14052,12 +14323,11 @@ const AppsLogoComponents = (props) => {
               children: /* @__PURE__ */ jsx(AppsLogo, {})
             }
           )
-        }
+        })
       )
     ] })
   );
 };
-
 function ArrowSvgIcon() {
   return /* @__PURE__ */ jsx(
     "svg",
@@ -14071,10 +14341,10 @@ function ArrowSvgIcon() {
     }
   );
 }
-
-const genSiderMenuStyle$1 = (token) => {
+const genSiderMenuStyle$1 = (token2) => {
+  var _a2, _b2, _c2, _d, _e, _f;
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       position: "absolute",
       insetBlockStart: "18px",
       zIndex: "101",
@@ -14089,11 +14359,11 @@ const genSiderMenuStyle$1 = (token) => {
       alignItems: "center",
       justifyContent: "center",
       cursor: "pointer",
-      color: token.layout?.sider?.colorTextCollapsedButton,
-      backgroundColor: token.layout?.sider?.colorBgCollapsedButton,
+      color: (_b2 = (_a2 = token2.layout) == null ? void 0 : _a2.sider) == null ? void 0 : _b2.colorTextCollapsedButton,
+      backgroundColor: (_d = (_c2 = token2.layout) == null ? void 0 : _c2.sider) == null ? void 0 : _d.colorBgCollapsedButton,
       boxShadow: "0 2px 8px -2px rgba(0,0,0,0.05), 0 1px 4px -1px rgba(25,15,15,0.07), 0 0 1px 0 rgba(0,0,0,0.08)",
       "&:hover": {
-        color: token.layout?.sider?.colorTextCollapsedButtonHover,
+        color: (_f = (_e = token2.layout) == null ? void 0 : _e.sider) == null ? void 0 : _f.colorTextCollapsedButtonHover,
         boxShadow: "0 4px 16px -4px rgba(0,0,0,0.05), 0 2px 8px -2px rgba(25,15,15,0.07), 0 1px 2px 0 rgba(0,0,0,0.08)"
       },
       ".muiicon": {
@@ -14112,79 +14382,76 @@ const genSiderMenuStyle$1 = (token) => {
   };
 };
 function useStyle$b(prefixCls) {
-  return useStyle$A("SiderMenuCollapsedIcon", (token) => {
-    const siderMenuToken = {
-      ...token,
+  return useStyle$A("SiderMenuCollapsedIcon", (token2) => {
+    const siderMenuToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genSiderMenuStyle$1(siderMenuToken)];
   });
 }
-
 const CollapsedIcon = (props) => {
-  const { isMobile, collapsed, ...rest } = props;
+  const _a2 = props, { isMobile, collapsed } = _a2, rest = __objRest(_a2, ["isMobile", "collapsed"]);
   const { wrapSSR, hashId } = useStyle$b(props.className);
   if (isMobile && collapsed)
     return null;
   return wrapSSR(
     /* @__PURE__ */ jsx(
       "div",
-      {
-        ...rest,
+      __spreadProps(__spreadValues({}, rest), {
         className: classNames(props.className, hashId, {
           [`${props.className}-collapsed`]: collapsed,
           [`${props.className}-is-mobile`]: isMobile
         }),
         children: /* @__PURE__ */ jsx(ArrowSvgIcon, {})
-      }
+      })
     )
   );
 };
-
-const genProLayoutBaseMenuStyle = (token) => {
-  const menuToken = token.layout?.sider;
+const genProLayoutBaseMenuStyle = (token2) => {
+  var _a2;
+  const menuToken = (_a2 = token2.layout) == null ? void 0 : _a2.sider;
   return {
-    [`${token.componentCls}`]: {
+    [`${token2.componentCls}`]: {
       background: "transparent",
-      color: menuToken?.colorTextMenu,
+      color: menuToken == null ? void 0 : menuToken.colorTextMenu,
       border: "none",
-      [`${token.componentCls}-menu-item`]: {
+      [`${token2.componentCls}-menu-item`]: {
         transition: "none !important"
       },
-      [`${token.componentCls}-submenu-has-icon`]: {
-        [`> ${token.ipassCls}-menu-sub`]: {
+      [`${token2.componentCls}-submenu-has-icon`]: {
+        [`> ${token2.ipassCls}-menu-sub`]: {
           paddingInlineStart: 10
         }
       },
-      [`${token.ipassCls}-menu-title-content`]: {
+      [`${token2.ipassCls}-menu-title-content`]: {
         width: "100%",
         height: "100%",
         display: "inline-flex"
       },
-      [`${token.ipassCls}-menu-title-content`]: {
+      [`${token2.ipassCls}-menu-title-content`]: {
         "&:first-child": {
           width: "100%"
         }
       },
-      [`${token.componentCls}-item-icon`]: {
+      [`${token2.componentCls}-item-icon`]: {
         display: "flex",
         alignItems: "center"
       },
       [`&&-collapsed`]: {
-        [`${token.ipassCls}-menu-item, 
-        ${token.ipassCls}-menu-item-group > ${token.ipassCls}-menu-item-group-list > ${token.ipassCls}-menu-item, 
-        ${token.ipassCls}-menu-item-group > ${token.ipassCls}-menu-item-group-list > ${token.ipassCls}-menu-submenu > ${token.ipassCls}-menu-submenu-title, 
-        ${token.ipassCls}-menu-submenu > ${token.ipassCls}-menu-submenu-title`]: {
+        [`${token2.ipassCls}-menu-item, 
+        ${token2.ipassCls}-menu-item-group > ${token2.ipassCls}-menu-item-group-list > ${token2.ipassCls}-menu-item, 
+        ${token2.ipassCls}-menu-item-group > ${token2.ipassCls}-menu-item-group-list > ${token2.ipassCls}-menu-submenu > ${token2.ipassCls}-menu-submenu-title, 
+        ${token2.ipassCls}-menu-submenu > ${token2.ipassCls}-menu-submenu-title`]: {
           paddingInline: "0 !important",
           marginBlock: "4px !important"
         },
-        [`${token.ipassCls}-menu-item-group > ${token.ipassCls}-menu-item-group-list > ${token.ipassCls}-menu-submenu-selected > ${token.ipassCls}-menu-submenu-title, 
-        ${token.ipassCls}-menu-submenu-selected > ${token.ipassCls}-menu-submenu-title`]: {
-          backgroundColor: menuToken?.colorBgMenuItemSelected,
-          borderRadius: token.borderRadiusLG
+        [`${token2.ipassCls}-menu-item-group > ${token2.ipassCls}-menu-item-group-list > ${token2.ipassCls}-menu-submenu-selected > ${token2.ipassCls}-menu-submenu-title, 
+        ${token2.ipassCls}-menu-submenu-selected > ${token2.ipassCls}-menu-submenu-title`]: {
+          backgroundColor: menuToken == null ? void 0 : menuToken.colorBgMenuItemSelected,
+          borderRadius: token2.borderRadiusLG
         },
-        [`${token.componentCls}-group`]: {
-          [`${token.ipassCls}-menu-item-group-title`]: {
+        [`${token2.componentCls}-group`]: {
+          [`${token2.ipassCls}-menu-item-group-title`]: {
             paddingInline: 0
           }
         }
@@ -14193,8 +14460,8 @@ const genProLayoutBaseMenuStyle = (token) => {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        gap: token.marginXS,
-        [`${token.componentCls}-item-text`]: {
+        gap: token2.marginXS,
+        [`${token2.componentCls}-item-text`]: {
           maxWidth: "100%",
           textOverflow: "ellipsis",
           overflow: "hidden",
@@ -14204,7 +14471,7 @@ const genProLayoutBaseMenuStyle = (token) => {
         "&-collapsed": {
           minWidth: 40,
           height: 40,
-          [`${token.componentCls}-item-icon`]: {
+          [`${token2.componentCls}-item-icon`]: {
             height: "16px",
             width: "16px",
             lineHeight: "16px !important",
@@ -14213,7 +14480,7 @@ const genProLayoutBaseMenuStyle = (token) => {
               height: "16px"
             }
           },
-          [`${token.componentCls}-item-text-has-icon`]: {
+          [`${token2.componentCls}-item-text-has-icon`]: {
             display: "none !important"
           }
         },
@@ -14221,17 +14488,17 @@ const genProLayoutBaseMenuStyle = (token) => {
           flexDirection: "column",
           justifyContent: "center"
         },
-        [`&${token.componentCls}-group-item-title`]: {
-          gap: token.marginXS,
+        [`&${token2.componentCls}-group-item-title`]: {
+          gap: token2.marginXS,
           height: 18,
           overflow: "hidden"
         },
-        [`&${token.componentCls}-item-collapsed-show-title`]: {
+        [`&${token2.componentCls}-item-collapsed-show-title`]: {
           lineHeight: "16px",
           gap: 0,
-          [`&${token.componentCls}-item-title-collapsed`]: {
+          [`&${token2.componentCls}-item-title-collapsed`]: {
             display: "flex",
-            [`${token.componentCls}-item-icon`]: {
+            [`${token2.componentCls}-item-icon`]: {
               height: "16px",
               width: "16px",
               lineHeight: "16px !important",
@@ -14240,7 +14507,7 @@ const genProLayoutBaseMenuStyle = (token) => {
                 height: "16px"
               }
             },
-            [`${token.componentCls}-item-text`]: {
+            [`${token2.componentCls}-item-text`]: {
               opacity: "1 !important",
               display: "inline !important",
               textAlign: "center",
@@ -14259,16 +14526,16 @@ const genProLayoutBaseMenuStyle = (token) => {
         }
       },
       "&-group": {
-        [`${token.ipassCls}-menu-item-group-title`]: {
+        [`${token2.ipassCls}-menu-item-group-title`]: {
           fontSize: 12,
-          color: token.colorTextLabel,
+          color: token2.colorTextLabel,
           ".muiicon": {
             marginInlineEnd: 8
           }
         }
       },
       "&-group-divider": {
-        color: token.colorTextSecondary,
+        color: token2.colorTextSecondary,
         fontSize: 12,
         lineHeight: 20
       }
@@ -14282,12 +14549,12 @@ const genProLayoutBaseMenuStyle = (token) => {
     //       },
     //     },
     //   }),
-    [`${token.ipassCls}-menu-submenu${token.ipassCls}-menu-submenu-popup`]: {
-      [`${token.componentCls}-item-title`]: {
+    [`${token2.ipassCls}-menu-submenu${token2.ipassCls}-menu-submenu-popup`]: {
+      [`${token2.componentCls}-item-title`]: {
         alignItems: "flex-start"
       }
     },
-    [`${token.ipassCls}-menu-submenu-popup`]: {
+    [`${token2.ipassCls}-menu-submenu-popup`]: {
       backgroundColor: "rgba(255, 255, 255, 0.42)",
       "-webkit-backdrop-filter": "blur(8px)",
       backdropFilter: "blur(8px)"
@@ -14295,15 +14562,13 @@ const genProLayoutBaseMenuStyle = (token) => {
   };
 };
 function useStyle$a(prefixCls, mode) {
-  return useStyle$A("ProLayoutBaseMenu" + mode, (token) => {
-    const proLayoutMenuToken = {
-      ...token,
+  return useStyle$A("ProLayoutBaseMenu" + mode, (token2) => {
+    const proLayoutMenuToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProLayoutBaseMenuStyle(proLayoutMenuToken)];
   });
 }
-
 const MenuItemTooltip = (props) => {
   const [collapsed, setCollapsed] = useState(props.collapsed);
   const [open, setOpen] = useState(false);
@@ -14351,8 +14616,8 @@ const getMenuTitleSymbol = (title) => {
 class MenuUtil {
   constructor(props) {
     this.getNavMenuItems = (menusData = [], level) => menusData.map((item) => this.getSubMenuOrItem(item, level)).filter((item) => item).flat(1);
-    /** Get SubMenu or Item */
     this.getSubMenuOrItem = (item, level) => {
+      var _a2, _b2, _c2, _d, _e, _f;
       const {
         subMenuItemRender,
         baseClassName,
@@ -14361,16 +14626,16 @@ class MenuUtil {
         menu,
         layout
       } = this.props;
-      const isGroup = menu?.type === "group" && layout !== "top";
+      const isGroup = (menu == null ? void 0 : menu.type) === "group" && layout !== "top";
       const designToken = this.props.token;
       const name = this.getIntlName(item);
-      const children = item?.children || item?.routes;
+      const children = (item == null ? void 0 : item.children) || (item == null ? void 0 : item.routes);
       const menuType = isGroup && level === 0 ? "group" : void 0;
       if (Array.isArray(children) && children.length > 0) {
         const shouldHasIcon = level === 0 || isGroup && level === 1;
         const iconDom = getIcon(
           item.icon,
-          `${baseClassName}-icon ${this.props?.hashId}`
+          `${baseClassName}-icon ${(_a2 = this.props) == null ? void 0 : _a2.hashId}`
         );
         const defaultIcon = collapsed && shouldHasIcon ? getMenuTitleSymbol(name) : null;
         const defaultTitle = /* @__PURE__ */ jsxs(
@@ -14378,19 +14643,19 @@ class MenuUtil {
           {
             className: classNames(
               `${baseClassName}-item-title`,
-              this.props?.hashId,
+              (_b2 = this.props) == null ? void 0 : _b2.hashId,
               {
                 [`${baseClassName}-item-title-collapsed`]: collapsed,
                 [`${baseClassName}-item-title-collapsed-level-${level}`]: collapsed,
                 [`${baseClassName}-group-item-title`]: menuType === "group",
-                [`${baseClassName}-item-collapsed-show-title`]: menu?.collapsedShowTitle && collapsed
+                [`${baseClassName}-item-collapsed-show-title`]: (menu == null ? void 0 : menu.collapsedShowTitle) && collapsed
               }
             ),
             children: [
               menuType === "group" && collapsed ? null : shouldHasIcon && iconDom ? /* @__PURE__ */ jsx(
                 "span",
                 {
-                  className: `${baseClassName}-item-icon ${this.props?.hashId}`.trim(),
+                  className: `${baseClassName}-item-icon ${(_c2 = this.props) == null ? void 0 : _c2.hashId}`.trim(),
                   children: iconDom
                 }
               ) : defaultIcon,
@@ -14399,7 +14664,7 @@ class MenuUtil {
                 {
                   className: classNames(
                     `${baseClassName}-item-text`,
-                    this.props?.hashId,
+                    (_d = this.props) == null ? void 0 : _d.hashId,
                     {
                       [`${baseClassName}-item-text-has-icon`]: menuType !== "group" && shouldHasIcon && (iconDom || defaultIcon)
                     }
@@ -14410,7 +14675,7 @@ class MenuUtil {
             ]
           }
         );
-        const title = subMenuItemRender ? subMenuItemRender({ ...item, isUrl: false }, defaultTitle, this.props) : defaultTitle;
+        const title = subMenuItemRender ? subMenuItemRender(__spreadProps(__spreadValues({}, item), { isUrl: false }), defaultTitle, this.props) : defaultTitle;
         const childrenList = this.getNavMenuItems(children, level + 1);
         if (isGroup && level === 0 && this.props.collapsed && !menu.collapsedShowGroupTitle) {
           return this.getNavMenuItems(children, level);
@@ -14438,7 +14703,7 @@ class MenuUtil {
               borderBlockEnd: 0,
               margin: this.props.collapsed ? "4px" : "6px 16px",
               marginBlockStart: this.props.collapsed ? 4 : 8,
-              borderColor: designToken?.layout?.sider?.colorMenuItemDivider
+              borderColor: (_f = (_e = designToken == null ? void 0 : designToken.layout) == null ? void 0 : _e.sider) == null ? void 0 : _f.colorMenuItemDivider
             }
           } : void 0
         ].filter(Boolean);
@@ -14452,36 +14717,32 @@ class MenuUtil {
       };
     };
     this.getIntlName = (item) => {
-      const { name, locale } = item;
+      const { name, locale: locale2 } = item;
       const { menu, formatMessage } = this.props;
-      if (locale && menu?.locale !== false) {
-        return formatMessage?.({
-          id: locale,
+      if (locale2 && (menu == null ? void 0 : menu.locale) !== false) {
+        return formatMessage == null ? void 0 : formatMessage({
+          id: locale2,
           defaultMessage: name
         });
       }
       return name;
     };
-    /**
-     * 判斷是否是http連結.返回 Link 或 a Judge whether it is http link.return a or Link
-     *
-     * @memberof SiderMenu
-     */
     this.getMenuItemPath = (item, level) => {
+      var _a2, _b2, _c2, _d, _e, _f, _g;
       const itemPath = this.conversionPath(item.path || "/");
       const {
-        location = { pathname: "/" },
+        location: location2 = { pathname: "/" },
         isMobile,
         onCollapse,
         menuItemRender
       } = this.props;
       const menuItemTitle = this.getIntlName(item);
       const { baseClassName, menu, collapsed } = this.props;
-      const isGroup = menu?.type === "group";
+      const isGroup = (menu == null ? void 0 : menu.type) === "group";
       const hasIcon = level === 0 || isGroup && level === 1;
       const icon = !hasIcon ? null : getIcon(
         item.icon,
-        `${baseClassName}-icon ${this.props?.hashId}`
+        `${baseClassName}-icon ${(_a2 = this.props) == null ? void 0 : _a2.hashId}`
       );
       const defaultIcon = collapsed && hasIcon ? getMenuTitleSymbol(menuItemTitle) : null;
       let defaultItem = /* @__PURE__ */ jsxs(
@@ -14489,18 +14750,18 @@ class MenuUtil {
         {
           className: classNames(
             `${baseClassName}-item-title`,
-            this.props?.hashId,
+            (_b2 = this.props) == null ? void 0 : _b2.hashId,
             {
               [`${baseClassName}-item-title-collapsed`]: collapsed,
               [`${baseClassName}-item-title-collapsed-level-${level}`]: collapsed,
-              [`${baseClassName}-item-collapsed-show-title`]: menu?.collapsedShowTitle && collapsed
+              [`${baseClassName}-item-collapsed-show-title`]: (menu == null ? void 0 : menu.collapsedShowTitle) && collapsed
             }
           ),
           children: [
             /* @__PURE__ */ jsx(
               "span",
               {
-                className: `${baseClassName}-item-icon ${this.props?.hashId}`.trim(),
+                className: `${baseClassName}-item-icon ${(_c2 = this.props) == null ? void 0 : _c2.hashId}`.trim(),
                 style: {
                   display: defaultIcon === null && !icon ? "none" : ""
                 },
@@ -14512,7 +14773,7 @@ class MenuUtil {
               {
                 className: classNames(
                   `${baseClassName}-item-text`,
-                  this.props?.hashId,
+                  (_d = this.props) == null ? void 0 : _d.hashId,
                   {
                     [`${baseClassName}-item-text-has-icon`]: hasIcon && (icon || defaultIcon)
                   }
@@ -14530,23 +14791,24 @@ class MenuUtil {
           "span",
           {
             onClick: () => {
-              window?.open?.(itemPath, "_blank");
+              var _a3;
+              (_a3 = window == null ? void 0 : window.open) == null ? void 0 : _a3.call(window, itemPath, "_blank");
             },
             className: classNames(
               `${baseClassName}-item-title`,
-              this.props?.hashId,
+              (_e = this.props) == null ? void 0 : _e.hashId,
               {
                 [`${baseClassName}-item-title-collapsed`]: collapsed,
                 [`${baseClassName}-item-title-collapsed-level-${level}`]: collapsed,
                 [`${baseClassName}-item-link`]: true,
-                [`${baseClassName}-item-collapsed-show-title`]: menu?.collapsedShowTitle && collapsed
+                [`${baseClassName}-item-collapsed-show-title`]: (menu == null ? void 0 : menu.collapsedShowTitle) && collapsed
               }
             ),
             children: [
               /* @__PURE__ */ jsx(
                 "span",
                 {
-                  className: `${baseClassName}-item-icon ${this.props?.hashId}`.trim(),
+                  className: `${baseClassName}-item-icon ${(_f = this.props) == null ? void 0 : _f.hashId}`.trim(),
                   style: {
                     display: defaultIcon === null && !icon ? "none" : ""
                   },
@@ -14558,7 +14820,7 @@ class MenuUtil {
                 {
                   className: classNames(
                     `${baseClassName}-item-text`,
-                    this.props?.hashId,
+                    (_g = this.props) == null ? void 0 : _g.hashId,
                     {
                       [`${baseClassName}-item-text-has-icon`]: hasIcon && (icon || defaultIcon)
                     }
@@ -14572,15 +14834,14 @@ class MenuUtil {
         );
       }
       if (menuItemRender) {
-        const renderItemProps = {
-          ...item,
+        const renderItemProps = __spreadProps(__spreadValues({}, item), {
           isUrl: isHttpUrl,
           itemPath,
           isMobile,
-          replace: itemPath === location.pathname,
+          replace: itemPath === location2.pathname,
           onClick: () => onCollapse && onCollapse(true),
           children: void 0
-        };
+        });
         return level === 0 ? /* @__PURE__ */ jsx(
           MenuItemTooltip,
           {
@@ -14638,11 +14899,11 @@ const BaseMenu = (props) => {
   const baseClassName = `${prefixCls}-base-menu-${mode}`;
   const defaultOpenKeysRef = useRef([]);
   const [defaultOpenAll, setDefaultOpenAll] = useMergedState(
-    menu?.defaultOpenAll
+    menu == null ? void 0 : menu.defaultOpenAll
   );
   const [openKeys, setOpenKeys] = useMergedState(
     () => {
-      if (menu?.defaultOpenAll) {
+      if (menu == null ? void 0 : menu.defaultOpenAll) {
         return getOpenKeysFromMenuData(menuData) || [];
       }
       if (propsOpenKeys === false) {
@@ -14664,7 +14925,7 @@ const BaseMenu = (props) => {
     } : void 0
   });
   useEffect(() => {
-    if (menu?.defaultOpenAll || propsOpenKeys === false) {
+    if ((menu == null ? void 0 : menu.defaultOpenAll) || propsOpenKeys === false) {
       return;
     }
     if (matchMenuKeys) {
@@ -14679,13 +14940,13 @@ const BaseMenu = (props) => {
       }
       if (!defaultOpenAll && propsOpenKeys !== false && matchMenuKeys.join("-") !== (openKeys || []).join("-")) {
         let newKeys = matchMenuKeys;
-        if (menu?.autoClose === false) {
+        if ((menu == null ? void 0 : menu.autoClose) === false) {
           newKeys = Array.from(
             /* @__PURE__ */ new Set([...matchMenuKeys, ...openKeys || []])
           );
         }
         setOpenKeys(newKeys);
-      } else if (menu?.ignoreFlatMenu && defaultOpenAll) {
+      } else if ((menu == null ? void 0 : menu.ignoreFlatMenu) && defaultOpenAll) {
         setOpenKeys(getOpenKeysFromMenuData(menuData));
       } else {
         setDefaultOpenAll(false);
@@ -14701,19 +14962,18 @@ const BaseMenu = (props) => {
   );
   const { wrapSSR, hashId } = useStyle$a(baseClassName, mode);
   const menuUtils = useMemo(() => {
-    return new MenuUtil({
-      ...props,
+    return new MenuUtil(__spreadProps(__spreadValues({}, props), {
       token: designToken,
       menuRenderType,
       baseClassName,
       hashId
-    });
+    }));
   }, [props, designToken, menuRenderType, baseClassName, hashId]);
-  if (menu?.loading) {
+  if (menu == null ? void 0 : menu.loading) {
     return /* @__PURE__ */ jsx(
       "div",
       {
-        style: mode?.includes("inline") ? { padding: 24 } : {
+        style: (mode == null ? void 0 : mode.includes("inline")) ? { padding: 24 } : {
           marginBlockStart: 16
         },
         children: /* @__PURE__ */ jsx(
@@ -14722,7 +14982,7 @@ const BaseMenu = (props) => {
             active: true,
             title: false,
             paragraph: {
-              rows: mode?.includes("inline") ? 6 : 1
+              rows: (mode == null ? void 0 : mode.includes("inline")) ? 6 : 1
             }
           }
         )
@@ -14733,14 +14993,13 @@ const BaseMenu = (props) => {
     defaultOpenKeysRef.current = matchMenuKeys;
   }
   const finallyData = props.postMenuData ? props.postMenuData(menuData) : menuData;
-  if (finallyData && finallyData?.length < 1) {
+  if (finallyData && (finallyData == null ? void 0 : finallyData.length) < 1) {
     return null;
   }
   return wrapSSR(
     /* @__PURE__ */ createElement(
       Menu,
-      {
-        ...openKeysProps,
+      __spreadValues(__spreadProps(__spreadValues({}, openKeysProps), {
         _internalDisableMenuItemTitleTooltip: true,
         key: "Menu",
         mode,
@@ -14748,11 +15007,10 @@ const BaseMenu = (props) => {
         defaultOpenKeys: defaultOpenKeysRef.current,
         theme: dark ? "dark" : "light",
         selectedKeys,
-        style: {
+        style: __spreadValues({
           backgroundColor: "transparent",
-          border: "none",
-          ...style
-        },
+          border: "none"
+        }, style),
         className: classNames(className, hashId, baseClassName, {
           [`${baseClassName}-horizontal`]: mode === "horizontal",
           [`${baseClassName}-collapsed`]: props.collapsed
@@ -14762,35 +15020,31 @@ const BaseMenu = (props) => {
           if (!props.collapsed) {
             setOpenKeys(_openKeys);
           }
-        },
-        ...props.menuProps
-      }
+        }
+      }), props.menuProps)
     )
   );
 };
-
 function useStylish$1(prefixCls, {
   stylish,
   proLayoutCollapsedWidth
 }) {
-  return useStyle$A("ProLayoutSiderMenuStylish", (token) => {
-    const siderMenuToken = {
-      ...token,
+  return useStyle$A("ProLayoutSiderMenuStylish", (token2) => {
+    const siderMenuToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`,
       proLayoutCollapsedWidth
-    };
+    });
     if (!stylish)
       return [];
     return [
       {
-        [`div${token.proComponentsCls}-layout`]: {
-          [`${siderMenuToken.componentCls}`]: stylish?.(siderMenuToken)
+        [`div${token2.proComponentsCls}-layout`]: {
+          [`${siderMenuToken.componentCls}`]: stylish == null ? void 0 : stylish(siderMenuToken)
         }
       }
     ];
   });
 }
-
 const { Sider } = Layout;
 const renderLogoAndTitle = (props, renderKey = "menuHeaderRender") => {
   const { logo, title, layout } = props;
@@ -14799,7 +15053,7 @@ const renderLogoAndTitle = (props, renderKey = "menuHeaderRender") => {
     return null;
   }
   const logoDom = defaultRenderLogo(logo);
-  const titleDom = /* @__PURE__ */ jsx("h1", { children: title ?? "iPASS Customized UI framework" });
+  const titleDom = /* @__PURE__ */ jsx("h1", { children: title != null ? title : "iPASS Customized UI framework" });
   if (renderFunction) {
     return renderFunction(logoDom, props.collapsed ? null : titleDom, props);
   }
@@ -14817,13 +15071,14 @@ const renderLogoAndTitle = (props, renderKey = "menuHeaderRender") => {
   ] }, "title");
 };
 const SiderMenu = (props) => {
+  var _a2;
   const {
     collapsed,
     originCollapsed,
     fixSiderbar,
     menuFooterRender,
     onCollapse,
-    theme,
+    theme: theme2,
     siderWidth,
     isMobile,
     onMenuHeaderClick,
@@ -14864,7 +15119,7 @@ const SiderMenu = (props) => {
     [`${baseClassName}-fixed`]: fixSiderbar,
     [`${baseClassName}-collapsed`]: props.collapsed,
     [`${baseClassName}-layout-${layout}`]: layout && !isMobile,
-    [`${baseClassName}-light`]: theme !== "dark",
+    [`${baseClassName}-light`]: theme2 !== "dark",
     [`${baseClassName}-mix`]: layout === "mix" && !isMobile,
     [`${baseClassName}-stylish`]: !!stylish
   });
@@ -14873,8 +15128,7 @@ const SiderMenu = (props) => {
   const menuDom = useMemo(
     () => menuContentRender !== false && /* @__PURE__ */ createElement(
       BaseMenu,
-      {
-        ...props,
+      __spreadProps(__spreadValues({}, props), {
         key: "base-menu",
         mode: collapsed && !isMobile ? "vertical" : "inline",
         handleOpenChange: onOpenChange,
@@ -14882,14 +15136,14 @@ const SiderMenu = (props) => {
           width: "100%"
         },
         className: `${baseClassName}-menu ${hashId}`.trim()
-      }
+      })
     ),
     [baseClassName, hashId, menuContentRender, onOpenChange, props]
   );
-  const linksMenuItems = (links || []).map((node, index) => ({
+  const linksMenuItems = (links || []).map((node, index2) => ({
     className: `${baseClassName}-link`,
     label: node,
-    key: index
+    key: index2
   }));
   const menuRenderDom = useMemo(() => {
     return menuContentRender ? menuContentRender(props, menuDom) : menuDom;
@@ -14909,14 +15163,14 @@ const SiderMenu = (props) => {
             collapsed && `${baseClassName}-actions-list-collapsed`,
             hashId
           ]),
-          children: actionsRender?.(props).map((item, index) => {
+          children: actionsRender == null ? void 0 : actionsRender(props).map((item, index2) => {
             return /* @__PURE__ */ jsx(
               "div",
               {
                 className: `${baseClassName}-actions-list-item ${hashId}`.trim(),
                 children: item
               },
-              index
+              index2
             );
           })
         }
@@ -14945,7 +15199,7 @@ const SiderMenu = (props) => {
         collapsed: originCollapsed,
         className: `${baseClassName}-collapsed-button`,
         onClick: () => {
-          onCollapse?.(!originCollapsed);
+          onCollapse == null ? void 0 : onCollapse(!originCollapsed);
         }
       }
     );
@@ -14974,12 +15228,13 @@ const SiderMenu = (props) => {
     );
   }, [actionsDom, baseClassName, collapsed, hashId]);
   const hideMenuWhenCollapsedClassName = useMemo(() => {
-    if (props?.menu?.hideMenuWhenCollapsed && collapsed) {
+    var _a3;
+    if (((_a3 = props == null ? void 0 : props.menu) == null ? void 0 : _a3.hideMenuWhenCollapsed) && collapsed) {
       return `${baseClassName}-hide-menu-collapsed`;
     }
     return null;
-  }, [baseClassName, collapsed, props?.menu?.hideMenuWhenCollapsed]);
-  const menuFooterDom = menuFooterRender && menuFooterRender?.(props);
+  }, [baseClassName, collapsed, (_a2 = props == null ? void 0 : props.menu) == null ? void 0 : _a2.hideMenuWhenCollapsed]);
+  const menuFooterDom = menuFooterRender && (menuFooterRender == null ? void 0 : menuFooterRender(props));
   const menuDomItems = /* @__PURE__ */ jsxs(Fragment, { children: [
     headerDom && /* @__PURE__ */ jsxs(
       "div",
@@ -15028,7 +15283,7 @@ const SiderMenu = (props) => {
           className: `${baseClassName}-link-menu ${hashId}`.trim(),
           selectedKeys: [],
           openKeys: [],
-          theme,
+          theme: theme2,
           mode: "inline",
           items: linksMenuItems
         }
@@ -15041,7 +15296,7 @@ const SiderMenu = (props) => {
             className: classNames(`${baseClassName}-actions`, hashId, {
               [`${baseClassName}-actions-collapsed`]: collapsed
             }),
-            children: rightContentRender?.(props)
+            children: rightContentRender == null ? void 0 : rightContentRender(props)
           }
         ) : null
       ] }),
@@ -15063,15 +15318,14 @@ const SiderMenu = (props) => {
       fixSiderbar && !isMobile && !hideMenuWhenCollapsedClassName && /* @__PURE__ */ jsx(
         "div",
         {
-          style: {
+          style: __spreadValues({
             width: collapsed ? collapsedWidth : siderWidth,
             overflow: "hidden",
             flex: `0 0 ${collapsed ? collapsedWidth : siderWidth}px`,
             maxWidth: collapsed ? collapsedWidth : siderWidth,
             minWidth: collapsed ? collapsedWidth : siderWidth,
-            transition: "all 0.2s ease 0s",
-            ...style
-          }
+            transition: "all 0.2s ease 0s"
+          }, style)
         }
       ),
       /* @__PURE__ */ jsxs(
@@ -15084,11 +15338,11 @@ const SiderMenu = (props) => {
           onCollapse: (collapse) => {
             if (isMobile)
               return;
-            onCollapse?.(collapse);
+            onCollapse == null ? void 0 : onCollapse(collapse);
           },
           collapsedWidth,
           style,
-          theme,
+          theme: theme2,
           width: siderWidth,
           className: classNames(
             siderClassName,
@@ -15115,10 +15369,10 @@ const SiderMenu = (props) => {
     ] })
   );
 };
-
-const genTopNavHeaderStyle$1 = (token) => {
+const genTopNavHeaderStyle$1 = (token2) => {
+  var _a2, _b2, _c2, _d, _e, _f, _g, _h, _i, _j;
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       "&-header-actions": {
         display: "flex",
         height: "100%",
@@ -15128,16 +15382,16 @@ const genTopNavHeaderStyle$1 = (token) => {
           justifyContent: "center",
           paddingBlock: 0,
           paddingInline: 2,
-          color: token.layout?.header?.colorTextRightActionsItem,
+          color: (_b2 = (_a2 = token2.layout) == null ? void 0 : _a2.header) == null ? void 0 : _b2.colorTextRightActionsItem,
           fontSize: "16px",
           cursor: "pointer",
-          borderRadius: token.borderRadius,
+          borderRadius: token2.borderRadius,
           "> *": {
             paddingInline: 6,
             paddingBlock: 6,
-            borderRadius: token.borderRadius,
+            borderRadius: token2.borderRadius,
             "&-hover:hover": {
-              backgroundColor: token.layout?.header?.colorBgRightActionsItemHover
+              backgroundColor: (_d = (_c2 = token2.layout) == null ? void 0 : _c2.header) == null ? void 0 : _d.colorBgRightActionsItemHover
             }
           }
         },
@@ -15145,22 +15399,22 @@ const genTopNavHeaderStyle$1 = (token) => {
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
-          paddingInlineStart: token.padding,
-          paddingInlineEnd: token.padding,
+          paddingInlineStart: token2.padding,
+          paddingInlineEnd: token2.padding,
           cursor: "pointer",
-          color: token.layout?.header?.colorTextRightActionsItem,
+          color: (_f = (_e = token2.layout) == null ? void 0 : _e.header) == null ? void 0 : _f.colorTextRightActionsItem,
           "> div": {
             height: "44px",
-            color: token.layout?.header?.colorTextRightActionsItem,
+            color: (_h = (_g = token2.layout) == null ? void 0 : _g.header) == null ? void 0 : _h.colorTextRightActionsItem,
             paddingInline: 8,
             paddingBlock: 8,
             cursor: "pointer",
             display: "flex",
             alignItems: "center",
             lineHeight: "44px",
-            borderRadius: token.borderRadius,
+            borderRadius: token2.borderRadius,
             "&:hover": {
-              backgroundColor: token.layout?.header?.colorBgRightActionsItemHover
+              backgroundColor: (_j = (_i = token2.layout) == null ? void 0 : _i.header) == null ? void 0 : _j.colorBgRightActionsItemHover
             }
           }
         }
@@ -15169,35 +15423,37 @@ const genTopNavHeaderStyle$1 = (token) => {
   };
 };
 function useStyle$9(prefixCls) {
-  return useStyle$A("ProLayoutRightContent", (token) => {
-    const proToken = {
-      ...token,
+  return useStyle$A("ProLayoutRightContent", (token2) => {
+    const proToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genTopNavHeaderStyle$1(proToken)];
   });
 }
-
-const ActionsContent = ({
-  actionsRender,
-  headerContentRender,
-  ...props
-}) => {
+const ActionsContent = (_Da) => {
+  var _Ea = _Da, {
+    actionsRender,
+    headerContentRender
+  } = _Ea, props = __objRest(_Ea, [
+    "actionsRender",
+    "headerContentRender"
+  ]);
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const prefixCls = `${getPrefixCls()}-pro-global-header`;
   const { wrapSSR, hashId } = useStyle$9(prefixCls);
   const [rightSize, setRightSize] = useState("auto");
   const rightActionsRender = actionsRender ? (restParams) => {
-    let doms = actionsRender && actionsRender?.(restParams);
+    let doms = actionsRender && (actionsRender == null ? void 0 : actionsRender(restParams));
     if (!doms)
       return null;
     if (!Array.isArray(doms))
       doms = [doms];
     return wrapSSR(
-      /* @__PURE__ */ jsx("div", { className: `${prefixCls}-header-actions ${hashId}`.trim(), children: doms.filter(Boolean).map((dom, index) => {
+      /* @__PURE__ */ jsx("div", { className: `${prefixCls}-header-actions ${hashId}`.trim(), children: doms.filter(Boolean).map((dom, index2) => {
+        var _a2;
         let hideHover = false;
         if (React__default.isValidElement(dom)) {
-          hideHover = !!dom?.props?.["aria-hidden"];
+          hideHover = !!((_a2 = dom == null ? void 0 : dom.props) == null ? void 0 : _a2["aria-hidden"]);
         }
         return /* @__PURE__ */ jsx(
           "div",
@@ -15210,14 +15466,14 @@ const ActionsContent = ({
             ),
             children: dom
           },
-          index
+          index2
         );
       }) })
     );
   } : void 0;
-  const setRightSizeDebounceFn = useDebounceFn(async (width) => {
+  const setRightSizeDebounceFn = useDebounceFn((width) => __async(void 0, null, function* () {
     setRightSize(width);
-  }, 160);
+  }), 160);
   const contentRender = rightActionsRender;
   return /* @__PURE__ */ jsx(
     "div",
@@ -15248,12 +15504,11 @@ const ActionsContent = ({
                     height: "100%",
                     justifyContent: "flex-end"
                   },
-                  children: contentRender({
-                    ...props,
+                  children: contentRender(__spreadProps(__spreadValues({}, props), {
                     // 測試專用
                     //@ts-ignore
                     rightContentSize: rightSize
-                  })
+                  }))
                 }
               ) : null
             }
@@ -15263,10 +15518,10 @@ const ActionsContent = ({
     }
   );
 };
-
-const genTopNavHeaderStyle = (token) => {
+const genTopNavHeaderStyle = (token2) => {
+  var _a2, _b2, _c2, _d;
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       position: "relative",
       width: "100%",
       height: "100%",
@@ -15281,7 +15536,7 @@ const genTopNavHeaderStyle = (token) => {
         "&-left": {
           display: "flex",
           alignItems: "center",
-          [`${token.proComponentsCls}-layout-apps-icon`]: {
+          [`${token2.proComponentsCls}-layout-apps-icon`]: {
             marginInlineEnd: 16,
             marginInlineStart: -8
           }
@@ -15316,7 +15571,7 @@ const genTopNavHeaderStyle = (token) => {
           marginInlineStart: 6,
           fontWeight: "600",
           fontSize: "16px",
-          color: token.layout?.header?.colorHeaderTitle,
+          color: (_b2 = (_a2 = token2.layout) == null ? void 0 : _a2.header) == null ? void 0 : _b2.colorHeaderTitle,
           verticalAlign: "top"
         }
       },
@@ -15327,7 +15582,7 @@ const genTopNavHeaderStyle = (token) => {
         paddingInline: 6,
         paddingBlock: 6,
         lineHeight: `${Math.max(
-          (token.layout?.header?.heightLayoutHeader || 56) - 12,
+          (((_d = (_c2 = token2.layout) == null ? void 0 : _c2.header) == null ? void 0 : _d.heightLayoutHeader) || 56) - 12,
           40
         )}px`
       }
@@ -15335,16 +15590,15 @@ const genTopNavHeaderStyle = (token) => {
   };
 };
 function useStyle$8(prefixCls) {
-  return useStyle$A("ProLayoutTopNavHeader", (token) => {
-    const topNavHeaderToken = {
-      ...token,
+  return useStyle$A("ProLayoutTopNavHeader", (token2) => {
+    const topNavHeaderToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genTopNavHeaderStyle(topNavHeaderToken)];
   });
 }
-
 const TopNavHeader = (props) => {
+  var _a2, _b2, _c2, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n;
   const ref = useRef(null);
   const {
     onMenuHeaderClick,
@@ -15366,11 +15620,12 @@ const TopNavHeader = (props) => {
     renderKey = "headerTitleRender";
   }
   const headerDom = renderLogoAndTitle(
-    { ...props, collapsed: false },
+    __spreadProps(__spreadValues({}, props), { collapsed: false }),
     renderKey
   );
-  const { token } = useContext(ProProvider);
+  const { token: token2 } = useContext(ProProvider);
   const contentDom = useMemo(() => {
+    var _a3, _b3, _c3, _d2, _e2, _f2, _g2, _h2, _i2, _j2, _k2, _l2, _m2, _n2, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A;
     const defaultDom = /* @__PURE__ */ jsx(
       ConfigProvider,
       {
@@ -15381,47 +15636,44 @@ const TopNavHeader = (props) => {
               headerBg: "transparent",
               bodyBg: "transparent"
             },
-            Menu: {
-              ...coverToNewToken({
-                colorItemBg: token.layout?.header?.colorBgHeader || "transparent",
-                colorSubItemBg: token.layout?.header?.colorBgHeader || "transparent",
-                radiusItem: 4,
-                colorItemBgSelected: token.layout?.header?.colorBgMenuItemSelected || token?.colorBgTextHover,
-                itemHoverBg: token.layout?.header?.colorBgMenuItemHover || token?.colorBgTextHover,
-                colorItemBgSelectedHorizontal: token.layout?.header?.colorBgMenuItemSelected || token?.colorBgTextHover,
-                colorActiveBarWidth: 0,
-                colorActiveBarHeight: 0,
-                colorActiveBarBorderSize: 0,
-                colorItemText: token.layout?.header?.colorTextMenu || token?.colorTextSecondary,
-                colorItemTextHoverHorizontal: token.layout?.header?.colorTextMenuActive || token?.colorText,
-                colorItemTextSelectedHorizontal: token.layout?.header?.colorTextMenuSelected || token?.colorTextBase,
-                horizontalItemBorderRadius: 4,
-                colorItemTextHover: token.layout?.header?.colorTextMenuActive || "rgba(0, 0, 0, 0.85)",
-                horizontalItemHoverBg: token.layout?.header?.colorBgMenuItemHover || "rgba(0, 0, 0, 0.04)",
-                colorItemTextSelected: token.layout?.header?.colorTextMenuSelected || "rgba(0, 0, 0, 1)",
-                colorBgElevated: token.layout?.header?.colorBgMenuElevated || token.colorBgElevated
-              })
-            }
+            Menu: __spreadValues({}, coverToNewToken({
+              colorItemBg: ((_b3 = (_a3 = token2.layout) == null ? void 0 : _a3.header) == null ? void 0 : _b3.colorBgHeader) || "transparent",
+              colorSubItemBg: ((_d2 = (_c3 = token2.layout) == null ? void 0 : _c3.header) == null ? void 0 : _d2.colorBgHeader) || "transparent",
+              radiusItem: 4,
+              colorItemBgSelected: ((_f2 = (_e2 = token2.layout) == null ? void 0 : _e2.header) == null ? void 0 : _f2.colorBgMenuItemSelected) || (token2 == null ? void 0 : token2.colorBgTextHover),
+              itemHoverBg: ((_h2 = (_g2 = token2.layout) == null ? void 0 : _g2.header) == null ? void 0 : _h2.colorBgMenuItemHover) || (token2 == null ? void 0 : token2.colorBgTextHover),
+              colorItemBgSelectedHorizontal: ((_j2 = (_i2 = token2.layout) == null ? void 0 : _i2.header) == null ? void 0 : _j2.colorBgMenuItemSelected) || (token2 == null ? void 0 : token2.colorBgTextHover),
+              colorActiveBarWidth: 0,
+              colorActiveBarHeight: 0,
+              colorActiveBarBorderSize: 0,
+              colorItemText: ((_l2 = (_k2 = token2.layout) == null ? void 0 : _k2.header) == null ? void 0 : _l2.colorTextMenu) || (token2 == null ? void 0 : token2.colorTextSecondary),
+              colorItemTextHoverHorizontal: ((_n2 = (_m2 = token2.layout) == null ? void 0 : _m2.header) == null ? void 0 : _n2.colorTextMenuActive) || (token2 == null ? void 0 : token2.colorText),
+              colorItemTextSelectedHorizontal: ((_p = (_o = token2.layout) == null ? void 0 : _o.header) == null ? void 0 : _p.colorTextMenuSelected) || (token2 == null ? void 0 : token2.colorTextBase),
+              horizontalItemBorderRadius: 4,
+              colorItemTextHover: ((_r = (_q = token2.layout) == null ? void 0 : _q.header) == null ? void 0 : _r.colorTextMenuActive) || "rgba(0, 0, 0, 0.85)",
+              horizontalItemHoverBg: ((_t = (_s = token2.layout) == null ? void 0 : _s.header) == null ? void 0 : _t.colorBgMenuItemHover) || "rgba(0, 0, 0, 0.04)",
+              colorItemTextSelected: ((_v = (_u = token2.layout) == null ? void 0 : _u.header) == null ? void 0 : _v.colorTextMenuSelected) || "rgba(0, 0, 0, 1)",
+              colorBgElevated: ((_x = (_w = token2.layout) == null ? void 0 : _w.header) == null ? void 0 : _x.colorBgMenuElevated) || token2.colorBgElevated
+            }))
           },
           token: {
-            colorBgElevated: token.layout?.header?.colorBgHeader || "transparent"
+            colorBgElevated: ((_z = (_y = token2.layout) == null ? void 0 : _y.header) == null ? void 0 : _z.colorBgHeader) || "transparent"
           }
         },
         children: /* @__PURE__ */ jsx(
           BaseMenu,
-          {
-            theme: dark ? "dark" : "light",
-            ...props,
-            className: `${prefixCls}-base-menu ${hashId}`.trim(),
-            ...props.menuProps,
-            style: {
-              width: "100%",
-              ...props.menuProps?.style
-            },
+          __spreadProps(__spreadValues(__spreadProps(__spreadValues({
+            theme: dark ? "dark" : "light"
+          }, props), {
+            className: `${prefixCls}-base-menu ${hashId}`.trim()
+          }), props.menuProps), {
+            style: __spreadValues({
+              width: "100%"
+            }, (_A = props.menuProps) == null ? void 0 : _A.style),
             collapsed: false,
             menuRenderType: "header",
             mode: "horizontal"
-          }
+          })
         )
       }
     );
@@ -15430,18 +15682,18 @@ const TopNavHeader = (props) => {
     }
     return defaultDom;
   }, [
-    token.layout?.header?.colorBgHeader,
-    token.layout?.header?.colorBgMenuItemSelected,
-    token.layout?.header?.colorBgMenuItemHover,
-    token.layout?.header?.colorTextMenu,
-    token.layout?.header?.colorTextMenuActive,
-    token.layout?.header?.colorTextMenuSelected,
-    token.layout?.header?.colorBgMenuElevated,
-    token?.colorBgTextHover,
-    token?.colorTextSecondary,
-    token?.colorText,
-    token?.colorTextBase,
-    token.colorBgElevated,
+    (_b2 = (_a2 = token2.layout) == null ? void 0 : _a2.header) == null ? void 0 : _b2.colorBgHeader,
+    (_d = (_c2 = token2.layout) == null ? void 0 : _c2.header) == null ? void 0 : _d.colorBgMenuItemSelected,
+    (_f = (_e = token2.layout) == null ? void 0 : _e.header) == null ? void 0 : _f.colorBgMenuItemHover,
+    (_h = (_g = token2.layout) == null ? void 0 : _g.header) == null ? void 0 : _h.colorTextMenu,
+    (_j = (_i = token2.layout) == null ? void 0 : _i.header) == null ? void 0 : _j.colorTextMenuActive,
+    (_l = (_k = token2.layout) == null ? void 0 : _k.header) == null ? void 0 : _l.colorTextMenuSelected,
+    (_n = (_m = token2.layout) == null ? void 0 : _m.header) == null ? void 0 : _n.colorBgMenuElevated,
+    token2 == null ? void 0 : token2.colorBgTextHover,
+    token2 == null ? void 0 : token2.colorTextSecondary,
+    token2 == null ? void 0 : token2.colorText,
+    token2 == null ? void 0 : token2.colorTextBase,
+    token2.colorBgElevated,
     dark,
     props,
     prefixCls,
@@ -15470,7 +15722,7 @@ const TopNavHeader = (props) => {
                   className: classNames(`${prefixCls}-main-left ${hashId}`),
                   onClick: onMenuHeaderClick,
                   children: [
-                    /* @__PURE__ */ jsx(AppsLogoComponents, { ...props }),
+                    /* @__PURE__ */ jsx(AppsLogoComponents, __spreadValues({}, props)),
                     /* @__PURE__ */ jsx(
                       "div",
                       {
@@ -15493,11 +15745,11 @@ const TopNavHeader = (props) => {
               ),
               actionsRender && /* @__PURE__ */ jsx(
                 ActionsContent,
-                {
-                  actionsRender,
-                  ...props,
+                __spreadProps(__spreadValues({
+                  actionsRender
+                }, props), {
                   prefixCls
-                }
+                })
               )
             ]
           }
@@ -15506,27 +15758,27 @@ const TopNavHeader = (props) => {
     )
   );
 };
-
-const genGlobalHeaderStyle = (token) => {
+const genGlobalHeaderStyle = (token2) => {
+  var _a2, _b2, _c2, _d, _e, _f;
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       position: "relative",
       background: "transparent",
       display: "flex",
       alignItems: "center",
       marginBlock: 0,
       marginInline: 16,
-      height: token.layout?.header?.heightLayoutHeader || 56,
+      height: ((_b2 = (_a2 = token2.layout) == null ? void 0 : _a2.header) == null ? void 0 : _b2.heightLayoutHeader) || 56,
       boxSizing: "border-box",
       "> a": {
         height: "100%"
       },
-      [`${token.proComponentsCls}-layout-apps-icon`]: {
+      [`${token2.proComponentsCls}-layout-apps-icon`]: {
         marginInlineEnd: 16
       },
       "&-collapsed-button": {
         minHeight: "22px",
-        color: token.layout?.header?.colorHeaderTitle,
+        color: (_d = (_c2 = token2.layout) == null ? void 0 : _c2.header) == null ? void 0 : _d.colorHeaderTitle,
         fontSize: "18px",
         marginInlineEnd: "16px"
       },
@@ -15547,7 +15799,7 @@ const genGlobalHeaderStyle = (token) => {
           marginInline: 0,
           marginInlineStart: 8,
           fontWeight: "600",
-          color: token.layout?.header?.colorHeaderTitle || token.colorTextHeading,
+          color: ((_f = (_e = token2.layout) == null ? void 0 : _e.header) == null ? void 0 : _f.colorHeaderTitle) || token2.colorTextHeading,
           fontSize: "18px",
           lineHeight: "32px"
         },
@@ -15564,15 +15816,13 @@ const genGlobalHeaderStyle = (token) => {
   };
 };
 function useStyle$7(prefixCls) {
-  return useStyle$A("ProLayoutGlobalHeader", (token) => {
-    const GlobalHeaderToken = {
-      ...token,
+  return useStyle$A("ProLayoutGlobalHeader", (token2) => {
+    const GlobalHeaderToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genGlobalHeaderStyle(GlobalHeaderToken)];
   });
 }
-
 const renderLogo = (menuHeaderRender, logoDom) => {
   if (menuHeaderRender === false) {
     return null;
@@ -15603,20 +15853,19 @@ const GlobalHeader = (props) => {
   const { wrapSSR, hashId } = useStyle$7(baseClassName);
   const className = classNames(propClassName, baseClassName, hashId);
   if (layout === "mix" && !isMobile && splitMenus) {
-    const noChildrenMenuData = (menuData || []).map((item) => ({
-      ...item,
+    const noChildrenMenuData = (menuData || []).map((item) => __spreadProps(__spreadValues({}, item), {
       children: void 0,
       routes: void 0
     }));
     const clearMenuData = clearMenuItem(noChildrenMenuData);
     return /* @__PURE__ */ jsx(
       TopNavHeader,
-      {
-        mode: "horizontal",
-        ...props,
+      __spreadProps(__spreadValues({
+        mode: "horizontal"
+      }, props), {
         splitMenus: false,
         menuData: clearMenuData
-      }
+      })
     );
   }
   const logoClassNames = classNames(`${baseClassName}-logo`, hashId, {
@@ -15625,44 +15874,44 @@ const GlobalHeader = (props) => {
   });
   const logoDom = /* @__PURE__ */ jsx("span", { className: logoClassNames, children: /* @__PURE__ */ jsx("a", { children: defaultRenderLogo(logo) }) }, "logo");
   return wrapSSR(
-    /* @__PURE__ */ jsxs("div", { className, style: { ...style }, children: [
+    /* @__PURE__ */ jsxs("div", { className, style: __spreadValues({}, style), children: [
       isMobile && /* @__PURE__ */ jsx(
         "span",
         {
           className: `${baseClassName}-collapsed-button ${hashId}`.trim(),
           onClick: () => {
-            onCollapse?.(!collapsed);
+            onCollapse == null ? void 0 : onCollapse(!collapsed);
           },
           children: /* @__PURE__ */ jsx(MenuIcon, {})
         }
       ),
       isMobile && renderLogo(menuHeaderRender, logoDom),
       layout === "mix" && !isMobile && /* @__PURE__ */ jsxs(Fragment, { children: [
-        /* @__PURE__ */ jsx(AppsLogoComponents, { ...props }),
+        /* @__PURE__ */ jsx(AppsLogoComponents, __spreadValues({}, props)),
         /* @__PURE__ */ jsx("div", { className: logoClassNames, onClick: onMenuHeaderClick, children: renderLogoAndTitle(
-          { ...props, collapsed: false },
+          __spreadProps(__spreadValues({}, props), { collapsed: false }),
           "headerTitleRender"
         ) })
       ] }),
       /* @__PURE__ */ jsx("div", { style: { flex: 1 }, children }),
-      props.actionsRender && /* @__PURE__ */ jsx(ActionsContent, { actionsRender, ...props })
+      props.actionsRender && /* @__PURE__ */ jsx(ActionsContent, __spreadValues({ actionsRender }, props))
     ] })
   );
 };
-
-const genProLayoutHeaderStyle = (token) => {
+const genProLayoutHeaderStyle = (token2) => {
+  var _a2, _b2, _c2, _d, _e, _f, _g, _h;
   return {
-    [`${token.proComponentsCls}-layout`]: {
-      [`${token.ipassCls}-layout-header${token.componentCls}`]: {
-        height: token.layout?.header?.heightLayoutHeader || 56,
-        lineHeight: `${token.layout?.header?.heightLayoutHeader || 56}px`,
+    [`${token2.proComponentsCls}-layout`]: {
+      [`${token2.ipassCls}-layout-header${token2.componentCls}`]: {
+        height: ((_b2 = (_a2 = token2.layout) == null ? void 0 : _a2.header) == null ? void 0 : _b2.heightLayoutHeader) || 56,
+        lineHeight: `${((_d = (_c2 = token2.layout) == null ? void 0 : _c2.header) == null ? void 0 : _d.heightLayoutHeader) || 56}px`,
         // hitu 用了這個屬性，不能刪除
         zIndex: 19,
         width: "100%",
         paddingBlock: 0,
         paddingInline: 0,
-        borderBlockEnd: `1px solid ${token.colorSplit}`,
-        backgroundColor: token.layout?.header?.colorBgHeader || "rgba(255, 255, 255, 0.4)",
+        borderBlockEnd: `1px solid ${token2.colorSplit}`,
+        backgroundColor: ((_f = (_e = token2.layout) == null ? void 0 : _e.header) == null ? void 0 : _f.colorBgHeader) || "rgba(255, 255, 255, 0.4)",
         WebkitBackdropFilter: "blur(8px)",
         backdropFilter: "blur(8px)",
         transition: "background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1)",
@@ -15674,7 +15923,7 @@ const genProLayoutHeaderStyle = (token) => {
           insetInlineEnd: 0
         },
         "&-fixed-header-scroll": {
-          backgroundColor: token.layout?.header?.colorBgScrollHeader || "rgba(255, 255, 255, 0.8)"
+          backgroundColor: ((_h = (_g = token2.layout) == null ? void 0 : _g.header) == null ? void 0 : _h.colorBgScrollHeader) || "rgba(255, 255, 255, 0.8)"
         },
         "&-header-actions": {
           display: "flex",
@@ -15685,7 +15934,7 @@ const genProLayoutHeaderStyle = (token) => {
             paddingBlock: 0,
             paddingInline: 8,
             "&:hover": {
-              color: token.colorText
+              color: token2.colorText
             }
           }
         },
@@ -15698,39 +15947,36 @@ const genProLayoutHeaderStyle = (token) => {
   };
 };
 function useStyle$6(prefixCls) {
-  return useStyle$A("ProLayoutHeader", (token) => {
-    const ProLayoutHeaderToken = {
-      ...token,
+  return useStyle$A("ProLayoutHeader", (token2) => {
+    const ProLayoutHeaderToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProLayoutHeaderStyle(ProLayoutHeaderToken)];
   });
 }
-
 function useStylish(prefixCls, {
   stylish,
   proLayoutCollapsedWidth
 }) {
-  return useStyle$A("ProLayoutHeaderStylish", (token) => {
-    const stylishToken = {
-      ...token,
+  return useStyle$A("ProLayoutHeaderStylish", (token2) => {
+    const stylishToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`,
       proLayoutCollapsedWidth
-    };
+    });
     if (!stylish)
       return [];
     return [
       {
-        [`div${token.proComponentsCls}-layout`]: {
-          [`${stylishToken.componentCls}`]: stylish?.(stylishToken)
+        [`div${token2.proComponentsCls}-layout`]: {
+          [`${stylishToken.componentCls}`]: stylish == null ? void 0 : stylish(stylishToken)
         }
       }
     ];
   });
 }
-
 const { Header } = Layout;
 const DefaultHeader = (props) => {
+  var _a2, _b2, _c2, _d, _e, _f;
   const {
     isMobile,
     fixedHeader,
@@ -15740,38 +15986,40 @@ const DefaultHeader = (props) => {
     prefixCls,
     onCollapse,
     layout,
-    headerRender,
+    headerRender: headerRender2,
     headerContentRender
   } = props;
-  const { token } = useContext(ProProvider);
+  const { token: token2 } = useContext(ProProvider);
   const context = useContext(ConfigProvider.ConfigContext);
   const [isFixedHeaderScroll, setIsFixedHeaderScroll] = useState(false);
   const needFixedHeader = fixedHeader || layout === "mix";
   const renderContent = useCallback(() => {
     const isTop2 = layout === "top";
     const clearMenuData = clearMenuItem(props.menuData || []);
-    let defaultDom = /* @__PURE__ */ jsx(GlobalHeader, { onCollapse, ...props, menuData: clearMenuData, children: headerContentRender && headerContentRender(props, null) });
+    let defaultDom = /* @__PURE__ */ jsx(GlobalHeader, __spreadProps(__spreadValues({ onCollapse }, props), { menuData: clearMenuData, children: headerContentRender && headerContentRender(props, null) }));
     if (isTop2 && !isMobile) {
       defaultDom = /* @__PURE__ */ jsx(
         TopNavHeader,
-        {
+        __spreadProps(__spreadValues({
           mode: "horizontal",
-          onCollapse,
-          ...props,
+          onCollapse
+        }, props), {
           menuData: clearMenuData
-        }
+        })
       );
     }
-    if (headerRender && typeof headerRender === "function") {
-      return headerRender(props, defaultDom);
+    if (headerRender2 && typeof headerRender2 === "function") {
+      return headerRender2(props, defaultDom);
     }
     return defaultDom;
-  }, [headerContentRender, headerRender, isMobile, layout, onCollapse, props]);
+  }, [headerContentRender, headerRender2, isMobile, layout, onCollapse, props]);
   useEffect(() => {
-    const dom = context?.getTargetContainer?.() || document.body;
+    var _a3;
+    const dom = ((_a3 = context == null ? void 0 : context.getTargetContainer) == null ? void 0 : _a3.call(context)) || document.body;
     const isFixedHeaderFn = () => {
+      var _a4, _b3;
       const scrollTop = dom.scrollTop;
-      if (scrollTop > (token.layout?.header?.heightLayoutHeader || 56) && !isFixedHeaderScroll) {
+      if (scrollTop > (((_b3 = (_a4 = token2.layout) == null ? void 0 : _a4.header) == null ? void 0 : _b3.heightLayoutHeader) || 56) && !isFixedHeaderScroll) {
         setIsFixedHeaderScroll(true);
         return true;
       }
@@ -15791,7 +16039,7 @@ const DefaultHeader = (props) => {
       dom.removeEventListener("scroll", isFixedHeaderFn);
     };
   }, [
-    token.layout?.header?.heightLayoutHeader,
+    (_b2 = (_a2 = token2.layout) == null ? void 0 : _a2.header) == null ? void 0 : _b2.heightLayoutHeader,
     needFixedHeader,
     isFixedHeaderScroll
   ]);
@@ -15831,13 +16079,12 @@ const DefaultHeader = (props) => {
             needFixedHeader && /* @__PURE__ */ jsx(
               Header,
               {
-                style: {
-                  height: token.layout?.header?.heightLayoutHeader || 56,
-                  lineHeight: `${token.layout?.header?.heightLayoutHeader || 56}px`,
+                style: __spreadValues({
+                  height: ((_d = (_c2 = token2.layout) == null ? void 0 : _c2.header) == null ? void 0 : _d.heightLayoutHeader) || 56,
+                  lineHeight: `${((_f = (_e = token2.layout) == null ? void 0 : _e.header) == null ? void 0 : _f.heightLayoutHeader) || 56}px`,
                   backgroundColor: "transparent",
-                  zIndex: 19,
-                  ...style
-                }
+                  zIndex: 19
+                }, style)
               }
             ),
             /* @__PURE__ */ jsx(Header, { className, style, children: renderContent() })
@@ -15847,7 +16094,6 @@ const DefaultHeader = (props) => {
     )
   );
 };
-
 const matchParamsPath = (pathname, breadcrumb, breadcrumbMap) => {
   if (breadcrumbMap) {
     const pathKey = [...breadcrumbMap.keys()].find(
@@ -15919,7 +16165,6 @@ const getPageTitleInfo = (props, ignoreTitle) => {
 const getPageTitle = (props, ignoreTitle) => {
   return getPageTitleInfo(props, ignoreTitle).title;
 };
-
 const childrenPropsName = "routes";
 function stripQueryStringAndHashFromPath(url) {
   return url.split("?")[0].split("#")[0];
@@ -15946,8 +16191,8 @@ const getKeyByPath = (item) => {
   return path ? stripQueryStringAndHashFromPath(path) : path;
 };
 const getItemLocaleName = (item, parentName) => {
-  const { name, locale } = item;
-  if ("locale" in item && locale === false || !name) {
+  const { name, locale: locale2 } = item;
+  if ("locale" in item && locale2 === false || !name) {
     return false;
   }
   return item.locale || `${parentName}.${name}`;
@@ -15975,15 +16220,12 @@ const bigfishCompatibleConversions = (route, props) => {
   } = menu;
   const childrenList = indexRoute && // 如果只有 redirect,不用處理的
   Object.keys(indexRoute).join(",") !== "redirect" ? [
-    {
+    __spreadValues({
       path,
-      menu,
-      ...indexRoute
-    }
+      menu
+    }, indexRoute)
   ].concat(routerChildren || []) : routerChildren;
-  const result = {
-    ...route
-  };
+  const result = __spreadValues({}, route);
   if (name) {
     result.name = name;
   }
@@ -15996,10 +16238,9 @@ const bigfishCompatibleConversions = (route, props) => {
       return result;
     }
     const finalChildren = formatter(
-      {
-        ...props,
+      __spreadProps(__spreadValues({}, props), {
         data: childrenList
-      },
+      }),
       route
     );
     if (flatMenu) {
@@ -16032,7 +16273,8 @@ function formatter(props, parent = { path: "/" }) {
       return false;
     return false;
   }).filter((item) => {
-    if (item?.menu?.name || item?.flatMenu || item?.menu?.flatMenu) {
+    var _a2, _b2;
+    if (((_a2 = item == null ? void 0 : item.menu) == null ? void 0 : _a2.name) || (item == null ? void 0 : item.flatMenu) || ((_b2 = item == null ? void 0 : item.menu) == null ? void 0 : _b2.flatMenu)) {
       return true;
     }
     if (item.menu === false) {
@@ -16040,10 +16282,9 @@ function formatter(props, parent = { path: "/" }) {
     }
     return true;
   }).map((finallyItem) => {
-    const item = {
-      ...finallyItem,
+    const item = __spreadProps(__spreadValues({}, finallyItem), {
       path: finallyItem.path || finallyItem.originPath
-    };
+    });
     if (!item.children && item[childrenPropsName]) {
       item.children = item[childrenPropsName];
       delete item[childrenPropsName];
@@ -16065,18 +16306,24 @@ function formatter(props, parent = { path: "/" }) {
     const routerChildren = item.children || item[childrenPropsName] || [];
     const path = mergePath(item.path, parent ? parent.path : "/");
     const { name } = item;
-    const locale = getItemLocaleName(item, parentName || "menu");
-    const localeName = locale !== false && menuLocale !== false && formatMessage && locale ? formatMessage({ id: locale, defaultMessage: name }) : name;
-    const {
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      pro_layout_parentKeys = [],
+    const locale2 = getItemLocaleName(item, parentName || "menu");
+    const localeName = locale2 !== false && menuLocale !== false && formatMessage && locale2 ? formatMessage({ id: locale2, defaultMessage: name }) : name;
+    const _a2 = parent, {
+      pro_layout_parentKeys: pro_layout_parentKeys = [],
       children,
       icon,
       flatMenu,
       indexRoute,
-      routes,
-      ...restParent
-    } = parent;
+      routes
+    } = _a2, restParent = __objRest(_a2, [
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      "pro_layout_parentKeys",
+      "children",
+      "icon",
+      "flatMenu",
+      "indexRoute",
+      "routes"
+    ]);
     const item_pro_layout_parentKeys = /* @__PURE__ */ new Set([
       ...pro_layout_parentKeys,
       ...item.parentKeys || []
@@ -16084,17 +16331,16 @@ function formatter(props, parent = { path: "/" }) {
     if (parent.key) {
       item_pro_layout_parentKeys.add(parent.key);
     }
-    const finallyItem = {
-      ...restParent,
-      menu: void 0,
-      ...item,
+    const finallyItem = __spreadProps(__spreadValues(__spreadProps(__spreadValues({}, restParent), {
+      menu: void 0
+    }), item), {
       path,
-      locale,
-      key: item.key || getKeyByPath({ ...item, path }),
+      locale: locale2,
+      key: item.key || getKeyByPath(__spreadProps(__spreadValues({}, item), { path })),
       pro_layout_parentKeys: Array.from(item_pro_layout_parentKeys).filter(
         (key) => key && key !== "/"
       )
-    };
+    });
     if (localeName) {
       finallyItem.name = localeName;
     } else {
@@ -16105,11 +16351,10 @@ function formatter(props, parent = { path: "/" }) {
     }
     if (notNullArray(routerChildren)) {
       const formatterChildren = formatter(
-        {
-          ...props,
+        __spreadProps(__spreadValues({}, props), {
           data: routerChildren,
-          parentName: locale || ""
-        },
+          parentName: locale2 || ""
+        }),
         finallyItem
       );
       if (notNullArray(formatterChildren)) {
@@ -16122,18 +16367,17 @@ function formatter(props, parent = { path: "/" }) {
 const defaultFilterMenuData = (menuData = []) => menuData.filter(
   (item) => item && (item.name || notNullArray(item.children)) && !item.hideInMenu && !item.redirect
 ).map((item) => {
-  const newItem = { ...item };
+  const newItem = __spreadValues({}, item);
   const routerChildren = newItem.children || item[childrenPropsName] || [];
   delete newItem[childrenPropsName];
   if (notNullArray(routerChildren) && !newItem.hideChildrenInMenu && routerChildren.some((child) => child && !!child.name)) {
     const newChildren = defaultFilterMenuData(routerChildren);
     if (newChildren.length)
-      return {
-        ...newItem,
+      return __spreadProps(__spreadValues({}, newItem), {
         children: newChildren
-      };
+      });
   }
-  return { ...item };
+  return __spreadValues({}, item);
 }).filter((item) => item);
 class RouteListMap extends Map {
   get(pathname) {
@@ -16173,29 +16417,28 @@ const clearChildren = (menuData = []) => {
     if (notNullArray(routerChildren)) {
       const newChildren = clearChildren(routerChildren);
       if (newChildren.length)
-        return { ...item };
+        return __spreadValues({}, item);
     }
-    const finallyItem = { ...item };
+    const finallyItem = __spreadValues({}, item);
     delete finallyItem[childrenPropsName];
     delete finallyItem.children;
     return finallyItem;
   }).filter((item) => item);
 };
-const transformRoute = (routeList, locale, formatMessage, ignoreFilter) => {
+const transformRoute = (routeList, locale2, formatMessage, ignoreFilter) => {
   const originalMenuData = formatter({
     data: routeList,
     formatMessage,
-    locale
+    locale: locale2
   });
   const menuData = ignoreFilter ? clearChildren(originalMenuData) : defaultFilterMenuData(originalMenuData);
   const breadcrumb = getBreadcrumbNameMap(originalMenuData);
   return { breadcrumb, menuData };
 };
-
 const getFlatMenus = (menuData = []) => {
   let menus = {};
   menuData.forEach((mapItem) => {
-    const item = { ...mapItem };
+    const item = __spreadValues({}, mapItem);
     if (!item || !item.key) {
       return;
     }
@@ -16204,17 +16447,14 @@ const getFlatMenus = (menuData = []) => {
       delete item[childrenPropsName];
     }
     const routerChildren = item.children || [];
-    menus[stripQueryStringAndHashFromPath(item.path || item.key || "/")] = {
-      ...item
-    };
-    menus[item.key || item.path || "/"] = { ...item };
+    menus[stripQueryStringAndHashFromPath(item.path || item.key || "/")] = __spreadValues({}, item);
+    menus[item.key || item.path || "/"] = __spreadValues({}, item);
     if (routerChildren) {
-      menus = { ...menus, ...getFlatMenus(routerChildren) };
+      menus = __spreadValues(__spreadValues({}, menus), getFlatMenus(routerChildren));
     }
   });
   return menus;
 };
-
 const getMenuMatches = (flatMenuKeys = [], path, exact) => flatMenuKeys.filter((item) => {
   if (item === "/" && path === "/") {
     return true;
@@ -16276,7 +16516,6 @@ const getMatchMenu = (pathname, menuData, fullKeys, exact) => {
     return parentItems;
   }).flat(1);
 };
-
 const proLayoutTitleHide = new Keyframes("ipassBadgeLoadingCircle", {
   "0%": { display: "none", opacity: 0, overflow: "hidden" },
   "80%": {
@@ -16287,13 +16526,14 @@ const proLayoutTitleHide = new Keyframes("ipassBadgeLoadingCircle", {
     opacity: 1
   }
 });
-const genSiderMenuStyle = (token) => {
+const genSiderMenuStyle = (token2) => {
+  var _a2, _b2, _c2, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x;
   return {
-    [`${token.proComponentsCls}-layout`]: {
-      [`${token.ipassCls}-layout-sider${token.componentCls}`]: {
-        background: token.layout?.sider?.colorMenuBackground || "transparent"
+    [`${token2.proComponentsCls}-layout`]: {
+      [`${token2.ipassCls}-layout-sider${token2.componentCls}`]: {
+        background: ((_b2 = (_a2 = token2.layout) == null ? void 0 : _a2.sider) == null ? void 0 : _b2.colorMenuBackground) || "transparent"
       },
-      [token.componentCls]: {
+      [token2.componentCls]: {
         position: "relative",
         boxSizing: "border-box",
         "&-menu": {
@@ -16301,23 +16541,23 @@ const genSiderMenuStyle = (token) => {
           zIndex: 10,
           minHeight: "100%"
         },
-        [`& ${token.ipassCls}-layout-sider-children`]: {
+        [`& ${token2.ipassCls}-layout-sider-children`]: {
           position: "relative",
           display: "flex",
           flexDirection: "column",
           height: "100%",
-          paddingInline: token.layout?.sider?.paddingInlineLayoutMenu,
-          paddingBlock: token.layout?.sider?.paddingBlockLayoutMenu,
-          borderInlineEnd: `1px solid ${token.colorSplit}`,
+          paddingInline: (_d = (_c2 = token2.layout) == null ? void 0 : _c2.sider) == null ? void 0 : _d.paddingInlineLayoutMenu,
+          paddingBlock: (_f = (_e = token2.layout) == null ? void 0 : _e.sider) == null ? void 0 : _f.paddingBlockLayoutMenu,
+          borderInlineEnd: `1px solid ${token2.colorSplit}`,
           marginInlineEnd: -1
         },
-        [`${token.ipassCls}-menu`]: {
-          [`${token.ipassCls}-menu-item-group-title`]: {
-            fontSize: token.fontSizeSM,
+        [`${token2.ipassCls}-menu`]: {
+          [`${token2.ipassCls}-menu-item-group-title`]: {
+            fontSize: token2.fontSizeSM,
             paddingBottom: 4
           },
-          [`${token.ipassCls}-menu-item:hover`]: {
-            color: token.layout?.sider?.colorTextMenuItemHover
+          [`${token2.ipassCls}-menu-item:hover`]: {
+            color: (_h = (_g = token2.layout) == null ? void 0 : _g.sider) == null ? void 0 : _h.colorTextMenuItemHover
           }
         },
         "&-logo": {
@@ -16327,9 +16567,9 @@ const genSiderMenuStyle = (token) => {
           justifyContent: "space-between",
           paddingInline: 12,
           paddingBlock: 16,
-          color: token.layout?.sider?.colorTextMenu,
+          color: (_j = (_i = token2.layout) == null ? void 0 : _i.sider) == null ? void 0 : _j.colorTextMenu,
           cursor: "pointer",
-          borderBlockEnd: `1px solid ${token.layout?.sider?.colorMenuItemDivider}`,
+          borderBlockEnd: `1px solid ${(_l = (_k = token2.layout) == null ? void 0 : _k.sider) == null ? void 0 : _l.colorMenuItemDivider}`,
           "> a": {
             display: "flex",
             alignItems: "center",
@@ -16347,7 +16587,7 @@ const genSiderMenuStyle = (token) => {
               marginBlock: 0,
               marginInlineEnd: 0,
               marginInlineStart: 6,
-              color: token.layout?.sider?.colorTextMenuTitle,
+              color: (_n = (_m = token2.layout) == null ? void 0 : _m.sider) == null ? void 0 : _n.colorTextMenuTitle,
               animationName: proLayoutTitleHide,
               animationDuration: ".4s",
               animationTimingFunction: "ease",
@@ -16361,7 +16601,7 @@ const genSiderMenuStyle = (token) => {
             flexDirection: "column-reverse",
             margin: 0,
             padding: 12,
-            [`${token.proComponentsCls}-layout-apps-icon`]: {
+            [`${token2.proComponentsCls}-layout-apps-icon`]: {
               marginBlockEnd: 8,
               fontSize: 16,
               transition: "font-size 0.2s ease-in-out,color 0.2s ease-in-out"
@@ -16374,7 +16614,7 @@ const genSiderMenuStyle = (token) => {
           justifyContent: "space-between",
           marginBlock: 4,
           marginInline: 0,
-          color: token.layout?.sider?.colorTextMenu,
+          color: (_p = (_o = token2.layout) == null ? void 0 : _o.sider) == null ? void 0 : _p.colorTextMenu,
           "&-collapsed": {
             flexDirection: "column-reverse",
             paddingBlock: 0,
@@ -16383,7 +16623,7 @@ const genSiderMenuStyle = (token) => {
             transition: "font-size 0.3s ease-in-out"
           },
           "&-list": {
-            color: token.layout?.sider?.colorTextMenuSecondary,
+            color: (_r = (_q = token2.layout) == null ? void 0 : _q.sider) == null ? void 0 : _r.colorTextMenuSecondary,
             "&-collapsed": {
               marginBlockEnd: 8,
               animationName: "none"
@@ -16394,9 +16634,9 @@ const genSiderMenuStyle = (token) => {
               lineHeight: "16px",
               fontSize: 16,
               cursor: "pointer",
-              borderRadius: token.borderRadius,
+              borderRadius: token2.borderRadius,
               "&:hover": {
-                background: token.colorBgTextHover
+                background: token2.colorBgTextHover
               }
             }
           },
@@ -16406,18 +16646,18 @@ const genSiderMenuStyle = (token) => {
             paddingBlock: 8,
             display: "flex",
             alignItems: "center",
-            gap: token.marginXS,
-            borderRadius: token.borderRadius,
+            gap: token2.marginXS,
+            borderRadius: token2.borderRadius,
             "& *": {
               cursor: "pointer"
             },
             "&:hover": {
-              background: token.colorBgTextHover
+              background: token2.colorBgTextHover
             }
           }
         },
         "&-hide-menu-collapsed": {
-          insetInlineStart: `-${token.proLayoutCollapsedWidth - 12}px`,
+          insetInlineStart: `-${token2.proLayoutCollapsedWidth - 12}px`,
           position: "absolute"
         },
         "&-extra": {
@@ -16440,23 +16680,23 @@ const genSiderMenuStyle = (token) => {
           background: "transparent"
         },
         "&-footer": {
-          color: token.layout?.sider?.colorTextMenuSecondary,
+          color: (_t = (_s = token2.layout) == null ? void 0 : _s.sider) == null ? void 0 : _t.colorTextMenuSecondary,
           paddingBlockEnd: 16,
-          fontSize: token.fontSize,
+          fontSize: token2.fontSize,
           animationName: proLayoutTitleHide,
           animationDuration: ".4s",
           animationTimingFunction: "ease"
         }
       },
-      [`${token.componentCls}${token.componentCls}-fixed`]: {
+      [`${token2.componentCls}${token2.componentCls}-fixed`]: {
         position: "fixed",
         insetBlockStart: 0,
         insetInlineStart: 0,
         zIndex: "100",
         height: "100%",
         "&-mix": {
-          height: `calc(100% - ${token.layout?.header?.heightLayoutHeader || 56}px)`,
-          insetBlockStart: `${token.layout?.header?.heightLayoutHeader || 56}px`
+          height: `calc(100% - ${((_v = (_u = token2.layout) == null ? void 0 : _u.header) == null ? void 0 : _v.heightLayoutHeader) || 56}px)`,
+          insetBlockStart: `${((_x = (_w = token2.layout) == null ? void 0 : _w.header) == null ? void 0 : _x.heightLayoutHeader) || 56}px`
         }
       }
     }
@@ -16465,17 +16705,16 @@ const genSiderMenuStyle = (token) => {
 function useStyle$5(prefixCls, {
   proLayoutCollapsedWidth
 }) {
-  return useStyle$A("ProLayoutSiderMenu", (token) => {
-    const siderMenuToken = {
-      ...token,
+  return useStyle$A("ProLayoutSiderMenu", (token2) => {
+    const siderMenuToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`,
       proLayoutCollapsedWidth
-    };
+    });
     return [genSiderMenuStyle(siderMenuToken)];
   });
 }
-
 const SiderMenuWrapper = (props) => {
+  var _a2, _b2;
   const {
     isMobile,
     siderWidth,
@@ -16486,7 +16725,7 @@ const SiderMenuWrapper = (props) => {
     hide,
     prefixCls
   } = props;
-  const { token } = useContext(ProProvider);
+  const { token: token2 } = useContext(ProProvider);
   const omitProps = omit(props, ["className", "style"]);
   const { wrapSSR, hashId } = useStyle$5(`${prefixCls}-sider`, {
     proLayoutCollapsedWidth: 64
@@ -16497,22 +16736,21 @@ const SiderMenuWrapper = (props) => {
   }
   const drawerOpenProps = openVisibleCompatible(
     !collapsed,
-    () => onCollapse?.(true)
+    () => onCollapse == null ? void 0 : onCollapse(true)
   );
   return wrapSSR(
     isMobile ? /* @__PURE__ */ jsx(
       Drawer,
-      {
+      __spreadProps(__spreadValues({
         placement: "left",
-        className: classNames(`${prefixCls}-drawer-sider`, className),
-        ...drawerOpenProps,
-        style: {
+        className: classNames(`${prefixCls}-drawer-sider`, className)
+      }, drawerOpenProps), {
+        style: __spreadValues({
           padding: 0,
-          height: "100vh",
-          ...style
-        },
+          height: "100vh"
+        }, style),
         onClose: () => {
-          onCollapse?.(true);
+          onCollapse == null ? void 0 : onCollapse(true);
         },
         maskClosable: true,
         closable: false,
@@ -16522,32 +16760,30 @@ const SiderMenuWrapper = (props) => {
           padding: 0,
           display: "flex",
           flexDirection: "row",
-          backgroundColor: token.layout?.sider?.colorMenuBackground
+          backgroundColor: (_b2 = (_a2 = token2.layout) == null ? void 0 : _a2.sider) == null ? void 0 : _b2.colorMenuBackground
         },
         children: /* @__PURE__ */ jsx(
           SiderMenu,
-          {
-            ...omitProps,
+          __spreadProps(__spreadValues({}, omitProps), {
             isMobile: true,
             className: siderClassName,
             collapsed: isMobile ? false : collapsed,
             splitMenus: false,
             originCollapsed: collapsed
-          }
+          })
         )
-      }
+      })
     ) : /* @__PURE__ */ jsx(
       SiderMenu,
-      {
+      __spreadProps(__spreadValues({
         className: siderClassName,
-        originCollapsed: collapsed,
-        ...omitProps,
+        originCollapsed: collapsed
+      }, omitProps), {
         style
-      }
+      })
     )
   );
 };
-
 const defaultSettings = {
   navTheme: "light",
   layout: "side",
@@ -16558,226 +16794,228 @@ const defaultSettings = {
   colorPrimary: "#1677FF",
   splitMenus: false
 };
-
 const version = "5.1.7";
 const getVersion = () => {
+  var _a2;
   if (typeof process === "undefined")
     return version;
-  return process?.env?.VERSION || version;
+  return ((_a2 = process == null ? void 0 : process.env) == null ? void 0 : _a2.VERSION) || version;
 };
-const compatibleStyle = (token) => {
-  if (getVersion()?.startsWith("5")) {
+const compatibleStyle = (token2) => {
+  var _a2, _b2, _c2, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, _N, _O, _P, _Q, _R, _S, _T, _U, _V, _W, _X, _Y, _Z, __, _$, _aa, _ba, _ca, _da, _ea, _fa, _ga;
+  if ((_a2 = getVersion()) == null ? void 0 : _a2.startsWith("5")) {
     return {};
   }
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       width: "100%",
       height: "100%",
-      [`${token.proComponentsCls}-base-menu`]: {
-        color: token.layout?.sider?.colorTextMenu,
-        [`${token.ipassCls}-menu-sub`]: {
+      [`${token2.proComponentsCls}-base-menu`]: {
+        color: (_c2 = (_b2 = token2.layout) == null ? void 0 : _b2.sider) == null ? void 0 : _c2.colorTextMenu,
+        [`${token2.ipassCls}-menu-sub`]: {
           backgroundColor: "transparent!important",
-          color: token.layout?.sider?.colorTextMenu
+          color: (_e = (_d = token2.layout) == null ? void 0 : _d.sider) == null ? void 0 : _e.colorTextMenu
         },
-        [`& ${token.ipassCls}-layout`]: {
+        [`& ${token2.ipassCls}-layout`]: {
           backgroundColor: "transparent",
           width: "100%"
         },
-        [`${token.ipassCls}-menu-submenu-expand-icon, ${token.ipassCls}-menu-submenu-arrow`]: {
+        [`${token2.ipassCls}-menu-submenu-expand-icon, ${token2.ipassCls}-menu-submenu-arrow`]: {
           color: "inherit"
         },
-        [`&${token.ipassCls}-menu`]: {
-          color: token.layout?.sider?.colorTextMenu,
-          [`${token.ipassCls}-menu-item`]: {
+        [`&${token2.ipassCls}-menu`]: {
+          color: (_g = (_f = token2.layout) == null ? void 0 : _f.sider) == null ? void 0 : _g.colorTextMenu,
+          [`${token2.ipassCls}-menu-item`]: {
             "*": {
               transition: "none !important"
             }
           },
-          [`${token.ipassCls}-menu-item a`]: {
+          [`${token2.ipassCls}-menu-item a`]: {
             color: "inherit"
           }
         },
-        [`&${token.ipassCls}-menu-inline`]: {
-          [`${token.ipassCls}-menu-selected::after,${token.ipassCls}-menu-item-selected::after`]: {
+        [`&${token2.ipassCls}-menu-inline`]: {
+          [`${token2.ipassCls}-menu-selected::after,${token2.ipassCls}-menu-item-selected::after`]: {
             display: "none"
           }
         },
-        [`${token.ipassCls}-menu-sub ${token.ipassCls}-menu-inline`]: {
+        [`${token2.ipassCls}-menu-sub ${token2.ipassCls}-menu-inline`]: {
           backgroundColor: "transparent!important"
         },
-        [`${token.ipassCls}-menu-item:active, 
-        ${token.ipassCls}-menu-submenu-title:active`]: {
+        [`${token2.ipassCls}-menu-item:active, 
+        ${token2.ipassCls}-menu-submenu-title:active`]: {
           backgroundColor: "transparent!important"
         },
-        [`&${token.ipassCls}-menu-light`]: {
-          [`${token.ipassCls}-menu-item:hover, 
-            ${token.ipassCls}-menu-item-active,
-            ${token.ipassCls}-menu-submenu-active, 
-            ${token.ipassCls}-menu-submenu-title:hover`]: {
-            color: token.layout?.sider?.colorTextMenuActive,
-            borderRadius: token.borderRadius,
-            [`${token.ipassCls}-menu-submenu-arrow`]: {
-              color: token.layout?.sider?.colorTextMenuActive
+        [`&${token2.ipassCls}-menu-light`]: {
+          [`${token2.ipassCls}-menu-item:hover, 
+            ${token2.ipassCls}-menu-item-active,
+            ${token2.ipassCls}-menu-submenu-active, 
+            ${token2.ipassCls}-menu-submenu-title:hover`]: {
+            color: (_i = (_h = token2.layout) == null ? void 0 : _h.sider) == null ? void 0 : _i.colorTextMenuActive,
+            borderRadius: token2.borderRadius,
+            [`${token2.ipassCls}-menu-submenu-arrow`]: {
+              color: (_k = (_j = token2.layout) == null ? void 0 : _j.sider) == null ? void 0 : _k.colorTextMenuActive
             }
           }
         },
-        [`&${token.ipassCls}-menu:not(${token.ipassCls}-menu-horizontal)`]: {
-          [`${token.ipassCls}-menu-item-selected`]: {
-            backgroundColor: token.layout?.sider?.colorBgMenuItemSelected,
-            borderRadius: token.borderRadius
+        [`&${token2.ipassCls}-menu:not(${token2.ipassCls}-menu-horizontal)`]: {
+          [`${token2.ipassCls}-menu-item-selected`]: {
+            backgroundColor: (_m = (_l = token2.layout) == null ? void 0 : _l.sider) == null ? void 0 : _m.colorBgMenuItemSelected,
+            borderRadius: token2.borderRadius
           },
-          [`${token.ipassCls}-menu-item:hover, 
-            ${token.ipassCls}-menu-item-active,
-            ${token.ipassCls}-menu-submenu-title:hover`]: {
-            color: token.layout?.sider?.colorTextMenuActive,
-            borderRadius: token.borderRadius,
-            backgroundColor: `${token.layout?.header?.colorBgMenuItemHover} !important`,
-            [`${token.ipassCls}-menu-submenu-arrow`]: {
-              color: token.layout?.sider?.colorTextMenuActive
+          [`${token2.ipassCls}-menu-item:hover, 
+            ${token2.ipassCls}-menu-item-active,
+            ${token2.ipassCls}-menu-submenu-title:hover`]: {
+            color: (_o = (_n = token2.layout) == null ? void 0 : _n.sider) == null ? void 0 : _o.colorTextMenuActive,
+            borderRadius: token2.borderRadius,
+            backgroundColor: `${(_q = (_p = token2.layout) == null ? void 0 : _p.header) == null ? void 0 : _q.colorBgMenuItemHover} !important`,
+            [`${token2.ipassCls}-menu-submenu-arrow`]: {
+              color: (_s = (_r = token2.layout) == null ? void 0 : _r.sider) == null ? void 0 : _s.colorTextMenuActive
             }
           }
         },
-        [`${token.ipassCls}-menu-item-selected`]: {
-          color: token.layout?.sider?.colorTextMenuSelected
+        [`${token2.ipassCls}-menu-item-selected`]: {
+          color: (_u = (_t = token2.layout) == null ? void 0 : _t.sider) == null ? void 0 : _u.colorTextMenuSelected
         },
-        [`${token.ipassCls}-menu-submenu-selected`]: {
-          color: token.layout?.sider?.colorTextMenuSelected
+        [`${token2.ipassCls}-menu-submenu-selected`]: {
+          color: (_w = (_v = token2.layout) == null ? void 0 : _v.sider) == null ? void 0 : _w.colorTextMenuSelected
         },
-        [`&${token.ipassCls}-menu:not(${token.ipassCls}-menu-inline) ${token.ipassCls}-menu-submenu-open`]: {
-          color: token.layout?.sider?.colorTextMenuSelected
+        [`&${token2.ipassCls}-menu:not(${token2.ipassCls}-menu-inline) ${token2.ipassCls}-menu-submenu-open`]: {
+          color: (_y = (_x = token2.layout) == null ? void 0 : _x.sider) == null ? void 0 : _y.colorTextMenuSelected
         },
-        [`&${token.ipassCls}-menu-vertical`]: {
-          [`${token.ipassCls}-menu-submenu-selected`]: {
-            borderRadius: token.borderRadius,
-            color: token.layout?.sider?.colorTextMenuSelected
+        [`&${token2.ipassCls}-menu-vertical`]: {
+          [`${token2.ipassCls}-menu-submenu-selected`]: {
+            borderRadius: token2.borderRadius,
+            color: (_A = (_z = token2.layout) == null ? void 0 : _z.sider) == null ? void 0 : _A.colorTextMenuSelected
           }
         },
-        [`${token.ipassCls}-menu-submenu:hover > ${token.ipassCls}-menu-submenu-title > ${token.ipassCls}-menu-submenu-arrow`]: {
-          color: token.layout?.sider?.colorTextMenuActive
+        [`${token2.ipassCls}-menu-submenu:hover > ${token2.ipassCls}-menu-submenu-title > ${token2.ipassCls}-menu-submenu-arrow`]: {
+          color: (_C = (_B = token2.layout) == null ? void 0 : _B.sider) == null ? void 0 : _C.colorTextMenuActive
         },
-        [`&${token.ipassCls}-menu-horizontal`]: {
-          [`${token.ipassCls}-menu-item:hover,
-          ${token.ipassCls}-menu-submenu:hover,
-          ${token.ipassCls}-menu-item-active,
-          ${token.ipassCls}-menu-submenu-active`]: {
+        [`&${token2.ipassCls}-menu-horizontal`]: {
+          [`${token2.ipassCls}-menu-item:hover,
+          ${token2.ipassCls}-menu-submenu:hover,
+          ${token2.ipassCls}-menu-item-active,
+          ${token2.ipassCls}-menu-submenu-active`]: {
             borderRadius: 4,
             transition: "none",
-            color: token.layout?.header?.colorTextMenuActive,
-            backgroundColor: `${token.layout?.header?.colorBgMenuItemHover} !important`
+            color: (_E = (_D = token2.layout) == null ? void 0 : _D.header) == null ? void 0 : _E.colorTextMenuActive,
+            backgroundColor: `${(_G = (_F = token2.layout) == null ? void 0 : _F.header) == null ? void 0 : _G.colorBgMenuItemHover} !important`
           },
-          [`${token.ipassCls}-menu-item-open,
-          ${token.ipassCls}-menu-submenu-open,
-          ${token.ipassCls}-menu-item-selected,
-          ${token.ipassCls}-menu-submenu-selected`]: {
-            backgroundColor: token.layout?.header?.colorBgMenuItemSelected,
-            borderRadius: token.borderRadius,
+          [`${token2.ipassCls}-menu-item-open,
+          ${token2.ipassCls}-menu-submenu-open,
+          ${token2.ipassCls}-menu-item-selected,
+          ${token2.ipassCls}-menu-submenu-selected`]: {
+            backgroundColor: (_I = (_H = token2.layout) == null ? void 0 : _H.header) == null ? void 0 : _I.colorBgMenuItemSelected,
+            borderRadius: token2.borderRadius,
             transition: "none",
-            color: `${token.layout?.header?.colorTextMenuSelected} !important`,
-            [`${token.ipassCls}-menu-submenu-arrow`]: {
-              color: `${token.layout?.header?.colorTextMenuSelected} !important`
+            color: `${(_K = (_J = token2.layout) == null ? void 0 : _J.header) == null ? void 0 : _K.colorTextMenuSelected} !important`,
+            [`${token2.ipassCls}-menu-submenu-arrow`]: {
+              color: `${(_M = (_L = token2.layout) == null ? void 0 : _L.header) == null ? void 0 : _M.colorTextMenuSelected} !important`
             }
           },
-          [`> ${token.ipassCls}-menu-item, > ${token.ipassCls}-menu-submenu`]: {
+          [`> ${token2.ipassCls}-menu-item, > ${token2.ipassCls}-menu-submenu`]: {
             paddingInline: 16,
             marginInline: 4
           },
-          [`> ${token.ipassCls}-menu-item::after, > ${token.ipassCls}-menu-submenu::after`]: {
+          [`> ${token2.ipassCls}-menu-item::after, > ${token2.ipassCls}-menu-submenu::after`]: {
             display: "none"
           }
         }
       },
-      [`${token.proComponentsCls}-top-nav-header-base-menu`]: {
-        [`&${token.ipassCls}-menu`]: {
-          color: token.layout?.header?.colorTextMenu,
-          [`${token.ipassCls}-menu-item a`]: {
+      [`${token2.proComponentsCls}-top-nav-header-base-menu`]: {
+        [`&${token2.ipassCls}-menu`]: {
+          color: (_O = (_N = token2.layout) == null ? void 0 : _N.header) == null ? void 0 : _O.colorTextMenu,
+          [`${token2.ipassCls}-menu-item a`]: {
             color: "inherit"
           }
         },
-        [`&${token.ipassCls}-menu-light`]: {
-          [`${token.ipassCls}-menu-item:hover, 
-            ${token.ipassCls}-menu-item-active,
-            ${token.ipassCls}-menu-submenu-active, 
-            ${token.ipassCls}-menu-submenu-title:hover`]: {
-            color: token.layout?.header?.colorTextMenuActive,
-            borderRadius: token.borderRadius,
+        [`&${token2.ipassCls}-menu-light`]: {
+          [`${token2.ipassCls}-menu-item:hover, 
+            ${token2.ipassCls}-menu-item-active,
+            ${token2.ipassCls}-menu-submenu-active, 
+            ${token2.ipassCls}-menu-submenu-title:hover`]: {
+            color: (_Q = (_P = token2.layout) == null ? void 0 : _P.header) == null ? void 0 : _Q.colorTextMenuActive,
+            borderRadius: token2.borderRadius,
             transition: "none",
-            backgroundColor: token.layout?.header?.colorBgMenuItemSelected,
-            [`${token.ipassCls}-menu-submenu-arrow`]: {
-              color: token.layout?.header?.colorTextMenuActive
+            backgroundColor: (_S = (_R = token2.layout) == null ? void 0 : _R.header) == null ? void 0 : _S.colorBgMenuItemSelected,
+            [`${token2.ipassCls}-menu-submenu-arrow`]: {
+              color: (_U = (_T = token2.layout) == null ? void 0 : _T.header) == null ? void 0 : _U.colorTextMenuActive
             }
           },
-          [`${token.ipassCls}-menu-item-selected`]: {
-            color: token.layout?.header?.colorTextMenuSelected,
-            borderRadius: token.borderRadius,
-            backgroundColor: token.layout?.header?.colorBgMenuItemSelected
+          [`${token2.ipassCls}-menu-item-selected`]: {
+            color: (_W = (_V = token2.layout) == null ? void 0 : _V.header) == null ? void 0 : _W.colorTextMenuSelected,
+            borderRadius: token2.borderRadius,
+            backgroundColor: (_Y = (_X = token2.layout) == null ? void 0 : _X.header) == null ? void 0 : _Y.colorBgMenuItemSelected
           }
         }
       }
     },
-    [`${token.ipassCls}-menu-sub${token.ipassCls}-menu-inline`]: {
+    [`${token2.ipassCls}-menu-sub${token2.ipassCls}-menu-inline`]: {
       backgroundColor: "transparent!important"
     },
-    [`${token.ipassCls}-menu-submenu-popup`]: {
+    [`${token2.ipassCls}-menu-submenu-popup`]: {
       backgroundColor: "rgba(255, 255, 255, 0.42)",
       "-webkit-backdrop-filter": "blur(8px)",
       backdropFilter: "blur(8px)",
-      [`${token.ipassCls}-menu`]: {
+      [`${token2.ipassCls}-menu`]: {
         background: "transparent !important",
         backgroundColor: "transparent !important",
-        [`${token.ipassCls}-menu-item:active, 
-        ${token.ipassCls}-menu-submenu-title:active`]: {
+        [`${token2.ipassCls}-menu-item:active, 
+        ${token2.ipassCls}-menu-submenu-title:active`]: {
           backgroundColor: "transparent!important"
         }
       },
-      [`${token.ipassCls}-menu-item-selected`]: {
-        color: token.layout?.sider?.colorTextMenuSelected
+      [`${token2.ipassCls}-menu-item-selected`]: {
+        color: (__ = (_Z = token2.layout) == null ? void 0 : _Z.sider) == null ? void 0 : __.colorTextMenuSelected
       },
-      [`${token.ipassCls}-menu-submenu-selected`]: {
-        color: token.layout?.sider?.colorTextMenuSelected
+      [`${token2.ipassCls}-menu-submenu-selected`]: {
+        color: (_aa = (_$ = token2.layout) == null ? void 0 : _$.sider) == null ? void 0 : _aa.colorTextMenuSelected
       },
-      [`${token.ipassCls}-menu:not(${token.ipassCls}-menu-horizontal)`]: {
-        [`${token.ipassCls}-menu-item-selected`]: {
+      [`${token2.ipassCls}-menu:not(${token2.ipassCls}-menu-horizontal)`]: {
+        [`${token2.ipassCls}-menu-item-selected`]: {
           backgroundColor: "rgba(0, 0, 0, 0.04)",
-          borderRadius: token.borderRadius,
-          color: token.layout?.sider?.colorTextMenuSelected
+          borderRadius: token2.borderRadius,
+          color: (_ca = (_ba = token2.layout) == null ? void 0 : _ba.sider) == null ? void 0 : _ca.colorTextMenuSelected
         },
-        [`${token.ipassCls}-menu-item:hover, 
-          ${token.ipassCls}-menu-item-active,
-          ${token.ipassCls}-menu-submenu-title:hover`]: {
-          color: token.layout?.sider?.colorTextMenuActive,
-          borderRadius: token.borderRadius,
-          [`${token.ipassCls}-menu-submenu-arrow`]: {
-            color: token.layout?.sider?.colorTextMenuActive
+        [`${token2.ipassCls}-menu-item:hover, 
+          ${token2.ipassCls}-menu-item-active,
+          ${token2.ipassCls}-menu-submenu-title:hover`]: {
+          color: (_ea = (_da = token2.layout) == null ? void 0 : _da.sider) == null ? void 0 : _ea.colorTextMenuActive,
+          borderRadius: token2.borderRadius,
+          [`${token2.ipassCls}-menu-submenu-arrow`]: {
+            color: (_ga = (_fa = token2.layout) == null ? void 0 : _fa.sider) == null ? void 0 : _ga.colorTextMenuActive
           }
         }
       }
     }
   };
 };
-const genProLayoutStyle = (token) => {
+const genProLayoutStyle = (token2) => {
+  var _a2, _b2, _c2, _d, _e, _f, _g;
   return {
-    [`${token.ipassCls}-layout`]: {
+    [`${token2.ipassCls}-layout`]: {
       backgroundColor: "transparent !important"
     },
-    [token.componentCls]: {
-      [`& ${token.ipassCls}-layout`]: {
+    [token2.componentCls]: {
+      [`& ${token2.ipassCls}-layout`]: {
         display: "flex",
         backgroundColor: "transparent",
         width: "100%"
       },
-      [`${token.componentCls}-content`]: {
+      [`${token2.componentCls}-content`]: {
         display: "flex",
         flexDirection: "column",
         width: "100%",
-        backgroundColor: token.layout?.pageContainer?.colorBgPageContainer || "transparent",
+        backgroundColor: ((_b2 = (_a2 = token2.layout) == null ? void 0 : _a2.pageContainer) == null ? void 0 : _b2.colorBgPageContainer) || "transparent",
         position: "relative",
-        paddingBlock: token.layout?.pageContainer?.paddingBlockPageContainerContent,
-        paddingInline: token.layout?.pageContainer?.paddingInlinePageContainerContent,
+        paddingBlock: (_d = (_c2 = token2.layout) == null ? void 0 : _c2.pageContainer) == null ? void 0 : _d.paddingBlockPageContainerContent,
+        paddingInline: (_f = (_e = token2.layout) == null ? void 0 : _e.pageContainer) == null ? void 0 : _f.paddingInlinePageContainerContent,
         "&-has-page-container": {
           padding: 0
         }
       },
-      [`${token.componentCls}-container`]: {
+      [`${token2.componentCls}-container`]: {
         width: "100%",
         display: "flex",
         flexDirection: "column",
@@ -16785,7 +17023,7 @@ const genProLayoutStyle = (token) => {
         minHeight: 0,
         backgroundColor: "transparent"
       },
-      [`${token.componentCls}-bg-list`]: {
+      [`${token2.componentCls}-bg-list`]: {
         pointerEvents: "none",
         position: "fixed",
         overflow: "hidden",
@@ -16794,21 +17032,19 @@ const genProLayoutStyle = (token) => {
         zIndex: 0,
         height: "100%",
         width: "100%",
-        background: token.layout?.bgLayout
+        background: (_g = token2.layout) == null ? void 0 : _g.bgLayout
       }
     }
   };
 };
 function useStyle$4(prefixCls) {
-  return useStyle$A("ProLayout", (token) => {
-    const proLayoutToken = {
-      ...token,
+  return useStyle$A("ProLayout", (token2) => {
+    const proLayoutToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProLayoutStyle(proLayoutToken), compatibleStyle(proLayoutToken)];
   });
 }
-
 function fromEntries(iterable) {
   return [...iterable].reduce(
     (obj, [key, val]) => {
@@ -16821,7 +17057,7 @@ function fromEntries(iterable) {
 const getMenuData = (routes, menu, formatMessage, menuDataRender) => {
   const { menuData, breadcrumb } = transformRoute(
     routes,
-    menu?.locale || false,
+    (menu == null ? void 0 : menu.locale) || false,
     formatMessage,
     true
   );
@@ -16834,7 +17070,6 @@ const getMenuData = (routes, menu, formatMessage, menuDataRender) => {
   }
   return getMenuData(menuDataRender(menuData), menu, formatMessage, void 0);
 };
-
 const useCurrentMenuLayoutProps = (currentMenu) => {
   const [currentMenuLayoutProps, setCurrentMenuLayoutProps] = useState({});
   useEffect(() => {
@@ -16861,17 +17096,15 @@ const useCurrentMenuLayoutProps = (currentMenu) => {
   ]);
   return currentMenuLayoutProps;
 };
-
 function urlToList(url) {
   if (!url || url === "/") {
     return ["/"];
   }
   const urlList = url.split("/").filter((i) => i);
   return urlList.map(
-    (urlItem, index) => `/${urlList.slice(0, index + 1).join("/")}`
+    (urlItem, index2) => `/${urlList.slice(0, index2 + 1).join("/")}`
   );
 }
-
 const defaultItemRender = (route, _, routes) => {
   const { breadcrumbName, title, path } = route;
   const last = routes.findIndex(
@@ -16914,7 +17147,7 @@ const getBreadcrumbFromProps = (props) => {
 const genBreadcrumbProps = (props) => {
   const { location: location2, breadcrumbMap } = getBreadcrumbFromProps(props);
   if (location2 && location2.pathname && breadcrumbMap) {
-    const pathSnippets = urlToList(location2?.pathname);
+    const pathSnippets = urlToList(location2 == null ? void 0 : location2.pathname);
     const extraBreadcrumbItems = pathSnippets.map((url) => {
       const currentBreadcrumb = getBreadcrumb(breadcrumbMap, url);
       const name = renderItemLocal(currentBreadcrumb, props);
@@ -16936,13 +17169,12 @@ const getBreadcrumbProps = (props, layoutPros) => {
   const routesArray = genBreadcrumbProps(props);
   const itemRender = (item, ...rest) => {
     const renderFunction = propsItemRender || defaultItemRender;
-    return renderFunction?.(
-      {
-        ...item,
+    return renderFunction == null ? void 0 : renderFunction(
+      __spreadProps(__spreadValues({}, item), {
         // 如果item.linkPath存在，則使用item.linkPath，否則使用item.path
         // @ts-ignore
         path: item.linkPath || item.path
-      },
+      }),
       ...rest
     );
   };
@@ -16958,7 +17190,6 @@ const getBreadcrumbProps = (props, layoutPros) => {
     itemRender
   };
 };
-
 const WrapContent = (props) => {
   const { hashId } = useContext(ProProvider);
   const { style, prefixCls, children, hasPageContainer = 0 } = props;
@@ -16969,19 +17200,19 @@ const WrapContent = (props) => {
   const ErrorComponent = props.ErrorBoundary || ErrorBoundary;
   return props.ErrorBoundary === false ? /* @__PURE__ */ jsx(Layout.Content, { className: contentClassName, style, children }) : /* @__PURE__ */ jsx(ErrorComponent, { children: /* @__PURE__ */ jsx(Layout.Content, { className: contentClassName, style, children }) });
 };
-
 let layoutIndex = 0;
 const headerRender = (props, matchMenuKeys) => {
+  var _a2;
   if (props.headerRender === false || props.pure) {
     return null;
   }
   return /* @__PURE__ */ jsx(
     DefaultHeader,
-    {
-      matchMenuKeys,
-      ...props,
-      stylish: props.stylish?.header
-    }
+    __spreadProps(__spreadValues({
+      matchMenuKeys
+    }, props), {
+      stylish: (_a2 = props.stylish) == null ? void 0 : _a2.header
+    })
   );
 };
 const footerRender = (props) => {
@@ -16989,11 +17220,12 @@ const footerRender = (props) => {
     return null;
   }
   if (props.footerRender) {
-    return props.footerRender({ ...props }, /* @__PURE__ */ jsx(DefaultFooter, {}));
+    return props.footerRender(__spreadValues({}, props), /* @__PURE__ */ jsx(DefaultFooter, {}));
   }
   return null;
 };
 const renderSiderMenu = (props, matchMenuKeys) => {
+  var _a2, _b2, _c2, _d;
   const {
     layout,
     isMobile,
@@ -17010,34 +17242,34 @@ const renderSiderMenu = (props, matchMenuKeys) => {
   if (splitMenus && (openKeys !== false || layout === "mix") && !isMobile) {
     const [key] = selectedKeys || matchMenuKeys;
     if (key) {
-      menuData = props.menuData?.find((item) => item.key === key)?.children || [];
+      menuData = ((_b2 = (_a2 = props.menuData) == null ? void 0 : _a2.find((item) => item.key === key)) == null ? void 0 : _b2.children) || [];
     } else {
       menuData = [];
     }
   }
   const clearMenuData = clearMenuItem(menuData || []);
-  if (clearMenuData && clearMenuData?.length < 1 && (splitMenus || suppressSiderWhenMenuEmpty)) {
+  if (clearMenuData && (clearMenuData == null ? void 0 : clearMenuData.length) < 1 && (splitMenus || suppressSiderWhenMenuEmpty)) {
     return null;
   }
   if (layout === "top" && !isMobile) {
     return /* @__PURE__ */ jsx(
       SiderMenuWrapper,
-      {
-        matchMenuKeys,
-        ...props,
+      __spreadProps(__spreadValues({
+        matchMenuKeys
+      }, props), {
         hide: true,
-        stylish: props.stylish?.sider
-      }
+        stylish: (_c2 = props.stylish) == null ? void 0 : _c2.sider
+      })
     );
   }
   const defaultDom = /* @__PURE__ */ jsx(
     SiderMenuWrapper,
-    {
-      matchMenuKeys,
-      ...props,
+    __spreadProps(__spreadValues({
+      matchMenuKeys
+    }, props), {
       menuData: clearMenuData,
-      stylish: props.stylish?.sider
-    }
+      stylish: (_d = props.stylish) == null ? void 0 : _d.sider
+    })
   );
   if (menuRender) {
     return menuRender(props, defaultDom);
@@ -17061,10 +17293,9 @@ const defaultPageTitleRender = (pageProps, props) => {
       pageTitleInfo
     );
     if (typeof title === "string") {
-      return getPageTitleInfo({
-        ...pageTitleInfo,
+      return getPageTitleInfo(__spreadProps(__spreadValues({}, pageTitleInfo), {
         title
-      });
+      }));
     }
     warning(
       typeof title === "string",
@@ -17080,6 +17311,7 @@ const getPaddingInlineStart = (hasLeftPadding, collapsed, siderWidth) => {
   return 0;
 };
 const BaseProLayout = (props) => {
+  var _a2, _c2, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z;
   const {
     children,
     onCollapse: propsOnCollapse,
@@ -17107,26 +17339,28 @@ const BaseProLayout = (props) => {
   const intl = useIntl();
   const { formatMessage } = intl;
   const context = useContext(ConfigProvider.ConfigContext);
-  const prefixCls = props.prefixCls ?? context.getPrefixCls("pro");
+  const prefixCls = (_a2 = props.prefixCls) != null ? _a2 : context.getPrefixCls("pro");
   const [menuLoading, setMenuLoading] = useMergedState(false, {
-    value: menu?.loading,
-    onChange: menu?.onLoadingChange
+    value: menu == null ? void 0 : menu.loading,
+    onChange: menu == null ? void 0 : menu.onLoadingChange
   });
   const [defaultId] = useState(() => {
     layoutIndex += 1;
     return `pro-layout-${layoutIndex}`;
   });
   const { data, mutate, isLoading } = useSWR(
-    [defaultId, menu?.params],
-    async ([, params]) => {
+    [defaultId, menu == null ? void 0 : menu.params],
+    (_0) => __async(void 0, [_0], function* ([, params]) {
+      var _a3;
       setMenuLoading(true);
-      const menuDataItems = await menu?.request?.(
+      const menuDataItems = yield (_a3 = menu == null ? void 0 : menu.request) == null ? void 0 : _a3.call(
+        menu,
         params || {},
-        route?.children || route?.routes || []
+        (route == null ? void 0 : route.children) || (route == null ? void 0 : route.routes) || []
       );
       setMenuLoading(false);
       return menuDataItems;
-    },
+    }),
     {
       revalidateOnFocus: false,
       shouldRetryOnError: false,
@@ -17145,15 +17379,15 @@ const BaseProLayout = (props) => {
   }, []);
   const menuInfoData = useMemo(
     () => getMenuData(
-      data || route?.children || route?.routes || [],
+      data || (route == null ? void 0 : route.children) || (route == null ? void 0 : route.routes) || [],
       menu,
       formatMessage,
       menuDataRender
     ),
-    [formatMessage, menu, menuDataRender, data, route?.children, route?.routes]
+    [formatMessage, menu, menuDataRender, data, route == null ? void 0 : route.children, route == null ? void 0 : route.routes]
   );
   const { breadcrumb = {}, breadcrumbMap, menuData = [] } = menuInfoData || {};
-  if (actionRef && menu?.request) {
+  if (actionRef && (menu == null ? void 0 : menu.request)) {
     actionRef.current = {
       reload: () => {
         mutate();
@@ -17172,18 +17406,18 @@ const BaseProLayout = (props) => {
   );
   const currentMenu = matchMenus[matchMenus.length - 1] || {};
   const currentMenuLayoutProps = useCurrentMenuLayoutProps(currentMenu);
-  const {
+  const _b2 = __spreadValues(__spreadValues({}, props), currentMenuLayoutProps), {
+    fixSiderbar: fixSiderbar,
+    navTheme: navTheme,
+    layout: propsLayout
+  } = _b2, rest = __objRest(_b2, [
     // @ts-ignore
-    fixSiderbar,
+    "fixSiderbar",
     // @ts-ignore
-    navTheme,
+    "navTheme",
     // @ts-ignore
-    layout: propsLayout,
-    ...rest
-  } = {
-    ...props,
-    ...currentMenuLayoutProps
-  };
+    "layout"
+  ]);
   const colSize = useBreakpoint();
   const isMobile = useMemo(() => {
     return (colSize === "sm" || colSize === "xs") && !props.disableMobile;
@@ -17205,63 +17439,59 @@ const BaseProLayout = (props) => {
     }
   );
   const defaultProps = omit(
-    {
-      prefixCls,
-      ...props,
-      siderWidth,
-      ...currentMenuLayoutProps,
+    __spreadProps(__spreadValues(__spreadProps(__spreadValues({
+      prefixCls
+    }, props), {
+      siderWidth
+    }), currentMenuLayoutProps), {
       formatMessage,
       breadcrumb,
-      menu: {
-        ...menu,
-        type: siderMenuType || menu?.type,
+      menu: __spreadProps(__spreadValues({}, menu), {
+        type: siderMenuType || (menu == null ? void 0 : menu.type),
         loading: menuLoading
-      },
+      }),
       layout: propsLayout
-    },
+    }),
     ["className", "breadcrumbRender"]
   );
   const pageTitleInfo = defaultPageTitleRender(
-    {
-      pathname: pathname ?? void 0,
-      ...defaultProps,
+    __spreadProps(__spreadValues({
+      pathname: pathname != null ? pathname : void 0
+    }, defaultProps), {
       breadcrumbMap
-    },
+    }),
     props
   );
   const breadcrumbProps = getBreadcrumbProps(
-    {
-      ...defaultProps,
+    __spreadProps(__spreadValues({}, defaultProps), {
       breadcrumbRender: props.breadcrumbRender,
       breadcrumbMap
-    });
+    })
+  );
   const siderMenuDom = renderSiderMenu(
-    {
-      ...defaultProps,
+    __spreadProps(__spreadValues({}, defaultProps), {
       menuData,
       onCollapse,
       isMobile,
       collapsed
-    },
+    }),
     matchMenuKeys
   );
   const headerDom = headerRender(
-    {
-      ...defaultProps,
+    __spreadProps(__spreadValues({}, defaultProps), {
       children: null,
       hasSiderMenu: !!siderMenuDom,
       menuData,
       isMobile,
       collapsed,
       onCollapse
-    },
+    }),
     matchMenuKeys
   );
-  const footerDom = footerRender({
+  const footerDom = footerRender(__spreadValues({
     isMobile,
-    collapsed,
-    ...defaultProps
-  });
+    collapsed
+  }, defaultProps));
   const { isChildrenLayout: contextIsChildrenLayout } = useContext(RouteContext);
   const isChildrenLayout = propsIsChildrenLayout !== void 0 ? propsIsChildrenLayout : contextIsChildrenLayout;
   const proLayoutClassName = `${prefixCls}-layout`;
@@ -17295,29 +17525,27 @@ const BaseProLayout = (props) => {
   const [hasPageContainer, setHasPageContainer] = useState(0);
   const bgImgStyleList = useMemo(() => {
     if (bgLayoutImgList && bgLayoutImgList.length > 0) {
-      return bgLayoutImgList.map((item, index) => {
+      return bgLayoutImgList.map((item, index2) => {
         return /* @__PURE__ */ jsx(
           "img",
           {
             src: item.src,
-            style: {
-              position: "absolute",
-              ...item
-            }
+            style: __spreadValues({
+              position: "absolute"
+            }, item)
           },
-          index
+          index2
         );
       });
     }
     return null;
   }, [bgLayoutImgList]);
-  const { token } = useContext(ProProvider);
+  const { token: token2 } = useContext(ProProvider);
   return wrapSSR(
     /* @__PURE__ */ jsx(
       RouteContext.Provider,
       {
-        value: {
-          ...defaultProps,
+        value: __spreadProps(__spreadValues({}, defaultProps), {
           breadcrumb: breadcrumbProps,
           menuData,
           isMobile,
@@ -17336,18 +17564,17 @@ const BaseProLayout = (props) => {
           matchMenus,
           matchMenuKeys,
           currentMenu
-        },
+        }),
         children: props.pure ? /* @__PURE__ */ jsx(Fragment, { children }) : /* @__PURE__ */ jsxs("div", { className, children: [
           /* @__PURE__ */ jsx("div", { className: classNames(`${proLayoutClassName}-bg-list`, hashId), children: bgImgStyleList }),
           /* @__PURE__ */ jsxs(
             Layout,
             {
-              style: {
+              style: __spreadValues({
                 minHeight: "100%",
                 // hack style
-                flexDirection: siderMenuDom ? "row" : void 0,
-                ...style
-              },
+                flexDirection: siderMenuDom ? "row" : void 0
+              }, style),
               children: [
                 /* @__PURE__ */ jsx(
                   ConfigProvider,
@@ -17356,22 +17583,22 @@ const BaseProLayout = (props) => {
                       hashed: isNeedOpenHash(),
                       components: {
                         Menu: coverToNewToken({
-                          itemBg: token.layout?.sider?.colorMenuBackground || "transparent",
-                          subMenuItemBg: token.layout?.sider?.colorMenuBackground || "transparent",
+                          itemBg: ((_d = (_c2 = token2.layout) == null ? void 0 : _c2.sider) == null ? void 0 : _d.colorMenuBackground) || "transparent",
+                          subMenuItemBg: ((_f = (_e = token2.layout) == null ? void 0 : _e.sider) == null ? void 0 : _f.colorMenuBackground) || "transparent",
                           itemBorderRadius: 4,
-                          controlHeightLG: token.layout?.sider?.menuHeight || token?.controlHeightLG,
-                          itemSelectedBg: token.layout?.sider?.colorBgMenuItemSelected || token?.colorBgTextHover,
-                          itemHoverBg: token.layout?.sider?.colorBgMenuItemHover || token?.colorBgTextHover,
-                          itemActiveBg: token.layout?.sider?.colorBgMenuItemActive || token?.colorBgTextActive,
-                          horizontalItemSelectedBg: token.layout?.sider?.colorBgMenuItemSelected || token?.colorBgTextHover,
+                          controlHeightLG: ((_h = (_g = token2.layout) == null ? void 0 : _g.sider) == null ? void 0 : _h.menuHeight) || (token2 == null ? void 0 : token2.controlHeightLG),
+                          itemSelectedBg: ((_j = (_i = token2.layout) == null ? void 0 : _i.sider) == null ? void 0 : _j.colorBgMenuItemSelected) || (token2 == null ? void 0 : token2.colorBgTextHover),
+                          itemHoverBg: ((_l = (_k = token2.layout) == null ? void 0 : _k.sider) == null ? void 0 : _l.colorBgMenuItemHover) || (token2 == null ? void 0 : token2.colorBgTextHover),
+                          itemActiveBg: ((_n = (_m = token2.layout) == null ? void 0 : _m.sider) == null ? void 0 : _n.colorBgMenuItemActive) || (token2 == null ? void 0 : token2.colorBgTextActive),
+                          horizontalItemSelectedBg: ((_p = (_o = token2.layout) == null ? void 0 : _o.sider) == null ? void 0 : _p.colorBgMenuItemSelected) || (token2 == null ? void 0 : token2.colorBgTextHover),
                           colorActiveBarWidth: 0,
                           colorActiveBarHeight: 0,
                           colorActiveBarBorderSize: 0,
-                          itemColor: token.layout?.sider?.colorTextMenu || token?.colorTextSecondary,
-                          itemHoverColor: token.layout?.sider?.colorTextMenuItemHover || "rgba(0, 0, 0, 0.85)",
+                          itemColor: ((_r = (_q = token2.layout) == null ? void 0 : _q.sider) == null ? void 0 : _r.colorTextMenu) || (token2 == null ? void 0 : token2.colorTextSecondary),
+                          itemHoverColor: ((_t = (_s = token2.layout) == null ? void 0 : _s.sider) == null ? void 0 : _t.colorTextMenuItemHover) || "rgba(0, 0, 0, 0.85)",
                           // 懸浮態
-                          itemSelectedColor: token.layout?.sider?.colorTextMenuSelected || "rgba(0, 0, 0, 1)",
-                          colorBgElevated: token.layout?.sider?.colorBgMenuItemCollapsedElevated || "#fff"
+                          itemSelectedColor: ((_v = (_u = token2.layout) == null ? void 0 : _u.sider) == null ? void 0 : _v.colorTextMenuSelected) || "rgba(0, 0, 0, 1)",
+                          colorBgElevated: ((_x = (_w = token2.layout) == null ? void 0 : _w.sider) == null ? void 0 : _x.colorBgMenuItemCollapsedElevated) || "#fff"
                         })
                       }
                     },
@@ -17387,15 +17614,15 @@ const BaseProLayout = (props) => {
                       headerDom,
                       /* @__PURE__ */ jsx(
                         WrapContent,
-                        {
+                        __spreadProps(__spreadValues({
                           hasPageContainer,
-                          isChildrenLayout,
-                          ...rest,
+                          isChildrenLayout
+                        }, rest), {
                           hasHeader: !!headerDom,
                           prefixCls: proLayoutClassName,
                           style: contentStyle,
                           children: loading ? /* @__PURE__ */ jsx(PageLoading, {}) : children
-                        }
+                        })
                       ),
                       footerDom,
                       hasFooterToolbar && /* @__PURE__ */ jsx(
@@ -17404,7 +17631,7 @@ const BaseProLayout = (props) => {
                           className: `${proLayoutClassName}-has-footer`,
                           style: {
                             height: 64,
-                            marginBlockStart: token.layout?.pageContainer?.paddingBlockPageContainerContent
+                            marginBlockStart: (_z = (_y = token2.layout) == null ? void 0 : _y.pageContainer) == null ? void 0 : _z.paddingBlockPageContainerContent
                           }
                         }
                       )
@@ -17435,21 +17662,20 @@ const ProLayout = (props) => {
         } : void 0,
         children: /* @__PURE__ */ jsx(
           ProConfigProvider,
-          {
-            autoClearCache: true,
-            ...darkProps,
+          __spreadProps(__spreadValues({
+            autoClearCache: true
+          }, darkProps), {
             token: props.token,
             prefixCls: props.prefixCls,
             children: /* @__PURE__ */ jsx(
               BaseProLayout,
-              {
-                logo: "/logo.svg",
-                ...defaultSettings,
-                location: isBrowser() ? window.location : void 0,
-                ...props
-              }
+              __spreadValues(__spreadProps(__spreadValues({
+                logo: "/logo.svg"
+              }, defaultSettings), {
+                location: isBrowser() ? window.location : void 0
+              }), props)
             )
-          }
+          })
         )
       }
     ) }) });
@@ -17465,26 +17691,24 @@ const ProLayout = (props) => {
       } : void 0,
       children: /* @__PURE__ */ jsx(
         ProConfigProvider,
-        {
-          autoClearCache: true,
-          ...darkProps,
+        __spreadProps(__spreadValues({
+          autoClearCache: true
+        }, darkProps), {
           token: props.token,
           prefixCls: props.prefixCls,
           children: /* @__PURE__ */ jsx(
             BaseProLayout,
-            {
-              logo: "/logo.svg",
-              ...defaultSettings,
-              location: isBrowser() ? window.location : void 0,
-              ...props
-            }
+            __spreadValues(__spreadProps(__spreadValues({
+              logo: "/logo.svg"
+            }, defaultSettings), {
+              location: isBrowser() ? window.location : void 0
+            }), props)
           )
-        }
+        })
       )
     }
   ) });
 };
-
 const Line = ({ padding }) => /* @__PURE__ */ jsx(
   "div",
   {
@@ -17517,8 +17741,8 @@ const StatisticSkeleton = ({ size, active }) => {
   const col = Grid.useBreakpoint() || defaultCol;
   const colSize = Object.keys(col).filter((key) => col[key] === true)[0] || "md";
   const arraySize = size === void 0 ? MediaQueryKeyEnum$1[colSize] || 6 : size;
-  const firstWidth = (index) => {
-    if (index === 0) {
+  const firstWidth = (index2) => {
+    if (index2 === 0) {
       return 0;
     }
     if (arraySize > 2) {
@@ -17541,14 +17765,14 @@ const StatisticSkeleton = ({ size, active }) => {
             justifyContent: "space-between",
             display: "flex"
           },
-          children: new Array(arraySize).fill(null).map((_, index) => /* @__PURE__ */ jsxs(
+          children: new Array(arraySize).fill(null).map((_, index2) => /* @__PURE__ */ jsxs(
             "div",
             {
               style: {
-                borderInlineStart: arraySize > 2 && index === 1 ? "1px solid rgba(0,0,0,0.06)" : void 0,
-                paddingInlineStart: firstWidth(index),
+                borderInlineStart: arraySize > 2 && index2 === 1 ? "1px solid rgba(0,0,0,0.06)" : void 0,
+                paddingInlineStart: firstWidth(index2),
                 flex: 1,
-                marginInlineEnd: index === 0 ? 16 : 0
+                marginInlineEnd: index2 === 0 ? 16 : 0
               },
               children: [
                 /* @__PURE__ */ jsx(
@@ -17573,7 +17797,7 @@ const StatisticSkeleton = ({ size, active }) => {
                 )
               ]
             },
-            index
+            index2
           ))
         }
       )
@@ -17651,9 +17875,9 @@ const ListSkeleton = ({ size, active = true, actionButton }) => /* @__PURE__ */ 
       padding: 0
     },
     children: [
-      new Array(size).fill(null).map((_, index) => (
+      new Array(size).fill(null).map((_, index2) => (
         // eslint-disable-next-line react/no-array-index-key
-        /* @__PURE__ */ jsx(ListSkeletonItem, { active: !!active }, index)
+        /* @__PURE__ */ jsx(ListSkeletonItem, { active: !!active }, index2)
       )),
       actionButton !== false && /* @__PURE__ */ jsx(
         Card$1,
@@ -17771,7 +17995,6 @@ const ListPageSkeleton = ({
     ]
   }
 );
-
 const MediaQueryKeyEnum = {
   xs: 1,
   sm: 2,
@@ -17919,13 +18142,13 @@ const DescriptionsItemSkeleton = ({ size, active }) => {
         justifyContent: "space-between",
         display: "flex"
       },
-      children: new Array(arraySize).fill(null).map((_, index) => /* @__PURE__ */ jsxs(
+      children: new Array(arraySize).fill(null).map((_, index2) => /* @__PURE__ */ jsxs(
         "div",
         {
           style: {
             flex: 1,
-            paddingInlineStart: index === 0 ? 0 : 24,
-            paddingInlineEnd: index === arraySize - 1 ? 0 : 24
+            paddingInlineStart: index2 === 0 ? 0 : 24,
+            paddingInlineEnd: index2 === arraySize - 1 ? 0 : 24
           },
           children: [
             /* @__PURE__ */ jsx(
@@ -17960,7 +18183,7 @@ const DescriptionsItemSkeleton = ({ size, active }) => {
             )
           ]
         },
-        index
+        index2
       ))
     }
   );
@@ -17993,12 +18216,12 @@ const TableItemSkeleton = ({
           padding: "24px 8px"
         },
         children: [
-          new Array(arraySize).fill(null).map((_, index) => /* @__PURE__ */ jsx(
+          new Array(arraySize).fill(null).map((_, index2) => /* @__PURE__ */ jsx(
             "div",
             {
               style: {
                 flex: 1,
-                paddingInlineStart: header && index === 0 ? 0 : 20,
+                paddingInlineStart: header && index2 === 0 ? 0 : 20,
                 paddingInlineEnd: 32
               },
               children: /* @__PURE__ */ jsx(
@@ -18016,7 +18239,7 @@ const TableItemSkeleton = ({
                 }
               )
             },
-            index
+            index2
           )),
           /* @__PURE__ */ jsx(
             "div",
@@ -18053,9 +18276,9 @@ const TableSkeleton = ({ active, size = 4 }) => /* @__PURE__ */ jsxs(Card$1, { b
     }
   ),
   /* @__PURE__ */ jsx(TableItemSkeleton, { header: true, active }),
-  new Array(size).fill(null).map((_, index) => (
+  new Array(size).fill(null).map((_, index2) => (
     // eslint-disable-next-line react/no-array-index-key
-    /* @__PURE__ */ jsx(TableItemSkeleton, { active }, index)
+    /* @__PURE__ */ jsx(TableItemSkeleton, { active }, index2)
   )),
   /* @__PURE__ */ jsx(
     "div",
@@ -18123,7 +18346,6 @@ const DescriptionsPageSkeleton = ({
     ]
   }
 );
-
 const ResultPageSkeleton = ({
   active = true,
   pageHeader
@@ -18181,17 +18403,16 @@ const ResultPageSkeleton = ({
     ]
   }
 );
-
-const ProSkeleton = ({ type = "list", ...rest }) => {
+const ProSkeleton = (_Fa) => {
+  var _Ga = _Fa, { type = "list" } = _Ga, rest = __objRest(_Ga, ["type"]);
   if (type === "result") {
-    return /* @__PURE__ */ jsx(ResultPageSkeleton, { ...rest });
+    return /* @__PURE__ */ jsx(ResultPageSkeleton, __spreadValues({}, rest));
   }
   if (type === "descriptions") {
-    return /* @__PURE__ */ jsx(DescriptionsPageSkeleton, { ...rest });
+    return /* @__PURE__ */ jsx(DescriptionsPageSkeleton, __spreadValues({}, rest));
   }
-  return /* @__PURE__ */ jsx(ListPageSkeleton, { ...rest });
+  return /* @__PURE__ */ jsx(ListPageSkeleton, __spreadValues({}, rest));
 };
-
 function toLowerLine(str) {
   let temp = str.replace(/[A-Z]/g, (match) => {
     return `-${match.toLowerCase()}`;
@@ -18203,7 +18424,7 @@ function toLowerLine(str) {
 }
 const getFormCompetent = (isForm, searchConfig) => {
   if (!isForm && searchConfig !== false) {
-    if (searchConfig?.filterType === "light") {
+    if ((searchConfig == null ? void 0 : searchConfig.filterType) === "light") {
       return "LightFilter";
     }
     return "QueryFilter";
@@ -18213,19 +18434,16 @@ const getFormCompetent = (isForm, searchConfig) => {
 const getFromProps = (isForm, searchConfig, name) => {
   if (!isForm && name === "LightFilter") {
     return omit(
-      {
-        ...searchConfig
-      },
+      __spreadValues({}, searchConfig),
       ["labelWidth", "defaultCollapsed", "filterType"]
     );
   }
   if (!isForm) {
     return omit(
-      {
-        labelWidth: searchConfig ? searchConfig?.labelWidth : void 0,
-        defaultCollapsed: true,
-        ...searchConfig
-      },
+      __spreadValues({
+        labelWidth: searchConfig ? searchConfig == null ? void 0 : searchConfig.labelWidth : void 0,
+        defaultCollapsed: true
+      }, searchConfig),
       ["filterType"]
     );
   }
@@ -18235,7 +18453,7 @@ const getFormConfigs = (isForm, formConfig) => {
   if (isForm) {
     return omit(formConfig, ["ignoreRules"]);
   }
-  return { ignoreRules: true, ...formConfig };
+  return __spreadValues({ ignoreRules: true }, formConfig);
 };
 const FormRender = ({
   onSubmit,
@@ -18254,11 +18472,11 @@ const FormRender = ({
 }) => {
   const { hashId } = useContext(ProProvider);
   const isForm = type === "form";
-  const submit = async (values, firstLoad) => {
+  const submit = (values, firstLoad) => __async(void 0, null, function* () {
     if (onSubmit) {
       onSubmit(values, firstLoad);
     }
-  };
+  });
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const columnsList = useMemo(() => {
     return columns.filter((item) => {
@@ -18273,18 +18491,17 @@ const FormRender = ({
       }
       return true;
     }).map((item) => {
-      const finalValueType = !item.valueType || ["textarea", "jsonCode", "code"].includes(item?.valueType) && type === "table" ? "text" : item?.valueType;
-      const columnKey = item?.key || item?.dataIndex?.toString();
-      return {
-        ...item,
-        width: void 0,
-        ...item.search ? item.search : {},
+      var _a2;
+      const finalValueType = !item.valueType || ["textarea", "jsonCode", "code"].includes(item == null ? void 0 : item.valueType) && type === "table" ? "text" : item == null ? void 0 : item.valueType;
+      const columnKey = (item == null ? void 0 : item.key) || ((_a2 = item == null ? void 0 : item.dataIndex) == null ? void 0 : _a2.toString());
+      return __spreadProps(__spreadValues(__spreadProps(__spreadValues({}, item), {
+        width: void 0
+      }), item.search ? item.search : {}), {
         valueType: finalValueType,
-        proFieldProps: {
-          ...item.proFieldProps,
+        proFieldProps: __spreadProps(__spreadValues({}, item.proFieldProps), {
           proFieldKey: columnKey ? `table-field-${columnKey}` : void 0
-        }
-      };
+        })
+      });
     });
   }, [columns, type]);
   const className = getPrefixCls("pro-table-search");
@@ -18315,98 +18532,97 @@ const FormRender = ({
         [formClassName]: isForm,
         [getPrefixCls(`pro-table-search-${toLowerLine(competentName)}`)]: true,
         [`${className}-ghost`]: ghost,
-        [searchConfig?.className]: searchConfig !== false && searchConfig?.className
+        [searchConfig == null ? void 0 : searchConfig.className]: searchConfig !== false && (searchConfig == null ? void 0 : searchConfig.className)
       }),
       children: /* @__PURE__ */ jsx(
         BetaSchemaForm,
-        {
+        __spreadProps(__spreadValues(__spreadValues(__spreadValues({
           layoutType: competentName,
           columns: columnsList,
-          type,
-          ...loadingProps,
-          ...getFromProps(isForm, searchConfig, competentName),
-          ...getFormConfigs(isForm, formConfig || {}),
+          type
+        }, loadingProps), getFromProps(isForm, searchConfig, competentName)), getFormConfigs(isForm, formConfig || {})), {
           formRef,
           action,
           dateFormatter,
           onInit: (values, form) => {
+            var _a2, _b2, _c2;
             formRef.current = form;
             if (type !== "form") {
-              const pageInfo = action.current?.pageInfo;
+              const pageInfo = (_a2 = action.current) == null ? void 0 : _a2.pageInfo;
               const {
-                current = pageInfo?.current,
-                pageSize = pageInfo?.pageSize
+                current = pageInfo == null ? void 0 : pageInfo.current,
+                pageSize = pageInfo == null ? void 0 : pageInfo.pageSize
               } = values;
-              action.current?.setPageInfo?.({
-                ...pageInfo,
+              (_c2 = (_b2 = action.current) == null ? void 0 : _b2.setPageInfo) == null ? void 0 : _c2.call(_b2, __spreadProps(__spreadValues({}, pageInfo), {
                 current: parseInt(current, 10),
                 pageSize: parseInt(pageSize, 10)
-              });
+              }));
               if (manualRequest)
                 return;
               submit(values, true);
             }
           },
           onReset: (values) => {
-            onReset?.(values);
+            onReset == null ? void 0 : onReset(values);
           },
           onFinish: (values) => {
             submit(values, false);
           },
-          initialValues: formConfig?.initialValues
-        }
+          initialValues: formConfig == null ? void 0 : formConfig.initialValues
+        })
       )
     }
   );
 };
-
 function mergePagination(pagination, pageInfo, intl) {
+  var _a2, _b2;
   if (pagination === false) {
     return false;
   }
   const { total, current, pageSize, setPageInfo } = pageInfo;
   const defaultPagination = typeof pagination === "object" ? pagination : {};
-  return {
+  return __spreadProps(__spreadValues({
     showTotal: (all, range) => `${intl.formatMessage({ id: "pagination.total.range", defaultMessage: "第" })} ${range[0]}-${range[1]} ${intl.formatMessage({
       id: "pagination.total.total",
       defaultMessage: "條/總共"
     })} ${all} ${intl.formatMessage({ id: "pagination.total.item", defaultMessage: "條" })}`,
-    total,
-    ...defaultPagination,
-    current: pagination !== true && pagination ? pagination.current ?? current : current,
-    pageSize: pagination !== true && pagination ? pagination.pageSize ?? pageSize : pageSize,
+    total
+  }, defaultPagination), {
+    current: pagination !== true && pagination ? (_a2 = pagination.current) != null ? _a2 : current : current,
+    pageSize: pagination !== true && pagination ? (_b2 = pagination.pageSize) != null ? _b2 : pageSize : pageSize,
     onChange: (page, newPageSize) => {
       const { onChange } = pagination;
-      onChange?.(page, newPageSize || 20);
+      onChange == null ? void 0 : onChange(page, newPageSize || 20);
       if (newPageSize !== pageSize || current !== page) {
         setPageInfo({ pageSize: newPageSize, current: page });
       }
     }
-  };
+  });
 }
 function useActionType(ref, action, props) {
   const userAction = {
     pageInfo: action.pageInfo,
-    reload: async (resetPageIndex) => {
+    reload: (resetPageIndex) => __async(this, null, function* () {
       if (resetPageIndex) {
-        await action.setPageInfo({
+        yield action.setPageInfo({
           current: 1
         });
       }
-      await action?.reload();
-    },
-    reloadAndRest: async () => {
+      yield action == null ? void 0 : action.reload();
+    }),
+    reloadAndRest: () => __async(this, null, function* () {
       props.onCleanSelected();
-      await action.setPageInfo({
+      yield action.setPageInfo({
         current: 1
       });
-      await action?.reload();
-    },
-    reset: async () => {
-      await props.resetAll();
-      await action?.reset?.();
-      await action?.reload();
-    },
+      yield action == null ? void 0 : action.reload();
+    }),
+    reset: () => __async(this, null, function* () {
+      var _a2;
+      yield props.resetAll();
+      yield (_a2 = action == null ? void 0 : action.reset) == null ? void 0 : _a2.call(action);
+      yield action == null ? void 0 : action.reload();
+    }),
     fullScreen: () => props.fullScreen(),
     clearSelected: () => props.onCleanSelected(),
     setPageInfo: (rest) => action.setPageInfo(rest)
@@ -18430,21 +18646,24 @@ const isBordered = (borderType, border) => {
   }
   return border[borderType];
 };
-const isMergeCell = (dom) => dom && typeof dom === "object" && dom?.props?.colSpan;
-const genColumnKey = (key, index) => {
+const isMergeCell = (dom) => {
+  var _a2;
+  return dom && typeof dom === "object" && ((_a2 = dom == null ? void 0 : dom.props) == null ? void 0 : _a2.colSpan);
+};
+const genColumnKey = (key, index2) => {
   if (key) {
     return Array.isArray(key) ? key.join("-") : key.toString();
   }
-  return `${index}`;
+  return `${index2}`;
 };
 function parseDataIndex(dataIndex) {
   if (Array.isArray(dataIndex)) {
     return dataIndex.join(",");
   }
-  return dataIndex?.toString();
+  return dataIndex == null ? void 0 : dataIndex.toString();
 }
 function parseDefaultColumnConfig(columns) {
-  const filter = {};
+  const filter2 = {};
   const sort = {};
   columns.forEach((column) => {
     const dataIndex = parseDataIndex(column.dataIndex);
@@ -18454,23 +18673,22 @@ function parseDefaultColumnConfig(columns) {
     if (column.filters) {
       const defaultFilteredValue = column.defaultFilteredValue;
       if (defaultFilteredValue === void 0) {
-        filter[dataIndex] = null;
+        filter2[dataIndex] = null;
       } else {
-        filter[dataIndex] = column.defaultFilteredValue;
+        filter2[dataIndex] = column.defaultFilteredValue;
       }
     }
     if (column.sorter && column.defaultSortOrder) {
       sort[dataIndex] = column.defaultSortOrder;
     }
   });
-  return { sort, filter };
+  return { sort, filter: filter2 };
 }
-
 class FormSearch extends React__default.Component {
   constructor() {
     super(...arguments);
-    /** 查詢表單相關的配置 */
     this.onSubmit = (value, firstLoad) => {
+      var _a2, _b2;
       const {
         pagination,
         beforeSearchSubmit = (searchParams) => searchParams,
@@ -18482,26 +18700,25 @@ class FormSearch extends React__default.Component {
         current: pagination.current,
         pageSize: pagination.pageSize
       }) : {};
-      const submitParams = {
-        ...value,
-        _timestamp: Date.now(),
-        ...pageInfo
-      };
+      const submitParams = __spreadValues(__spreadProps(__spreadValues({}, value), {
+        _timestamp: Date.now()
+      }), pageInfo);
       const omitParams = omit(
         beforeSearchSubmit(submitParams),
         Object.keys(pageInfo)
       );
       onFormSearchSubmit(omitParams);
       if (!firstLoad) {
-        action.current?.setPageInfo?.({
+        (_b2 = (_a2 = action.current) == null ? void 0 : _a2.setPageInfo) == null ? void 0 : _b2.call(_a2, {
           current: 1
         });
       }
       if (onSubmit && !firstLoad) {
-        onSubmit?.(value);
+        onSubmit == null ? void 0 : onSubmit(value);
       }
     };
     this.onReset = (value) => {
+      var _a2, _b2;
       const {
         pagination,
         beforeSearchSubmit = (searchParams) => searchParams,
@@ -18514,23 +18731,15 @@ class FormSearch extends React__default.Component {
         pageSize: pagination.pageSize
       }) : {};
       const omitParams = omit(
-        beforeSearchSubmit({ ...value, ...pageInfo }),
+        beforeSearchSubmit(__spreadValues(__spreadValues({}, value), pageInfo)),
         Object.keys(pageInfo)
       );
       onFormSearchSubmit(omitParams);
-      action.current?.setPageInfo?.({
+      (_b2 = (_a2 = action.current) == null ? void 0 : _a2.setPageInfo) == null ? void 0 : _b2.call(_a2, {
         current: 1
       });
-      onReset?.();
+      onReset == null ? void 0 : onReset();
     };
-    /**
-     * 只 Diff 需要用的 props，能減少 5 次左右的render
-     *
-     * @param next
-     * @see 因為 hooks 每次的 setFormSearch 都是新的，所以每次都觸發 render
-     * @see action 也是同樣的原因
-     * @returns
-     */
     this.isEqual = (next) => {
       const {
         columns,
@@ -18601,14 +18810,11 @@ class FormSearch extends React__default.Component {
           onReset: this.onReset,
           dateFormatter,
           search,
-          form: {
-            autoFocusFirstInput: false,
-            ...form,
-            extraUrlParams: {
-              ...pageInfo,
-              ...form?.extraUrlParams
-            }
-          },
+          form: __spreadProps(__spreadValues({
+            autoFocusFirstInput: false
+          }, form), {
+            extraUrlParams: __spreadValues(__spreadValues({}, pageInfo), form == null ? void 0 : form.extraUrlParams)
+          }),
           action,
           bordered: isBordered("search", cardBordered)
         }
@@ -18616,8 +18822,8 @@ class FormSearch extends React__default.Component {
     };
   }
 }
-
 function useContainer(props = {}) {
+  var _a2, _b2, _c2, _d, _e, _f;
   const actionRef = useRef();
   const rootDomRef = useRef(null);
   const prefixNameRef = useRef();
@@ -18632,11 +18838,12 @@ function useContainer(props = {}) {
     }
   );
   const defaultColumnKeyMap = useMemo(() => {
-    if (props?.columnsState?.defaultValue)
+    var _a3, _b3;
+    if ((_a3 = props == null ? void 0 : props.columnsState) == null ? void 0 : _a3.defaultValue)
       return props.columnsState.defaultValue;
     const columnKeyMap = {};
-    props.columns?.forEach(({ key, dataIndex, fixed, disable }, index) => {
-      const columnKey = genColumnKey(key ?? dataIndex, index);
+    (_b3 = props.columns) == null ? void 0 : _b3.forEach(({ key, dataIndex, fixed, disable }, index2) => {
+      const columnKey = genColumnKey(key != null ? key : dataIndex, index2);
       if (columnKey) {
         columnKeyMap[columnKey] = {
           show: true,
@@ -18649,11 +18856,12 @@ function useContainer(props = {}) {
   }, [props.columns]);
   const [columnsMap, setColumnsMap] = useMergedState(
     () => {
+      var _a3, _b3;
       const { persistenceType, persistenceKey } = props.columnsState || {};
       if (persistenceKey && persistenceType && typeof window !== "undefined") {
         const storage = window[persistenceType];
         try {
-          const storageValue = storage?.getItem(persistenceKey);
+          const storageValue = storage == null ? void 0 : storage.getItem(persistenceKey);
           if (storageValue) {
             return JSON.parse(storageValue);
           }
@@ -18661,11 +18869,11 @@ function useContainer(props = {}) {
           console.warn(error);
         }
       }
-      return props.columnsStateMap || props.columnsState?.value || props.columnsState?.defaultValue || defaultColumnKeyMap;
+      return props.columnsStateMap || ((_a3 = props.columnsState) == null ? void 0 : _a3.value) || ((_b3 = props.columnsState) == null ? void 0 : _b3.defaultValue) || defaultColumnKeyMap;
     },
     {
-      value: props.columnsState?.value || props.columnsStateMap,
-      onChange: props.columnsState?.onChange || props.onColumnsStateChange
+      value: ((_a2 = props.columnsState) == null ? void 0 : _a2.value) || props.columnsStateMap,
+      onChange: ((_b2 = props.columnsState) == null ? void 0 : _b2.onChange) || props.onColumnsStateChange
     }
   );
   useEffect(() => {
@@ -18673,7 +18881,7 @@ function useContainer(props = {}) {
     if (persistenceKey && persistenceType && typeof window !== "undefined") {
       const storage = window[persistenceType];
       try {
-        const storageValue = storage?.getItem(persistenceKey);
+        const storageValue = storage == null ? void 0 : storage.getItem(persistenceKey);
         if (storageValue) {
           setColumnsMap(JSON.parse(storageValue));
         } else {
@@ -18684,8 +18892,8 @@ function useContainer(props = {}) {
       }
     }
   }, [
-    props.columnsState?.persistenceKey,
-    props.columnsState?.persistenceType,
+    (_c2 = props.columnsState) == null ? void 0 : _c2.persistenceKey,
+    (_d = props.columnsState) == null ? void 0 : _d.persistenceType,
     defaultColumnKeyMap
   ]);
   noteOnce(
@@ -18702,13 +18910,14 @@ function useContainer(props = {}) {
       return;
     const storage = window[persistenceType];
     try {
-      storage?.removeItem(persistenceKey);
+      storage == null ? void 0 : storage.removeItem(persistenceKey);
     } catch (error) {
       console.warn(error);
     }
   }, [props.columnsState]);
   useEffect(() => {
-    if (!props.columnsState?.persistenceKey || !props.columnsState?.persistenceType) {
+    var _a3, _b3;
+    if (!((_a3 = props.columnsState) == null ? void 0 : _a3.persistenceKey) || !((_b3 = props.columnsState) == null ? void 0 : _b3.persistenceType)) {
       return;
     }
     if (typeof window === "undefined")
@@ -18716,15 +18925,15 @@ function useContainer(props = {}) {
     const { persistenceType, persistenceKey } = props.columnsState;
     const storage = window[persistenceType];
     try {
-      storage?.setItem(persistenceKey, JSON.stringify(columnsMap));
+      storage == null ? void 0 : storage.setItem(persistenceKey, JSON.stringify(columnsMap));
     } catch (error) {
       console.warn(error);
       clearPersistenceStorage();
     }
   }, [
-    props.columnsState?.persistenceKey,
+    (_e = props.columnsState) == null ? void 0 : _e.persistenceKey,
     columnsMap,
-    props.columnsState?.persistenceType
+    (_f = props.columnsState) == null ? void 0 : _f.persistenceType
   ]);
   const renderValue = {
     action: actionRef.current,
@@ -18767,10 +18976,9 @@ const Container = (props) => {
   const value = useContainer(props.initValue);
   return /* @__PURE__ */ jsx(TableContext.Provider, { value, children: props.children });
 };
-
-const genProStyle = (token) => {
+const genProStyle = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       width: "auto",
       "&-title": {
         display: "flex",
@@ -18779,48 +18987,48 @@ const genProStyle = (token) => {
         height: "32px"
       },
       "&-overlay": {
-        [`${token.ipassCls}-popover-inner-content`]: {
+        [`${token2.ipassCls}-popover-inner-content`]: {
           width: "200px",
           paddingBlock: 0,
           paddingInline: 0,
           paddingBlockEnd: 8
         },
-        [`${token.ipassCls}-tree-node-content-wrapper:hover`]: {
+        [`${token2.ipassCls}-tree-node-content-wrapper:hover`]: {
           backgroundColor: "transparent"
         },
-        [`${token.ipassCls}-tree-draggable-icon`]: { cursor: "grab" },
-        [`${token.ipassCls}-tree-treenode`]: {
+        [`${token2.ipassCls}-tree-draggable-icon`]: { cursor: "grab" },
+        [`${token2.ipassCls}-tree-treenode`]: {
           alignItems: "center",
           "&:hover": {
-            [`${token.componentCls}-list-item-option`]: {
+            [`${token2.componentCls}-list-item-option`]: {
               display: "block"
             }
           },
-          [`${token.ipassCls}-tree-checkbox`]: {
+          [`${token2.ipassCls}-tree-checkbox`]: {
             marginInlineEnd: "4px"
           },
-          [`${token.ipassCls}-tree-title`]: {
+          [`${token2.ipassCls}-tree-title`]: {
             width: "100%"
           }
         }
       }
     },
-    [`${token.componentCls}-action-rest-button`]: {
-      color: token.colorPrimary
+    [`${token2.componentCls}-action-rest-button`]: {
+      color: token2.colorPrimary
     },
-    [`${token.componentCls}-list`]: {
+    [`${token2.componentCls}-list`]: {
       display: "flex",
       flexDirection: "column",
       width: "100%",
       paddingBlockStart: 8,
-      [`&${token.componentCls}-list-group`]: {
+      [`&${token2.componentCls}-list-group`]: {
         paddingBlockStart: 0
       },
       "&-title": {
         marginBlockStart: "6px",
         marginBlockEnd: "6px",
         paddingInlineStart: "24px",
-        color: token.colorTextSecondary,
+        color: token2.colorTextSecondary,
         fontSize: "12px"
       },
       "&-item": {
@@ -18842,7 +19050,7 @@ const genProStyle = (token) => {
           cursor: "pointer",
           "> span": {
             "> span.muiicon": {
-              color: token.colorPrimary
+              color: token2.colorPrimary
             }
           },
           "> span + span": {
@@ -18854,15 +19062,13 @@ const genProStyle = (token) => {
   };
 };
 function useStyle$3(prefixCls) {
-  return useStyle$A("ColumnSetting", (token) => {
-    const proToken = {
-      ...token,
+  return useStyle$A("ColumnSetting", (token2) => {
+    const proToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProStyle(proToken)];
   });
 }
-
 const ToolTipIcon = ({ title, show, children, columnKey, fixed }) => {
   const { columnsMap, setColumnsMap } = useContext(TableContext);
   if (!show) {
@@ -18875,10 +19081,9 @@ const ToolTipIcon = ({ title, show, children, columnKey, fixed }) => {
         e.stopPropagation();
         e.preventDefault();
         const config = columnsMap[columnKey] || {};
-        const columnKeyMap = {
-          ...columnsMap,
-          [columnKey]: { ...config, fixed }
-        };
+        const columnKeyMap = __spreadProps(__spreadValues({}, columnsMap), {
+          [columnKey]: __spreadProps(__spreadValues({}, config), { fixed })
+        });
         setColumnsMap(columnKeyMap);
       },
       children
@@ -18944,6 +19149,7 @@ const CheckboxList = ({
   title: listTitle,
   listHeight = 280
 }) => {
+  var _a2, _b2, _e;
   const { hashId } = useContext(ProProvider);
   const { columnsMap, setColumnsMap, sortKeyColumns, setSortKeyColumns } = useContext(TableContext);
   const show = list && list.length > 0;
@@ -18952,30 +19158,31 @@ const CheckboxList = ({
       return {};
     const checkedKeys = [];
     const treeMap = /* @__PURE__ */ new Map();
-    const loopData = (data, parentConfig) => data.map(({ key, dataIndex, children, ...rest }) => {
+    const loopData = (data, parentConfig) => data.map((_a3) => {
+      var _b3 = _a3, { key, dataIndex, children } = _b3, rest = __objRest(_b3, ["key", "dataIndex", "children"]);
+      var _a4, _b4;
       const columnKey = genColumnKey(
         key,
-        [parentConfig?.columnKey, rest.index].filter(Boolean).join("-")
+        [parentConfig == null ? void 0 : parentConfig.columnKey, rest.index].filter(Boolean).join("-")
       );
       const config = columnsMap[columnKey || "null"] || { show: true };
       if (config.show !== false && !children) {
         checkedKeys.push(columnKey);
       }
-      const item = {
-        key: columnKey,
-        ...omit(rest, ["className"]),
+      const item = __spreadProps(__spreadValues({
+        key: columnKey
+      }, omit(rest, ["className"])), {
         selectable: false,
         disabled: config.disable === true,
-        disableCheckbox: typeof config.disable === "boolean" ? config.disable : config.disable?.checkbox,
+        disableCheckbox: typeof config.disable === "boolean" ? config.disable : (_a4 = config.disable) == null ? void 0 : _a4.checkbox,
         isLeaf: parentConfig ? true : void 0
-      };
+      });
       if (children) {
-        item.children = loopData(children, {
-          ...config,
+        item.children = loopData(children, __spreadProps(__spreadValues({}, config), {
           columnKey
-        });
-        if (item.children?.every(
-          (childrenItem) => checkedKeys?.includes(childrenItem.key)
+        }));
+        if ((_b4 = item.children) == null ? void 0 : _b4.every(
+          (childrenItem) => checkedKeys == null ? void 0 : checkedKeys.includes(childrenItem.key)
         )) {
           checkedKeys.push(columnKey);
         }
@@ -18987,7 +19194,7 @@ const CheckboxList = ({
   }, [columnsMap, list, show]);
   const move = useRefFunction(
     (id, targetId, dropPosition) => {
-      const newMap = { ...columnsMap };
+      const newMap = __spreadValues({}, columnsMap);
       const newColumns = [...sortKeyColumns];
       const findIndex = newColumns.findIndex((columnKey) => columnKey === id);
       const targetIndex = newColumns.findIndex(
@@ -19008,24 +19215,25 @@ const CheckboxList = ({
         );
       }
       newColumns.forEach((key, order) => {
-        newMap[key] = { ...newMap[key] || {}, order };
+        newMap[key] = __spreadProps(__spreadValues({}, newMap[key] || {}), { order });
       });
       setColumnsMap(newMap);
       setSortKeyColumns(newColumns);
     }
   );
   const onCheckTree = useRefFunction((e) => {
-    const newColumnMap = { ...columnsMap };
+    const newColumnMap = __spreadValues({}, columnsMap);
     const loopSetShow = (key) => {
-      const newSetting = { ...newColumnMap[key] };
+      var _a3, _b3, _c2, _d;
+      const newSetting = __spreadValues({}, newColumnMap[key]);
       newSetting.show = e.checked;
-      if (treeDataConfig.map?.get(key)?.children) {
-        treeDataConfig.map.get(key)?.children?.forEach((item) => loopSetShow(item.key));
+      if ((_b3 = (_a3 = treeDataConfig.map) == null ? void 0 : _a3.get(key)) == null ? void 0 : _b3.children) {
+        (_d = (_c2 = treeDataConfig.map.get(key)) == null ? void 0 : _c2.children) == null ? void 0 : _d.forEach((item) => loopSetShow(item.key));
       }
       newColumnMap[key] = newSetting;
     };
     loopSetShow(e.node.key);
-    setColumnsMap({ ...newColumnMap });
+    setColumnsMap(__spreadValues({}, newColumnMap));
   });
   if (!show) {
     return null;
@@ -19034,7 +19242,7 @@ const CheckboxList = ({
     Tree,
     {
       itemHeight: 24,
-      draggable: draggable && !!treeDataConfig.list?.length && treeDataConfig.list?.length > 1,
+      draggable: draggable && !!((_a2 = treeDataConfig.list) == null ? void 0 : _a2.length) && ((_b2 = treeDataConfig.list) == null ? void 0 : _b2.length) > 1,
       checkable,
       onDrop: (info) => {
         const dropKey = info.node.key;
@@ -19048,26 +19256,30 @@ const CheckboxList = ({
       checkedKeys: treeDataConfig.keys,
       showLine: false,
       titleRender: (_node) => {
-        const node = { ..._node, children: void 0 };
+        const node = __spreadProps(__spreadValues({}, _node), { children: void 0 });
         if (!node.title)
           return null;
         return /* @__PURE__ */ jsx(
           CheckboxListItem,
-          {
-            className,
-            ...node,
+          __spreadProps(__spreadValues({
+            className
+          }, node), {
             showListItemOption,
             title: runFunction(node.title, node),
             columnKey: node.key
-          }
+          })
         );
       },
       height: listHeight,
-      treeData: treeDataConfig.list?.map(
-        ({
-          disabled,
-          ...config
-        }) => config
+      treeData: (_e = treeDataConfig.list) == null ? void 0 : _e.map(
+        (_c2) => {
+          var _d = _c2, {
+            disabled
+          } = _d, config = __objRest(_d, [
+            "disabled"
+          ]);
+          return config;
+        }
       )
     }
   );
@@ -19164,30 +19376,33 @@ const GroupCheckboxList = ({
   );
 };
 function ColumnSetting(props) {
+  var _a2, _b2, _c2, _d;
   const columnRef = useRef(null);
   const counter = useContext(TableContext);
   const localColumns = props.columns;
   const { checkedReset = true } = props;
   const { columnsMap, setColumnsMap, clearPersistenceStorage } = counter;
   useEffect(() => {
-    if (counter.propsRef.current?.columnsState?.value) {
+    var _a3, _b3, _c3, _d2;
+    if ((_b3 = (_a3 = counter.propsRef.current) == null ? void 0 : _a3.columnsState) == null ? void 0 : _b3.value) {
       columnRef.current = JSON.parse(
-        JSON.stringify(counter.propsRef.current?.columnsState?.value || {})
+        JSON.stringify(((_d2 = (_c3 = counter.propsRef.current) == null ? void 0 : _c3.columnsState) == null ? void 0 : _d2.value) || {})
       );
     }
   }, []);
   const setAllSelectAction = useRefFunction((show = true) => {
     const columnKeyMap = {};
     const loopColumns = (columns) => {
-      columns.forEach(({ key, fixed, index, children, disable }) => {
-        const columnKey = genColumnKey(key, index);
+      columns.forEach(({ key, fixed, index: index2, children, disable }) => {
+        var _a3, _b3;
+        const columnKey = genColumnKey(key, index2);
         if (columnKey) {
           columnKeyMap[columnKey] = {
             // 子節點 disable 時，不修改節點顯示狀態
-            show: disable ? columnsMap[columnKey]?.show : show,
+            show: disable ? (_a3 = columnsMap[columnKey]) == null ? void 0 : _a3.show : show,
             fixed,
             disable,
-            order: columnsMap[columnKey]?.order
+            order: (_b3 = columnsMap[columnKey]) == null ? void 0 : _b3.order
           };
         }
         if (children) {
@@ -19206,9 +19421,10 @@ function ColumnSetting(props) {
     }
   });
   const clearClick = useRefFunction(() => {
-    clearPersistenceStorage?.();
+    var _a3, _b3;
+    clearPersistenceStorage == null ? void 0 : clearPersistenceStorage();
     setColumnsMap(
-      counter.propsRef.current?.columnsState?.defaultValue || columnRef.current || counter.defaultColumnKeyMap
+      ((_b3 = (_a3 = counter.propsRef.current) == null ? void 0 : _a3.columnsState) == null ? void 0 : _b3.defaultValue) || columnRef.current || counter.defaultColumnKeyMap
     );
   });
   const unCheckedKeys = Object.values(columnsMap).filter(
@@ -19250,7 +19466,7 @@ function ColumnSetting(props) {
               })
             }
           ) : null,
-          props?.extra ? /* @__PURE__ */ jsx(CompoundedSpace, { size: 12, align: "center", children: props.extra }) : null
+          (props == null ? void 0 : props.extra) ? /* @__PURE__ */ jsx(CompoundedSpace, { size: 12, align: "center", children: props.extra }) : null
         ] }),
         overlayClassName: `${className}-overlay ${hashId}`.trim(),
         trigger: "click",
@@ -19258,9 +19474,9 @@ function ColumnSetting(props) {
         content: /* @__PURE__ */ jsx(
           GroupCheckboxList,
           {
-            checkable: props.checkable ?? true,
-            draggable: props.draggable ?? true,
-            showListItemOption: props.showListItemOption ?? true,
+            checkable: (_a2 = props.checkable) != null ? _a2 : true,
+            draggable: (_b2 = props.draggable) != null ? _b2 : true,
+            showListItemOption: (_c2 = props.showListItemOption) != null ? _c2 : true,
             className,
             localColumns,
             listsHeight: props.listsHeight
@@ -19273,14 +19489,13 @@ function ColumnSetting(props) {
               id: "tableToolBar.columnSetting",
               defaultMessage: "列設定"
             }),
-            children: props.settingIcon ?? /* @__PURE__ */ jsx(SettingsIcon, {})
+            children: (_d = props.settingIcon) != null ? _d : /* @__PURE__ */ jsx(SettingsIcon, {})
           }
         )
       }
     )
   );
 }
-
 const HeaderMenu = (props) => {
   const { hashId } = useContext(ProProvider);
   const [anchorEl, setAnchorEl] = React__default.useState(null);
@@ -19320,7 +19535,7 @@ const HeaderMenu = (props) => {
           `${prefixCls}-inline-menu`,
           hashId
         ),
-        children: items.map((item, index) => /* @__PURE__ */ jsx(
+        children: items.map((item, index2) => /* @__PURE__ */ jsx(
           "div",
           {
             onClick: () => {
@@ -19333,7 +19548,7 @@ const HeaderMenu = (props) => {
             ),
             children: item.label
           },
-          item.key || index
+          item.key || index2
         ))
       }
     );
@@ -19342,20 +19557,21 @@ const HeaderMenu = (props) => {
     return /* @__PURE__ */ jsx(
       Tabs,
       {
-        items: items.map((item) => ({
-          ...item,
-          key: item.key?.toString()
-        })),
+        items: items.map((item) => {
+          var _a2;
+          return __spreadProps(__spreadValues({}, item), {
+            key: (_a2 = item.key) == null ? void 0 : _a2.toString()
+          });
+        }),
         activeKey: activeItem.key,
         onTabClick: (key) => setActiveKey(key),
-        children: items?.map((item, index) => {
+        children: items == null ? void 0 : items.map((item, index2) => {
           return /* @__PURE__ */ createElement(
             Tabs.TabPane,
-            {
-              ...item,
-              key: item.key || index,
+            __spreadProps(__spreadValues({}, item), {
+              key: item.key || index2,
               tab: item.label
-            }
+            })
           );
         })
       }
@@ -19379,7 +19595,7 @@ const HeaderMenu = (props) => {
             MenuListProps: {
               "aria-labelledby": "basic-button"
             },
-            children: items.map((item, index) => /* @__PURE__ */ jsx(
+            children: items.map((item, index2) => /* @__PURE__ */ jsx(
               MenuItem,
               {
                 disabled: item.disabled,
@@ -19398,15 +19614,14 @@ const HeaderMenu = (props) => {
     }
   );
 };
-
-const genProListStyle$2 = (token) => {
+const genProListStyle$2 = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       lineHeight: "1",
       "&-container": {
         display: "flex",
         justifyContent: "space-between",
-        paddingBlock: token.padding,
+        paddingBlock: token2.padding,
         paddingInline: 0,
         "&-mobile": { flexDirection: "column" }
       },
@@ -19414,9 +19629,9 @@ const genProListStyle$2 = (token) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
-        color: token.colorTextHeading,
+        color: token2.colorTextHeading,
         fontWeight: "500",
-        fontSize: token.fontSizeLG
+        fontSize: token2.fontSizeLG
       },
       "&-search:not(:last-child)": {
         display: "flex",
@@ -19425,23 +19640,23 @@ const genProListStyle$2 = (token) => {
       },
       "&-setting-item": {
         margin: 0,
-        color: token.colorIconHover,
-        fontSize: token.fontSizeLG,
+        color: token2.colorIconHover,
+        fontSize: token2.fontSizeLG,
         cursor: "pointer",
         "> span": { display: "block", width: "100%", height: "100%" },
         "&:hover": {
-          color: token.colorPrimary
+          color: token2.colorPrimary
         }
       },
       "&-left": {
         display: "flex",
         flexWrap: "wrap",
         alignItems: "center",
-        gap: token.marginXS,
+        gap: token2.marginXS,
         justifyContent: "flex-start",
         maxWidth: "calc(100% - 200px)",
         flex: 1,
-        [`${token.ipassCls}-tabs`]: {
+        [`${token2.ipassCls}-tabs`]: {
           width: "100%"
         },
         "&-has-tabs": {
@@ -19453,20 +19668,20 @@ const genProListStyle$2 = (token) => {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "flex-end",
-        gap: token.marginXS
+        gap: token2.marginXS
       },
-      "&-extra-line": { marginBlockEnd: token.margin },
+      "&-extra-line": { marginBlockEnd: token2.margin },
       "&-setting-items": {
         display: "flex",
-        gap: token.marginXS / 4,
+        gap: token2.marginXS / 4,
         lineHeight: "32px",
         alignItems: "center"
       },
       "&-filter": {
-        "&:not(:last-child)": { marginInlineEnd: token.margin },
+        "&:not(:last-child)": { marginInlineEnd: token2.margin },
         display: "flex",
         alignItems: "center",
-        [`div$${token.ipassCls}-pro-table-search`]: {
+        [`div$${token2.ipassCls}-pro-table-search`]: {
           marginBlock: 0,
           marginInline: 0,
           paddingBlock: 0,
@@ -19475,15 +19690,15 @@ const genProListStyle$2 = (token) => {
       },
       "&-inline-menu-item": {
         display: "inline-block",
-        marginInlineEnd: token.marginLG,
+        marginInlineEnd: token2.marginLG,
         cursor: "pointer",
         opacity: "0.75",
         "&-active": { fontWeight: "bold", opacity: "1" }
       },
-      [`${token.ipassCls}-tabs-top > ${token.ipassCls}-tabs-nav`]: {
+      [`${token2.ipassCls}-tabs-top > ${token2.ipassCls}-tabs-nav`]: {
         marginBlockEnd: 0,
         "&::before": { borderBlockEnd: 0 },
-        [`${token.ipassCls}-tabs-nav-list`]: {
+        [`${token2.ipassCls}-tabs-nav-list`]: {
           marginBlockStart: 0,
           "${token.ipassCls}-tabs-tab": {
             paddingBlockStart: 0
@@ -19492,12 +19707,12 @@ const genProListStyle$2 = (token) => {
       },
       "&-dropdownmenu-label": {
         fontWeight: "bold",
-        fontSize: token.fontSizeIcon,
+        fontSize: token2.fontSizeIcon,
         textAlign: "center",
         cursor: "pointer"
       },
       "@media (max-width: 768px)": {
-        [token.componentCls]: {
+        [token2.componentCls]: {
           "&-container": {
             display: "flex",
             flexWrap: "wrap",
@@ -19510,15 +19725,13 @@ const genProListStyle$2 = (token) => {
   };
 };
 function useStyle$2(prefixCls) {
-  return useStyle$A("ProTableListToolBar", (token) => {
-    const proListToken = {
-      ...token,
+  return useStyle$A("ProTableListToolBar", (token2) => {
+    const proListToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProListStyle$2(proListToken)];
   });
 }
-
 function getSettingItem(setting) {
   if (React__default.isValidElement(setting)) {
     return setting;
@@ -19545,6 +19758,7 @@ function getSettingItem(setting) {
   return null;
 }
 const ListToolBarTabBar = ({ prefixCls, tabs = {}, multipleLine, filtersNode }) => {
+  var _a2;
   if (!multipleLine)
     return null;
   return /* @__PURE__ */ jsx("div", { className: `${prefixCls}-extra-line`, children: tabs.items && tabs.items.length ? /* @__PURE__ */ jsx(
@@ -19555,14 +19769,17 @@ const ListToolBarTabBar = ({ prefixCls, tabs = {}, multipleLine, filtersNode }) 
       },
       defaultActiveKey: tabs.defaultActiveKey,
       activeKey: tabs.activeKey,
-      items: tabs.items.map((item, index) => ({
-        label: item.tab,
-        ...item,
-        key: item.key?.toString() || index?.toString()
-      })),
+      items: tabs.items.map((item, index2) => {
+        var _a3;
+        return __spreadProps(__spreadValues({
+          label: item.tab
+        }, item), {
+          key: ((_a3 = item.key) == null ? void 0 : _a3.toString()) || (index2 == null ? void 0 : index2.toString())
+        });
+      }),
       onChange: tabs.onChange,
       tabBarExtraContent: filtersNode,
-      children: tabs.items?.map((item, index) => /* @__PURE__ */ createElement(Tabs.TabPane, { ...item, key: item.key || index, tab: item.tab }))
+      children: (_a2 = tabs.items) == null ? void 0 : _a2.map((item, index2) => /* @__PURE__ */ createElement(Tabs.TabPane, __spreadProps(__spreadValues({}, item), { key: item.key || index2, tab: item.tab })))
     }
   ) : filtersNode });
 };
@@ -19576,14 +19793,14 @@ const ListToolBar = ({
   search,
   onSearch,
   multipleLine = false,
-  filter,
+  filter: filter2,
   actions = [],
   settings = [],
   tabs = {},
   menu
 }) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
-  const { token } = proTheme.useToken();
+  const { token: token2 } = proTheme.useToken();
   const prefixCls = getPrefixCls("pro-table-list-toolbar", customizePrefixCls);
   const { wrapSSR, hashId } = useStyle$2(prefixCls);
   const intl = useIntl();
@@ -19601,24 +19818,25 @@ const ListToolBar = ({
     }
     return /* @__PURE__ */ jsx(
       Input.Search,
-      {
+      __spreadProps(__spreadValues({
         style: { width: 200 },
-        placeholder,
-        ...search,
-        onSearch: async (...restParams) => {
-          const success = await search.onSearch?.(...restParams);
+        placeholder
+      }, search), {
+        onSearch: (...restParams) => __async(void 0, null, function* () {
+          var _a2;
+          const success = yield (_a2 = search.onSearch) == null ? void 0 : _a2.call(search, ...restParams);
           if (success !== false) {
-            onSearch?.(restParams?.[0]);
+            onSearch == null ? void 0 : onSearch(restParams == null ? void 0 : restParams[0]);
           }
-        }
-      }
+        })
+      })
     );
   }, [placeholder, onSearch, search]);
   const filtersNode = useMemo(() => {
-    if (filter)
-      return /* @__PURE__ */ jsx("div", { className: `${prefixCls}-filter ${hashId}`.trim(), children: filter });
+    if (filter2)
+      return /* @__PURE__ */ jsx("div", { className: `${prefixCls}-filter ${hashId}`.trim(), children: filter2 });
     return null;
-  }, [filter, hashId, prefixCls]);
+  }, [filter2, hashId, prefixCls]);
   const hasTitle = useMemo(
     () => menu || title || subTitle || tooltip,
     [menu, subTitle, title, tooltip]
@@ -19636,30 +19854,29 @@ const ListToolBar = ({
         style: {
           display: "flex",
           alignItems: "center",
-          gap: token.marginXS
+          gap: token2.marginXS
         },
-        children: actions.map((action, index) => {
+        children: actions.map((action, index2) => {
           if (!React__default.isValidElement(action)) {
-            return /* @__PURE__ */ jsx(React__default.Fragment, { children: action }, index);
+            return /* @__PURE__ */ jsx(React__default.Fragment, { children: action }, index2);
           }
-          return React__default.cloneElement(action, {
+          return React__default.cloneElement(action, __spreadValues({
             // eslint-disable-next-line react/no-array-index-key
-            key: index,
-            ...action?.props
-          });
+            key: index2
+          }, action == null ? void 0 : action.props));
         })
       }
     );
   }, [actions]);
   const hasRight = useMemo(() => {
-    return hasTitle && searchNode || !multipleLine && filtersNode || actionDom || settings?.length;
+    return hasTitle && searchNode || !multipleLine && filtersNode || actionDom || (settings == null ? void 0 : settings.length);
   }, [
     actionDom,
     filtersNode,
     hasTitle,
     multipleLine,
     searchNode,
-    settings?.length
+    settings == null ? void 0 : settings.length
   ]);
   const hasLeft = useMemo(
     () => tooltip || title || subTitle || menu || !hasTitle && searchNode,
@@ -19676,14 +19893,14 @@ const ListToolBar = ({
       "div",
       {
         className: classNames(`${prefixCls}-left`, hashId, {
-          [`${prefixCls}-left-has-tabs`]: menu?.type === "tab",
-          [`${prefixCls}-left-has-dropdown`]: menu?.type === "dropdown",
-          [`${prefixCls}-left-has-inline-menu`]: menu?.type === "inline"
+          [`${prefixCls}-left-has-tabs`]: (menu == null ? void 0 : menu.type) === "tab",
+          [`${prefixCls}-left-has-dropdown`]: (menu == null ? void 0 : menu.type) === "dropdown",
+          [`${prefixCls}-left-has-inline-menu`]: (menu == null ? void 0 : menu.type) === "inline"
         }),
         children: [
           hasTitle && !menu && /* @__PURE__ */ jsx("div", { className: `${prefixCls}-title ${hashId}`.trim(), children: /* @__PURE__ */ jsx(LabelIconTip, { tooltip, label: title, subTitle }) }),
           menu && // 這裡面實現了 tabs 的邏輯
-          /* @__PURE__ */ jsx(HeaderMenu, { ...menu, prefixCls }),
+          /* @__PURE__ */ jsx(HeaderMenu, __spreadProps(__spreadValues({}, menu), { prefixCls })),
           !hasTitle && searchNode ? /* @__PURE__ */ jsx("div", { className: `${prefixCls}-search ${hashId}`.trim(), children: searchNode }) : null
         ]
       }
@@ -19712,7 +19929,7 @@ const ListToolBar = ({
           !multipleLine ? filtersNode : null,
           hasTitle && searchNode ? /* @__PURE__ */ jsx("div", { className: `${prefixCls}-search ${hashId}`.trim(), children: searchNode }) : null,
           actionDom,
-          settings?.length ? /* @__PURE__ */ jsx("div", { className: `${prefixCls}-setting-items ${hashId}`.trim(), children: settings.map((setting, index) => {
+          (settings == null ? void 0 : settings.length) ? /* @__PURE__ */ jsx("div", { className: `${prefixCls}-setting-items ${hashId}`.trim(), children: settings.map((setting, index2) => {
             const settingItem = getSettingItem(setting);
             return (
               // eslint-disable-next-line react/no-array-index-key
@@ -19722,7 +19939,7 @@ const ListToolBar = ({
                   className: `${prefixCls}-setting-item ${hashId}`.trim(),
                   children: settingItem
                 },
-                index
+                index2
               )
             );
           }) }) : null
@@ -19785,7 +20002,6 @@ const ListToolBar = ({
     )
   );
 };
-
 const DensityIcon = () => {
   const counter = useContext(TableContext);
   const intl = useIntl();
@@ -19822,12 +20038,13 @@ const DensityIcon = () => {
         MenuListProps: {
           "aria-labelledby": "basic-button"
         },
-        children: items.map((item, index) => /* @__PURE__ */ jsx(
+        children: items.map((item, index2) => /* @__PURE__ */ jsx(
           MenuItem,
           {
             selected: counter.tableSize === item.key,
             onClick: () => {
-              counter.setTableSize?.(item.key);
+              var _a2;
+              (_a2 = counter.setTableSize) == null ? void 0 : _a2.call(counter, item.key);
               handleClose();
             },
             children: item.label
@@ -19839,7 +20056,6 @@ const DensityIcon = () => {
   ] });
 };
 const DensityIcon$1 = React__default.memo(DensityIcon);
-
 const FullScreenIcon = () => {
   const intl = useIntl();
   const [fullscreen, setFullscreen] = useState(false);
@@ -19854,17 +20070,17 @@ const FullScreenIcon = () => {
   return fullscreen ? /* @__PURE__ */ jsx(Tooltip, { title: intl.formatMessage({ id: "tableToolBar.exitFullScreen", defaultMessage: "全螢幕" }), children: /* @__PURE__ */ jsx(FullscreenExitIcon, {}) }) : /* @__PURE__ */ jsx(Tooltip, { title: intl.formatMessage({ id: "tableToolBar.fullScreen", defaultMessage: "全螢幕" }), children: /* @__PURE__ */ jsx(FullscreenIcon, {}) });
 };
 const FullScreenIcon$1 = React__default.memo(FullScreenIcon);
-
 function getButtonText({
   intl
 }, options) {
+  var _a2;
   return {
     reload: {
       text: intl.formatMessage({
         id: "tableToolBar.reload",
         defaultMessage: "更新"
       }),
-      icon: options.reloadIcon ?? /* @__PURE__ */ jsx(RefreshIcon, {})
+      icon: (_a2 = options.reloadIcon) != null ? _a2 : /* @__PURE__ */ jsx(RefreshIcon, {})
     },
     fullScreen: {
       text: intl.formatMessage({
@@ -19881,7 +20097,7 @@ function renderDefaultOption(options, defaultOptions, actions, columns) {
     if (!value) {
       return null;
     }
-    let onClick = value === true ? defaultOptions[key] : (event) => value?.(event, actions.current);
+    let onClick = value === true ? defaultOptions[key] : (event) => value == null ? void 0 : value(event, actions.current);
     if (typeof onClick !== "function") {
       onClick = () => {
       };
@@ -19889,11 +20105,10 @@ function renderDefaultOption(options, defaultOptions, actions, columns) {
     if (key === "setting") {
       return /* @__PURE__ */ jsx(IconButton, { children: /* @__PURE__ */ createElement(
         ColumnSetting,
-        {
-          ...options[key],
+        __spreadProps(__spreadValues({}, options[key]), {
           columns,
           key
-        }
+        })
       ) }, `table-toolbar-iconbutton-${key}`);
     }
     if (key === "fullScreen") {
@@ -19909,50 +20124,65 @@ function renderDefaultOption(options, defaultOptions, actions, columns) {
     return null;
   }).filter((item) => item);
 }
-function ToolBar({
-  headerTitle,
-  tooltip,
-  toolBarRender,
-  action,
-  options: propsOptions,
-  selectedRowKeys,
-  selectedRows,
-  toolbar,
-  onSearch,
-  columns,
-  optionsRender,
-  ...rest
-}) {
+function ToolBar(_Ha) {
+  var _Ia = _Ha, {
+    headerTitle,
+    tooltip,
+    toolBarRender,
+    action,
+    options: propsOptions,
+    selectedRowKeys,
+    selectedRows,
+    toolbar,
+    onSearch,
+    columns,
+    optionsRender
+  } = _Ia, rest = __objRest(_Ia, [
+    "headerTitle",
+    "tooltip",
+    "toolBarRender",
+    "action",
+    "options",
+    "selectedRowKeys",
+    "selectedRows",
+    "toolbar",
+    "onSearch",
+    "columns",
+    "optionsRender"
+  ]);
   const counter = useContext(TableContext);
   const intl = useIntl();
   const optionDom = useMemo(() => {
     const defaultOptions = {
-      reload: () => action?.current?.reload(),
+      reload: () => {
+        var _a2;
+        return (_a2 = action == null ? void 0 : action.current) == null ? void 0 : _a2.reload();
+      },
       density: true,
       setting: true,
       search: false,
-      fullScreen: () => action?.current?.fullScreen?.()
+      fullScreen: () => {
+        var _a2, _b2;
+        return (_b2 = (_a2 = action == null ? void 0 : action.current) == null ? void 0 : _a2.fullScreen) == null ? void 0 : _b2.call(_a2);
+      }
     };
     if (propsOptions === false) {
       return [];
     }
-    const options = {
-      ...defaultOptions,
-      fullScreen: false,
-      ...propsOptions
-    };
+    const options = __spreadValues(__spreadProps(__spreadValues({}, defaultOptions), {
+      fullScreen: false
+    }), propsOptions);
     const settings = renderDefaultOption(
       options,
-      {
-        ...defaultOptions,
+      __spreadProps(__spreadValues({}, defaultOptions), {
         intl
-      },
+      }),
       action,
       columns
     );
     if (optionsRender) {
       return optionsRender(
-        {
+        __spreadValues({
           headerTitle,
           tooltip,
           toolBarRender,
@@ -19963,9 +20193,8 @@ function ToolBar({
           toolbar,
           onSearch,
           columns,
-          optionsRender,
-          ...rest
-        },
+          optionsRender
+        }, rest),
         settings
       );
     }
@@ -19985,7 +20214,7 @@ function ToolBar({
     toolbar,
     tooltip
   ]);
-  const actions = toolBarRender ? toolBarRender(action?.current, { selectedRowKeys, selectedRows }) : [];
+  const actions = toolBarRender ? toolBarRender(action == null ? void 0 : action.current, { selectedRowKeys, selectedRows }) : [];
   const searchConfig = useMemo(() => {
     if (!propsOptions) {
       return false;
@@ -19998,42 +20227,39 @@ function ToolBar({
     };
     if (propsOptions.search === true)
       return defaultSearchConfig;
-    return {
-      ...defaultSearchConfig,
-      ...propsOptions.search
-    };
+    return __spreadValues(__spreadValues({}, defaultSearchConfig), propsOptions.search);
   }, [counter, propsOptions]);
   useEffect(() => {
     if (counter.keyWords === void 0) {
-      onSearch?.("");
+      onSearch == null ? void 0 : onSearch("");
     }
   }, [counter.keyWords, onSearch]);
   return /* @__PURE__ */ jsx(
     ListToolBar,
-    {
+    __spreadValues({
       title: headerTitle,
       tooltip,
       search: searchConfig,
       onSearch,
       actions,
-      settings: optionDom,
-      ...toolbar
-    }
+      settings: optionDom
+    }, toolbar)
   );
 }
 class ToolbarRender extends React__default.Component {
   constructor() {
     super(...arguments);
     this.onSearch = (keyword) => {
+      var _a2, _b2, _c2, _d;
       const { options, onFormSearchSubmit, actionRef } = this.props;
       if (!options || !options.search) {
         return;
       }
       const { name = "keyword" } = options.search === true ? {} : options.search;
-      const success = options.search?.onSearch?.(keyword);
+      const success = (_b2 = (_a2 = options.search) == null ? void 0 : _a2.onSearch) == null ? void 0 : _b2.call(_a2, keyword);
       if (success === false)
         return;
-      actionRef?.current?.setPageInfo?.({
+      (_d = (_c2 = actionRef == null ? void 0 : actionRef.current) == null ? void 0 : _c2.setPageInfo) == null ? void 0 : _d.call(_c2, {
         current: 1
       });
       onFormSearchSubmit(
@@ -20120,17 +20346,15 @@ class ToolbarRender extends React__default.Component {
           selectedRows,
           selectedRowKeys,
           toolBarRender,
-          toolbar: {
-            filter: searchNode,
-            ...toolbar
-          },
+          toolbar: __spreadValues({
+            filter: searchNode
+          }, toolbar),
           optionsRender
         }
       );
     };
   }
 }
-
 const turn = new Keyframes("turn", {
   "0%": { transform: "rotate(0deg)" },
   "25%": { transform: "rotate(90deg)" },
@@ -20138,23 +20362,23 @@ const turn = new Keyframes("turn", {
   "75%": { transform: "rotate(270deg)" },
   "100%": { transform: "rotate(360deg)" }
 });
-const genProListStyle$1 = (token) => {
+const genProListStyle$1 = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       zIndex: 1,
-      [`${token.ipassCls}-table-wrapper ${token.ipassCls}-table-pagination${token.ipassCls}-pagination`]: {
+      [`${token2.ipassCls}-table-wrapper ${token2.ipassCls}-table-pagination${token2.ipassCls}-pagination`]: {
         marginBlockEnd: 0
       },
       "&:not(:root):fullscreen": {
         minHeight: "100vh",
         overflow: "auto",
-        background: token.colorBgContainer
+        background: token2.colorBgContainer
       },
       "&-extra": {
         marginBlockEnd: 16
       },
       "&-polling": {
-        [`${token.componentCls}-list-toolbar-setting-item`]: {
+        [`${token2.componentCls}-list-toolbar-setting-item`]: {
           ".muiicon.muiicon-reload": {
             transform: "rotate(0deg)",
             animationName: turn,
@@ -20164,32 +20388,32 @@ const genProListStyle$1 = (token) => {
           }
         }
       },
-      [`td${token.ipassCls}-table-cell`]: {
+      [`td${token2.ipassCls}-table-cell`]: {
         ">a": {
-          fontSize: token.fontSize
+          fontSize: token2.fontSize
         },
-        [`& ${token.ipassCls}-form-item`]: {
+        [`& ${token2.ipassCls}-form-item`]: {
           marginBottom: 0
         }
       },
-      [`${token.ipassCls}-table${token.ipassCls}-table-tbody${token.ipassCls}-table-wrapper:only-child${token.ipassCls}-table`]: {
+      [`${token2.ipassCls}-table${token2.ipassCls}-table-tbody${token2.ipassCls}-table-wrapper:only-child${token2.ipassCls}-table`]: {
         marginBlock: 0,
         marginInline: 0
       },
-      [`${token.ipassCls}-table${token.ipassCls}-table-middle ${token.componentCls}`]: {
+      [`${token2.ipassCls}-table${token2.ipassCls}-table-middle ${token2.componentCls}`]: {
         marginBlock: 0,
         marginInline: -8,
-        [`${token.proComponentsCls}-card`]: {
+        [`${token2.proComponentsCls}-card`]: {
           backgroundColor: "initial"
         }
       },
       "& &-search": {
         marginBlockEnd: "16px",
-        background: token.colorBgContainer,
+        background: token2.colorBgContainer,
         "&-ghost": {
           background: "transparent"
         },
-        [`&${token.componentCls}-form`]: {
+        [`&${token2.componentCls}-form`]: {
           marginBlock: 0,
           marginInline: 0,
           paddingBlock: 0,
@@ -20202,15 +20426,15 @@ const genProListStyle$1 = (token) => {
           paddingInline: 0
         },
         "&-form-option": {
-          [`${token.ipassCls}-form-item`]: {},
-          [`${token.ipassCls}-form-item-label`]: {},
-          [`${token.ipassCls}-form-item-control-input`]: {}
+          [`${token2.ipassCls}-form-item`]: {},
+          [`${token2.ipassCls}-form-item-label`]: {},
+          [`${token2.ipassCls}-form-item-control-input`]: {}
         },
         "@media (max-width: 575px)": {
-          [token.componentCls]: {
+          [token2.componentCls]: {
             height: "auto !important",
             paddingBlockEnd: "24px",
-            [`${token.ipassCls}-form-item-label`]: {
+            [`${token2.ipassCls}-form-item-label`]: {
               minWidth: "80px",
               textAlign: "start"
             }
@@ -20231,7 +20455,7 @@ const genProListStyle$1 = (token) => {
         },
         "&-title": {
           flex: "1",
-          color: token.colorTextLabel,
+          color: token2.colorTextLabel,
           fontWeight: "500",
           fontSize: "16px",
           lineHeight: "24px",
@@ -20239,9 +20463,9 @@ const genProListStyle$1 = (token) => {
         }
       }
     },
-    [`@media (max-width: ${token.screenXS})px`]: {
-      [token.componentCls]: {
-        [`${token.ipassCls}-table`]: {
+    [`@media (max-width: ${token2.screenXS})px`]: {
+      [token2.componentCls]: {
+        [`${token2.ipassCls}-table`]: {
           width: "100%",
           overflowX: "auto",
           "&-thead > tr,&-tbody > tr": {
@@ -20256,7 +20480,7 @@ const genProListStyle$1 = (token) => {
       }
     },
     "@media (max-width: 575px)": {
-      [`${token.componentCls}-toolbar`]: {
+      [`${token2.componentCls}-toolbar`]: {
         flexDirection: "column",
         alignItems: "flex-start",
         justifyContent: "flex-start",
@@ -20286,15 +20510,13 @@ const genProListStyle$1 = (token) => {
   };
 };
 function useStyle$1(prefixCls) {
-  return useStyle$A("ProTable", (token) => {
-    const proListToken = {
-      ...token,
+  return useStyle$A("ProTable", (token2) => {
+    const proListToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProListStyle$1(proListToken)];
   });
 }
-
 const mergeOptionAndPageInfo = ({ pageInfo }) => {
   if (pageInfo) {
     const { current, defaultCurrent, pageSize, defaultPageSize } = pageInfo;
@@ -20320,17 +20542,17 @@ const useFetchData = (getData, defaultData, options) => {
   const manualRequestRef = useRef(manual);
   const pollingSetTimeRef = useRef();
   const [tableDataList, setTableDataList] = useMergedState(defaultData, {
-    value: options?.dataSource,
-    onChange: options?.onDataSourceChange
+    value: options == null ? void 0 : options.dataSource,
+    onChange: options == null ? void 0 : options.onDataSourceChange
   });
   const [tableLoading, setTableLoading] = useMergedState(false, {
-    value: options?.loading,
-    onChange: options?.onLoadingChange
+    value: options == null ? void 0 : options.loading,
+    onChange: options == null ? void 0 : options.onLoadingChange
   });
   const [pageInfo, setPageInfoState] = useMergedState(
     () => mergeOptionAndPageInfo(options),
     {
-      onChange: options?.onPageInfoChange
+      onChange: options == null ? void 0 : options.onPageInfoChange
     }
   );
   const setPageInfo = useRefFunction((changePageInfo) => {
@@ -20342,16 +20564,15 @@ const useFetchData = (getData, defaultData, options) => {
   const setDataAndLoading = (newData, dataTotal) => {
     unstable_batchedUpdates(() => {
       setTableDataList(newData);
-      if (pageInfo?.total !== dataTotal) {
-        setPageInfo({
-          ...pageInfo,
+      if ((pageInfo == null ? void 0 : pageInfo.total) !== dataTotal) {
+        setPageInfo(__spreadProps(__spreadValues({}, pageInfo), {
           total: dataTotal || newData.length
-        });
+        }));
       }
     });
   };
-  const prePage = usePrevious(pageInfo?.current);
-  const prePageSize = usePrevious(pageInfo?.pageSize);
+  const prePage = usePrevious(pageInfo == null ? void 0 : pageInfo.current);
+  const prePageSize = usePrevious(pageInfo == null ? void 0 : pageInfo.pageSize);
   const prePolling = usePrevious(polling);
   const requestFinally = useRefFunction(() => {
     unstable_batchedUpdates(() => {
@@ -20359,7 +20580,7 @@ const useFetchData = (getData, defaultData, options) => {
       setPollingLoading(false);
     });
   });
-  const fetchList = async (isPolling) => {
+  const fetchList = (isPolling) => __async(void 0, null, function* () {
     if (manualRequestRef.current) {
       manualRequestRef.current = false;
       return;
@@ -20371,16 +20592,19 @@ const useFetchData = (getData, defaultData, options) => {
     }
     const { pageSize, current } = pageInfo || {};
     try {
-      const pageParams = options?.pageInfo !== false ? {
+      const pageParams = (options == null ? void 0 : options.pageInfo) !== false ? {
         current,
         pageSize
       } : void 0;
-      const {
+      const _a2 = (yield getData == null ? void 0 : getData(pageParams)) || {}, {
         data = [],
         success,
-        total = 0,
-        ...rest
-      } = await getData?.(pageParams) || {};
+        total = 0
+      } = _a2, rest = __objRest(_a2, [
+        "data",
+        "success",
+        "total"
+      ]);
       if (success === false)
         return [];
       const responseData = postDataPipeline(
@@ -20388,7 +20612,7 @@ const useFetchData = (getData, defaultData, options) => {
         [options.postData].filter((item) => item)
       );
       setDataAndLoading(responseData, total);
-      onLoad?.(responseData, rest);
+      onLoad == null ? void 0 : onLoad(responseData, rest);
       return responseData;
     } catch (e) {
       if (onRequestError === void 0)
@@ -20400,8 +20624,8 @@ const useFetchData = (getData, defaultData, options) => {
       requestFinally();
     }
     return [];
-  };
-  const fetchListDebounce = useDebounceFn(async (isPolling) => {
+  });
+  const fetchListDebounce = useDebounceFn((isPolling) => __async(void 0, null, function* () {
     if (pollingSetTimeRef.current) {
       clearTimeout(pollingSetTimeRef.current);
     }
@@ -20411,10 +20635,11 @@ const useFetchData = (getData, defaultData, options) => {
     const abort = new AbortController();
     abortRef.current = abort;
     try {
-      const msg = await Promise.race([
+      const msg = yield Promise.race([
         fetchList(isPolling),
         new Promise((_, reject) => {
-          abortRef.current?.signal?.addEventListener?.("abort", () => {
+          var _a2, _b2, _c2;
+          (_c2 = (_b2 = (_a2 = abortRef.current) == null ? void 0 : _a2.signal) == null ? void 0 : _b2.addEventListener) == null ? void 0 : _c2.call(_b2, "abort", () => {
             reject("aborted");
             fetchListDebounce.cancel();
             requestFinally();
@@ -20436,9 +20661,10 @@ const useFetchData = (getData, defaultData, options) => {
       }
       throw error;
     }
-  }, debounceTime || 30);
+  }), debounceTime || 30);
   const abortFetch = () => {
-    abortRef.current?.abort();
+    var _a2;
+    (_a2 = abortRef.current) == null ? void 0 : _a2.abort();
     fetchListDebounce.cancel();
     requestFinally();
   };
@@ -20464,21 +20690,21 @@ const useFetchData = (getData, defaultData, options) => {
     if ((!prePage || prePage === current) && (!prePageSize || prePageSize === pageSize)) {
       return;
     }
-    if (options.pageInfo && tableDataList && tableDataList?.length > pageSize || 0) {
+    if (options.pageInfo && tableDataList && (tableDataList == null ? void 0 : tableDataList.length) > pageSize || 0) {
       return;
     }
     if (current !== void 0 && tableDataList && tableDataList.length <= pageSize) {
       abortFetch();
       fetchListDebounce.run(false);
     }
-  }, [pageInfo?.current]);
+  }, [pageInfo == null ? void 0 : pageInfo.current]);
   useEffect(() => {
     if (!prePageSize) {
       return;
     }
     abortFetch();
     fetchListDebounce.run(false);
-  }, [pageInfo?.pageSize]);
+  }, [pageInfo == null ? void 0 : pageInfo.pageSize]);
   useDeepCompareEffect(() => {
     abortFetch();
     fetchListDebounce.run(false);
@@ -20512,10 +20738,10 @@ const useFetchData = (getData, defaultData, options) => {
      * @async
      * @returns {Promise<boolean>} - 資料重新載入完成後解決為 true 的 Promise。
      */
-    reload: async () => {
+    reload: () => __async(void 0, null, function* () {
       abortFetch();
       return fetchListDebounce.run(false);
-    },
+    }),
     /**
      * 當前的分頁資訊。
      * @type {Object}
@@ -20535,7 +20761,7 @@ const useFetchData = (getData, defaultData, options) => {
      * @async
      * @returns {Promise<void>} - 重設完成後解決的 Promise。
      */
-    reset: async () => {
+    reset: () => __async(void 0, null, function* () {
       const { pageInfo: optionPageInfo } = options || {};
       const { defaultCurrent = 1, defaultPageSize = 20 } = optionPageInfo || {};
       const initialPageInfo = {
@@ -20544,7 +20770,7 @@ const useFetchData = (getData, defaultData, options) => {
         pageSize: defaultPageSize
       };
       setPageInfo(initialPageInfo);
-    },
+    }),
     /**
      * 更新分頁資訊的函數。
      * @type {function}
@@ -20555,16 +20781,13 @@ const useFetchData = (getData, defaultData, options) => {
      * @prop {number} [pageSize] - 新的每頁資料數量。
      * @returns {Promise<void>} - 更新完成後解決的 Promise。
      */
-    setPageInfo: async (info) => {
-      setPageInfo({
-        ...pageInfo,
-        ...info
-      });
-    }
+    setPageInfo: (info) => __async(void 0, null, function* () {
+      setPageInfo(__spreadValues(__spreadValues({}, pageInfo), info));
+    })
   };
 };
-
 const columnSort = (columnsMap) => (a, b) => {
+  var _a2, _b2, _c2, _d;
   const { fixed: aFixed, index: aIndex } = a;
   const { fixed: bFixed, index: bIndex } = b;
   if (aFixed === "left" && bFixed !== "left" || bFixed === "right" && aFixed !== "right") {
@@ -20575,15 +20798,14 @@ const columnSort = (columnsMap) => (a, b) => {
   }
   const aKey = a.key || `${aIndex}`;
   const bKey = b.key || `${bIndex}`;
-  if (columnsMap[aKey]?.order || columnsMap[bKey]?.order) {
-    return (columnsMap[aKey]?.order || 0) - (columnsMap[bKey]?.order || 0);
+  if (((_a2 = columnsMap[aKey]) == null ? void 0 : _a2.order) || ((_b2 = columnsMap[bKey]) == null ? void 0 : _b2.order)) {
+    return (((_c2 = columnsMap[aKey]) == null ? void 0 : _c2.order) || 0) - (((_d = columnsMap[bKey]) == null ? void 0 : _d.order) || 0);
   }
   return (a.index || 0) - (b.index || 0);
 };
-
 const SHOW_EMPTY_TEXT_LIST = ["", null, void 0];
 const spellNamePath = (...rest) => {
-  return rest.filter((index) => index !== void 0).map((item) => {
+  return rest.filter((index2) => index2 !== void 0).map((item) => {
     if (typeof item === "number") {
       return item.toString();
     }
@@ -20598,37 +20820,41 @@ const CellRenderFromItem = (props) => {
     text,
     counter,
     rowData,
-    index,
+    index: index2,
     recordKey,
     subName,
-    proFieldProps
+    proFieldProps: proFieldProps2
   } = props;
   const editableForm = ProForm.useFormInstance();
-  const key = recordKey || index;
+  const key = recordKey || index2;
   const [formItemName, setName] = useState(
-    () => spellNamePath(
-      prefixName,
-      prefixName ? subName : [],
-      prefixName ? index : key,
-      columnProps?.key ?? columnProps?.dataIndex ?? index
-    )
+    () => {
+      var _a2, _b2;
+      return spellNamePath(
+        prefixName,
+        prefixName ? subName : [],
+        prefixName ? index2 : key,
+        (_b2 = (_a2 = columnProps == null ? void 0 : columnProps.key) != null ? _a2 : columnProps == null ? void 0 : columnProps.dataIndex) != null ? _b2 : index2
+      );
+    }
   );
   const rowName = useMemo(() => {
     return formItemName.slice(0, -1);
   }, [formItemName]);
   useEffect(() => {
+    var _a2, _b2;
     const value = spellNamePath(
       prefixName,
       prefixName ? subName : [],
-      prefixName ? index : key,
-      columnProps?.key ?? columnProps?.dataIndex ?? index
+      prefixName ? index2 : key,
+      (_b2 = (_a2 = columnProps == null ? void 0 : columnProps.key) != null ? _a2 : columnProps == null ? void 0 : columnProps.dataIndex) != null ? _b2 : index2
     );
     if (value.join("-") !== formItemName.join("-"))
       setName(value);
   }, [
-    columnProps?.dataIndex,
-    columnProps?.key,
-    index,
+    columnProps == null ? void 0 : columnProps.dataIndex,
+    columnProps == null ? void 0 : columnProps.key,
+    index2,
     recordKey,
     prefixName,
     key,
@@ -20638,73 +20864,68 @@ const CellRenderFromItem = (props) => {
   const needProps = useMemo(
     () => [
       editableForm,
-      {
-        ...columnProps,
+      __spreadProps(__spreadValues({}, columnProps), {
         rowKey: rowName,
-        rowIndex: index,
+        rowIndex: index2,
         isEditable: true
-      }
+      })
     ],
-    [columnProps, editableForm, index, rowName]
+    [columnProps, editableForm, index2, rowName]
   );
   const InlineItem = useCallback(
-    ({ children, ...restProps }) => /* @__PURE__ */ jsx(
-      InlineErrorFormItem,
-      {
-        popoverProps: {
-          getPopupContainer: formContext.getPopupContainer || (() => counter.rootDomRef.current || document.body)
-        },
-        errorType: "popover",
-        name: formItemName,
-        ...restProps,
-        children
-      },
-      key
-    ),
+    (_a2) => {
+      var _b2 = _a2, { children } = _b2, restProps = __objRest(_b2, ["children"]);
+      return /* @__PURE__ */ jsx(
+        InlineErrorFormItem,
+        __spreadProps(__spreadValues({
+          popoverProps: {
+            getPopupContainer: formContext.getPopupContainer || (() => counter.rootDomRef.current || document.body)
+          },
+          errorType: "popover",
+          name: formItemName
+        }, restProps), {
+          children
+        }),
+        key
+      );
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [key, formItemName]
   );
   const generateFormItem = useCallback(() => {
-    const formItemProps = {
-      ...getFieldPropsOrFormItemProps(columnProps?.formItemProps, ...needProps)
-    };
-    formItemProps.messageVariables = {
-      label: columnProps?.title || "此項",
-      type: columnProps?.valueType || "文字",
-      ...formItemProps?.messageVariables
-    };
-    formItemProps.initialValue = (prefixName ? null : text) ?? formItemProps?.initialValue ?? columnProps?.initialValue;
+    var _a2, _b2;
+    const formItemProps = __spreadValues({}, getFieldPropsOrFormItemProps(columnProps == null ? void 0 : columnProps.formItemProps, ...needProps));
+    formItemProps.messageVariables = __spreadValues({
+      label: (columnProps == null ? void 0 : columnProps.title) || "此項",
+      type: (columnProps == null ? void 0 : columnProps.valueType) || "文字"
+    }, formItemProps == null ? void 0 : formItemProps.messageVariables);
+    formItemProps.initialValue = (_b2 = (_a2 = prefixName ? null : text) != null ? _a2 : formItemProps == null ? void 0 : formItemProps.initialValue) != null ? _b2 : columnProps == null ? void 0 : columnProps.initialValue;
     let fieldDom = /* @__PURE__ */ jsx(
       ProFormField,
-      {
+      __spreadValues({
         cacheForSwr: true,
         name: formItemName,
         proFormFieldKey: key,
         ignoreFormItem: true,
         fieldProps: getFieldPropsOrFormItemProps(
-          columnProps?.fieldProps,
+          columnProps == null ? void 0 : columnProps.fieldProps,
           ...needProps
-        ),
-        ...proFieldProps
-      },
+        )
+      }, proFieldProps2),
       formItemName.join("-")
     );
-    if (columnProps?.renderFormItem) {
+    if (columnProps == null ? void 0 : columnProps.renderFormItem) {
       fieldDom = columnProps.renderFormItem(
-        {
-          ...columnProps,
-          index,
+        __spreadProps(__spreadValues({}, columnProps), {
+          index: index2,
           isEditable: true,
           type: "table"
-        },
+        }),
         {
           defaultRender: () => /* @__PURE__ */ jsx(Fragment, { children: fieldDom }),
           type: "form",
           recordKey,
-          record: {
-            ...rowData,
-            ...editableForm?.getFieldValue([key])
-          },
+          record: __spreadValues(__spreadValues({}, rowData), editableForm == null ? void 0 : editableForm.getFieldValue([key])),
           isEditable: true
         },
         editableForm
@@ -20712,7 +20933,7 @@ const CellRenderFromItem = (props) => {
       if (columnProps.ignoreFormItem)
         return /* @__PURE__ */ jsx(Fragment, { children: fieldDom });
     }
-    return /* @__PURE__ */ jsx(InlineItem, { ...formItemProps, children: fieldDom }, formItemName.join("-"));
+    return /* @__PURE__ */ jsx(InlineItem, __spreadProps(__spreadValues({}, formItemProps), { children: fieldDom }), formItemName.join("-"));
   }, [
     columnProps,
     needProps,
@@ -20720,16 +20941,16 @@ const CellRenderFromItem = (props) => {
     text,
     key,
     formItemName,
-    proFieldProps,
+    proFieldProps2,
     InlineItem,
-    index,
+    index2,
     recordKey,
     rowData,
     editableForm
   ]);
   if (formItemName.length === 0)
     return null;
-  if (typeof columnProps?.renderFormItem === "function" || typeof columnProps?.fieldProps === "function" || typeof columnProps?.formItemProps === "function") {
+  if (typeof (columnProps == null ? void 0 : columnProps.renderFormItem) === "function" || typeof (columnProps == null ? void 0 : columnProps.fieldProps) === "function" || typeof (columnProps == null ? void 0 : columnProps.formItemProps) === "function") {
     return /* @__PURE__ */ jsx(
       Form.Item,
       {
@@ -20751,34 +20972,34 @@ const CellRenderFromItem = (props) => {
   return generateFormItem();
 };
 function cellRenderToFromItem(config) {
-  const { text, valueType, rowData, columnProps, index } = config;
-  if ((!valueType || ["textarea", "text"].includes(valueType.toString())) && // valueEnum 存在說明是個select
-  !columnProps?.valueEnum && config.mode === "read") {
+  var _a2, _b2;
+  const { text, valueType: valueType2, rowData, columnProps, index: index2 } = config;
+  if ((!valueType2 || ["textarea", "text"].includes(valueType2.toString())) && // valueEnum 存在說明是個select
+  !(columnProps == null ? void 0 : columnProps.valueEnum) && config.mode === "read") {
     return SHOW_EMPTY_TEXT_LIST.includes(text) ? config.columnEmptyText : text;
   }
-  if (typeof valueType === "function" && rowData) {
-    return cellRenderToFromItem({
-      ...config,
-      valueType: valueType(rowData, config.type) || "text"
-    });
+  if (typeof valueType2 === "function" && rowData) {
+    return cellRenderToFromItem(__spreadProps(__spreadValues({}, config), {
+      valueType: valueType2(rowData, config.type) || "text"
+    }));
   }
-  const columnKey = columnProps?.key || columnProps?.dataIndex?.toString();
-  const dependencies = columnProps?.dependencies ? [
+  const columnKey = (columnProps == null ? void 0 : columnProps.key) || ((_a2 = columnProps == null ? void 0 : columnProps.dataIndex) == null ? void 0 : _a2.toString());
+  const dependencies = (columnProps == null ? void 0 : columnProps.dependencies) ? [
     config.prefixName,
-    config.prefixName ? index?.toString() : config.recordKey?.toString(),
-    columnProps?.dependencies
+    config.prefixName ? index2 == null ? void 0 : index2.toString() : (_b2 = config.recordKey) == null ? void 0 : _b2.toString(),
+    columnProps == null ? void 0 : columnProps.dependencies
   ].filter(Boolean).flat(1) : [];
-  const proFieldProps = {
-    valueEnum: runFunction(columnProps?.valueEnum, rowData),
-    request: columnProps?.request,
-    dependencies: columnProps?.dependencies ? [dependencies] : void 0,
-    originDependencies: columnProps?.dependencies ? [columnProps?.dependencies] : void 0,
-    params: runFunction(columnProps?.params, rowData, columnProps),
-    readonly: columnProps?.readonly,
-    text: valueType === "index" || valueType === "indexBorder" ? config.index : text,
+  const proFieldProps2 = {
+    valueEnum: runFunction(columnProps == null ? void 0 : columnProps.valueEnum, rowData),
+    request: columnProps == null ? void 0 : columnProps.request,
+    dependencies: (columnProps == null ? void 0 : columnProps.dependencies) ? [dependencies] : void 0,
+    originDependencies: (columnProps == null ? void 0 : columnProps.dependencies) ? [columnProps == null ? void 0 : columnProps.dependencies] : void 0,
+    params: runFunction(columnProps == null ? void 0 : columnProps.params, rowData, columnProps),
+    readonly: columnProps == null ? void 0 : columnProps.readonly,
+    text: valueType2 === "index" || valueType2 === "indexBorder" ? config.index : text,
     mode: config.mode,
     renderFormItem: void 0,
-    valueType,
+    valueType: valueType2,
     // @ts-ignore
     record: rowData,
     proFieldProps: {
@@ -20789,31 +21010,29 @@ function cellRenderToFromItem(config) {
   if (config.mode !== "edit") {
     return /* @__PURE__ */ jsx(
       ProFormField,
-      {
+      __spreadValues({
         mode: "read",
         ignoreFormItem: true,
         fieldProps: getFieldPropsOrFormItemProps(
-          columnProps?.fieldProps,
+          columnProps == null ? void 0 : columnProps.fieldProps,
           null,
           columnProps
-        ),
-        ...proFieldProps
-      }
+        )
+      }, proFieldProps2)
     );
   }
   return /* @__PURE__ */ jsx(
     CellRenderFromItem,
-    {
-      ...config,
-      proFieldProps
-    },
+    __spreadProps(__spreadValues({}, config), {
+      proFieldProps: proFieldProps2
+    }),
     config.recordKey
   );
 }
-
 const renderColumnsTitle = (item) => {
+  var _a2;
   const { title } = item;
-  const ellipsis = typeof item?.ellipsis === "boolean" ? item?.ellipsis : item?.ellipsis?.showTitle;
+  const ellipsis = typeof (item == null ? void 0 : item.ellipsis) === "boolean" ? item == null ? void 0 : item.ellipsis : (_a2 = item == null ? void 0 : item.ellipsis) == null ? void 0 : _a2.showTitle;
   if (title && typeof title === "function") {
     return title(
       item,
@@ -20839,7 +21058,7 @@ function columnRender({
   columnProps,
   text,
   rowData,
-  index,
+  index: index2,
   columnEmptyText,
   counter,
   type,
@@ -20848,18 +21067,17 @@ function columnRender({
 }) {
   const { action, prefixName } = counter;
   const { renderText = (val) => val } = columnProps;
-  const renderTextStr = renderText(text, rowData, index, action);
+  const renderTextStr = renderText(text, rowData, index2, action);
   const mode = "read";
   const itemProps = {
     text: renderTextStr,
     valueType: columnProps.valueType || "text",
-    index,
+    index: index2,
     rowData,
     subName,
-    columnProps: {
-      ...columnProps,
+    columnProps: __spreadProps(__spreadValues({}, columnProps), {
       entity: rowData
-    },
+    }),
     counter,
     columnEmptyText,
     type,
@@ -20875,12 +21093,11 @@ function columnRender({
   const renderDom = columnProps.render(
     dom,
     rowData,
-    index,
+    index2,
     action,
-    {
-      ...columnProps,
+    __spreadProps(__spreadValues({}, columnProps), {
       type: "table"
-    }
+    })
   );
   if (isMergeCell(renderDom)) {
     return renderDom;
@@ -20901,8 +21118,8 @@ function columnRender({
   }
   return renderDom;
 }
-
 function genProColumnToColumn(params, parents) {
+  var _a2;
   const {
     columns,
     counter,
@@ -20913,28 +21130,27 @@ function genProColumnToColumn(params, parents) {
     childrenColumnName = "children"
   } = params;
   const subNameRecord = /* @__PURE__ */ new Map();
-  return columns?.map((columnProps, columnsIndex) => {
+  return (_a2 = columns == null ? void 0 : columns.map((columnProps, columnsIndex) => {
     if (columnProps === ForwardTable.EXPAND_COLUMN)
       return columnProps;
     const {
       key,
       dataIndex,
       valueEnum,
-      valueType = "text",
+      valueType: valueType2 = "text",
       children,
       onFilter,
       filters = []
     } = columnProps;
     const columnKey = genColumnKey(
-      key || dataIndex?.toString(),
-      [parents?.key, columnsIndex].filter(Boolean).join("-")
+      key || (dataIndex == null ? void 0 : dataIndex.toString()),
+      [parents == null ? void 0 : parents.key, columnsIndex].filter(Boolean).join("-")
     );
-    const noNeedPro = !valueEnum && !valueType && !children;
+    const noNeedPro = !valueEnum && !valueType2 && !children;
     if (noNeedPro) {
-      return {
-        index: columnsIndex,
-        ...columnProps
-      };
+      return __spreadValues({
+        index: columnsIndex
+      }, columnProps);
     }
     const isExtraColumns = columnProps === ForwardTable.EXPAND_COLUMN;
     if (isExtraColumns) {
@@ -20958,10 +21174,10 @@ function genProColumnToColumn(params, parents) {
       return omitBoolean(onFilter);
     };
     let keyName = rowKey;
-    const tempColumns = {
+    const tempColumns = __spreadProps(__spreadValues({
       index: columnsIndex,
-      key: columnKey,
-      ...columnProps,
+      key: columnKey
+    }, columnProps), {
       title: renderColumnsTitle(columnProps),
       valueEnum,
       filters: filters === true ? proFieldParsingValueEnumToArray(
@@ -20971,26 +21187,26 @@ function genProColumnToColumn(params, parents) {
       fixed: config.fixed,
       width: columnProps.width || (columnProps.fixed ? 200 : void 0),
       children: columnProps.children ? genProColumnToColumn(
-        {
-          ...params,
-          columns: columnProps?.children || []
-        },
-        { ...columnProps, key: columnKey }
+        __spreadProps(__spreadValues({}, params), {
+          columns: (columnProps == null ? void 0 : columnProps.children) || []
+        }),
+        __spreadProps(__spreadValues({}, columnProps), { key: columnKey })
       ) : void 0,
-      render: (text, rowData, index) => {
+      render: (text, rowData, index2) => {
+        var _a3;
         if (typeof rowKey === "function") {
-          keyName = rowKey(rowData, index);
+          keyName = rowKey(rowData, index2);
         }
         let uniqueKey;
         if (typeof rowData === "object" && rowData !== null && Reflect.has(rowData, keyName)) {
           uniqueKey = rowData[keyName];
           const parentInfo = subNameRecord.get(uniqueKey) || [];
-          rowData[childrenColumnName]?.forEach((item) => {
+          (_a3 = rowData[childrenColumnName]) == null ? void 0 : _a3.forEach((item) => {
             const itemUniqueKey = item[keyName];
             if (!subNameRecord.has(itemUniqueKey)) {
               subNameRecord.set(
                 itemUniqueKey,
-                parentInfo.concat([index, childrenColumnName])
+                parentInfo.concat([index2, childrenColumnName])
               );
             }
           });
@@ -20999,7 +21215,7 @@ function genProColumnToColumn(params, parents) {
           columnProps,
           text,
           rowData,
-          index,
+          index: index2,
           columnEmptyText,
           counter,
           type,
@@ -21008,13 +21224,12 @@ function genProColumnToColumn(params, parents) {
         };
         return columnRender(renderProps);
       }
-    };
+    });
     return omitUndefinedAndEmptyArr(tempColumns);
-  })?.filter((item) => !item.hideInTable);
+  })) == null ? void 0 : _a2.filter((item) => !item.hideInTable);
 }
-
 function TableRender(props) {
-  const {
+  const _a2 = props, {
     rowKey,
     tableClassName,
     defaultClassName,
@@ -21037,9 +21252,32 @@ function TableRender(props) {
     isLightFilter,
     className,
     cardBordered,
-    getRowKey,
-    ...rest
-  } = props;
+    getRowKey
+  } = _a2, rest = __objRest(_a2, [
+    "rowKey",
+    "tableClassName",
+    "defaultClassName",
+    "action",
+    "tableColumn",
+    "type",
+    "pagination",
+    "size",
+    "defaultSize",
+    "tableStyle",
+    "toolbarDom",
+    "searchNode",
+    "style",
+    "cardProps",
+    "alertDom",
+    "name",
+    "onSortChange",
+    "onFilterChange",
+    "options",
+    "isLightFilter",
+    "className",
+    "cardBordered",
+    "getRowKey"
+  ]);
   const counter = useContext(TableContext);
   const columns = useMemo(() => {
     const loopFilter = (column) => {
@@ -21050,10 +21288,9 @@ function TableRender(props) {
           return false;
         }
         if (item.children) {
-          return {
-            ...item,
+          return __spreadProps(__spreadValues({}, item), {
             children: loopFilter(item.children)
-          };
+          });
         }
         return item;
       }).filter(Boolean);
@@ -21073,12 +21310,11 @@ function TableRender(props) {
       }
     };
     loopColumns(columns);
-    return _columns?.every((column) => {
+    return _columns == null ? void 0 : _columns.every((column) => {
       return !!column.filters && !!column.onFilter || column.filters === void 0 && column.onFilter === void 0;
     });
   }, [columns]);
-  const getTableProps = () => ({
-    ...rest,
+  const getTableProps = () => __spreadProps(__spreadValues({}, rest), {
     size,
     className: tableClassName,
     style: tableStyle,
@@ -21089,22 +21325,22 @@ function TableRender(props) {
     dataSource: action.dataSource,
     pagination,
     onChange: (changePagination, filters, sorter, extra) => {
-      rest.onChange?.(changePagination, filters, sorter, extra);
+      var _a3, _b2;
+      (_a3 = rest.onChange) == null ? void 0 : _a3.call(rest, changePagination, filters, sorter, extra);
       if (!useLocaleFilter) {
         onFilterChange(omitUndefined(filters));
       }
       if (Array.isArray(sorter)) {
         const data = sorter.reduce(
-          (pre, value) => ({
-            ...pre,
+          (pre, value) => __spreadProps(__spreadValues({}, pre), {
             [`${value.field}`]: value.order
           }),
           {}
         );
         onSortChange(omitUndefined(data));
       } else {
-        const sorterOfColumn = sorter.column?.sorter;
-        const isSortByField = sorterOfColumn?.toString() === sorterOfColumn;
+        const sorterOfColumn = (_b2 = sorter.column) == null ? void 0 : _b2.sorter;
+        const isSortByField = (sorterOfColumn == null ? void 0 : sorterOfColumn.toString()) === sorterOfColumn;
         onSortChange(
           omitUndefined({
             [`${isSortByField ? sorterOfColumn : sorter.field}`]: sorter.order
@@ -21127,13 +21363,11 @@ function TableRender(props) {
         colProps: void 0,
         rowProps: void 0
       },
-      children: /* @__PURE__ */ jsx(ForwardTable, { ...getTableProps(), rowKey })
+      children: /* @__PURE__ */ jsx(ForwardTable, __spreadProps(__spreadValues({}, getTableProps()), { rowKey }))
     }
   );
   const tableDom = props.tableViewRender ? props.tableViewRender(
-    {
-      ...getTableProps()
-    },
+    __spreadValues({}, getTableProps()),
     baseTableDom
   ) : baseTableDom;
   const tableContentDom = useMemo(() => {
@@ -21164,13 +21398,13 @@ function TableRender(props) {
     // cardProps 或者 有了name 就不需要這個padding了，不然會導致不好對齊
     propsCardProps === false || notNeedCardDom === true || !!props.name ? tableContentDom : /* @__PURE__ */ jsx(
       ProCard,
-      {
+      __spreadProps(__spreadValues({
         ghost: props.ghost,
         bordered: isBordered("table", cardBordered),
-        bodyStyle: cardBodyStyle,
-        ...propsCardProps,
+        bodyStyle: cardBodyStyle
+      }, propsCardProps), {
         children: tableContentDom
-      }
+      })
     )
   );
   const renderTable = () => {
@@ -21198,7 +21432,7 @@ function TableRender(props) {
       ]
     }
   );
-  if (!options || !options?.fullScreen) {
+  if (!options || !(options == null ? void 0 : options.fullScreen)) {
     return proTableDom;
   }
   return /* @__PURE__ */ jsx(
@@ -21213,7 +21447,7 @@ function TableRender(props) {
 }
 const emptyObj = {};
 const ProTable = (props) => {
-  const {
+  const _a2 = props, {
     cardBordered,
     request,
     className: propsClassName,
@@ -21251,9 +21485,47 @@ const ProTable = (props) => {
     polling,
     tooltip,
     revalidateOnFocus = false,
-    searchFormRender,
-    ...rest
-  } = props;
+    searchFormRender
+  } = _a2, rest = __objRest(_a2, [
+    "cardBordered",
+    "request",
+    "className",
+    "params",
+    "defaultData",
+    "headerTitle",
+    "postData",
+    "ghost",
+    "pagination",
+    "actionRef",
+    "columns",
+    "toolBarRender",
+    "optionsRender",
+    "onLoad",
+    "onRequestError",
+    "style",
+    "cardProps",
+    "tableStyle",
+    "tableClassName",
+    "columnsStateMap",
+    "onColumnsStateChange",
+    "options",
+    "search",
+    "name",
+    "onLoadingChange",
+    "beforeSearchSubmit",
+    "tableAlertRender",
+    "defaultClassName",
+    "formRef",
+    "type",
+    "columnEmptyText",
+    "toolbar",
+    "rowKey",
+    "manualRequest",
+    "polling",
+    "tooltip",
+    "revalidateOnFocus",
+    "searchFormRender"
+  ]);
   const { wrapSSR, hashId } = useStyle$1(props.defaultClassName);
   const className = classNames(defaultClassName, propsClassName, hashId);
   const actionRef = useRef();
@@ -21271,8 +21543,8 @@ const ProTable = (props) => {
     {}
   );
   useEffect(() => {
-    const { sort, filter } = parseDefaultColumnConfig(propsColumns);
-    setProFilter(filter);
+    const { sort, filter: filter2 } = parseDefaultColumnConfig(propsColumns);
+    setProFilter(filter2);
     setProSort(sort);
   }, []);
   const intl = useIntl();
@@ -21281,20 +21553,16 @@ const ProTable = (props) => {
   const fetchData = useMemo(() => {
     if (!request)
       return void 0;
-    return async (pageParams) => {
-      const actionParams = {
-        ...pageParams || {},
-        ...formSearch,
-        ...params
-      };
+    return (pageParams) => __async(void 0, null, function* () {
+      const actionParams = __spreadValues(__spreadValues(__spreadValues({}, pageParams || {}), formSearch), params);
       delete actionParams._timestamp;
-      const response = await request(
+      const response = yield request(
         actionParams,
         proSort,
         proFilter
       );
       return response;
-    };
+    });
   }, [formSearch, params, proFilter, proSort, request]);
   const action = useFetchData(fetchData, defaultData, {
     pageInfo: propsPagination === false ? false : fetchPagination,
@@ -21316,14 +21584,16 @@ const ProTable = (props) => {
     ],
     debounceTime: props.debounceTime,
     onPageInfoChange: (pageInfo) => {
+      var _a3, _b2;
       if (!propsPagination || !fetchData)
         return;
-      propsPagination?.onChange?.(pageInfo.current, pageInfo.pageSize);
-      propsPagination?.onShowSizeChange?.(pageInfo.current, pageInfo.pageSize);
+      (_a3 = propsPagination == null ? void 0 : propsPagination.onChange) == null ? void 0 : _a3.call(propsPagination, pageInfo.current, pageInfo.pageSize);
+      (_b2 = propsPagination == null ? void 0 : propsPagination.onShowSizeChange) == null ? void 0 : _b2.call(propsPagination, pageInfo.current, pageInfo.pageSize);
     }
   });
   useEffect(() => {
-    if (props.manualRequest || !props.request || !revalidateOnFocus || props.form?.ignoreRules)
+    var _a3;
+    if (props.manualRequest || !props.request || !revalidateOnFocus || ((_a3 = props.form) == null ? void 0 : _a3.ignoreRules))
       return;
     const visibilitychange = () => {
       if (document.visibilityState === "visible") {
@@ -21338,18 +21608,20 @@ const ProTable = (props) => {
     if (typeof rowKey === "function") {
       return rowKey;
     }
-    return (record, index) => {
-      if (index === -1) {
-        return record?.[rowKey];
+    return (record, index2) => {
+      var _a3;
+      if (index2 === -1) {
+        return record == null ? void 0 : record[rowKey];
       }
       if (props.name) {
-        return index?.toString();
+        return index2 == null ? void 0 : index2.toString();
       }
-      return record?.[rowKey] ?? index?.toString();
+      return (_a3 = record == null ? void 0 : record[rowKey]) != null ? _a3 : index2 == null ? void 0 : index2.toString();
     };
   }, [props.name, rowKey]);
   useMemo(() => {
-    if (action.dataSource?.length) {
+    var _a3;
+    if ((_a3 = action.dataSource) == null ? void 0 : _a3.length) {
       const keys = action.dataSource.map((data) => {
         const dataRowKey = getRowKey(data, -1);
         preserveRecordsRef.current.set(dataRowKey, data);
@@ -21360,9 +21632,8 @@ const ProTable = (props) => {
     return [];
   }, [action.dataSource, getRowKey]);
   const pagination = useMemo(() => {
-    const newPropsPagination = propsPagination === false ? false : { ...propsPagination };
-    const pageConfig = {
-      ...action.pageInfo,
+    const newPropsPagination = propsPagination === false ? false : __spreadValues({}, propsPagination);
+    const pageConfig = __spreadProps(__spreadValues({}, action.pageInfo), {
       setPageInfo: ({ pageSize, current }) => {
         const { pageInfo } = action;
         if (pageSize === pageInfo.pageSize || pageInfo.current === 1) {
@@ -21377,7 +21648,7 @@ const ProTable = (props) => {
           current: type === "list" ? current : 1
         });
       }
-    };
+    });
     if (request && newPropsPagination) {
       delete newPropsPagination.onChange;
       delete newPropsPagination.onShowSizeChange;
@@ -21385,7 +21656,8 @@ const ProTable = (props) => {
     return mergePagination(newPropsPagination, pageConfig, intl);
   }, [propsPagination, action, intl]);
   useDeepCompareEffect(() => {
-    if (props.request && params && action.dataSource && action?.pageInfo?.current !== 1) {
+    var _a3;
+    if (props.request && params && action.dataSource && ((_a3 = action == null ? void 0 : action.pageInfo) == null ? void 0 : _a3.current) !== 1) {
       action.setPageInfo({
         current: 1
       });
@@ -21393,28 +21665,30 @@ const ProTable = (props) => {
   }, [params]);
   counter.setPrefixName(props.name);
   counter.propsRef.current = props;
-  const { token } = proTheme?.useToken();
+  const { token: token2 } = proTheme == null ? void 0 : proTheme.useToken();
   useActionType(actionRef, action, {
     fullScreen: () => {
-      if (!counter.rootDomRef?.current || !document.fullscreenEnabled) {
+      var _a3, _b2;
+      if (!((_a3 = counter.rootDomRef) == null ? void 0 : _a3.current) || !document.fullscreenEnabled) {
         return;
       }
       if (document.fullscreenElement) {
         document.exitFullscreen();
       } else {
-        counter.rootDomRef?.current.requestFullscreen();
+        (_b2 = counter.rootDomRef) == null ? void 0 : _b2.current.requestFullscreen();
       }
     },
     onCleanSelected: () => {
     },
     resetAll: () => {
+      var _a3;
       setProFilter({});
       setProSort({});
       counter.setKeyWords(void 0);
       action.setPageInfo({
         current: 1
       });
-      formRef?.current?.resetFields();
+      (_a3 = formRef == null ? void 0 : formRef.current) == null ? void 0 : _a3.resetFields();
       setFormSearch({});
     }
   });
@@ -21423,19 +21697,20 @@ const ProTable = (props) => {
     propsActionRef.current = actionRef.current;
   }
   const tableColumn = useMemo(() => {
+    var _a3;
     return genProColumnToColumn({
       columns: propsColumns,
       counter,
       columnEmptyText,
       type,
-      marginSM: token.marginSM,
+      marginSM: token2.marginSM,
       rowKey,
-      childrenColumnName: props.expandable?.childrenColumnName
+      childrenColumnName: (_a3 = props.expandable) == null ? void 0 : _a3.childrenColumnName
     }).sort(columnSort(counter.columnsMap));
   }, [
     propsColumns,
-    counter?.sortKeyColumns,
-    counter?.columnsMap,
+    counter == null ? void 0 : counter.sortKeyColumns,
+    counter == null ? void 0 : counter.columnsMap,
     columnEmptyText,
     type
   ]);
@@ -21454,8 +21729,8 @@ const ProTable = (props) => {
   );
   useDeepCompareEffect(() => {
     const { pageInfo } = action;
-    const { current = pageInfo?.current, pageSize = pageInfo?.pageSize } = propsPagination || {};
-    if (propsPagination && (current || pageSize) && (pageSize !== pageInfo?.pageSize || current !== pageInfo?.current)) {
+    const { current = pageInfo == null ? void 0 : pageInfo.current, pageSize = pageInfo == null ? void 0 : pageInfo.pageSize } = propsPagination || {};
+    if (propsPagination && (current || pageSize) && (pageSize !== (pageInfo == null ? void 0 : pageInfo.pageSize) || current !== (pageInfo == null ? void 0 : pageInfo.current))) {
       action.setPageInfo({
         pageSize: pageSize || pageInfo.pageSize,
         current: current || pageInfo.current
@@ -21465,19 +21740,20 @@ const ProTable = (props) => {
     propsPagination && propsPagination.pageSize,
     propsPagination && propsPagination.current
   ]);
-  const isLightFilter = search !== false && search?.filterType === "light";
+  const isLightFilter = search !== false && (search == null ? void 0 : search.filterType) === "light";
   const onFormSearchSubmit = useCallback(
     (values) => {
+      var _a3, _b2;
       if (options && options.search) {
         const { name = "keyword" } = options.search === true ? {} : options.search;
-        const success = options.search?.onSearch?.(
+        const success = (_b2 = (_a3 = options.search) == null ? void 0 : _a3.onSearch) == null ? void 0 : _b2.call(
+          _a3,
           counter.keyWords
         );
         if (success !== false) {
-          setFormSearch({
-            ...values,
+          setFormSearch(__spreadProps(__spreadValues({}, values), {
             [name]: counter.keyWords
-          });
+          }));
           return;
         }
       }
@@ -21545,10 +21821,7 @@ const ProTable = (props) => {
       tooltip,
       toolbar,
       onFormSearchSubmit: (newValues) => {
-        setFormSearch({
-          ...formSearch,
-          ...newValues
-        });
+        setFormSearch(__spreadValues(__spreadValues({}, formSearch), newValues));
       },
       searchNode: isLightFilter ? searchNode : null,
       options,
@@ -21560,8 +21833,7 @@ const ProTable = (props) => {
   return wrapSSR(
     /* @__PURE__ */ jsx(
       TableRender,
-      {
-        ...props,
+      __spreadProps(__spreadValues({}, props), {
         name: isEditorTable,
         defaultClassName,
         size: counter.tableSize,
@@ -21577,7 +21849,7 @@ const ProTable = (props) => {
         onSortChange: (sortConfig) => {
           if (proSort === sortConfig)
             return;
-          setProSort(sortConfig ?? {});
+          setProSort(sortConfig != null ? sortConfig : {});
         },
         onFilterChange: (filterConfig) => {
           if (filterConfig === proFilter)
@@ -21585,7 +21857,7 @@ const ProTable = (props) => {
           setProFilter(filterConfig);
         },
         getRowKey
-      }
+      })
     )
   );
 };
@@ -21594,52 +21866,44 @@ const ProviderTableContainer = (props) => {
   const ErrorComponent = props.ErrorBoundary === false ? React__default.Fragment : props.ErrorBoundary || ErrorBoundary;
   return /* @__PURE__ */ jsx(Container, { initValue: props, children: /* @__PURE__ */ jsx(ProConfigProvider, { needDeps: true, children: /* @__PURE__ */ jsx(ErrorComponent, { children: /* @__PURE__ */ jsx(
     ProTable,
-    {
-      defaultClassName: `${getPrefixCls("pro-table")}`,
-      ...props
-    }
+    __spreadValues({
+      defaultClassName: `${getPrefixCls("pro-table")}`
+    }, props)
   ) }) }) });
 };
 ProviderTableContainer.Summary = ForwardTable.Summary;
-
-const CSS = /*#__PURE__*/Object.freeze({
+const CSS = /* @__PURE__ */ Object.freeze({
   Translate: {
     toString(transform) {
       if (!transform) {
         return;
       }
-
       const {
         x,
         y
       } = transform;
       return "translate3d(" + (x ? Math.round(x) : 0) + "px, " + (y ? Math.round(y) : 0) + "px, 0)";
     }
-
   },
   Scale: {
     toString(transform) {
       if (!transform) {
         return;
       }
-
       const {
         scaleX,
         scaleY
       } = transform;
       return "scaleX(" + scaleX + ") scaleY(" + scaleY + ")";
     }
-
   },
   Transform: {
     toString(transform) {
       if (!transform) {
         return;
       }
-
-      return [CSS.Translate.toString(transform), CSS.Scale.toString(transform)].join(' ');
+      return [CSS.Translate.toString(transform), CSS.Scale.toString(transform)].join(" ");
     }
-
   },
   Transition: {
     toString(_ref) {
@@ -21650,22 +21914,20 @@ const CSS = /*#__PURE__*/Object.freeze({
       } = _ref;
       return property + " " + duration + "ms " + easing;
     }
-
   }
 });
-
 const SortableItemContextValue = createContext({ handle: null });
 const SortableRow = (props) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: props.id });
-  const style = {
+  const style = __spreadValues({
     transform: CSS.Transform.toString(transform),
-    transition,
-    ...props?.style
-  };
-  const { DragHandle, dragSortKey, ...rest } = props;
+    transition
+  }, props == null ? void 0 : props.style);
+  const _a2 = props, { DragHandle, dragSortKey } = _a2, rest = __objRest(_a2, ["DragHandle", "dragSortKey"]);
   if (dragSortKey) {
     const doms = [];
-    React__default.Children.forEach(rest.children, (child, index) => {
+    React__default.Children.forEach(rest.children, (child, index2) => {
+      var _a3, _b2;
       if (child.key === dragSortKey) {
         doms.push(
           /* @__PURE__ */ jsx(
@@ -21674,41 +21936,36 @@ const SortableRow = (props) => {
               value: {
                 handle: /* @__PURE__ */ jsx(
                   DragHandle,
-                  {
-                    rowData: child?.props?.record,
-                    index: child?.props?.index,
-                    ...listeners,
-                    ...attributes
-                  }
+                  __spreadValues(__spreadValues({
+                    rowData: (_a3 = child == null ? void 0 : child.props) == null ? void 0 : _a3.record,
+                    index: (_b2 = child == null ? void 0 : child.props) == null ? void 0 : _b2.index
+                  }, listeners), attributes)
                 )
               },
               children: child
             },
-            child.key || index
+            child.key || index2
           )
         );
         return;
       }
       doms.push(child);
     });
-    return /* @__PURE__ */ jsx("tr", { ...rest, ref: setNodeRef, style, children: doms });
+    return /* @__PURE__ */ jsx("tr", __spreadProps(__spreadValues({}, rest), { ref: setNodeRef, style, children: doms }));
   }
   return /* @__PURE__ */ jsx(
     "tr",
-    {
-      ...rest,
+    __spreadValues(__spreadValues(__spreadProps(__spreadValues({}, rest), {
       ref: setNodeRef,
-      style,
-      ...attributes,
-      ...listeners
-    }
+      style
+    }), attributes), listeners)
   );
 };
 const SortableItemCell = React__default.memo((props) => {
-  const { dragSortKey, ...rest } = props;
+  const _a2 = props, { dragSortKey } = _a2, rest = __objRest(_a2, ["dragSortKey"]);
   const { handle } = useContext(SortableItemContextValue);
   if (handle) {
-    return /* @__PURE__ */ jsx("td", { ...rest, children: /* @__PURE__ */ jsxs(
+    return /* @__PURE__ */ jsx("td", __spreadProps(__spreadValues({}, rest), { children: /* @__PURE__ */ jsxs(
       "div",
       {
         style: {
@@ -21721,24 +21978,26 @@ const SortableItemCell = React__default.memo((props) => {
           rest.children
         ]
       }
-    ) });
+    ) }));
   }
-  return /* @__PURE__ */ jsx("td", { ...rest });
+  return /* @__PURE__ */ jsx("td", __spreadValues({}, rest));
 });
-const SortContainer = (p) => /* @__PURE__ */ jsx("tbody", { ...p });
+const SortContainer = (p) => /* @__PURE__ */ jsx("tbody", __spreadValues({}, p));
 function useDragSort(props) {
+  var _a2;
   const { dataSource = [], onDragSortEnd, DragHandle, dragSortKey } = props;
   const sensors = useSensors(useSensor(PointerSensor), useSensor(MouseSensor));
   const handleDragEnd = useCallback(
     (event) => {
+      var _a3;
       const { active, over } = event;
-      if (over?.id?.toString() && active.id !== over?.id) {
+      if (((_a3 = over == null ? void 0 : over.id) == null ? void 0 : _a3.toString()) && active.id !== (over == null ? void 0 : over.id)) {
         const newData = arrayMove(
           dataSource || [],
           parseInt(active.id),
           parseInt(over.id)
         );
-        onDragSortEnd?.(newData || []);
+        onDragSortEnd == null ? void 0 : onDragSortEnd(newData || []);
       }
     },
     [dataSource, onDragSortEnd]
@@ -21746,35 +22005,37 @@ function useDragSort(props) {
   const DraggableContainer = useRefFunction((p) => /* @__PURE__ */ jsx(
     SortableContext,
     {
-      items: dataSource.map((_, index) => index?.toString()),
+      items: dataSource.map((_, index2) => index2 == null ? void 0 : index2.toString()),
       strategy: verticalListSortingStrategy,
-      children: /* @__PURE__ */ jsx(SortContainer, { ...p })
+      children: /* @__PURE__ */ jsx(SortContainer, __spreadValues({}, p))
     }
   ));
   const DraggableBodyRow = useRefFunction((p) => {
-    const { ...restProps } = p;
-    const index = dataSource.findIndex(
-      (item) => item[props.rowKey ?? "index"] === restProps["data-row-key"]
-    )?.toString();
+    var _a3;
+    const restProps = __objRest(p, []);
+    const index2 = (_a3 = dataSource.findIndex(
+      (item) => {
+        var _a4;
+        return item[(_a4 = props.rowKey) != null ? _a4 : "index"] === restProps["data-row-key"];
+      }
+    )) == null ? void 0 : _a3.toString();
     return /* @__PURE__ */ jsx(
       SortableRow,
-      {
-        id: index,
+      __spreadValues({
+        id: index2,
         dragSortKey,
-        DragHandle,
-        ...restProps
-      },
-      index
+        DragHandle
+      }, restProps),
+      index2
     );
   });
   const components = props.components || {};
   if (dragSortKey) {
-    components.body = {
-      ...props.components?.body || {},
+    components.body = __spreadProps(__spreadValues({}, ((_a2 = props.components) == null ? void 0 : _a2.body) || {}), {
       wrapper: DraggableContainer,
       row: DraggableBodyRow,
       cell: SortableItemCell
-    };
+    });
   }
   const memoDndContext = useMemo(
     () => (contextProps) => {
@@ -21796,37 +22057,35 @@ function useDragSort(props) {
     components
   };
 }
-
-const genProListStyle = (token) => {
+const genProListStyle = (token2) => {
   return {
-    [token.componentCls]: {
+    [token2.componentCls]: {
       "&-icon": {
         marginInlineEnd: 8,
-        color: token.colorTextSecondary,
+        color: token2.colorTextSecondary,
         cursor: "grab !important",
         padding: 4,
         fontSize: 12,
-        borderRadius: token.borderRadius,
+        borderRadius: token2.borderRadius,
         "&:hover": {
-          color: token.colorText,
-          backgroundColor: token.colorInfoBg
+          color: token2.colorText,
+          backgroundColor: token2.colorInfoBg
         }
       }
     }
   };
 };
 function useStyle(prefixCls) {
-  return useStyle$A("DragSortTable", (token) => {
-    const proListToken = {
-      ...token,
+  return useStyle$A("DragSortTable", (token2) => {
+    const proListToken = __spreadProps(__spreadValues({}, token2), {
       componentCls: `.${prefixCls}`
-    };
+    });
     return [genProListStyle(proListToken)];
   });
 }
-
 function DragSortTable(props) {
-  const {
+  var _b2;
+  const _a2 = props, {
     rowKey,
     dragSortKey,
     dragSortHandlerRender,
@@ -21834,9 +22093,17 @@ function DragSortTable(props) {
     onDataSourceChange,
     defaultData,
     dataSource: originDataSource,
-    onLoad,
-    ...otherProps
-  } = props;
+    onLoad
+  } = _a2, otherProps = __objRest(_a2, [
+    "rowKey",
+    "dragSortKey",
+    "dragSortHandlerRender",
+    "onDragSortEnd",
+    "onDataSourceChange",
+    "defaultData",
+    "dataSource",
+    "onLoad"
+  ]);
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const [dataSource, setDataSource] = useMergedState(
     () => defaultData || [],
@@ -21848,39 +22115,37 @@ function DragSortTable(props) {
   const { wrapSSR, hashId } = useStyle(getPrefixCls("pro-table-drag"));
   const DragHandle = useMemo(() => {
     return (dragHandleProps) => {
-      const { rowData, index, className, ...rest } = dragHandleProps;
+      const _a3 = dragHandleProps, { rowData, index: index2, className } = _a3, rest = __objRest(_a3, ["rowData", "index", "className"]);
       const defaultDom = /* @__PURE__ */ jsx(
         DragIndicatorIcon,
-        {
-          ...rest,
+        __spreadProps(__spreadValues({}, rest), {
           className: `${getPrefixCls("pro-table-drag-icon")} ${className || ""} ${hashId || ""}`.trim()
-        }
+        })
       );
       const handel = dragSortHandlerRender ? dragSortHandlerRender(
-        dragHandleProps?.rowData,
-        dragHandleProps?.index
+        dragHandleProps == null ? void 0 : dragHandleProps.rowData,
+        dragHandleProps == null ? void 0 : dragHandleProps.index
       ) : defaultDom;
-      return /* @__PURE__ */ jsx("div", { ...rest, children: handel });
+      return /* @__PURE__ */ jsx("div", __spreadProps(__spreadValues({}, rest), { children: handel }));
     };
   }, [getPrefixCls]);
-  const { components, DndContext } = useDragSort({
-    dataSource: dataSource?.slice(),
+  const { components, DndContext: DndContext2 } = useDragSort({
+    dataSource: dataSource == null ? void 0 : dataSource.slice(),
     dragSortKey,
     onDragSortEnd,
     components: props.components,
     rowKey,
     DragHandle
   });
-  const wrapOnload = async (ds) => {
+  const wrapOnload = (ds) => __async(this, null, function* () {
     setDataSource(ds);
-    return onLoad?.(ds);
-  };
+    return onLoad == null ? void 0 : onLoad(ds);
+  });
   return wrapSSR(
     /* @__PURE__ */ jsx(
       ProviderTableContainer,
-      {
-        ...otherProps,
-        columns: otherProps.columns?.map((item) => {
+      __spreadProps(__spreadValues({}, otherProps), {
+        columns: (_b2 = otherProps.columns) == null ? void 0 : _b2.map((item) => {
           if (item.dataIndex == dragSortKey || item.key === dragSortKey) {
             if (!item.render) {
               item.render = () => null;
@@ -21891,16 +22156,15 @@ function DragSortTable(props) {
         onLoad: wrapOnload,
         rowKey,
         tableViewRender: (_, defaultDom) => {
-          return /* @__PURE__ */ jsx(DndContext, { children: defaultDom });
+          return /* @__PURE__ */ jsx(DndContext2, { children: defaultDom });
         },
         dataSource,
         components,
         onDataSourceChange
-      }
+      })
     )
   );
 }
-
 const DropdownButton = ({
   children,
   menus,
@@ -21941,7 +22205,7 @@ const DropdownButton = ({
         MenuListProps: {
           "aria-labelledby": "basic-button"
         },
-        children: menus?.map((item) => /* @__PURE__ */ jsx(
+        children: menus == null ? void 0 : menus.map((item) => /* @__PURE__ */ jsx(
           MenuItem,
           {
             onClick: () => {
@@ -21989,25 +22253,27 @@ const TableDropdown = ({ className: propsClassName, style, onSelect, menus = [],
         MenuListProps: {
           "aria-labelledby": "basic-button"
         },
-        children: menus.map(({ key, name, ...rest }) => /* @__PURE__ */ jsx(
-          MenuItem,
-          {
-            onClick: () => {
-              onSelect && onSelect(key);
-              handleClose();
+        children: menus.map((_a2) => {
+          var _b2 = _a2, { key, name } = _b2, rest = __objRest(_b2, ["key", "name"]);
+          return /* @__PURE__ */ jsx(
+            MenuItem,
+            {
+              onClick: () => {
+                onSelect && onSelect(key);
+                handleClose();
+              },
+              title: rest.title,
+              children: name
             },
-            title: rest.title,
-            children: name
-          },
-          key
-        ))
+            key
+          );
+        })
       }
     )
   ] });
 };
 TableDropdown.Button = DropdownButton;
-
-const index = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+const index = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   BetaSchemaForm,
   CheckCard,
@@ -22160,6 +22426,158 @@ const index = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   useStyle: useStyle$A,
   useToken,
   zhTWIntl
-}, Symbol.toStringTag, { value: 'Module' }));
-
-export { BetaSchemaForm, CheckCard, ConfigConsumer, DefaultFooter, DefaultHeader, DescriptionsSkeleton, DragSortTable, DrawerForm, ErrorBoundary, FieldContext, FieldDatePicker$1 as FieldDatePicker, FieldIndexColumn, FieldLabel, FieldMoney$1 as FieldMoney, FieldPercent$1 as FieldPercent, FieldRangePicker$1 as FieldRangePicker, FieldRender, FieldSelect$1 as FieldSelect, Status as FieldStatus, FieldText$1 as FieldText, FieldTimePicker$1 as FieldTimePicker, FooterToolbar, FormItemProvide, FormListContext, GridContent, GridContext, Group, FieldIndexColumn as IndexColumn, InlineErrorFormItem, ConfigConsumer as IntlConsumer, LabelIconTip, ListPageSkeleton, ListSkeleton, ListSkeletonItem, ListToolBar, ListToolbarSkeleton, LoginForm, LoginFormPage, ModalForm, PageContainer, PageHeader, PageHeaderSkeleton, PageLoading, ProCard, ProConfigProvider, ProDescriptions, ProField, ProForm, WrappedProFormCheckbox as ProFormCheckbox, ProFormContext, DateMonthRangePicker as ProFormDateMonthRangePicker, ExportComponent as ProFormDatePicker, DateQuarterRangePicker as ProFormDateQuarterRangePicker, ProFormDateRangePicker, ProFormDateTimePicker, ProFormDateTimeRangePicker, DateWeekRangePicker as ProFormDateWeekRangePicker, DateYearRangePicker as ProFormDateYearRangePicker, ProFormDependency, ForwardRefProFormDigit as ProFormDigit, index$3 as ProFormDigitRange, ProFormField, ProFormFieldSet, ProFormGroup, ProFormItem, ProFormList, index$2 as ProFormMoney, WrappedProFormRadio as ProFormRadio, WrappedProFormSelect as ProFormSelect, ProFormSwitch, WrappedProFormText as ProFormText, index$1 as ProFormTextArea, WrappedProFormTimePicker as ProFormTimePicker, ProLayout, ProProvider, ProSkeleton, ProviderTableContainer as ProTable, QueryFilter, RouteContext, FormSearch as Search, Statistic, StatisticCard, StepsFormWarp as StepsForm, Submitter, TableDropdown, TableItemSkeleton, TableSkeleton, Status as TableStatus, TopNavHeader, compareVersions, conversionMomentValue, conversionMomentValue as conversionSubmitValue, convertMoment, coverToNewToken, createIntl, dateArrayFormatter, dateFormatterMap, defaultRenderText, defaultSettings, enUSIntl, findIntlKeyByLocaleKey, genCopyable, getFieldPropsOrFormItemProps, getMenuData, getPageTitle, index as i, intlMap$1 as intlMap, intlMapKeys, isBrowser, isDeepEqualReact, isDropdownValueType, isImg, isNeedOpenHash, isNil, isUrl$1 as isUrl, lighten, merge, nanoid, omitBoolean, omitUndefined, omitUndefinedAndEmptyArr, openVisibleCompatible, operationUnit, parseValueToDay, pickProFormItemProps, pickProProps, proFieldParsingText, proFieldParsingValueEnumToArray, proTheme, resetComponent, roundedArrow, runFunction, setAlpha, sha256, stringify, transformKeySubmitValue, useBreakpoint, useDebounceFn, useDebounceValue, useDeepCompareEffect, useDeepCompareEffectDebounce, useDeepCompareMemo, useFetchData$2 as useFetchData, useLatest, usePrevious, useReactiveRef, useRefCallback, useRefFunction, useStyle$A as useStyle, useToken, zhTWIntl };
+}, Symbol.toStringTag, { value: "Module" }));
+export {
+  BetaSchemaForm,
+  CheckCard,
+  ConfigConsumer,
+  DefaultFooter,
+  DefaultHeader,
+  DescriptionsSkeleton,
+  DragSortTable,
+  DrawerForm,
+  ErrorBoundary,
+  FieldContext,
+  FieldDatePicker$1 as FieldDatePicker,
+  FieldIndexColumn,
+  FieldLabel,
+  FieldMoney$1 as FieldMoney,
+  FieldPercent$1 as FieldPercent,
+  FieldRangePicker$1 as FieldRangePicker,
+  FieldRender,
+  FieldSelect$1 as FieldSelect,
+  Status as FieldStatus,
+  FieldText$1 as FieldText,
+  FieldTimePicker$1 as FieldTimePicker,
+  FooterToolbar,
+  FormItemProvide,
+  FormListContext,
+  GridContent,
+  GridContext,
+  Group,
+  FieldIndexColumn as IndexColumn,
+  InlineErrorFormItem,
+  ConfigConsumer as IntlConsumer,
+  LabelIconTip,
+  ListPageSkeleton,
+  ListSkeleton,
+  ListSkeletonItem,
+  ListToolBar,
+  ListToolbarSkeleton,
+  LoginForm,
+  LoginFormPage,
+  ModalForm,
+  PageContainer,
+  PageHeader,
+  PageHeaderSkeleton,
+  PageLoading,
+  ProCard,
+  ProConfigProvider,
+  ProDescriptions,
+  ProField,
+  ProForm,
+  WrappedProFormCheckbox as ProFormCheckbox,
+  ProFormContext,
+  DateMonthRangePicker as ProFormDateMonthRangePicker,
+  ExportComponent as ProFormDatePicker,
+  DateQuarterRangePicker as ProFormDateQuarterRangePicker,
+  ProFormDateRangePicker,
+  ProFormDateTimePicker,
+  ProFormDateTimeRangePicker,
+  DateWeekRangePicker as ProFormDateWeekRangePicker,
+  DateYearRangePicker as ProFormDateYearRangePicker,
+  ProFormDependency,
+  ForwardRefProFormDigit as ProFormDigit,
+  index$3 as ProFormDigitRange,
+  ProFormField,
+  ProFormFieldSet,
+  ProFormGroup,
+  ProFormItem,
+  ProFormList,
+  index$2 as ProFormMoney,
+  WrappedProFormRadio as ProFormRadio,
+  WrappedProFormSelect as ProFormSelect,
+  ProFormSwitch,
+  WrappedProFormText as ProFormText,
+  index$1 as ProFormTextArea,
+  WrappedProFormTimePicker as ProFormTimePicker,
+  ProLayout,
+  ProProvider,
+  ProSkeleton,
+  ProviderTableContainer as ProTable,
+  QueryFilter,
+  RouteContext,
+  FormSearch as Search,
+  Statistic,
+  StatisticCard,
+  StepsFormWarp as StepsForm,
+  Submitter,
+  TableDropdown,
+  TableItemSkeleton,
+  TableSkeleton,
+  Status as TableStatus,
+  TopNavHeader,
+  compareVersions,
+  conversionMomentValue,
+  conversionMomentValue as conversionSubmitValue,
+  convertMoment,
+  coverToNewToken,
+  createIntl,
+  dateArrayFormatter,
+  dateFormatterMap,
+  defaultRenderText,
+  defaultSettings,
+  enUSIntl,
+  findIntlKeyByLocaleKey,
+  genCopyable,
+  getFieldPropsOrFormItemProps,
+  getMenuData,
+  getPageTitle,
+  index as i,
+  intlMap$1 as intlMap,
+  intlMapKeys,
+  isBrowser,
+  isDeepEqualReact,
+  isDropdownValueType,
+  isImg,
+  isNeedOpenHash,
+  isNil,
+  isUrl$1 as isUrl,
+  lighten,
+  merge,
+  nanoid,
+  omitBoolean,
+  omitUndefined,
+  omitUndefinedAndEmptyArr,
+  openVisibleCompatible,
+  operationUnit,
+  parseValueToDay,
+  pickProFormItemProps,
+  pickProProps,
+  proFieldParsingText,
+  proFieldParsingValueEnumToArray,
+  proTheme,
+  resetComponent,
+  roundedArrow,
+  runFunction,
+  setAlpha,
+  sha256,
+  stringify,
+  transformKeySubmitValue,
+  useBreakpoint,
+  useDebounceFn,
+  useDebounceValue,
+  useDeepCompareEffect,
+  useDeepCompareEffectDebounce,
+  useDeepCompareMemo,
+  useFetchData$2 as useFetchData,
+  useLatest,
+  default2 as useMountMergeState,
+  usePrevious,
+  useReactiveRef,
+  useRefCallback,
+  useRefFunction,
+  useStyle$A as useStyle,
+  useToken,
+  zhTWIntl
+};
