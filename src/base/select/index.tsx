@@ -136,6 +136,16 @@ const InternalSelect = <
   const isMultiple = mode === 'multiple' || mode === 'tags'
   const showSuffixIcon = useShowArrow(props.suffixIcon, props.showArrow)
 
+  if (isMultiple) {
+    const values = props.value as LabeledValue[] | undefined
+    props.value = values?.map((val) => {
+      if (typeof val === 'object') {
+        return JSON.stringify(val)
+      }
+      return val
+    }) as ValueType | null | undefined
+  }
+
   const mergedPopupMatchSelectWidth =
     popupMatchSelectWidth ?? dropdownMatchSelectWidth ?? contextPopupMatchSelectWidth
 

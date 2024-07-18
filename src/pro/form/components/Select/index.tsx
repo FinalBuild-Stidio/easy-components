@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import type { BaseOptionType } from 'rc-select/lib/Select'
 
 import type { SelectProps } from '@/base'
 import type { RefSelectProps } from '@/base/select'
