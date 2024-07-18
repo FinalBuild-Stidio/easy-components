@@ -6417,6 +6417,15 @@ const InternalSelect = (_e, ref) => {
   }, [props.mode]);
   const isMultiple = mode === "multiple" || mode === "tags";
   const showSuffixIcon = useShowArrow(props.suffixIcon, props.showArrow);
+  if (isMultiple) {
+    const values = props.value;
+    props.value = values == null ? void 0 : values.map((val) => {
+      if (typeof val === "object") {
+        return JSON.stringify(val);
+      }
+      return val;
+    });
+  }
   const mergedPopupMatchSelectWidth = (_a = popupMatchSelectWidth != null ? popupMatchSelectWidth : dropdownMatchSelectWidth) != null ? _a : contextPopupMatchSelectWidth;
   const {
     status: contextStatus,
