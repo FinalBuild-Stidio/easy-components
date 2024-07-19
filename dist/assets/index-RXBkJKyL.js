@@ -6391,7 +6391,7 @@ const InternalSelect = (_e, ref) => {
     "style",
     "allowClear"
   ]);
-  var _a;
+  var _a, _b;
   const {
     getPopupContainer: getContextPopupContainer,
     getPrefixCls,
@@ -6417,7 +6417,7 @@ const InternalSelect = (_e, ref) => {
   }, [props.mode]);
   const isMultiple = mode === "multiple" || mode === "tags";
   const showSuffixIcon = useShowArrow(props.suffixIcon, props.showArrow);
-  if (isMultiple) {
+  if (isMultiple && typeof ((_a = props.value) == null ? void 0 : _a.map) !== "undefined") {
     const values = props.value;
     props.value = values == null ? void 0 : values.map((val) => {
       if (typeof val === "object") {
@@ -6426,7 +6426,7 @@ const InternalSelect = (_e, ref) => {
       return val;
     });
   }
-  const mergedPopupMatchSelectWidth = (_a = popupMatchSelectWidth != null ? popupMatchSelectWidth : dropdownMatchSelectWidth) != null ? _a : contextPopupMatchSelectWidth;
+  const mergedPopupMatchSelectWidth = (_b = popupMatchSelectWidth != null ? popupMatchSelectWidth : dropdownMatchSelectWidth) != null ? _b : contextPopupMatchSelectWidth;
   const {
     status: contextStatus,
     hasFeedback,

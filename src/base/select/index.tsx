@@ -136,7 +136,7 @@ const InternalSelect = <
   const isMultiple = mode === 'multiple' || mode === 'tags'
   const showSuffixIcon = useShowArrow(props.suffixIcon, props.showArrow)
 
-  if (isMultiple) {
+  if (isMultiple && typeof (props.value as any)?.map !== 'undefined') {
     const values = props.value as LabeledValue[] | undefined
     props.value = values?.map((val) => {
       if (typeof val === 'object') {
